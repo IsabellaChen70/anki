@@ -46,7 +46,25 @@ class VantageDashboard(QMainWindow):
             tooltip("Vantage refreshed", parent=self)
         elif cmd == "vantage:back":
             self.close()
+        elif cmd == "vantage:study":
+            self._start_study()
         return None
+
+    def _start_study(self) -> None:
+        """Launch Anki's real FSRS reviewer on the deck with the most cards, so
+        studying happens through Anki from the dashboard (not a reimplementation)."""
+        self.close()
+        try:
+            did = mw.col.db.scalar(
+                "select did from cards where queue >= 0 group by did order by count(*) desc limit 1"
+            )
+            if did:
+                mw.col.decks.select(did)
+        except Exception:
+            pass
+        mw.moveToState("review")
+        mw.raise_()
+        mw.activateWindow()
 
 
 def open_dashboard() -> None:
