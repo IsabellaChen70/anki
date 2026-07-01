@@ -56,6 +56,22 @@ class Scheduler(SchedulerBaseWithLegacy):
             fetch_limit=fetch_limit, intraday_learning_only=intraday_learning_only
         )
 
+    def set_interleave_mode(
+        self,
+        *,
+        mode: int,
+        topic_tag_prefix: str = "mcat",
+        seed: int = 0,
+    ) -> OpChanges:
+        """Vantage (MCAT): set the topic-interleaving review order.
+
+        mode: 0 = off, 1 = mixed (interleave), 2 = blocked. Topics are read from
+        each card's note tag under `topic_tag_prefix` (e.g. mcat::section::topic).
+        """
+        return self.col._backend.set_interleave_mode(
+            mode=mode, topic_tag_prefix=topic_tag_prefix, seed=seed
+        )
+
     def describe_next_states(self, next_states: SchedulingStates) -> Sequence[str]:
         "Labels for each of the answer buttons."
         return self.col._backend.describe_next_states(next_states)

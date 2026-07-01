@@ -64,6 +64,8 @@ service SchedulerService {
   // The number of days the calculated interval was fuzzed by on the previous
   // review (if any). Utilized by the FSRS add-on.
   rpc FuzzDelta(FuzzDeltaRequest) returns (FuzzDeltaResponse);
+  // Vantage (MCAT project): set the topic-interleaving review-order mode.
+  rpc SetInterleaveMode(SetInterleaveModeRequest) returns (collection.OpChanges);
 }
 
 // Implicitly includes any of the above methods that are not listed in the
@@ -482,4 +484,16 @@ message FuzzDeltaRequest {
 
 message FuzzDeltaResponse {
   sint32 delta_days = 1;
+}
+
+// Vantage (MCAT project): topic-interleaving review-order mode.
+message SetInterleaveModeRequest {
+  enum Mode {
+    OFF = 0;
+    MIXED = 1;
+    BLOCKED = 2;
+  }
+  Mode mode = 1;
+  string topic_tag_prefix = 2;  // e.g. "mcat"
+  uint64 seed = 3;
 }

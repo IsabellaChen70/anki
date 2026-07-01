@@ -37,6 +37,7 @@ pub enum Op {
     SortCards,
     Suspend,
     ToggleLoadBalancer,
+    SetInterleaveMode,
     UnburyUnsuspend,
     UpdateCard,
     UpdateConfig,
@@ -68,6 +69,7 @@ impl Op {
             Op::ScheduleAsNew => tr.actions_forget_card(),
             Op::SetDueDate => tr.actions_set_due_date(),
             Op::ToggleLoadBalancer => tr.actions_toggle_load_balancer(),
+            Op::SetInterleaveMode => tr.actions_update_config(),
             Op::GradeNow => tr.actions_grade_now(),
             Op::Suspend => tr.studying_suspend(),
             Op::UnburyUnsuspend => tr.actions_unbury_unsuspend(),
@@ -176,6 +178,7 @@ impl OpChanges {
                         | Op::UpdatePreferences
                         | Op::UpdateDeckConfig
                         | Op::ToggleLoadBalancer
+                        | Op::SetInterleaveMode
                 ))
             || c.deck_config
     }
