@@ -3,6 +3,7 @@
 
 mod burying;
 mod gathering;
+pub(crate) mod interleave;
 pub(crate) mod intersperser;
 pub(crate) mod sized_chain;
 mod sorting;
@@ -286,6 +287,9 @@ impl Collection {
             .update_active_decks(&queues.context.root_deck)?;
 
         queues.gather_cards(self)?;
+
+        let interleave_cfg = self.get_interleave_config();
+        queues.interleave_reviews_by_topic(self, &interleave_cfg)?;
 
         let queues = queues.build(self.learn_ahead_secs() as i64);
 

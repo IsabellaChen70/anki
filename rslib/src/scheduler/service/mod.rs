@@ -248,6 +248,13 @@ impl crate::services::SchedulerService for Collection {
             .map(Into::into)
     }
 
+    fn set_interleave_mode(
+        &mut self,
+        input: scheduler::SetInterleaveModeRequest,
+    ) -> Result<anki_proto::collection::OpChanges> {
+        self.set_interleave_mode(input).map(Into::into)
+    }
+
     fn custom_study(
         &mut self,
         input: scheduler::CustomStudyRequest,
