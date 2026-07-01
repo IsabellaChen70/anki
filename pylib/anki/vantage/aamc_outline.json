@@ -1,0 +1,44 @@
+{
+  "version": "aamc-approx-2023.v1",
+  "note": "Approximation of the AAMC MCAT content outline (three science sections) for coverage gating. Weights are a rough, documented emphasis proxy (integers, normalized at read time) and are TUNABLE (see spec-readiness-score D-SCORE4 / D11). Not an official AAMC weighting.",
+  "sections": {
+    "chem_phys": "Chemical and Physical Foundations of Biological Systems",
+    "bio_biochem": "Biological and Biochemical Foundations of Living Systems",
+    "psych_soc": "Psychological, Social, and Biological Foundations of Behavior"
+  },
+  "concepts": [
+    {"id": "4A", "section": "chem_phys", "name": "Translational motion, forces, work, energy, equilibrium", "weight": 3, "aliases": ["kinematics", "forces", "work_energy", "equilibrium", "mechanics"]},
+    {"id": "4B", "section": "chem_phys", "name": "Importance of fluids for circulation of blood, gas movement", "weight": 2, "aliases": ["fluids", "hydrostatics", "gases", "circulation"]},
+    {"id": "4C", "section": "chem_phys", "name": "Electrochemistry and electrical circuits", "weight": 2, "aliases": ["electrochemistry", "circuits", "electrostatics"]},
+    {"id": "4D", "section": "chem_phys", "name": "How light and sound interact with matter", "weight": 1, "aliases": ["optics", "light", "sound", "waves"]},
+    {"id": "4E", "section": "chem_phys", "name": "Atoms, nuclear decay, electronic structure, atomic chemical behavior", "weight": 3, "aliases": ["atomic_structure", "periodic_table", "nuclear", "quantum"]},
+    {"id": "5A", "section": "chem_phys", "name": "Unique nature of water and its solutions", "weight": 2, "aliases": ["water", "solutions", "acid_base", "ph", "buffers"]},
+    {"id": "5B", "section": "chem_phys", "name": "Nature of molecules and intermolecular interactions", "weight": 3, "aliases": ["bonding", "intermolecular", "molecular_structure"]},
+    {"id": "5C", "section": "chem_phys", "name": "Separation and purification methods", "weight": 2, "aliases": ["chromatography", "distillation", "separation", "spectroscopy"]},
+    {"id": "5D", "section": "chem_phys", "name": "Structure, function, and reactivity of biological molecules", "weight": 4, "aliases": ["organic_chemistry", "functional_groups", "reactions", "stereochemistry"]},
+    {"id": "5E", "section": "chem_phys", "name": "Principles of chemical thermodynamics and kinetics", "weight": 3, "aliases": ["thermodynamics", "kinetics", "enthalpy", "entropy", "gibbs"]},
+
+    {"id": "1A", "section": "bio_biochem", "name": "Structure and function of proteins and amino acids", "weight": 5, "aliases": ["amino_acids", "proteins", "enzymes", "protein_structure"]},
+    {"id": "1B", "section": "bio_biochem", "name": "Transmission of genetic information from gene to protein", "weight": 3, "aliases": ["transcription", "translation", "central_dogma", "gene_expression"]},
+    {"id": "1C", "section": "bio_biochem", "name": "Transmission of heritable information and its variation", "weight": 2, "aliases": ["genetics", "inheritance", "evolution", "meiosis"]},
+    {"id": "1D", "section": "bio_biochem", "name": "Principles of bioenergetics and fuel molecule metabolism", "weight": 4, "aliases": ["metabolism", "bioenergetics", "glycolysis", "krebs", "oxidative_phosphorylation"]},
+    {"id": "2A", "section": "bio_biochem", "name": "Assemblies of molecules, cells, and groups of cells", "weight": 4, "aliases": ["cell_biology", "membranes", "organelles", "cell_theory"]},
+    {"id": "2B", "section": "bio_biochem", "name": "Structure, growth, physiology, genetics of prokaryotes and viruses", "weight": 2, "aliases": ["prokaryotes", "bacteria", "viruses", "microbiology"]},
+    {"id": "2C", "section": "bio_biochem", "name": "Processes of cell division, differentiation, and specialization", "weight": 3, "aliases": ["cell_cycle", "mitosis", "differentiation", "stem_cells"]},
+    {"id": "3A", "section": "bio_biochem", "name": "Structure and function of the nervous and endocrine systems", "weight": 4, "aliases": ["nervous_system", "endocrine", "neurons", "hormones"]},
+    {"id": "3B", "section": "bio_biochem", "name": "Structure and function of the main organ systems", "weight": 4, "aliases": ["physiology", "organ_systems", "circulatory", "respiratory", "renal", "immune"]},
+
+    {"id": "6A", "section": "psych_soc", "name": "Sensing the environment", "weight": 2, "aliases": ["sensation", "perception", "senses", "vision", "hearing"]},
+    {"id": "6B", "section": "psych_soc", "name": "Making sense of the environment", "weight": 3, "aliases": ["cognition", "memory", "attention", "consciousness", "intelligence"]},
+    {"id": "6C", "section": "psych_soc", "name": "Responding to the world", "weight": 2, "aliases": ["emotion", "stress", "motivation"]},
+    {"id": "7A", "section": "psych_soc", "name": "Individual influences on behavior", "weight": 3, "aliases": ["learning", "conditioning", "personality", "biological_bases"]},
+    {"id": "7B", "section": "psych_soc", "name": "Social processes that influence human behavior", "weight": 3, "aliases": ["social_influence", "conformity", "groups", "socialization"]},
+    {"id": "7C", "section": "psych_soc", "name": "Attitude and behavior change", "weight": 2, "aliases": ["attitudes", "persuasion", "behavior_change"]},
+    {"id": "8A", "section": "psych_soc", "name": "Self-identity", "weight": 2, "aliases": ["self_concept", "identity", "self_esteem"]},
+    {"id": "8B", "section": "psych_soc", "name": "Social thinking", "weight": 3, "aliases": ["attribution", "prejudice", "stereotypes", "social_cognition"]},
+    {"id": "8C", "section": "psych_soc", "name": "Social interactions", "weight": 3, "aliases": ["social_interaction", "attraction", "aggression", "altruism"]},
+    {"id": "9A", "section": "psych_soc", "name": "Understanding social structure", "weight": 3, "aliases": ["social_structure", "institutions", "culture", "social_theory"]},
+    {"id": "9B", "section": "psych_soc", "name": "Demographic characteristics and processes", "weight": 2, "aliases": ["demographics", "population", "migration"]},
+    {"id": "10A", "section": "psych_soc", "name": "Social inequality", "weight": 3, "aliases": ["inequality", "stratification", "poverty", "healthcare_disparities"]}
+  ]
+}
