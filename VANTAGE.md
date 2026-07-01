@@ -20,7 +20,7 @@ change lives here, and the phone runs that same code compiled for Android.
 
 ## Key commits (this repo)
 
-- Rust interleaving change: `207318a19`
+- Rust interleaving change: `207318a19` (write-up: [RUST_CHANGE_NOTE.md](RUST_CHANGE_NOTE.md))
 - Honest scoring layer (`anki.vantage`): `657999553`
 - Dashboard UI add-on (`vantage_addon`): `7886d4799`
 
