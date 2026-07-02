@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "about": "SourceRefs retrofitted onto a handful of the EXISTING hand-authored reasoning items in vantage_addon/web/practice.js, as a demonstration of traceability.",
+    "important": "This file does NOT edit practice.js. The stem/correct_choice/claim are mirrored here read-only so the grounding checker can verify each item traces to a named source span. `claim` is the item's own rationale (the practice.js `explain` string), i.e. the factual statement the card teaches.",
+    "source_ref": "source_ref = {source_id, start, end} into corpus.json (start/end are inclusive sentence indices).",
+    "version": "vantage-cardgen-retrofit.v1"
+  },
+  "items": [
+    {
+      "retrofit_id": "rf_cars_q4",
+      "bank": "cars",
+      "question_index": 4,
+      "kind": "application",
+      "stem": "The final sentence about wanting no loss at all mainly serves to:",
+      "correct_choice": "show that the demand for a loss-free translation defeats itself",
+      "claim": "Wanting zero loss means wanting the original, which the reader cannot read, so the demand collapses on itself.",
+      "source_ref": {"source_id": "src_translation_cars", "start": 4, "end": 4}
+    },
+    {
+      "retrofit_id": "rf_cars_q5",
+      "bank": "cars",
+      "question_index": 5,
+      "kind": "application",
+      "stem": "The phrase languages carve the world at different joints most directly supports the idea that:",
+      "correct_choice": "different languages divide meaning in non-matching ways",
+      "claim": "If languages carve the world differently, their words do not map one-to-one, which is why a loss-free translation is impossible.",
+      "source_ref": {"source_id": "src_translation_cars", "start": 3, "end": 3}
+    },
+    {
+      "retrofit_id": "rf_chemphys_q0",
+      "bank": "chem_phys",
+      "question_index": 0,
+      "kind": "application",
+      "stem": "The pH barely changes because the added H+ is consumed mainly by:",
+      "correct_choice": "acetate ions acting as a base",
+      "claim": "In a buffer, the conjugate base (acetate) neutralizes added strong acid, so the free hydrogen ion concentration barely rises.",
+      "source_ref": {"source_id": "src_buffers", "start": 1, "end": 4}
+    },
+    {
+      "retrofit_id": "rf_chemphys_q5",
+      "bank": "chem_phys",
+      "question_index": 5,
+      "kind": "application",
+      "stem": "Adding a catalyst speeds the reaction because it:",
+      "correct_choice": "lowers the activation energy for both directions",
+      "claim": "A catalyst lowers the activation energy for the forward and reverse directions equally, without shifting the equilibrium.",
+      "source_ref": {"source_id": "src_catalysis", "start": 1, "end": 2}
+    },
+    {
+      "retrofit_id": "rf_bio_q0",
+      "bank": "bio_biochem",
+      "question_index": 0,
+      "kind": "application",
+      "stem": "Compound X (unchanged Vmax, increased Km) is acting as a(n):",
+      "correct_choice": "competitive inhibitor",
+      "claim": "Unchanged maximum velocity with an increased Michaelis constant is the signature of a competitive inhibitor, which competes with substrate at the active site.",
+      "source_ref": {"source_id": "src_enzyme_inhibition", "start": 0, "end": 1}
+    },
+    {
+      "retrofit_id": "rf_bio_q5",
+      "bank": "bio_biochem",
+      "question_index": 5,
+      "kind": "application",
+      "stem": "Under anaerobic conditions, a muscle cell keeps glycolysis running mainly by:",
+      "correct_choice": "fermenting pyruvate to lactate to regenerate NAD+",
+      "claim": "Under anaerobic conditions the electron transport chain stalls, so the muscle cell ferments pyruvate into lactate to regenerate NAD+ and keep glycolysis running.",
+      "source_ref": {"source_id": "src_respiration", "start": 3, "end": 3}
+    },
+    {
+      "retrofit_id": "rf_psych_q0",
+      "bank": "psych_soc",
+      "question_index": 0,
+      "kind": "application",
+      "stem": "Group B's advantage over Group A best illustrates the:",
+      "correct_choice": "spacing effect",
+      "claim": "Distributing study across sessions rather than massing it improves long-term retention, which is the spacing effect.",
+      "source_ref": {"source_id": "src_spacing", "start": 0, "end": 1}
+    },
+    {
+      "retrofit_id": "rf_psych_q1",
+      "bank": "psych_soc",
+      "question_index": 1,
+      "kind": "application",
+      "stem": "Group C doing better through repeated self-testing demonstrates the:",
+      "correct_choice": "testing effect (retrieval practice)",
+      "claim": "Actively recalling information strengthens memory more than rereading it, which is the testing or retrieval-practice effect.",
+      "source_ref": {"source_id": "src_testing_effect", "start": 0, "end": 0}
+    },
+    {
+      "retrofit_id": "rf_chemphys_q1_mathnotation",
+      "bank": "chem_phys",
+      "question_index": 1,
+      "kind": "application",
+      "stem": "The initial pH equals the pKa because, at equal concentrations of acid and conjugate base:",
+      "correct_choice": "the log term in the Henderson-Hasselbalch equation is zero",
+      "claim": "pH = pKa + log([A-]/[HA]); when [A-] = [HA], log(1) = 0, so pH = pKa.",
+      "source_ref": {"source_id": "src_buffers", "start": 2, "end": 3},
+      "checker_note": "The claim is written in math notation ([A-], [HA], log(1)=0) that shares few word tokens with the prose source, so coverage lands right at the cutoff (~0.50). This illustrates the FRAGILITY of a lexical checker near its threshold: symbolic claims are only weakly supported by word overlap and a true entailment model would be needed to judge them robustly. (Observed: passes by a hair; rf_cars_q4, a verbose faithful paraphrase, is the clean false-reject.)"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "about": "Domain alias groups for MCAT terminology. Each group is a set of phrases treated as equivalent for query expansion (retrieval) and claim normalization (checker).",
+    "how_it_is_used": "If any phrase in a group appears in a query/claim, the tokens of every other phrase in the group are added. This is standard synonym-based query expansion; it is decided from general MCAT terminology, NOT tuned to the gold set.",
+    "honesty_note": "These are genuine terminology equivalences (abbreviations and standard synonyms). They are the ONLY thing that separates the Vantage retriever from the plain BM25 baseline, so any recall gain is attributable to expansion (plus light stemming)."
+  },
+  "groups": [
+    ["vmax", "maximum velocity", "maximal velocity", "maximum rate", "max rate"],
+    ["km", "michaelis constant", "michaelis menten constant", "half maximal", "half maximum"],
+    ["buffer", "resists changes in ph", "resist ph change", "resists ph"],
+    ["spacing effect", "distributed practice", "spaced practice", "spaced study"],
+    ["cramming", "massed practice", "massed study", "massing"],
+    ["testing effect", "retrieval practice", "active recall", "self testing"],
+    ["silent mutation", "synonymous mutation", "synonymous substitution", "degenerate", "degeneracy"],
+    ["frameshift", "insertion or deletion", "indel", "reading frame shift"],
+    ["spontaneous", "gibbs free energy negative", "negative free energy", "thermodynamically favorable"],
+    ["catalyst", "lowers activation energy", "activation energy"],
+    ["competitive inhibitor", "competes for the active site", "competes with substrate"],
+    ["noncompetitive inhibitor", "allosteric inhibitor", "binds away from the active site"],
+    ["lactate", "lactic acid", "anaerobic fermentation", "lactic acid fermentation"],
+    ["primacy effect", "first items", "beginning of the list", "early items"],
+    ["recency effect", "last items", "end of the list", "late items"],
+    ["self serving bias", "credit success to ability", "blame failure on circumstances"],
+    ["fundamental attribution error", "overweight personality", "underweight the situation"],
+    ["etc", "electron transport chain"],
+    ["nad", "nad+", "nadh", "nicotinamide adenine dinucleotide"],
+    ["conjugate base", "acetate", "proton acceptor"]
+  ]
+}

@@ -1,0 +1,72 @@
+/* Copyright: Ankitects Pty Ltd and contributors
+   License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html */
+/* Vantage in-dashboard reviewer. Studies real cards through Anki's scheduler,
+   framed in the dashboard's own design instead of the stock reviewer window.
+   Depends on the dashboard tokens (loaded on the same page). */
+
+/* The reviewer takes the full page, rendered over the still-mounted dashboard
+   (kept exactly as you left it) rather than as a floating popup, so closing drops
+   you straight back with no reload. */
+.reviewoverlay {
+  position: fixed; inset: 0; z-index: 1000; overflow-y: auto;
+  background: var(--bg);
+}
+.review {
+  display: flex; flex-direction: column; min-height: 100vh; width: 100%;
+  background: var(--bg);
+}
+
+.review__top {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.4rem 2.5rem; background: var(--gray-900); color: #fff; flex-wrap: wrap;
+}
+.review__deck { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; }
+.review__topright { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+.review__counts { display: flex; gap: 0.45rem; }
+.rc { font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.7rem; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.rc--new { background: rgba(59, 130, 246, 0.28); color: #bfdbfe; }
+.rc--lrn { background: rgba(220, 38, 38, 0.26); color: #fecaca; }
+.rc--rev { background: rgba(16, 185, 129, 0.24); color: #a7f3d0; }
+.review__back {
+  font-family: inherit; font-weight: 600; font-size: 0.9rem; color: #fff;
+  background: rgba(255, 255, 255, 0.14); border: 0; border-radius: 6px; padding: 0.5rem 0.9rem; cursor: pointer;
+}
+.review__back:hover { background: rgba(255, 255, 255, 0.24); }
+.review__back:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+.review__stage { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 2.5rem 2rem 3rem; }
+.cardframe { width: 100%; max-width: 46rem; background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.cardframe iframe { width: 100%; border: 0; display: block; }
+
+.review__controls { width: 100%; max-width: 46rem; margin-top: 1.75rem; }
+.showbtn {
+  width: 100%; height: 3.1rem; font-family: inherit; font-weight: 700; font-size: 1rem;
+  color: #fff; background: var(--gray-900); border: 0; border-radius: 8px; cursor: pointer;
+}
+.showbtn:hover { background: #000; }
+.showbtn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+.rates { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+.rate {
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  padding: 0.75rem 0.4rem; font-family: inherit; font-weight: 700; font-size: 0.95rem;
+  color: #fff; border: 0; border-radius: 8px; cursor: pointer;
+}
+.rate__ivl { font-weight: 600; font-size: 0.75rem; opacity: 0.9; font-variant-numeric: tabular-nums; }
+.rate--again { background: #dc2626; }
+.rate--hard { background: #d97706; }
+.rate--good { background: #059669; }
+.rate--easy { background: #2563eb; }
+.rate:hover { filter: brightness(1.08); }
+.rate:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+.review__done { max-width: 46rem; width: 100%; background: var(--muted); border-radius: 10px; padding: 2.25rem; }
+.review__done h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+.review__done p { color: var(--gray-500); font-weight: 500; margin-top: 0.4rem; }
+.review__done .showbtn { width: auto; padding: 0 1.4rem; margin-top: 1.4rem; height: 2.9rem; }
+
+@media (max-width: 620px) {
+  .review__top { padding: 1.1rem 1.25rem; }
+  .review__stage { padding: 1.5rem 1rem 2.5rem; }
+  .rates { grid-template-columns: repeat(2, 1fr); }
+}

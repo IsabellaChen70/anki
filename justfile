@@ -178,6 +178,12 @@ complexipy-diff:
 clean *args:
     ./tools/clean {{ args }}
 
+# Vantage (MCAT): seeded speed benchmark on a synthetic 50k deck -> p50/p95/worst
+# + PERF_RESULTS.md. Pass args through, e.g. `just bench --cards 100000`. (macOS/Linux)
+bench *args:
+    {{ ninja }} pylib
+    PYTHONPATH=pylib:out/pylib out/pyenv/bin/python vantage_tools/bench.py {{ args }}
+
 # Helpers to get the right commands for the platform
 
 ninja := if os() == "windows" { "tools\\ninja" } else { "./ninja" }

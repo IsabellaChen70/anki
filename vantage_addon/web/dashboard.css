@@ -1,3 +1,5 @@
+/* Copyright: Ankitects Pty Ltd and contributors
+   License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html */
 /* Vantage dashboard. Flat Design system (no shadows, color blocks, Outfit). */
 
 :root {
@@ -54,21 +56,22 @@ html, body {
 .masthead__row { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .brand__mark { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
 .brand__mark .dot { color: var(--primary); }
-.brand__tag { margin-top: 0.4rem; color: #d1d5db; font-weight: 500; letter-spacing: 0.01em; }
 
-.toolbar { display: flex; gap: 0.6rem; }
+.toolbar { display: flex; gap: 0.6rem; flex-wrap: wrap; }
 .btn {
   font-family: inherit; font-weight: 600; font-size: 0.9rem; border: 0; cursor: pointer;
   border-radius: var(--radius-md); padding: 0 1.1rem; height: 2.75rem;
   display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
-  transition: all 200ms ease;
+  transition: background-color 150ms ease;
 }
 .btn svg { width: 1.05rem; height: 1.05rem; flex: none; }
 .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--primary); }
 .btn--primary { background: var(--primary); color: #fff; }
-.btn--primary:hover { background: var(--primary-600); transform: scale(1.05); }
+.btn--primary:hover { background: var(--primary-600); }
 .btn--ghost { background: rgba(255,255,255,0.12); color: #fff; }
-.btn--ghost:hover { background: rgba(255,255,255,0.22); transform: scale(1.05); }
+.btn--ghost:hover { background: rgba(255,255,255,0.22); }
+.btn--practice { background: #7c3aed; color: #fff; }
+.btn--practice:hover { background: #6d28d9; }
 
 /* meta chips */
 .chips { position: relative; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
@@ -78,8 +81,6 @@ html, body {
   padding: 0.4rem 0.8rem; border-radius: 9999px;
 }
 .chip svg { width: 1rem; height: 1rem; }
-.chip--on { background: var(--secondary); color: #052e21; font-weight: 600; }
-.chip--off { background: rgba(255,255,255,0.1); }
 
 /* ---------- Section scaffolding ---------- */
 .section { padding: 2rem 2.5rem 0; }
@@ -91,25 +92,17 @@ html, body {
 .scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .card {
   border-radius: var(--radius-lg); padding: 1.75rem; border: 0;
-  transition: transform 200ms ease, background-color 200ms ease;
 }
-.card:hover { transform: scale(1.02); }
 .card--memory { background: var(--primary-50); }
-.card--memory:hover { background: #dbeafe; }
 .card--perf { background: var(--secondary-50); }
-.card--perf:hover { background: #d1fae5; }
 .card--ready { background: var(--accent-50); }
-.card--ready:hover { background: #fef3c7; }
 .card--abstain { background: var(--muted); }
-.card--abstain:hover { background: var(--muted-200); }
 
 .card__top { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.1rem; }
 .iconwrap {
   width: 3.25rem; height: 3.25rem; border-radius: 9999px; background: #fff;
   display: grid; place-items: center; flex: none;
-  transition: transform 200ms ease;
 }
-.card:hover .iconwrap { transform: scale(1.1); }
 .iconwrap svg { width: 1.6rem; height: 1.6rem; stroke-width: 2.4; }
 .i-memory { color: var(--primary-600); }
 .i-perf { color: var(--secondary-600); }
@@ -126,17 +119,6 @@ html, body {
 .metric--ready .metric__num { color: var(--accent-600); }
 
 .range { margin-top: 0.55rem; font-weight: 600; color: var(--fg); }
-.range .muted { color: var(--gray-500); font-weight: 500; }
-
-.badge {
-  display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1rem;
-  font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 0.3rem 0.7rem; border-radius: 9999px;
-}
-.badge--high { background: var(--secondary); color: #052e21; }
-.badge--medium { background: var(--accent); color: #442c04; }
-.badge--low { background: var(--muted-200); color: #374151; }
-.badge--insufficient { background: #1f2937; color: #fff; }
 
 .reasons { list-style: none; margin-top: 1.1rem; display: grid; gap: 0.4rem; }
 .reasons li { position: relative; padding-left: 1rem; color: #374151; font-size: 0.9rem; font-weight: 400; }
@@ -154,6 +136,12 @@ html, body {
 /* abstain state */
 .abstain__title { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: var(--accent-600); }
 .abstain__lead { margin-top: 0.4rem; color: #374151; font-weight: 500; }
+.card__cta {
+  margin-top: 1.1rem; font-family: inherit; font-weight: 700; font-size: 0.9rem; color: #fff;
+  background: #7c3aed; border: 0; border-radius: var(--radius-md); padding: 0.6rem 1.1rem; cursor: pointer;
+}
+.card__cta:hover { background: #6d28d9; }
+.card__cta:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; }
 
 /* ---------- Coverage ---------- */
 .coverage { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.25rem; align-items: start; }
@@ -178,6 +166,34 @@ html, body {
 .tag { background: rgba(255,255,255,0.12); color: #fff; font-weight: 600; font-size: 0.8rem; padding: 0.35rem 0.75rem; border-radius: 9999px; }
 .tag--accent { background: var(--accent); color: #442c04; }
 
+/* "where to study" resource pointers inside the next-topic block */
+.nextblock__where { position: relative; margin-top: 1.1rem; padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.14); display: grid; gap: 0.5rem; }
+.where__row { display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.9rem; color: #e5e7eb; font-weight: 500; }
+.where__k { flex: none; min-width: 4.75rem; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.7rem; color: #9ca3af; font-weight: 600; }
+.where__val { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.where__row--book { align-items: flex-start; }
+.where__book { font-weight: 600; color: #e5e7eb; }
+.where__chapter { font-size: 0.82rem; color: #cbd5e1; }
+.bookpick { flex: none; margin-left: auto; align-self: flex-start; max-width: 11rem;
+  background: rgba(255,255,255,0.08); color: #e5e7eb; font: inherit; font-size: 0.78rem; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 0.28rem 0.5rem; cursor: pointer; }
+.bookpick:hover { border-color: rgba(255,255,255,0.4); }
+.where__links { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; align-items: baseline; }
+.where__sep { color: #6b7280; }
+.where__cap { font-size: 0.76rem; color: #9ca3af; font-weight: 500; }
+.nextblock__where a { color: #93c5fd; font-weight: 600; text-decoration: none; font-size: 0.9rem; }
+.nextblock__where a:hover { text-decoration: underline; }
+
+/* pager: step through the ranked next topics */
+.nextblock__head { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nextpager { display: flex; align-items: center; gap: 0.5rem; flex: none; }
+.nextpager__count { font-size: 0.78rem; font-weight: 600; color: #9ca3af; font-variant-numeric: tabular-nums; }
+.nextnav { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border: 0; border-radius: 9999px; background: rgba(255,255,255,0.12); color: #fff; cursor: pointer; }
+.nextnav:hover { background: rgba(255,255,255,0.22); }
+.nextnav:disabled { opacity: 0.35; cursor: default; }
+.nextnav svg { width: 1rem; height: 1rem; }
+.nextnav:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,0.5); }
+
 /* ---------- readiness sections mini-bars ---------- */
 .subsections { margin-top: 1.25rem; display: grid; gap: 0.95rem; }
 .subrow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
@@ -186,15 +202,168 @@ html, body {
 .subrow__val { font-weight: 800; font-size: 1.35rem; font-variant-numeric: tabular-nums; color: var(--accent-600); }
 .subrow__range { color: var(--gray-500); font-weight: 500; font-size: 0.85rem; }
 
-/* ---------- footer note ---------- */
-.note { margin: 2rem 2.5rem 0; background: var(--muted); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; display: flex; gap: 0.85rem; align-items: flex-start; }
-.note svg { width: 1.25rem; height: 1.25rem; color: var(--gray-500); flex: none; margin-top: 0.1rem; }
-.note p { color: #374151; font-weight: 500; font-size: 0.92rem; }
-.note b { font-weight: 700; color: var(--fg); }
+/* ---------- Study & practice (per-section launcher) ---------- */
+.studygrid { display: grid; gap: 0.75rem; }
+.srow {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  background: var(--muted); border-radius: var(--radius-lg); padding: 1.05rem 1.35rem;
+  border-left: 4px solid var(--muted-200);
+}
+.srow--chem_phys { border-left-color: var(--primary); }
+.srow--bio_biochem { border-left-color: var(--secondary); }
+.srow--psych_soc { border-left-color: var(--accent); }
+.srow--cars { border-left-color: #7c3aed; }
+.srow--all { background: var(--gray-900); color: #fff; border-left-color: var(--primary); }
+.srow__meta { min-width: 0; }
+.srow__name { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+.srow__sub { color: var(--gray-500); font-size: 0.85rem; font-weight: 500; margin-top: 2px; }
+.srow--all .srow__sub { color: #9ca3af; }
+.srow__actions { display: flex; gap: 0.5rem; flex: none; flex-wrap: wrap; justify-content: flex-end; }
+.btn--study { background: var(--primary); color: #fff; }
+.btn--study:hover { background: var(--primary-600); }
+.btn--reason { background: #7c3aed; color: #fff; }
+.btn--reason:hover { background: #6d28d9; }
+.srow .btn { height: 2.55rem; }
 
-.footmeta { margin: 1.25rem 2.5rem 0; color: var(--gray-500); font-size: 0.82rem; font-weight: 500; display: flex; gap: 1rem; flex-wrap: wrap; }
+/* ---------- exam countdown + daily plan ---------- */
+.plancard { background: var(--primary-50); color: var(--fg); border-radius: var(--radius-lg); padding: 1.75rem; position: relative; overflow: hidden; }
+.plan__eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; font-size: 0.78rem; color: var(--gray-500); }
+.plan__count { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 0.35rem; color: var(--fg); }
+.plan__days { font-size: 2.6rem; color: var(--primary-600); }
+.plan__daterow { margin-top: 0.55rem; display: flex; align-items: center; gap: 0.75rem; color: var(--gray-500); font-weight: 600; font-size: 0.9rem; }
+.plan__setrow { margin-top: 0.55rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.plan__title { font-size: 1.15rem; font-weight: 700; }
+.datein { font-family: inherit; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.5rem 0.7rem; background: #fff; color: var(--fg); color-scheme: light; cursor: pointer; }
+.plan__grid { margin-top: 1.4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.plan__item { display: flex; align-items: baseline; gap: 0.6rem; background: #fff; border-radius: var(--radius-md); padding: 0.95rem 1.1rem; }
+.plan__num { font-size: 2rem; font-weight: 800; color: var(--fg); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.plan__lbl { font-weight: 600; font-size: 0.9rem; color: var(--fg); display: flex; flex-direction: column; }
+.plan__hint { color: var(--gray-500); font-weight: 500; font-size: 0.78rem; margin-top: 2px; }
+.plan__note { margin-top: 1.15rem; color: var(--gray-500); font-size: 0.85rem; font-weight: 500; }
+
+/* ---------- pacing coach ---------- */
+.pacelist { display: grid; gap: 0.7rem; }
+.pacerow { display: grid; grid-template-columns: 8rem 1fr auto; align-items: baseline; gap: 1rem; }
+.pacerow__sec { font-weight: 700; font-size: 0.95rem; }
+.pacerow__you { font-weight: 800; font-variant-numeric: tabular-nums; }
+.pacerow__you--ok { color: var(--secondary-600); }
+.pacerow__you--off { color: var(--accent-600); }
+.pacerow__t { color: var(--gray-500); font-size: 0.85rem; font-weight: 500; }
+.pacerow__verdict { font-size: 0.85rem; font-weight: 600; text-align: right; }
+.pacerow__verdict--ok { color: var(--secondary-600); }
+.pacerow__verdict--off { color: var(--accent-600); }
+
+/* ---------- score trajectory ---------- */
+.trajstats { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.trajstat { display: flex; flex-direction: column; }
+.trajstat__num { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.trajstat__lbl { font-size: 0.78rem; color: var(--gray-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.targetin { font-family: inherit; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.4rem 0.6rem; width: 6rem; color: var(--fg); }
+
+/* ---------- learn first vs ready to practice ---------- */
+.plansplit { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.plancol { background: var(--muted); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; border-left: 4px solid var(--muted-200); }
+.plancol--ready { border-left-color: var(--secondary); }
+.plancol__h { font-weight: 700; font-size: 0.98rem; margin-bottom: 0.95rem; }
+.planchips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.planchip { background: #fff; border: 1px solid var(--border); border-radius: 9999px; padding: 0.4rem 0.85rem; font-size: 0.85rem; font-weight: 600; }
+.planempty { color: var(--gray-500); font-weight: 500; font-size: 0.9rem; }
+
+/* ---------- memory vs. real performance (two-bar comparison) ---------- */
+.calibsummary { font-size: 1.05rem; line-height: 1.5; margin-bottom: 1.25rem; }
+.calibsummary b { font-weight: 700; }
+.calibverdict--ok b { color: var(--secondary-600); }
+.calibverdict--off b { color: var(--accent-600); }
+.calib { display: grid; gap: 0.7rem; }
+.calibbar { display: grid; grid-template-columns: 9rem 1fr 3rem; align-items: center; gap: 0.8rem; }
+.calibbar__k { font-size: 0.8rem; color: var(--gray-500); font-weight: 600; }
+.calibbar__track { height: 0.85rem; background: var(--muted-200); border-radius: 9999px; overflow: hidden; }
+.calibbar__fill { height: 100%; border-radius: 9999px; }
+.calibbar__fill--pred { background: var(--primary); }
+.calibbar__fill--obs { background: var(--secondary); }
+.calibbar__v { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ---------- readiness partial-composite note ---------- */
+.readypartial { margin-top: 0.9rem; color: var(--gray-500); font-weight: 500; font-size: 0.82rem; }
+
+/* ---------- fluency illusion (recall vs applying it, per concept) ---------- */
+.flulist { display: grid; gap: 1.15rem; }
+.flurow { display: grid; gap: 0.45rem; }
+.flurow__head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
+.flurow__name { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
+.fluchip { flex: none; background: #fff; border: 1px solid var(--border); color: var(--gray-500); font-weight: 600; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 9999px; }
+.flubar { display: grid; grid-template-columns: 6.5rem 1fr 3rem; align-items: center; gap: 0.8rem; }
+.flubar__k { font-size: 0.8rem; color: var(--gray-500); font-weight: 600; }
+.flubar__track { height: 0.75rem; background: var(--muted-200); border-radius: 9999px; overflow: hidden; }
+.flubar__fill { height: 100%; border-radius: 9999px; }
+.flubar__fill--rec { background: var(--primary); }
+.flubar__fill--app { background: var(--secondary); }
+.flubar__v { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ---------- insights grid (arranges the analysis panels into columns) ---------- */
+/* Two columns on a phone, three on a wide screen, one only on the smallest
+   screens. This turns a long vertical stack of six panels into a compact grid. */
+.insights {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  padding: 2rem 2.5rem 0;
+}
+/* Each panel becomes a plain grid cell: the grid gap sets the spacing, so drop
+   the section's own outer padding and let the cell shrink cleanly in its track. */
+.insights .section {
+  padding: 0;
+  min-width: 0;
+  container-type: inline-size;
+}
+/* In a narrow column a panel's bar rows would run past the card edge, so once
+   the cell gets tight, stack each row (label over its bar). Every panel and its
+   abstain state stays fully readable instead of clipped. */
+@container (max-width: 460px) {
+  .insights .pacerow { grid-template-columns: 1fr; gap: 0.2rem; }
+  .insights .pacerow__verdict { text-align: left; }
+}
+@container (max-width: 380px) {
+  .insights .calibbar,
+  .insights .flubar { grid-template-columns: 1fr auto; gap: 0.2rem 0.6rem; }
+  .insights .calibbar__k,
+  .insights .flubar__k { grid-column: 1 / -1; }
+}
+
+/* ---------- give-up rule (quiet footnote) ---------- */
+.giveup { margin: 2rem auto 0; padding: 0 2.5rem; max-width: 64rem; text-align: center; color: var(--gray-500); font-weight: 500; font-size: 0.9rem; }
+
+.footmeta { margin: 1.25rem 2.5rem 0; color: var(--gray-500); font-size: 0.82rem; font-weight: 500; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
 @media (max-width: 900px) {
   .scores { grid-template-columns: 1fr; }
   .coverage { grid-template-columns: 1fr; }
+  .plansplit { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .masthead { padding: 1.5rem 1.25rem 1.25rem; }
+  .brand__mark { font-size: 2.1rem; }
+  .masthead__row { flex-direction: column; align-items: stretch; }
+  .toolbar { width: 100%; display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 0.25rem; }
+  .toolbar .btn { width: 100%; min-width: 0; justify-content: center; height: 2.7rem; padding: 0 0.5rem; font-size: 0.9rem; }
+  .chips { margin-top: 1.1rem; }
+  .section { padding: 1.5rem 1.25rem 0; }
+  .insights { padding: 1.5rem 1.25rem 0; grid-template-columns: 1fr; }
+  .card { padding: 1.35rem; }
+  .srow { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .srow__actions { justify-content: stretch; }
+  .srow__actions .btn { flex: 1; min-width: 0; justify-content: center; }
+  .calibbar { grid-template-columns: 6.5rem 1fr 2.5rem; gap: 0.5rem; }
+  .flubar { grid-template-columns: 5.5rem 1fr 2.5rem; gap: 0.5rem; }
+  .plan__grid { grid-template-columns: 1fr; }
+  .giveup { padding: 0 1.25rem; }
+  .footmeta { margin-left: 1.25rem; margin-right: 1.25rem; }
+}
+
+/* Insights: one full-width column on phones (<=560px, set above so panels are
+   readable instead of squished), two columns for tablets, three on desktop. */
+@media (min-width: 960px) {
+  .insights { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

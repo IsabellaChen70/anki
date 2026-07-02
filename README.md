@@ -1,3 +1,13 @@
+# Vantage (MCAT readiness, built on Anki)
+
+**Exam: MCAT** (Medical College Admission Test), scored 472 to 528 across four sections (Chem/Phys, CARS, Bio/Biochem, Psych/Soc), each 118 to 132.
+
+Vantage is a desktop and Android study app built on this Anki fork. It keeps Anki's FSRS spaced repetition, adds a topic-interleaving review order in the shared Rust core, and adds an honest readiness layer: three separate scores (memory, performance, readiness), each with a range and a give-up rule that shows no number when the evidence is thin. See **[VANTAGE.md](./VANTAGE.md)** for the project overview, the three repositories, and build and run instructions.
+
+The rest of this file is the upstream Anki README.
+
+---
+
 # Anki
 
 [![Build Status](https://github.com/ankitects/anki/actions/workflows/ci.yml/badge.svg)](https://github.com/ankitects/anki/actions/workflows/ci.yml)
