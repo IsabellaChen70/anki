@@ -10,7 +10,7 @@
     "ankidroid": "versionName=2.25.0alpha1-debug"
   },
   "reseed": {
-    "backup_dir": "/var/folders/9k/prbccmc17txf2rmb493sxxdc0000gn/T/vantage_android_backup_t02y4tib",
+    "backup_dir": "/var/folders/9k/prbccmc17txf2rmb493sxxdc0000gn/T/vantage_android_backup_5nqofai9",
     "counts_new_lrn_rev": [
       2000,
       0,
@@ -28,7 +28,7 @@
     0.3,
     1.5
   ],
-  "baseline_revlog": 383,
+  "baseline_revlog": 379,
   "totals": {
     "pass": 20,
     "fail": 0,
@@ -36,20 +36,20 @@
     "reopen_failures": [],
     "app_open_failures": []
   },
-  "elapsed_s": 218.87,
-  "timestamp": "2026-07-02T09:26:01-0500",
+  "elapsed_s": 239.47,
+  "timestamp": "2026-07-03T00:54:08-0500",
   "results": [
     {
       "iteration": 1,
       "reviewer_focused": true,
-      "kill_delay_s": 1.3,
+      "kill_delay_s": 1.083,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 385,
+      "revlog_count": 381,
       "integrity": [
         "ok"
       ],
@@ -62,7 +62,107 @@
     {
       "iteration": 2,
       "reviewer_focused": true,
-      "kill_delay_s": 0.989,
+      "kill_delay_s": 0.318,
+      "killed": true,
+      "wal_present_after_kill": true,
+      "device_sqlite3_stdout": "",
+      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
+      "reopen_ok": true,
+      "revlog_readable": true,
+      "revlog_count": 381,
+      "integrity": [
+        "ok"
+      ],
+      "integrity_ok": true,
+      "journal_mode": "wal",
+      "revlog_growth": 0,
+      "app_reopened": true,
+      "pass": true
+    },
+    {
+      "iteration": 3,
+      "reviewer_focused": true,
+      "kill_delay_s": 0.922,
+      "killed": true,
+      "wal_present_after_kill": true,
+      "device_sqlite3_stdout": "",
+      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
+      "reopen_ok": true,
+      "revlog_readable": true,
+      "revlog_count": 382,
+      "integrity": [
+        "ok"
+      ],
+      "integrity_ok": true,
+      "journal_mode": "wal",
+      "revlog_growth": 1,
+      "app_reopened": true,
+      "pass": true
+    },
+    {
+      "iteration": 4,
+      "reviewer_focused": true,
+      "kill_delay_s": 0.671,
+      "killed": true,
+      "wal_present_after_kill": true,
+      "device_sqlite3_stdout": "",
+      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
+      "reopen_ok": true,
+      "revlog_readable": true,
+      "revlog_count": 383,
+      "integrity": [
+        "ok"
+      ],
+      "integrity_ok": true,
+      "journal_mode": "wal",
+      "revlog_growth": 1,
+      "app_reopened": true,
+      "pass": true
+    },
+    {
+      "iteration": 5,
+      "reviewer_focused": true,
+      "kill_delay_s": 0.333,
+      "killed": true,
+      "wal_present_after_kill": true,
+      "device_sqlite3_stdout": "",
+      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
+      "reopen_ok": true,
+      "revlog_readable": true,
+      "revlog_count": 383,
+      "integrity": [
+        "ok"
+      ],
+      "integrity_ok": true,
+      "journal_mode": "wal",
+      "revlog_growth": 0,
+      "app_reopened": true,
+      "pass": true
+    },
+    {
+      "iteration": 6,
+      "reviewer_focused": true,
+      "kill_delay_s": 1.086,
+      "killed": true,
+      "wal_present_after_kill": true,
+      "device_sqlite3_stdout": "",
+      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
+      "reopen_ok": true,
+      "revlog_readable": true,
+      "revlog_count": 384,
+      "integrity": [
+        "ok"
+      ],
+      "integrity_ok": true,
+      "journal_mode": "wal",
+      "revlog_growth": 1,
+      "app_reopened": true,
+      "pass": true
+    },
+    {
+      "iteration": 7,
+      "reviewer_focused": true,
+      "kill_delay_s": 1.293,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
@@ -75,14 +175,14 @@
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 1,
+      "revlog_growth": 2,
       "app_reopened": true,
       "pass": true
     },
     {
-      "iteration": 3,
+      "iteration": 8,
       "reviewer_focused": true,
-      "kill_delay_s": 1.09,
+      "kill_delay_s": 1.111,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
@@ -100,29 +200,9 @@
       "pass": true
     },
     {
-      "iteration": 4,
+      "iteration": 9,
       "reviewer_focused": true,
-      "kill_delay_s": 0.323,
-      "killed": true,
-      "wal_present_after_kill": true,
-      "device_sqlite3_stdout": "",
-      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
-      "reopen_ok": true,
-      "revlog_readable": true,
-      "revlog_count": 388,
-      "integrity": [
-        "ok"
-      ],
-      "integrity_ok": true,
-      "journal_mode": "wal",
-      "revlog_growth": 0,
-      "app_reopened": true,
-      "pass": true
-    },
-    {
-      "iteration": 5,
-      "reviewer_focused": true,
-      "kill_delay_s": 1.389,
+      "kill_delay_s": 1.355,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
@@ -140,29 +220,9 @@
       "pass": true
     },
     {
-      "iteration": 6,
+      "iteration": 10,
       "reviewer_focused": true,
-      "kill_delay_s": 0.333,
-      "killed": true,
-      "wal_present_after_kill": true,
-      "device_sqlite3_stdout": "",
-      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
-      "reopen_ok": true,
-      "revlog_readable": true,
-      "revlog_count": 391,
-      "integrity": [
-        "ok"
-      ],
-      "integrity_ok": true,
-      "journal_mode": "wal",
-      "revlog_growth": 1,
-      "app_reopened": true,
-      "pass": true
-    },
-    {
-      "iteration": 7,
-      "reviewer_focused": true,
-      "kill_delay_s": 0.858,
+      "kill_delay_s": 1.304,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
@@ -175,14 +235,14 @@
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 1,
+      "revlog_growth": 2,
       "app_reopened": true,
       "pass": true
     },
     {
-      "iteration": 8,
+      "iteration": 11,
       "reviewer_focused": true,
-      "kill_delay_s": 1.345,
+      "kill_delay_s": 1.19,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
@@ -200,76 +260,16 @@
       "pass": true
     },
     {
-      "iteration": 9,
-      "reviewer_focused": true,
-      "kill_delay_s": 0.44,
-      "killed": true,
-      "wal_present_after_kill": true,
-      "device_sqlite3_stdout": "",
-      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
-      "reopen_ok": true,
-      "revlog_readable": true,
-      "revlog_count": 394,
-      "integrity": [
-        "ok"
-      ],
-      "integrity_ok": true,
-      "journal_mode": "wal",
-      "revlog_growth": 0,
-      "app_reopened": true,
-      "pass": true
-    },
-    {
-      "iteration": 10,
-      "reviewer_focused": true,
-      "kill_delay_s": 0.457,
-      "killed": true,
-      "wal_present_after_kill": true,
-      "device_sqlite3_stdout": "",
-      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
-      "reopen_ok": true,
-      "revlog_readable": true,
-      "revlog_count": 395,
-      "integrity": [
-        "ok"
-      ],
-      "integrity_ok": true,
-      "journal_mode": "wal",
-      "revlog_growth": 1,
-      "app_reopened": true,
-      "pass": true
-    },
-    {
-      "iteration": 11,
-      "reviewer_focused": true,
-      "kill_delay_s": 0.686,
-      "killed": true,
-      "wal_present_after_kill": true,
-      "device_sqlite3_stdout": "",
-      "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
-      "reopen_ok": true,
-      "revlog_readable": true,
-      "revlog_count": 395,
-      "integrity": [
-        "ok"
-      ],
-      "integrity_ok": true,
-      "journal_mode": "wal",
-      "revlog_growth": 0,
-      "app_reopened": true,
-      "pass": true
-    },
-    {
       "iteration": 12,
       "reviewer_focused": true,
-      "kill_delay_s": 0.676,
+      "kill_delay_s": 0.868,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 396,
+      "revlog_count": 395,
       "integrity": [
         "ok"
       ],
@@ -282,14 +282,14 @@
     {
       "iteration": 13,
       "reviewer_focused": true,
-      "kill_delay_s": 1.223,
+      "kill_delay_s": 1.195,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 398,
+      "revlog_count": 397,
       "integrity": [
         "ok"
       ],
@@ -302,114 +302,114 @@
     {
       "iteration": 14,
       "reviewer_focused": true,
-      "kill_delay_s": 1.231,
+      "kill_delay_s": 1.031,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 400,
+      "revlog_count": 398,
       "integrity": [
         "ok"
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 2,
+      "revlog_growth": 1,
       "app_reopened": true,
       "pass": true
     },
     {
       "iteration": 15,
       "reviewer_focused": true,
-      "kill_delay_s": 0.562,
+      "kill_delay_s": 1.036,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 401,
+      "revlog_count": 398,
       "integrity": [
         "ok"
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 1,
+      "revlog_growth": 0,
       "app_reopened": true,
       "pass": true
     },
     {
       "iteration": 16,
       "reviewer_focused": true,
-      "kill_delay_s": 0.623,
+      "kill_delay_s": 0.801,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 402,
+      "revlog_count": 398,
       "integrity": [
         "ok"
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 1,
+      "revlog_growth": 0,
       "app_reopened": true,
       "pass": true
     },
     {
       "iteration": 17,
       "reviewer_focused": true,
-      "kill_delay_s": 0.581,
+      "kill_delay_s": 0.467,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 403,
+      "revlog_count": 398,
       "integrity": [
         "ok"
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 1,
+      "revlog_growth": 0,
       "app_reopened": true,
       "pass": true
     },
     {
       "iteration": 18,
       "reviewer_focused": true,
-      "kill_delay_s": 1.431,
+      "kill_delay_s": 1.081,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 405,
+      "revlog_count": 398,
       "integrity": [
         "ok"
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 2,
+      "revlog_growth": 0,
       "app_reopened": true,
       "pass": true
     },
     {
       "iteration": 19,
       "reviewer_focused": true,
-      "kill_delay_s": 0.366,
+      "kill_delay_s": 0.953,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 406,
+      "revlog_count": 399,
       "integrity": [
         "ok"
       ],
@@ -422,20 +422,20 @@
     {
       "iteration": 20,
       "reviewer_focused": true,
-      "kill_delay_s": 1.408,
+      "kill_delay_s": 0.715,
       "killed": true,
       "wal_present_after_kill": true,
       "device_sqlite3_stdout": "",
       "device_sqlite3_stderr": "Error: in prepare, no such collation sequence: unicase",
       "reopen_ok": true,
       "revlog_readable": true,
-      "revlog_count": 408,
+      "revlog_count": 400,
       "integrity": [
         "ok"
       ],
       "integrity_ok": true,
       "journal_mode": "wal",
-      "revlog_growth": 2,
+      "revlog_growth": 1,
       "app_reopened": true,
       "pass": true
     }

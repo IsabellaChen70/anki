@@ -84,8 +84,8 @@ out/pyenv/bin/python vantage_tools/ablation_interleave.py
 ```
 mode     same-topic adjacency  mean [min-max]      interleave exposure (mean)
 mixed    0.000                 [0.000-0.000]       0.516
-off      0.213                 [0.097-0.323]       0.265   (stock Anki order)
-blocked  0.903                 [0.903-0.903]       0.039   (grouped arm)
+off      0.155                 [0.032-0.226]       0.284   (stock Anki order; run-to-run variance)
+blocked  0.903                 [0.903-0.903]       0.013   (grouped arm)
 result: CONFIRMED (mixed << off < blocked)
 ```
 
@@ -100,20 +100,21 @@ memory held EQUAL across arms, so only the pre-registered discrimination effect 
 varies:
 
 ```
-arm      null control (effect = 0)   literature arm (Hedges g = 0.42)
-mixed    0.510                        0.605
-off      0.510                        0.515
-blocked  0.510                        0.435
-                                      mixed - blocked = +0.170
+arm              null (g=0)   low (g=0.20)   mid (g=0.42)   high (g=0.60)
+mixed            0.510        0.555          0.605          0.646
+off              0.510        0.516          0.522          0.527
+blocked          0.510        0.470          0.425          0.389
+mixed - blocked  0.000        +0.086         +0.180         +0.257
 ```
 
 Honesty (the negative-result discipline the brief asks for): the **null control ties
 all three arms at 0.510** (spread 0.0) — the correct sanity check, since with no
-assumed effect the review order alone must change nothing. The **literature arm is
-model-dependent, NOT our measurement**: it plugs in an effect size from the
+assumed effect the review order alone must change nothing. The **literature band is
+model-dependent, NOT our measurement**: it plugs in a low/mid/high effect size from the
 interleaving literature (Rohrer & Taylor; Brunmair & Richter's confusable-category
-moderator) and would need a real cohort (Step 4) to confirm. We report the mechanism
-as measured and the learning gain as *projected* — never as our own empirical result.
+moderator, mid ~ their g=0.42 mean) and would need a real cohort (Step 4) to confirm. We
+report the mechanism as measured and the learning gain as a *bounded projection*
+(mixed - blocked +0.09 to +0.26) — never as our own empirical result.
 
 Note on arms: the `off` arm is `InterleaveMode::Off` on the **same fork engine** (a
 true feature on/off toggle), not a separately-built stock Anki binary.

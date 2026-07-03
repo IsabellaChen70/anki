@@ -386,11 +386,16 @@ def _beta_draw(k: int, n: int, rng: random.Random, a0: float = 1.0, b0: float = 
     """Draw from Beta(k+a0, n-k+b0), the posterior accuracy under a Beta(a0,b0)
     prior. a0=b0=1 is the uniform prior; a memory-derived prior passes a0/b0 so
     section recall regularizes the application estimate when reasoning data is thin."""
-    a = k + a0
-    b = n - k + b0
+    # gammavariate requires alpha > 0. A memory prior of exactly 0.0 or 1.0 makes
+    # a0 or b0 == 0 (readiness() sets a0,b0 = m*kappa,(1-m)*kappa), and with all
+    # correct/incorrect outcomes a or b reaches 0.0, which raised ValueError. Floor
+    # the shape params, and guard the ratio against a rare zero-sum underflow.
+    a = max(k + a0, 1e-9)
+    b = max(n - k + b0, 1e-9)
     x = rng.gammavariate(a, 1.0)
     y = rng.gammavariate(b, 1.0)
-    return x / (x + y)
+    denom = x + y
+    return x / denom if denom > 0.0 else 0.5
 
 
 def readiness(
@@ -586,6 +591,8 @@ def irt_information(theta: float, a: float, b: float) -> float:
 
 
 def _normal_pdf(x: float, mu: float, sd: float) -> float:
+    if sd <= 0.0:  # degenerate prior sd -> 0 density; irt_estimate falls back to the prior
+        return 0.0
     z = (x - mu) / sd
     return math.exp(-0.5 * z * z) / (sd * math.sqrt(2.0 * math.pi))
 

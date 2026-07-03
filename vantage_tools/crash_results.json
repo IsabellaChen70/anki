@@ -23,8 +23,8 @@
     "reopen_failures": [],
     "iterations_not_killed_while_writing": []
   },
-  "elapsed_s": 8.66,
-  "timestamp": "2026-07-02T09:15:06-0500",
+  "elapsed_s": 6.9,
+  "timestamp": "2026-07-03T00:49:25-0500",
   "results": [
     {
       "iteration": 1,
@@ -34,9 +34,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.3214,
+      "kill_delay_s": 0.1455,
       "reopen_ok": true,
-      "revlog_count": 709,
+      "revlog_count": 478,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -46,7 +46,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 358
+      "revlog_growth": 127
     },
     {
       "iteration": 2,
@@ -56,9 +56,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.467,
+      "kill_delay_s": 0.0867,
       "reopen_ok": true,
-      "revlog_count": 887,
+      "revlog_count": 443,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -68,7 +68,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 536
+      "revlog_growth": 92
     },
     {
       "iteration": 3,
@@ -78,9 +78,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.4892,
+      "kill_delay_s": 0.3623,
       "reopen_ok": true,
-      "revlog_count": 885,
+      "revlog_count": 768,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -90,7 +90,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 534
+      "revlog_growth": 417
     },
     {
       "iteration": 4,
@@ -100,9 +100,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.2244,
+      "kill_delay_s": 0.0753,
       "reopen_ok": true,
-      "revlog_count": 599,
+      "revlog_count": 435,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -112,7 +112,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 248
+      "revlog_growth": 84
     },
     {
       "iteration": 5,
@@ -122,9 +122,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.1359,
+      "kill_delay_s": 0.247,
       "reopen_ok": true,
-      "revlog_count": 506,
+      "revlog_count": 635,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -134,7 +134,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 155
+      "revlog_growth": 284
     },
     {
       "iteration": 6,
@@ -144,9 +144,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.419,
+      "kill_delay_s": 0.2242,
       "reopen_ok": true,
-      "revlog_count": 827,
+      "revlog_count": 612,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -156,7 +156,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 476
+      "revlog_growth": 261
     },
     {
       "iteration": 7,
@@ -166,9 +166,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.0642,
+      "kill_delay_s": 0.4349,
       "reopen_ok": true,
-      "revlog_count": 429,
+      "revlog_count": 841,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -178,7 +178,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 78
+      "revlog_growth": 490
     },
     {
       "iteration": 8,
@@ -188,9 +188,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.1409,
+      "kill_delay_s": 0.0791,
       "reopen_ok": true,
-      "revlog_count": 515,
+      "revlog_count": 447,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -200,7 +200,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 164
+      "revlog_growth": 96
     },
     {
       "iteration": 9,
@@ -210,9 +210,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.3932,
+      "kill_delay_s": 0.1386,
       "reopen_ok": true,
-      "revlog_count": 807,
+      "revlog_count": 510,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -222,7 +222,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 456
+      "revlog_growth": 159
     },
     {
       "iteration": 10,
@@ -232,9 +232,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.4539,
+      "kill_delay_s": 0.0593,
       "reopen_ok": true,
-      "revlog_count": 886,
+      "revlog_count": 426,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -244,7 +244,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 535
+      "revlog_growth": 75
     },
     {
       "iteration": 11,
@@ -254,9 +254,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.1899,
+      "kill_delay_s": 0.4978,
       "reopen_ok": true,
-      "revlog_count": 563,
+      "revlog_count": 920,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -266,7 +266,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 212
+      "revlog_growth": 569
     },
     {
       "iteration": 12,
@@ -276,9 +276,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.148,
+      "kill_delay_s": 0.0994,
       "reopen_ok": true,
-      "revlog_count": 526,
+      "revlog_count": 469,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -288,7 +288,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 175
+      "revlog_growth": 118
     },
     {
       "iteration": 13,
@@ -298,9 +298,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.3295,
+      "kill_delay_s": 0.1465,
       "reopen_ok": true,
-      "revlog_count": 723,
+      "revlog_count": 517,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -310,7 +310,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 372
+      "revlog_growth": 166
     },
     {
       "iteration": 14,
@@ -320,9 +320,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.3532,
+      "kill_delay_s": 0.3205,
       "reopen_ok": true,
-      "revlog_count": 761,
+      "revlog_count": 708,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -332,7 +332,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 410
+      "revlog_growth": 357
     },
     {
       "iteration": 15,
@@ -342,9 +342,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.1859,
+      "kill_delay_s": 0.358,
       "reopen_ok": true,
-      "revlog_count": 564,
+      "revlog_count": 755,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -354,7 +354,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 213
+      "revlog_growth": 404
     },
     {
       "iteration": 16,
@@ -364,9 +364,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.1507,
+      "kill_delay_s": 0.1311,
       "reopen_ok": true,
-      "revlog_count": 526,
+      "revlog_count": 499,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -376,7 +376,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 175
+      "revlog_growth": 148
     },
     {
       "iteration": 17,
@@ -386,9 +386,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.3261,
+      "kill_delay_s": 0.0384,
       "reopen_ok": true,
-      "revlog_count": 691,
+      "revlog_count": 400,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -398,7 +398,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 340
+      "revlog_growth": 49
     },
     {
       "iteration": 18,
@@ -408,9 +408,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.2581,
+      "kill_delay_s": 0.0888,
       "reopen_ok": true,
-      "revlog_count": 589,
+      "revlog_count": 451,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -420,7 +420,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 238
+      "revlog_growth": 100
     },
     {
       "iteration": 19,
@@ -430,9 +430,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.3383,
+      "kill_delay_s": 0.1657,
       "reopen_ok": true,
-      "revlog_count": 731,
+      "revlog_count": 539,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -442,7 +442,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 380
+      "revlog_growth": 188
     },
     {
       "iteration": 20,
@@ -452,9 +452,9 @@
       "child_exit_code": -9,
       "wal_present_after_kill": true,
       "shm_present_after_kill": false,
-      "kill_delay_s": 0.2009,
+      "kill_delay_s": 0.3131,
       "reopen_ok": true,
-      "revlog_count": 574,
+      "revlog_count": 707,
       "revlog_readable": true,
       "reopen_error": null,
       "integrity": [
@@ -464,7 +464,7 @@
       "integrity_error": null,
       "journal_mode": "wal",
       "pass": true,
-      "revlog_growth": 223
+      "revlog_growth": 356
     }
   ]
 }

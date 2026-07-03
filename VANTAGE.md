@@ -16,7 +16,7 @@ number when the evidence is thin.
 - **The Rust engine change** (topic interleaving in the shared core, one implementation for both apps): [RUST_CHANGE_NOTE.md](RUST_CHANGE_NOTE.md) and [rslib/src/scheduler/queue/builder/interleave.rs](rslib/src/scheduler/queue/builder/interleave.rs).
 - **The honest scoring layer** (memory, performance, readiness, coverage map, give-up rule): [pylib/anki/vantage/](pylib/anki/vantage/).
 - **The dashboard UI** (desktop add-on): [vantage_addon/](vantage_addon/).
-- **All test and benchmark evidence in one place**: [vantage_tools/TEST_RESULTS.md](vantage_tools/TEST_RESULTS.md) — 109 unit tests, seeded evals, the 50k-card speed benchmark, crash and sync results. Benchmark detail is in [vantage_tools/PERF_RESULTS.md](vantage_tools/PERF_RESULTS.md), eval methodology in [vantage_tools/EVALUATION.md](vantage_tools/EVALUATION.md), and the AI safety layer in [AI_NOTE.md](AI_NOTE.md).
+- **All test and benchmark evidence in one place**: [vantage_tools/TEST_RESULTS.md](vantage_tools/TEST_RESULTS.md) — 113 unit tests, seeded evals, the 50k-card speed benchmark, crash and sync results. Benchmark detail is in [vantage_tools/PERF_RESULTS.md](vantage_tools/PERF_RESULTS.md), eval methodology in [vantage_tools/EVALUATION.md](vantage_tools/EVALUATION.md), and the AI safety layer in [AI_NOTE.md](AI_NOTE.md).
 - **Download and run, no build:** desktop [`.dmg` + add-on](https://github.com/IsabellaChen70/anki/releases/latest), Android [`.apk`](https://github.com/IsabellaChen70/Anki-Android/releases/latest). Install steps are below.
 
 ## One engine, three repositories

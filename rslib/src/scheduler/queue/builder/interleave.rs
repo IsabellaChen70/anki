@@ -70,8 +70,10 @@ impl InterleaveMode {
 #[serde(default)]
 pub(crate) struct InterleaveConfig {
     pub(crate) mode: InterleaveMode,
-    /// Tag namespace whose first segment identifies a card's topic, e.g.
-    /// "mcat".
+    /// Tag-namespace prefix, e.g. "mcat". A card's topic is the FULL note tag
+    /// under this prefix (e.g. `mcat::bio_biochem::amino_acids`) used as the
+    /// interleave bucket key -- not just the first segment. See
+    /// `topic_key_for_tags` for the exact key policy.
     pub(crate) topic_tag_prefix: String,
     /// Determinism for the ablation; rotates which topic leads.
     pub(crate) seed: u64,
@@ -364,6 +366,32 @@ fn round_robin_in_order<T>(buckets: Vec<Vec<T>>, order: Vec<usize>) -> Vec<T> {
     out
 }
 
+/// The interleave bucket key for a note's tag string.
+///
+/// Policy (documented, deterministic):
+/// - A card's topic is the FULL note tag under `prefix` (e.g.
+///   `mcat::bio_biochem::amino_acids`), not just the section. Distinct topics within a
+///   section are meant to interleave against each other, and the confusability/priority
+///   maps are keyed on the full tag (see `ConfusablePair` / `TopicPriority`), so the
+///   bucket key must be the full tag too.
+/// - A note carrying several distinct `prefix` tags is a first-wins tie-break resolved in
+///   SORTED order, so the bucket is deterministic rather than an accident of tag storage
+///   order.
+/// - `prefix` includes the trailing "::" (e.g. "mcat::"), so a near-miss like
+///   "mcative::x" does NOT match. Notes with no matching tag fall in the shared
+///   `::untagged` bucket.
+fn topic_key_for_tags(tags: &str, prefix: &str) -> String {
+    let mut matching: Vec<&str> = tags
+        .split_whitespace()
+        .filter(|tag| tag.starts_with(prefix))
+        .collect();
+    matching.sort_unstable();
+    matching
+        .first()
+        .map(|t| (*t).to_string())
+        .unwrap_or_else(|| UNTAGGED.to_string())
+}
+
 impl QueueBuilder {
     /// Reorder `self.review` in place according to `cfg`, grouping by each
     /// card's note tag under `cfg.topic_tag_prefix`. No-op when disabled,
@@ -391,13 +419,7 @@ impl QueueBuilder {
         let prefix = format!("{}::", cfg.topic_tag_prefix);
         let mut topic_by_nid: HashMap<NoteId, String> = HashMap::new();
         for note_tags in col.storage.get_note_tags_by_id_list(&note_ids)? {
-            let topic = note_tags
-                .tags
-                .split_whitespace()
-                .find(|tag| tag.starts_with(&prefix))
-                .map(str::to_string)
-                .unwrap_or_else(|| UNTAGGED.to_string());
-            topic_by_nid.insert(note_tags.id, topic);
+            topic_by_nid.insert(note_tags.id, topic_key_for_tags(&note_tags.tags, &prefix));
         }
 
         let reviews = std::mem::take(&mut self.review);
@@ -556,6 +578,98 @@ mod tests {
         assert_eq!(mixed.len(), 4);
         let blocked = interleave_by_key(items, InterleaveMode::Blocked, 0, |x| x.0);
         assert_eq!(keys(&blocked), vec!["mcat::x", "mcat::x", UNTAGGED, UNTAGGED]);
+    }
+
+    #[test]
+    fn topic_key_for_tags_policy() {
+        let p = "mcat::";
+        // a card's topic is the FULL tag (topic-level), not the section
+        assert_eq!(
+            topic_key_for_tags("leech mcat::bio_biochem::amino_acids", p),
+            "mcat::bio_biochem::amino_acids"
+        );
+        // distinct sub-topics of a section stay DISTINCT (they are meant to interleave,
+        // and confusability is keyed on the full tag) -- documents the granularity
+        assert_ne!(
+            topic_key_for_tags("mcat::bio::krebs", p),
+            topic_key_for_tags("mcat::bio::glycolysis", p)
+        );
+        // several distinct mcat topics on one note -> deterministic first-in-SORTED-order,
+        // independent of the order they appear in the tag string
+        assert_eq!(
+            topic_key_for_tags("mcat::chem::acids mcat::bio::krebs", p),
+            "mcat::bio::krebs"
+        );
+        assert_eq!(
+            topic_key_for_tags("mcat::bio::krebs mcat::chem::acids", p),
+            "mcat::bio::krebs"
+        );
+        // untagged, and a near-miss that must NOT match the "mcat::" prefix
+        assert_eq!(topic_key_for_tags("leech marked", p), UNTAGGED);
+        assert_eq!(topic_key_for_tags("mcative::foo", p), UNTAGGED);
+        assert_eq!(topic_key_for_tags("mcat", p), UNTAGGED);
+    }
+
+    #[test]
+    fn filtered_reschedule_deck_interleaves_reviews() {
+        // Task 3 confirmation: interleaving lives in the ONE shared build_queues path, so a
+        // RESCHEDULING filtered deck's review cards flow through the same
+        // gather -> self.review -> interleave_reviews_by_topic path and are interleaved
+        // across topics too -- not only normal decks. (Cram/preview decks use the separate
+        // PreviewRepeat queue and are intentionally out of scope; see the module note.)
+        use crate::card::CardQueue;
+        use crate::card::CardType;
+
+        let mut col = Collection::new();
+        let nt = col.basic_notetype();
+        let topics = ["mcat::sci::alpha", "mcat::sci::beta"];
+        let mut updated: Vec<Card> = Vec::new();
+        let mut topic_of: HashMap<CardId, String> = HashMap::new();
+        for i in 0..6usize {
+            let topic = topics[i % 2];
+            let mut note = nt.new_note();
+            note.set_field(0, &format!("card {i}")).unwrap();
+            note.tags = vec![topic.to_string()];
+            col.add_note(&mut note, DeckId(1)).unwrap();
+            let mut card = col.storage.get_card_by_ordinal(note.id, 0).unwrap().unwrap();
+            card.ctype = CardType::Review;
+            card.queue = CardQueue::Review;
+            card.interval = 10;
+            card.due = 0; // due today
+            topic_of.insert(card.id, topic.to_string());
+            updated.push(card);
+        }
+        col.update_cards_maybe_undoable(updated, false).unwrap();
+
+        // Pull them into a RESCHEDULING filtered deck (new_filtered() defaults reschedule=true
+        // with a match-all search), so the cards keep their review state.
+        let mut filtered = Deck::new_filtered();
+        col.add_or_update_deck(&mut filtered).unwrap();
+        let pulled = col.rebuild_filtered_deck(filtered.id).unwrap().output;
+        assert!(pulled >= 4, "filtered deck should gather the review cards, got {pulled}");
+
+        col.set_interleave_mode(SetInterleaveModeRequest {
+            mode: 1, // MIXED
+            topic_tag_prefix: "mcat".to_string(),
+            seed: 0,
+        })
+        .unwrap();
+
+        // Build the FILTERED deck's queue and read each entry's topic in order.
+        let order: Vec<String> = col
+            .build_queues(filtered.id)
+            .unwrap()
+            .iter()
+            .map(|e| topic_of.get(&e.card_id()).cloned().unwrap_or_default())
+            .collect();
+        assert!(order.len() >= 4, "expected the filtered review cards in the queue");
+        // Two balanced topics under Mixed: no two consecutive reviews may share a topic.
+        for w in order.windows(2) {
+            assert_ne!(
+                w[0], w[1],
+                "filtered-deck reviews should interleave across topics: {order:?}"
+            );
+        }
     }
 
     #[test]

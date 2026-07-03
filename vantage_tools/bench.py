@@ -105,6 +105,14 @@ TARGET_DASH_REFRESH_P95 = 500.0
 # self-hosted server and PASS iff p95 < 5000 ms.
 TARGET_SYNC_P95 = 5000.0
 TARGET_NO_FREEZE = 100.0  # any interactive action must never freeze > this
+# PRD §10 app cold start: < 5 s desktop / < 4 s phone. This harness measures the
+# BACKEND component only (collection open + first queue + first gather); the full
+# app launch (process + interpreter + Qt/WebView on desktop, Android + rsdroid on
+# phone) is a device wall-clock, so the number below is a measured LOWER BOUND.
+TARGET_COLD_START_MS = 5000.0
+# PRD §11 memory on 50k cards, under a STATED limit. Desktop ceiling stated here;
+# a mid-range-phone figure is a device measurement this harness does not take.
+MEM_BUDGET_MB = 1024.0
 
 
 # ----------------------------------------------------------------------------
@@ -366,6 +374,34 @@ def measure_review(work_path: str, trials: int) -> dict:
         "cold_build_ms": cold_build_ms,
         "due_at_open": due_at_open,
         "answered": k,
+    }
+
+
+def measure_cold_start(work_path: str) -> dict:
+    """Time the backend cold-start path a launch pays once: open the collection
+    from disk, build the first queue, and compute the first dashboard gather.
+
+    HONEST SCOPE: this is the BACKEND component only. The full app cold start the
+    PRD/§10 budgets (< 5 s desktop / < 4 s phone) also includes process, Python
+    interpreter, and Qt/WebView startup (desktop) or the Android app + rsdroid
+    (phone), which are wall-clock measurements on each device, not something this
+    headless harness can time. Treat this as a measured lower bound on cold start.
+    """
+    t0 = time.perf_counter()
+    col = Collection(work_path)
+    open_ms = (time.perf_counter() - t0) * 1000.0
+    t0 = time.perf_counter()
+    col.sched.get_queued_cards(fetch_limit=1)
+    queue_ms = (time.perf_counter() - t0) * 1000.0
+    t0 = time.perf_counter()
+    gather(col)
+    gather_ms = (time.perf_counter() - t0) * 1000.0
+    col.close()
+    return {
+        "open_ms": open_ms,
+        "queue_ms": queue_ms,
+        "gather_ms": gather_ms,
+        "total_ms": open_ms + queue_ms + gather_ms,
     }
 
 
@@ -661,7 +697,11 @@ def print_table(
                 )
         else:
             print(f"sync: NOT MEASURED — no due cards to grade on the sync deck")
-    print(f"peak RSS: {_fmt(peak_rss_mb())} MiB")
+    _rss = peak_rss_mb()
+    print(
+        f"peak RSS: {_fmt(_rss)} MiB / stated limit {_fmt(MEM_BUDGET_MB)} MiB -> "
+        f"{'PASS' if _rss < MEM_BUDGET_MB else 'FAIL'}"
+    )
     print("=" * 78)
 
 
@@ -776,6 +816,7 @@ def write_results_md(
     freezes: list[str],
     opts: list[str],
     sync: Optional[dict] = None,
+    cold: Optional[dict] = None,
 ) -> None:
     ts = time.strftime("%Y-%m-%d %H:%M:%S %Z", time.localtime())
     lines: list[str] = []
@@ -805,7 +846,12 @@ def write_results_md(
     else:
         overall = "PASS vs PRD §10.7 / §11 targets"
     lines.append(f"- overall: **{overall}**")
-    lines.append(f"- peak RSS during run: {_fmt(peak_rss_mb())} MiB")
+    _rss = peak_rss_mb()
+    lines.append(
+        f"- peak RSS during run (desktop, 50k): {_fmt(_rss)} MiB / stated limit "
+        f"{_fmt(MEM_BUDGET_MB)} MiB -> {'PASS' if _rss < MEM_BUDGET_MB else 'FAIL'} "
+        f"(a mid-range-phone memory figure is a device measurement, not taken here)"
+    )
     lines.append("")
     lines.append("## Latency (ms)")
     lines.append("")
@@ -825,6 +871,17 @@ def write_results_md(
         f"**{_fmt(review['cold_build_ms'])} ms** over {review['due_at_open']} due cards. "
         f"This is the interleaved-queue backlog ordering; it happens once on deck open."
     )
+    if cold is not None:
+        _cold_ok = "PASS" if cold["total_ms"] < TARGET_COLD_START_MS else "FAIL"
+        lines.append(
+            f"- backend cold start = collection open {_fmt(cold['open_ms'])} ms + first "
+            f"queue {_fmt(cold['queue_ms'])} ms + first gather {_fmt(cold['gather_ms'])} ms "
+            f"= **{_fmt(cold['total_ms'])} ms**, vs the PRD §10 app-cold-start budget "
+            f"({_fmt(TARGET_COLD_START_MS)} ms desktop) -> {_cold_ok}. HONEST SCOPE: backend "
+            f"component only; the full app launch (process + interpreter + Qt/WebView on "
+            f"desktop, Android + rsdroid on phone) is a device wall-clock, so this is a "
+            f"measured lower bound. Phone cold start (< 4 s) is a device measurement."
+        )
     lines.append(
         f"- review loop: graded {review['answered']} cards from the real MIXED queue "
         f"(each = one `answer_card` + one `get_queued_cards`)."
@@ -1088,9 +1145,13 @@ def main(argv: list[str]) -> int:
 
     review_work = collection + ".review.work"
     dash_work = collection + ".dash.work"
+    cold_work = collection + ".cold.work"
     shutil.copy(collection, review_work)
     shutil.copy(collection, dash_work)
+    shutil.copy(collection, cold_work)
     try:
+        print("measuring backend cold-start (open + first queue + first gather) ...")
+        cold = measure_cold_start(cold_work)
         print("measuring review loop (next card + button ack) ...")
         review = measure_review(review_work, args.trials)
         print("measuring dashboard (load + refresh) ...")
@@ -1099,7 +1160,7 @@ def main(argv: list[str]) -> int:
         prof = profile_gather(dash_work)
     finally:
         if not args.keep:
-            for p in (review_work, dash_work):
+            for p in (review_work, dash_work, cold_work):
                 try:
                     os.remove(p)
                 except OSError:
@@ -1139,6 +1200,12 @@ def main(argv: list[str]) -> int:
     freezes = freeze_findings(dash, review)
     opts = optimization_notes(prof)
     print_analysis(prof, freezes, opts)
+    print(
+        f"\nbackend cold start (open+queue+gather): {_fmt(cold['total_ms'])} ms vs "
+        f"{_fmt(TARGET_COLD_START_MS)} ms budget -> "
+        f"{'PASS' if cold['total_ms'] < TARGET_COLD_START_MS else 'FAIL'} "
+        f"(backend component only; full app launch is a device wall-clock)"
+    )
     print(f"\nOVERALL: {'PASS' if ok else 'FAIL'} on numeric latency budgets (§11)")
     for n in notes:
         print(f"  - {n}")
@@ -1149,7 +1216,7 @@ def main(argv: list[str]) -> int:
 
     write_results_md(
         args.results, rows, review, dash, facts, machine, args.seed, cmd, ok, notes,
-        prof, freezes, opts, sync,
+        prof, freezes, opts, sync, cold,
     )
     return 0 if ok else 1
 

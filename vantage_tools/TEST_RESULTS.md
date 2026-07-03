@@ -88,7 +88,7 @@ Each writes a seeded result file; run individually or via `just eval-all`.
 | Memory calibration | `just eval-memory` | `memory_calibration.json` | beats base rate +11.9% Brier; ECE 0.024 (CALIBRATED) |
 | Performance calibration | `just eval-performance` | `performance_results.json` | beats base rate on held-out items |
 | Paraphrase transfer gap | `just eval-paraphrase` | `paraphrase_results.json` | transfer gap surfaced; 1 FN reported |
-| Interleaving ablation | `just ablation` | `ablation_results.json` | Part A mechanism CONFIRMED (mixed 0.000 < off 0.213 < blocked 0.903); Part B null ties, literature arm projected |
+| Interleaving ablation | `just ablation` | `ablation_results.json` | Part A MEASURED: mechanism CONFIRMED (mixed 0.000 < off ~0.16 < blocked 0.903; `off` = stock-order variance). Part B PROJECTED: null ties; bounded mixed-blocked +0.09..+0.26 (g 0.20/0.42/0.60), model-dependent |
 | Leakage scan | `just leakage` | `leakage_report.json` | clean (worst 0.50 < 0.80 cutoff) |
 | AI retrieval + grounding | `just eval-ai` | `eval_results.json` | beats BM25 (R@3 80→86); grounding 0 false accepts |
 | AI 3-way card gate (tuned) | `just eval-ai` | `cardcheck_results.json` | 34/8/8, 0 wrong published, 50/50 |

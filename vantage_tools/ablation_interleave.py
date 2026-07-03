@@ -33,9 +33,12 @@ PRE-REGISTERED (written before looking at any result)
             MEMORY * clamp(BASE + EFFECT * (interleave_exposure - CHANCE), 0, 1)
       - EFFECT = 0.0  -> NULL CONTROL: order alone changes nothing; arms tie.
         "No difference" is a valid, honestly-reported result.
-      - EFFECT = 0.42 -> the literature discrimination effect. This arm's numbers
-        are MODEL-DEPENDENT (they assume the published effect size); a real cohort
-        is required to confirm the size (Step 4). We do not claim it as measured.
+      - EFFECT in {0.20, 0.42, 0.60} -> a low/mid/high band spanning the Brunmair &
+        Richter (2019) meta-analytic range (mid ~ the 0.42 mean; higher for clearly
+        confusable categories, lower for dissimilar ones). These arms are
+        MODEL-DEPENDENT (they assume a published effect size); a real cohort is
+        required to confirm the size (Step 4). We report a bounded projection, not a
+        single invented-precision number, and never claim it as measured.
 
     Part A (MECHANISM, fully real, no assumptions): same-topic adjacency of the
     real queue per arm, across seeds, with a range. This is what the engine
@@ -70,7 +73,12 @@ SEEDS = [7, 13, 21, 42, 101]
 MEMORY = 0.85
 BASE = 0.60
 CHANCE = 0.25
-EFFECTS = {"null_control": 0.0, "literature_g0.42": 0.42}
+EFFECTS = {
+    "null_control": 0.0,
+    "literature_low_g0.20": 0.20,
+    "literature_mid_g0.42": 0.42,
+    "literature_high_g0.60": 0.60,
+}
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RESULTS_PATH = os.path.join(HERE, "ablation_results.json")
@@ -214,8 +222,9 @@ def main() -> int:
     print("=" * 70)
     print(
         "  memory is EQUAL across arms (one full pass); only discrimination exposure\n"
-        "  varies with order. EFFECT=0 is the null control; EFFECT=0.42 is the\n"
-        "  literature effect (model-dependent, needs a real cohort to confirm).\n"
+        "  varies with order. EFFECT=0 is the null control; EFFECT in {0.20,0.42,0.60}\n"
+        "  is a low/mid/high band over the Brunmair & Richter (2019) meta-analytic\n"
+        "  range (model-dependent, needs a real cohort to confirm the size).\n"
     )
     outcomes = {}
     for eff_name, eff in EFFECTS.items():

@@ -182,3 +182,55 @@ Verified locally: `cargo test -p anki interleave` → 11 passed; `pytest pylib/t
 
 Because it lives in `rslib`, the change is compiled into AnkiDroid's backend (`rsdroid`) from
 this fork and verified on-device: the review order interleaves across topics.
+
+## Scope: filtered / cram decks
+
+Interleaving runs in the one shared queue path (`build_queues`,
+`rslib/src/scheduler/queue/builder/mod.rs`): after `gather_cards` it calls
+`interleave_reviews_by_topic`, which reorders the gathered `self.review` pool.
+
+- **Filtered decks that reschedule** move their due review cards through this exact path
+  (`gather_due_cards(Review)` -> `self.review`), so they are **already interleaved by the
+  existing code**, with no change: the confusability/round-robin reorder applies to a
+  filtered deck's review pool the same way it does to a normal deck. Confirmed by
+  code-path inspection (`build_queues` -> `gather_due_cards` -> `self.review` ->
+  `interleave_reviews_by_topic`), and by the runtime test
+  `filtered_reschedule_deck_interleaves_reviews` (cargo: 15 interleave tests pass).
+- **Pure cram / preview filtered decks (rescheduling off)** put cards in
+  `CardQueue::PreviewRepeat` and serve them through the separate preview/answering path
+  (`rslib/src/scheduler/answering/preview.rs`), not the `self.review` pool, so they are
+  **not interleaved by design**: that path's short, delay-driven cadence
+  (`preview_again/hard/good_secs`) should not be reordered for discrimination practice.
+  Extending interleaving there is a structurally different change and is deliberately
+  out of scope.
+
+Net: topic interleaving covers the normal review queue and reschedule-filtered decks (the
+review pool) on both desktop and phone; cram/preview queues are an explicit, documented
+boundary, not an oversight. A regression test that builds a reschedule-filtered deck and
+asserts the interleaved order is the test `filtered_reschedule_deck_interleaves_reviews`
+(interleave.rs): it pulls two topics into a rescheduling filtered deck and asserts the built
+queue interleaves them (`cargo test -p anki interleave` = 15 passed).
+
+## Vendored scoring core (Python duplication)
+
+`vantage_addon/vantage_core/` is a byte-for-byte vendored copy of `pylib/anki/vantage/`
+(scoring, collect, outline, report + the AAMC/deck-map JSON). The duplication is
+deliberate, not accidental:
+
+- The add-on **prefers the canonical copy** at runtime: `vantage_addon/__init__.py`
+  (`_vantage_collect`) and `render.py` both do `try: from anki.vantage import ...` and
+  only `except ModuleNotFoundError: from .vantage_core import ...`. On this fork the
+  vendored copy is dormant.
+- The fallback exists so the add-on also runs on a **stock / clean Anki** whose bundled
+  wheel does not include `anki.vantage` (the clean-machine install path in `VANTAGE.md`).
+  Deleting the copy would break that, so it cannot be removed without dropping stock-Anki
+  support -- a product decision, not a code cleanup.
+
+Drift risk (the real hazard -- it has drifted before) is now guarded:
+`pylib/tests/test_vantage_core_mirror.py` fails if any mirrored file diverges. Zero drift
+at time of writing (6/6 files byte-identical; only `__init__.py` differs, as a shim).
+
+Merge difficulty: LOW but doubled -- any change to `pylib/anki/vantage/*` must be copied
+into `vantage_addon/vantage_core/*`, and the drift test now catches a forgotten copy. A
+future single-source option (always ship `anki.vantage` in the wheel and drop the stock-
+Anki fallback) would collapse the two into one; that is a deferred scope decision.

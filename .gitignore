@@ -25,3 +25,7 @@ docs/_build/
 docs/autoapi/
 .complexipy_cache
 vantage_tools/out/
+/OVERNIGHT_LOG.md
+/MORNING_CHECKLIST.md
+/NEEDS_DECISION.md
+/.cursor/

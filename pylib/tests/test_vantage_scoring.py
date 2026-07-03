@@ -816,3 +816,26 @@ def test_concept_transfer_gaps_needs_memory_and_enough_items():
     assert (
         concept_transfer_gaps({}, {"1A": [1, 0, 1]}, {"1A": "bio_biochem"}, CFG) == []
     )
+
+
+def test_beta_draw_handles_boundary_priors_without_crashing():
+    """Regression: readiness() sets a0,b0 = m*kappa,(1-m)*kappa, so a section memory
+    of exactly 0.0 or 1.0 makes a0 or b0 == 0.0; with all-incorrect / all-correct
+    reasoning outcomes that made _beta_draw call gammavariate(0.0) -> ValueError.
+    Boundary priors must return a value in [0,1], never raise."""
+    import random as _random
+
+    rng = _random.Random(0)
+    # memory 0.0 -> a0 = 0.0; k = 0 -> shape a = 0.0 (used to raise)
+    assert 0.0 <= scoring._beta_draw(0, 10, rng, a0=0.0, b0=1.0) <= 1.0
+    # memory 1.0 -> b0 = 0.0; k = n -> shape b = 0.0 (used to raise)
+    assert 0.0 <= scoring._beta_draw(10, 10, rng, a0=1.0, b0=0.0) <= 1.0
+    # fully degenerate: n = 0 with both shapes 0.0 (also guards the x/(x+y) ratio)
+    assert 0.0 <= scoring._beta_draw(0, 0, rng, a0=0.0, b0=0.0) <= 1.0
+
+
+def test_normal_pdf_handles_zero_sd_without_crashing():
+    """Regression: _normal_pdf divided by sd; a degenerate sd = 0.0 (e.g. a prior
+    sd misconfigured to 0) raised ZeroDivisionError. It must return 0.0 density."""
+    assert scoring._normal_pdf(1.0, 0.0, 0.0) == 0.0
+    assert scoring._normal_pdf(0.0, 0.0, 0.0) == 0.0
