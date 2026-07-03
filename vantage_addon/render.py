@@ -636,6 +636,40 @@ def build_practice_page() -> str:
     )
 
 
+def _outline_topics_script() -> str:
+    """Inline the AAMC topic grain (topics per concept + aliases + the deck->topic
+    map) so the mobile page can compute the depth-aware `topic_coverage` (the header's
+    "% of the exam covered") that desktop computes in Python. Read from the vendored
+    outline so mobile and desktop share ONE source (no hand-copied drift). If the files
+    are missing the script is empty and mobile_scoring.js falls back to category
+    coverage rather than showing NaN."""
+    core = Path(__file__).parent / "vantage_core"
+    try:
+        outline = json.loads((core / "aamc_outline.json").read_text(encoding="utf-8"))
+        deck_map = json.loads(
+            (core / "deck_topic_map.json").read_text(encoding="utf-8")
+        ).get("map", {})
+    except Exception:
+        return ""
+    payload = {
+        "concepts": [
+            {
+                "id": c["id"],
+                "topics": [
+                    {"id": t["id"], "aliases": list(t.get("aliases", []))}
+                    for t in c.get("topics", [])
+                ],
+            }
+            for c in outline.get("concepts", [])
+        ],
+        "deck_topic_map": deck_map,
+    }
+    return (
+        "<script>window.__VANTAGE_TOPICS__ = "
+        f"{json.dumps(payload, ensure_ascii=False)};</script>"
+    )
+
+
 def build_mobile_page(data: dict | None, error: str | None = None) -> str:
     """Standalone page for the AnkiDroid WebView.
 
@@ -655,6 +689,7 @@ def build_mobile_page(data: dict | None, error: str | None = None) -> str:
     body = (
         f"<style>{css}{practice_css}</style>"
         f'<div class="app" id="app"></div>'
+        f"{_outline_topics_script()}"
         f"<script>{scoring}</script>"
         f"<script>{data_js}</script>"
         f"<script>{js}</script>"

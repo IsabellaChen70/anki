@@ -154,7 +154,7 @@ function studyBlock(d) {
   });
   rows.push(studyRow('cars', 'CARS', '', { flashcards: false, reason: true }));
   return `<section class="section">
-    <div class="section__head"><div class="section__title">Study &amp; practice</div></div>
+    <div class="section__head"><div class="section__title section__title--group">Study &amp; practice</div></div>
     <div class="studygrid">${rows.join('')}</div>
   </section>`;
 }
@@ -385,7 +385,7 @@ function planItem(num, label, hint) {
 function planBlock(d) {
   const p = d.study_pace;
   if (!p) return '';
-  const input = `<input class="datein" type="date" value="${esc(p.exam_date || '')}" onchange="vpy('examdate:' + this.value)">`;
+  const input = `<input class="datein" type="date" value="${esc(p.exam_date || '')}" oninput="vpy('examdatesave:' + this.value)" onchange="vpy('examdate:' + this.value)">`;
   if (!p.has_exam_date || p.passed) {
     const msg = p.message || 'Set your exam date to get a daily study target.';
     return `<section class="section"><div class="plancard plancard--set">
@@ -565,7 +565,7 @@ function planPanel(d) {
   if (!p || (!(p.study || []).length && !(p.practice || []).length)) return '';
   const chips = (list, empty) => (list && list.length ? list.slice(0, 5).map((x) => `<span class="planchip">${esc(x.name)}</span>`).join('') : `<span class="planempty">${empty}</span>`);
   return `<section class="section">
-    <div class="section__head"><div class="section__title">Where to focus</div></div>
+    <div class="section__head"><div class="section__title section__title--group">Where to focus</div></div>
     <div class="plansplit">
       <div class="plancol"><div class="plancol__h">Study these</div><div class="planchips">${chips(p.study, 'nothing pressing')}</div></div>
       <div class="plancol plancol--ready"><div class="plancol__h">Ready to practice</div><div class="planchips">${chips(p.practice, 'study a bit more first')}</div></div>
@@ -612,7 +612,7 @@ function trajectoryPanel(d) {
   // science sections (354-396), or the full 472-528 once you've practiced CARS.
   const lo = t.scale_lo || 354;
   const hi = t.scale_hi || 396;
-  const input = `<input class="targetin" type="number" min="${lo}" max="${hi}" placeholder="target" value="${t.target || ''}" onchange="vpy('target:' + this.value)">`;
+  const input = `<input class="targetin" type="number" min="${lo}" max="${hi}" placeholder="target" value="${t.target || ''}" oninput="vpy('targetsave:' + this.value)" onchange="vpy('target:' + this.value)">`;
   if (t.abstained) {
     return `<section class="section"><div class="coverblock">${eyebrow}
       <div class="plan__setrow"><div class="plan__title">${esc(t.reason || 'Set a target score and an exam date.')}</div><div>Target (${lo}\u2013${hi}): ${input}</div></div>
@@ -704,12 +704,12 @@ function render() {
   ${planPanel(d)}
 
   <section class="section">
-    <div class="section__head"><div class="section__title">Exam coverage</div></div>
+    <div class="section__head"><div class="section__title section__title--group">Exam coverage</div></div>
     <div class="coverage">${coverageBlock(d)}${nextBlock(d)}</div>
   </section>
 
   <section class="section">
-    <div class="section__head"><div class="section__title">Knowledge check</div></div>
+    <div class="section__head"><div class="section__title section__title--group">Knowledge check</div></div>
     <div class="insightgrid insightgrid--3">
       ${calibrationBlock(d)}
       ${fluencyPanel(d)}
@@ -718,7 +718,7 @@ function render() {
   </section>
 
   <section class="section">
-    <div class="section__head"><div class="section__title">Test-day readiness</div></div>
+    <div class="section__head"><div class="section__title section__title--group">Test-day readiness</div></div>
     <div class="insightgrid insightgrid--2">
       ${mistakesPanel(d)}
       ${pacingPanel(d)}

@@ -128,6 +128,74 @@
     return out;
   }
 
+  // --- depth-aware (topic-grain) coverage, ported from outline.py so the phone's
+  // "% of the exam covered" equals desktop's topic_coverage (the honest display
+  // number) instead of the category-level coverage that saturates at 100%. The topic
+  // grain (topics per concept + aliases + deck_topic_map) is inlined by
+  // render.build_mobile_page into window.__VANTAGE_TOPICS__ from the SAME
+  // aamc_outline.json / deck_topic_map.json the desktop uses, so there is no drift.
+  const TOPICS = (typeof window !== 'undefined' && window.__VANTAGE_TOPICS__) || null;
+  const conceptTopicIds = Object.create(null); // concept id -> [topic id, ...]
+  const topicAliasToId = Object.create(null);  // alias (lower) -> topic id, first-wins
+  const deckTopicMap = Object.create(null);    // normalized deck/tag path -> topic id
+  if (TOPICS) {
+    for (const c of (TOPICS.concepts || [])) {
+      const ids = [];
+      for (const t of (c.topics || [])) {
+        ids.push(t.id);
+        for (const a of (t.aliases || [])) {
+          const al = String(a).toLowerCase();
+          if (!(al in topicAliasToId)) topicAliasToId[al] = t.id;
+        }
+      }
+      conceptTopicIds[c.id] = ids;
+    }
+    const dm = TOPICS.deck_topic_map || {};
+    for (const k in dm) if (Object.prototype.hasOwnProperty.call(dm, k)) deckTopicMap[k] = dm[k];
+  }
+  // Map one raw tag to a TOPIC id (or null). Mirrors Outline._match_topic_uncached:
+  // the exact normalized deck/tag path wins, else the first topic alias (insertion
+  // order) that is a whole token, or a multi-word alias found in the "_"-joined tag.
+  function matchTagTopic(tag) {
+    const tks = tokensOf(tag);
+    if (!tks.length) return null;
+    const joined = tks.join('_');
+    if (joined in deckTopicMap) return deckTopicMap[joined];
+    const set = new Set(tks);
+    for (const alias in topicAliasToId) {
+      if (set.has(alias)) return topicAliasToId[alias];
+      if (alias.indexOf('_') >= 0 && joined.indexOf(alias) >= 0) return topicAliasToId[alias];
+    }
+    return null;
+  }
+  // One category's fractional credit: covered-topic fraction when it has topics, else
+  // 1.0 if the category itself is covered (matches outline._category_topic_credit).
+  function categoryTopicCredit(concept, coveredT, coveredC) {
+    const ids = conceptTopicIds[concept.id];
+    if (ids && ids.length) {
+      let n = 0;
+      for (const tid of ids) if (coveredT.has(tid)) n += 1;
+      return n / ids.length;
+    }
+    return coveredC.has(concept.id) ? 1 : 0;
+  }
+  function topicWeightedCoverage(coveredT, coveredC) {
+    const t = totalWeight();
+    if (t <= 0) return 0;
+    let g = 0;
+    for (const c of OUTLINE.concepts) g += c.weight * categoryTopicCredit(c, coveredT, coveredC);
+    return g / t;
+  }
+  function topicCoverageBySection(coveredT, coveredC) {
+    const out = {};
+    for (const s in OUTLINE.sections) {
+      let sw = 0, g = 0;
+      for (const c of OUTLINE.concepts) if (c.section === s) { sw += c.weight; g += c.weight * categoryTopicCredit(c, coveredT, coveredC); }
+      out[s] = sw > 0 ? g / sw : 0;
+    }
+    return out;
+  }
+
   const clamp = (x, lo, hi) => (x < lo ? lo : x > hi ? hi : x);
   const round3 = (x) => Math.round(x * 1000) / 1000;
   const round2 = (x) => Math.round(x * 100) / 100;
@@ -713,19 +781,37 @@
 
   window.vantageComputeFromRaw = function (raw) {
     const covered = new Set();
+    const coveredTopics = new Set();
     const rValues = [];
     const conceptR = {};
     for (const row of raw.cards) {
       const tags = row[0], r = row[1];
       const cc = new Set();
-      for (const t of (tags || '').split(/\s+/)) { if (!t) continue; const cid = matchTag(t); if (cid) cc.add(cid); }
+      for (const t of (tags || '').split(/\s+/)) {
+        if (!t) continue;
+        const cid = matchTag(t); if (cid) cc.add(cid);
+        const tid = matchTagTopic(t); if (tid) coveredTopics.add(tid);
+      }
       cc.forEach((cid) => covered.add(cid));
       if (r !== null && r !== undefined) {
         rValues.push(r);
         cc.forEach((cid) => { (conceptR[cid] = conceptR[cid] || []).push(r); });
       }
     }
+    // Some decks (e.g. Pankow P/S subdecks) encode the topic in the DECK PATH, not in
+    // card tags. The host passes those deck names (that have cards) in raw.deck_names;
+    // match each via the exact deck_topic_map, mirroring collect.gather's deck_topic
+    // loop, so their topics count toward coverage too.
+    for (const name of (raw.deck_names || [])) {
+      if (!name) continue;
+      const j = tokensOf(name).join('_');
+      if (j in deckTopicMap) coveredTopics.add(deckTopicMap[j]);
+    }
     const coverage = weightedCoverage(covered);
+    // Depth-aware coverage for DISPLAY (the header "% of the exam covered"), matching
+    // desktop collect.gather's topic_coverage. `covered` is left untouched, so the
+    // category-level coverage that gates memory/performance/readiness is unchanged.
+    const topicCoverage = topicWeightedCoverage(coveredTopics, covered);
     const nReviews = raw.n_reviews || 0;
 
     // per-section recall (mean retrievability), used as the calibration predictor
@@ -876,6 +962,8 @@
     return {
       coverage,
       coverage_by_section: coverageBySection(covered),
+      topic_coverage: topicCoverage,
+      topic_coverage_by_section: topicCoverageBySection(coveredTopics, covered),
       outline_version: OUTLINE.version,
       n_reviews: nReviews,
       n_cards_seen: rValues.length,

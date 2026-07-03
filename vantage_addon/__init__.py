@@ -230,8 +230,17 @@ class VantageDashboard(QMainWindow):
             self._record_practice2(cmd)
         elif cmd.startswith("vantage:practice:"):
             self._record_practice(cmd)
+        elif cmd.startswith("vantage:examdatesave:"):
+            # Persist-only (no reload): fires on every value change so the exam date is
+            # committed to config even if the field never blurs before an external Sync.
+            self._set_exam_date(cmd.split(":", 2)[2], reload=False)
         elif cmd.startswith("vantage:examdate:"):
             self._set_exam_date(cmd.split(":", 2)[2])
+        elif cmd.startswith("vantage:targetsave:"):
+            # Persist-only (no reload): fires on every keystroke so the target is
+            # committed to config even if the field never blurs before an external
+            # Sync (the onchange/reload path only fires on blur or Enter).
+            self._set_target(cmd.split(":", 2)[2], reload=False)
         elif cmd.startswith("vantage:target:"):
             self._set_target(cmd.split(":", 2)[2])
         elif cmd.startswith("vantage:bookset:"):
@@ -242,8 +251,13 @@ class VantageDashboard(QMainWindow):
             openLink(cmd.split(":", 2)[2])
         return None
 
-    def _set_exam_date(self, iso: str) -> None:
-        """Store (or clear) the student's exam date, then recompute the plan."""
+    def _set_exam_date(self, iso: str, reload: bool = True) -> None:
+        """Store (or clear) the student's exam date, then recompute the plan.
+
+        `reload=False` is the persist-only path used by the input's `oninput` so the
+        value reaches config even if the field never blurs before an external Sync; the
+        blur/Enter `onchange` path keeps `reload=True` to recompute the plan.
+        """
         collect = _vantage_collect()
 
         iso = (iso or "").strip()
@@ -258,10 +272,16 @@ class VantageDashboard(QMainWindow):
             mw.col.set_config(collect.EXAM_CONFIG_KEY, iso)
         else:
             mw.col.remove_config(collect.EXAM_CONFIG_KEY)
-        self.reload()
+        if reload:
+            self.reload()
 
-    def _set_target(self, value: str) -> None:
-        """Store (or clear) the target readiness composite, then recompute."""
+    def _set_target(self, value: str, reload: bool = True) -> None:
+        """Store (or clear) the target readiness composite, then recompute.
+
+        `reload=False` is the persist-only path used by the input's `oninput` (every
+        keystroke) so the value reaches config even if the field never blurs before an
+        external Sync. The blur/Enter `onchange` path keeps `reload=True` to recompute.
+        """
         collect = _vantage_collect()
 
         value = (value or "").strip()
@@ -273,7 +293,8 @@ class VantageDashboard(QMainWindow):
                 return
         else:
             mw.col.remove_config(collect.TARGET_CONFIG_KEY)
-        self.reload()
+        if reload:
+            self.reload()
 
     def _set_book_set(self, brand: str) -> None:
         """Store the student's MCAT book set. No reload: the dashboard swaps the

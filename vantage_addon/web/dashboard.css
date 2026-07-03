@@ -94,6 +94,9 @@ html, body {
 .section__head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.1rem; }
 .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; font-size: 0.78rem; color: var(--gray-500); }
 .section__title { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
+/* Top-level group headers (e.g. "Knowledge check") take the product's uppercase tracked
+   label register so they read as a tier above the mixed-case panel titles inside them. */
+.section__title--group { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-900); }
 
 /* ---------- Score cards (color blocks) ---------- */
 .scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
@@ -312,8 +315,10 @@ html, body {
 .flubar__v { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
 
 /* ---------- top outlook: exam countdown + score trajectory side by side ---------- */
-.outlook { display: grid; grid-template-columns: 1fr; gap: 1.25rem; padding: 2rem 2.5rem 0; align-items: start; }
-.outlook .section { padding: 0; }
+.outlook { display: grid; grid-template-columns: 1fr; gap: 1.25rem; padding: 2rem 2.5rem 0; align-items: stretch; }
+.outlook .section { padding: 0; display: flex; flex-direction: column; }
+/* keep the two outlook cards level: the shorter one grows to match the taller */
+.outlook .plancard, .outlook .coverblock { flex: 1 1 auto; }
 
 /* ---------- grouped insight rows ---------- */
 /* Each themed group is a single row of 2-3 analysis cards under its own heading,
