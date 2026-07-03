@@ -16,7 +16,7 @@ import traceback
 
 from aqt import gui_hooks, mw
 from aqt.qt import QKeySequence, QMainWindow, QShortcut
-from aqt.utils import showInfo, tooltip
+from aqt.utils import showInfo
 from aqt.webview import AnkiWebView
 
 from . import render
@@ -28,6 +28,55 @@ SECTION_LABELS = {
     "psych_soc": "Psych/Soc",
     "cars": "CARS",
 }
+
+# A small, self-contained toast shown INSIDE the dashboard webview -- a nicer
+# replacement for Anki's built-in yellow tooltip for Vantage's own status messages
+# ("Vantage refreshed", validation errors, "added N cards"). Injected with inline
+# styles (no stylesheet dependency, survives the stdHtml page swap) and the Outfit
+# font the page already loads. Placeholders are filled with json.dumps() so the
+# message and accent are always valid JS string literals.
+_TOAST_ACCENTS = {
+    "info": ("#3b82f6", "rgba(59,130,246,0.22)"),  # Vantage primary blue
+    "warn": ("#ef4444", "rgba(239,68,68,0.22)"),  # validation / error
+}
+_TOAST_TEMPLATE = """
+(function () {
+  var msg = __VANTAGE_TOAST_MSG__;
+  if (!msg || !document.body) return;
+  var existing = document.getElementById('vantage-toast');
+  if (existing) existing.remove();
+  var t = document.createElement('div');
+  t.id = 'vantage-toast';
+  t.setAttribute('role', 'status');
+  t.style.cssText = 'position:fixed;left:50%;bottom:30px;transform:translate(-50%,10px);'
+    + 'z-index:2147483647;display:flex;align-items:center;gap:9px;'
+    + 'padding:11px 18px 11px 16px;border-radius:999px;'
+    + "font-family:Outfit,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"
+    + 'font-size:14px;font-weight:600;letter-spacing:-0.01em;'
+    + 'color:#f9fafb;background:rgba(17,24,39,0.94);'
+    + 'box-shadow:0 10px 30px rgba(0,0,0,0.22);'
+    + '-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);'
+    + 'opacity:0;transition:opacity .22s ease,transform .22s ease;pointer-events:none;';
+  var dot = document.createElement('span');
+  dot.style.cssText = 'width:7px;height:7px;border-radius:50%;flex:none;background:'
+    + __VANTAGE_TOAST_DOT__ + ';box-shadow:0 0 0 4px ' + __VANTAGE_TOAST_GLOW__ + ';';
+  t.appendChild(dot);
+  var label = document.createElement('span');
+  label.textContent = msg;
+  t.appendChild(label);
+  document.body.appendChild(t);
+  requestAnimationFrame(function () {
+    t.style.opacity = '1';
+    t.style.transform = 'translate(-50%,0)';
+  });
+  setTimeout(function () {
+    if (!t.parentNode) return;
+    t.style.opacity = '0';
+    t.style.transform = 'translate(-50%,10px)';
+    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 280);
+  }, 2200);
+})();
+"""
 
 
 def _vantage_collect():
@@ -71,7 +120,21 @@ class VantageDashboard(QMainWindow):
         )
         self.web.stdHtml(html, head=render.FONT_HEAD, default_css=False, context=self)
 
-    def reload(self) -> None:
+    def _web_toast(self, msg: str, kind: str = "info") -> None:
+        """Show a small, in-webview toast for Vantage's own status messages -- a
+        nicer, on-brand replacement for Anki's built-in yellow tooltip."""
+        dot, glow = _TOAST_ACCENTS.get(kind, _TOAST_ACCENTS["info"])
+        js = (
+            _TOAST_TEMPLATE.replace("__VANTAGE_TOAST_MSG__", json.dumps(msg))
+            .replace("__VANTAGE_TOAST_DOT__", json.dumps(dot))
+            .replace("__VANTAGE_TOAST_GLOW__", json.dumps(glow))
+        )
+        try:
+            self.web.eval(js)
+        except Exception:
+            traceback.print_exc()
+
+    def reload(self, toast: str | None = None) -> None:
         """Recompute and repaint the dashboard WITHOUT blocking the Qt main thread.
 
         `collect.gather` is an O(cards) scan that can take ~250 ms on a large deck;
@@ -80,8 +143,26 @@ class VantageDashboard(QMainWindow):
         thread via QueryOp, and only the webview swap returns to the main thread. On
         the way we refresh the interleaver's confusability map from the student's
         latest misses. On failure we show the honest error state, never mock data.
+
+        The repaint replaces the whole page, which would jump the scroll position to
+        the top. So we read the current scroll offset first and restore it after the
+        swap, so editing the target or exam date leaves you where you were.
+
+        `toast`, if given, is shown as an in-webview toast AFTER the swap completes
+        (so the page replacement doesn't wipe it).
         """
+        self.web.evalWithCallback(
+            "window.scrollY || 0",
+            lambda s: self._reload_keeping_scroll(s, toast),
+        )
+
+    def _reload_keeping_scroll(self, scroll_y: object = 0, toast: str | None = None) -> None:
         from aqt.operations import QueryOp
+
+        try:
+            saved_scroll = max(0, int(scroll_y or 0))
+        except (TypeError, ValueError):
+            saved_scroll = 0
 
         collect = _vantage_collect()
 
@@ -105,6 +186,15 @@ class VantageDashboard(QMainWindow):
 
         def success(body: str) -> None:
             self.web.stdHtml(body, head=render.FONT_HEAD, default_css=False, context=self)
+            if saved_scroll:
+                # Wait for the new content to lay out, then jump back to where the
+                # student was, so an edit never yanks them to the top.
+                self.web.eval(
+                    "requestAnimationFrame(function(){requestAnimationFrame("
+                    f"function(){{window.scrollTo(0,{saved_scroll});}});}});"
+                )
+            if toast:
+                self._web_toast(toast)
 
         def failure(exc: Exception) -> None:
             traceback.print_exc()  # surface the real cause; the UI stays honest
@@ -115,14 +205,19 @@ class VantageDashboard(QMainWindow):
 
     def _on_cmd(self, cmd: str):
         if cmd == "vantage:refresh":
+            self.reload(toast="Vantage refreshed")
+        elif cmd == "vantage:studydone":
+            # Returned from the in-dashboard reviewer: recompute so the scores
+            # reflect the just-studied cards. Silent (no tooltip) on every exit.
             self.reload()
-            tooltip("Vantage refreshed", parent=self)
         elif cmd == "vantage:back":
             self.close()
         elif cmd == "vantage:study":
             self._review_start()
         elif cmd.startswith("vantage:study:"):
             self._review_start(cmd.split(":", 2)[2])
+        elif cmd.startswith("vantage:cram:"):
+            self._review_start(cmd.split(":", 2)[2], cram=True)
         elif cmd == "vantage:review:show":
             self._review_show_answer()
         elif cmd.startswith("vantage:review:answer:"):
@@ -158,7 +253,7 @@ class VantageDashboard(QMainWindow):
             try:
                 date.fromisoformat(iso)
             except ValueError:
-                tooltip("Could not read that date", parent=self)
+                self._web_toast("Could not read that date", kind="warn")
                 return
             mw.col.set_config(collect.EXAM_CONFIG_KEY, iso)
         else:
@@ -174,7 +269,7 @@ class VantageDashboard(QMainWindow):
             try:
                 mw.col.set_config(collect.TARGET_CONFIG_KEY, int(round(float(value))))
             except ValueError:
-                tooltip("Enter a number for your target", parent=self)
+                self._web_toast("Enter a number for your target", kind="warn")
                 return
         else:
             mw.col.remove_config(collect.TARGET_CONFIG_KEY)
@@ -271,9 +366,8 @@ class VantageDashboard(QMainWindow):
                 if self._make_miss_card(section, stem, answer, explain):
                     made += 1
         if made:
-            tooltip(
-                f"Added {made} card{'s' if made != 1 else ''} to review your misses",
-                parent=self,
+            self._web_toast(
+                f"Added {made} card{'s' if made != 1 else ''} to review your misses"
             )
 
     def _make_miss_card(self, section: str, stem: str, answer: str, explain: str) -> bool:
@@ -304,7 +398,7 @@ class VantageDashboard(QMainWindow):
         return True
 
     # ---- in-dashboard reviewer: real cards, Anki's own scheduler ----
-    def _review_start(self, section: str | None = None) -> None:
+    def _review_start(self, section: str | None = None, cram: bool = False) -> None:
         """Study inside the dashboard. Cards are scheduled and graded by Anki's
         own engine (col.sched); only the frame around the card is Vantage's.
 
@@ -312,19 +406,47 @@ class VantageDashboard(QMainWindow):
         deck, where topic-interleaving is on, so the order mixes sections. A
         science-section key (e.g. "chem_phys") studies just that section's cards,
         graded the same way (nextIvlStr / answerCard both work per card id).
+
+        cram: "study all" for a section, i.e. every non-suspended card whether or
+        not it is due, for on-demand drilling. Default (cram False) is due-only.
         """
         col = mw.col
         self._review_card = None
         if section and section != "interleave":
             label = SECTION_LABELS.get(section, section)
-            cids = col.db.list(
-                "select c.id from cards c join notes n on c.nid = n.id "
-                "where n.tags like ? and c.queue >= 0 "
-                "order by (c.queue = 0), c.due",
-                f"%mcat::{section}::%",
-            )
+            if cram:
+                # Study all: every non-suspended card in the section, due or not.
+                # Grading still reschedules each card normally; this only decides
+                # which cards are offered, not how they are scored.
+                cids = col.db.list(
+                    "select c.id from cards c join notes n on c.nid = n.id "
+                    "where n.tags like ? and c.queue >= 0 "
+                    "order by (c.queue = 0), c.due",
+                    f"%mcat::{section}::%",
+                )
+                self._review_label = f"{label} flashcards (all)"
+            else:
+                # Only cards actually DUE now: new (queue 0), intraday learning whose
+                # second-timestamp due has arrived (queue 1), or review/day-learning
+                # whose day-number due is today or earlier (queue 2/3). Without this
+                # a card you just graded (rescheduled to the future) reappears every
+                # time the section is reopened, so studying looked like it never
+                # saved. Anki's own scheduler applies the same due logic.
+                today = col.sched.today
+                now = int(time.time())
+                cids = col.db.list(
+                    "select c.id from cards c join notes n on c.nid = n.id "
+                    "where n.tags like ? and ("
+                    "  c.queue = 0"
+                    "  or (c.queue = 1 and c.due <= ?)"
+                    "  or (c.queue in (2, 3) and c.due <= ?)"
+                    ") order by (c.queue = 0), c.due",
+                    f"%mcat::{section}::%",
+                    now,
+                    today,
+                )
+                self._review_label = f"{label} flashcards"
             self._review_queue = list(cids)
-            self._review_label = f"{label} flashcards"
         else:
             self._review_queue = None
             self._review_label = "Interleaved review" if section == "interleave" else None

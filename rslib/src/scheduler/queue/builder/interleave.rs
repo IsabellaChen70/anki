@@ -10,6 +10,14 @@
 //! demand -- without touching FSRS scheduling. It ships via the normal queue
 //! path, so it reaches both the desktop and AnkiDroid builds that call
 //! `get_queued_cards`.
+//!
+//! Scope: only the mature review pool (`self.review`) is reordered. Intraday and
+//! interday learning cards keep their time-ordered sequence -- they are a small,
+//! step-sensitive slice of a session, so reordering them buys little discrimination
+//! practice while risking the learning cadence. The adjacency guarantee documented
+//! below is therefore about the review pool. Extending the same reorder to interday
+//! learning `DueCard`s is a documented future option (it would mirror
+//! `interleave_reviews_by_topic`); it is intentionally out of this change's scope.
 
 use std::collections::HashMap;
 use std::collections::HashSet;
@@ -76,6 +84,13 @@ pub(crate) struct InterleaveConfig {
     /// from its confusion signal; the engine only consumes it (no proto/RPC
     /// involved).
     pub(crate) confusability: Vec<ConfusablePair>,
+    /// Optional Vantage extension: per-topic study priority. When present and
+    /// `mode` is `Mixed`, the round-robin STARTS at the highest-priority topic
+    /// present, so the topics the student is weakest on lead the session; the rest
+    /// of the rotation, and every other mode, is untouched. Empty (the default)
+    /// keeps today's seed-chosen start, so the ordering is bit-for-bit unchanged.
+    /// The Python side populates this from its miss signal.
+    pub(crate) priorities: Vec<TopicPriority>,
 }
 
 /// One undirected topic pair and how confusable the two topics are: a higher
@@ -86,6 +101,17 @@ pub(crate) struct InterleaveConfig {
 pub(crate) struct ConfusablePair {
     pub(crate) topic_a: String,
     pub(crate) topic_b: String,
+    pub(crate) weight: f64,
+}
+
+/// One topic and how much it should lead the session: a higher `weight` (e.g. how
+/// much the student misses that topic) means it starts the Mixed rotation sooner.
+/// `topic` is the full note tag used as a bucket key, e.g.
+/// `mcat::bio_biochem::glycolysis`.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Default)]
+#[serde(default)]
+pub(crate) struct TopicPriority {
+    pub(crate) topic: String,
     pub(crate) weight: f64,
 }
 
@@ -119,10 +145,13 @@ where
 /// Reorder `items` by the topic returned from `key_of` (the naive path).
 ///
 /// Grouping preserves first-appearance order, and each bucket preserves its
-/// input order. `Mixed` round-robins across buckets (no two consecutive items
-/// share a topic until a bucket empties); `Blocked` concatenates buckets;
-/// `Off`, an empty/singleton input, or a single resulting bucket are all the
-/// identity. Deterministic for a given `seed`.
+/// input order. `Mixed` round-robins across buckets: one card is taken from each
+/// non-empty bucket per pass, so no two consecutive items share a topic WHILE at
+/// least two buckets are still non-empty. With uneven bucket sizes, once only one
+/// bucket has cards left its remainder is necessarily consecutive -- interleaving
+/// cannot separate a topic from itself (see `uneven_buckets_repeat_only_at_tail`).
+/// `Blocked` concatenates buckets; `Off`, an empty/singleton input, or a single
+/// resulting bucket are all the identity. Deterministic for a given `seed`.
 fn interleave_by_key<T, K, F>(items: Vec<T>, mode: InterleaveMode, seed: u64, key_of: F) -> Vec<T>
 where
     K: std::hash::Hash + Eq + Clone,
@@ -161,6 +190,7 @@ fn interleave_by_key_weighted<T, K, F>(
     mode: InterleaveMode,
     seed: u64,
     pairs: &[ConfusablePair],
+    priorities: &[TopicPriority],
     key_of: F,
 ) -> Vec<T>
 where
@@ -183,7 +213,11 @@ where
         InterleaveMode::Mixed => {
             let labels: Vec<&str> = keys.iter().map(|k| k.as_ref()).collect();
             let weights = confusability_matrix(&labels, pairs);
-            let order = confusability_order(&weights, seed, buckets.len());
+            // Lead with the weakest topic (priority), then greedily alternate the
+            // most-confusable buckets from there. With no priority the start is the
+            // historical seed-chosen one, so this is unchanged for confusability-only.
+            let start = preferred_start(&labels, priorities, seed, buckets.len());
+            let order = confusability_order(&weights, start, buckets.len());
             round_robin_in_order(buckets, order)
         }
         InterleaveMode::Off => unreachable!("handled above"),
@@ -218,14 +252,44 @@ fn confusability_matrix(labels: &[&str], pairs: &[ConfusablePair]) -> Vec<Vec<f6
     weights
 }
 
+/// Choose the round-robin's starting bucket: the present bucket with the highest
+/// positive priority, ties broken by the seed's cyclic order for determinism. With
+/// no usable priority (the default) this is exactly `seed % n`, the historical
+/// start, so the rotation is unchanged.
+fn preferred_start(labels: &[&str], priorities: &[TopicPriority], seed: u64, n: usize) -> usize {
+    let seed_start = (seed % n as u64) as usize;
+    let mut weight_of: HashMap<&str, f64> = HashMap::new();
+    for p in priorities {
+        if p.weight.is_finite() && p.weight > 0.0 {
+            let entry = weight_of.entry(p.topic.as_str()).or_insert(0.0);
+            *entry = entry.max(p.weight);
+        }
+    }
+    if weight_of.is_empty() {
+        return seed_start;
+    }
+    // Scan cyclically from the seed start with a strict maximum, so ties fall back
+    // to the historical start order and never compare floats for equality.
+    let mut best = seed_start;
+    let mut best_weight = f64::NEG_INFINITY;
+    for offset in 0..n {
+        let cand = (seed_start + offset) % n;
+        let weight = weight_of.get(labels[cand]).copied().unwrap_or(0.0);
+        if weight > best_weight {
+            best_weight = weight;
+            best = cand;
+        }
+    }
+    best
+}
+
 /// Deterministic rotation order for the round-robin: a permutation of bucket
-/// indices, built greedily from the seed-chosen start bucket by repeatedly
-/// hopping to the most-confusable not-yet-placed bucket. Candidates are scanned
-/// in cyclic order from the start and kept with a strict maximum, so equal
-/// weights -- and the all-zero-weight case -- fall back to the naive rotation
-/// `start, start+1, ...` without ever comparing floats for equality.
-fn confusability_order(weights: &[Vec<f64>], seed: u64, n: usize) -> Vec<usize> {
-    let start = (seed % n as u64) as usize;
+/// indices, built greedily from `start` by repeatedly hopping to the
+/// most-confusable not-yet-placed bucket. Candidates are scanned in cyclic order
+/// from the start and kept with a strict maximum, so equal weights -- and the
+/// all-zero-weight case -- fall back to the naive rotation `start, start+1, ...`
+/// without ever comparing floats for equality.
+fn confusability_order(weights: &[Vec<f64>], start: usize, n: usize) -> Vec<usize> {
     let mut visited = vec![false; n];
     let mut order = Vec::with_capacity(n);
     let mut current = start;
@@ -343,13 +407,21 @@ impl QueueBuilder {
                 .map(String::as_str)
                 .unwrap_or(UNTAGGED)
         };
-        // No confusability signal -> the exact naive round-robin (unchanged
-        // default). Otherwise bias the rotation toward confusable pairs; with no
-        // effective weight the weighted path still reduces to the naive order.
-        self.review = if cfg.confusability.is_empty() {
+        // No confusability AND no priority signal -> the exact naive round-robin
+        // (unchanged default). Otherwise bias the rotation: lead with the weakest
+        // topics (priorities) and alternate confusable pairs; with no effective
+        // weight the weighted path still reduces to the naive order.
+        self.review = if cfg.confusability.is_empty() && cfg.priorities.is_empty() {
             interleave_by_key(reviews, cfg.mode, cfg.seed, key_of)
         } else {
-            interleave_by_key_weighted(reviews, cfg.mode, cfg.seed, &cfg.confusability, key_of)
+            interleave_by_key_weighted(
+                reviews,
+                cfg.mode,
+                cfg.seed,
+                &cfg.confusability,
+                &cfg.priorities,
+                key_of,
+            )
         };
         Ok(())
     }
@@ -368,14 +440,15 @@ impl Collection {
         input: SetInterleaveModeRequest,
     ) -> Result<OpOutput<()>> {
         // The proto toggle only carries mode/prefix/seed; preserve any
-        // confusability map the Python side has written so switching modes never
-        // discards it.
-        let confusability = self.get_interleave_config().confusability;
+        // confusability map and priorities the Python side has written so switching
+        // modes never discards them.
+        let existing = self.get_interleave_config();
         let cfg = InterleaveConfig {
             mode: InterleaveMode::from_proto(input.mode),
             topic_tag_prefix: input.topic_tag_prefix,
             seed: input.seed,
-            confusability,
+            confusability: existing.confusability,
+            priorities: existing.priorities,
         };
         self.transact(Op::SetInterleaveMode, |col| {
             col.set_config(INTERLEAVE_CONFIG_KEY, &cfg)?;
@@ -447,6 +520,45 @@ mod tests {
     }
 
     #[test]
+    fn off_mode_is_identity() {
+        // Off must return a multi-topic input completely untouched, for any seed.
+        let items = vec![("A", 0), ("B", 1), ("A", 2), ("C", 3), ("B", 4)];
+        assert_eq!(
+            interleave_by_key(items.clone(), InterleaveMode::Off, 7, |x| x.0),
+            items
+        );
+    }
+
+    #[test]
+    fn uneven_buckets_repeat_only_at_tail() {
+        // A x4, B x1: the round-robin (start bucket A, seed 0) alternates once, then
+        // the lone B is exhausted and A's remainder is unavoidably consecutive. This
+        // is the HONEST limit of the "no two in a row" guarantee on uneven buckets --
+        // interleaving cannot separate a topic from itself -- and nothing is dropped.
+        let items = vec![("A", 0), ("A", 1), ("A", 2), ("A", 3), ("B", 4)];
+        let out = interleave_by_key(items, InterleaveMode::Mixed, 0, |x| x.0);
+        assert_eq!(keys(&out), vec!["A", "B", "A", "A", "A"]);
+        assert_eq!(out.len(), 5);
+        assert_eq!(out.iter().filter(|x| x.0 == "A").count(), 4);
+    }
+
+    #[test]
+    fn untagged_cards_form_their_own_bucket() {
+        // Cards lacking a topic map to the shared UNTAGGED key (exactly as the
+        // collection path does), so they behave as one more topic: interleaved with
+        // the tagged ones under Mixed, grouped together under Blocked -- never
+        // silently dropped.
+        let items = vec![("mcat::x", 0), (UNTAGGED, 1), ("mcat::x", 2), (UNTAGGED, 3)];
+        let mixed = interleave_by_key(items.clone(), InterleaveMode::Mixed, 0, |x| x.0);
+        for w in mixed.windows(2) {
+            assert_ne!(w[0].0, w[1].0); // balanced 2/2 -> strict alternation
+        }
+        assert_eq!(mixed.len(), 4);
+        let blocked = interleave_by_key(items, InterleaveMode::Blocked, 0, |x| x.0);
+        assert_eq!(keys(&blocked), vec!["mcat::x", "mcat::x", UNTAGGED, UNTAGGED]);
+    }
+
+    #[test]
     fn build_queues_handles_note_with_multiple_review_cards() {
         // Regression: a note with >1 review-due card lists its id twice in
         // self.review; the tag lookup must dedupe or build_queues fails with a
@@ -505,7 +617,7 @@ mod tests {
 
         let naive = interleave_by_key(make(), InterleaveMode::Mixed, 0, |x| x.0);
         let weighted =
-            interleave_by_key_weighted(make(), InterleaveMode::Mixed, 0, &pairs, |x| x.0);
+            interleave_by_key_weighted(make(), InterleaveMode::Mixed, 0, &pairs, &[], |x| x.0);
 
         // The confusable pair is alternated strictly more often than under naive.
         assert!(
@@ -545,12 +657,16 @@ mod tests {
         for seed in [0u64, 1, 2, 7, 42, 1000] {
             let naive = interleave_by_key(make(), InterleaveMode::Mixed, seed, |x| x.0);
             let empty =
-                interleave_by_key_weighted(make(), InterleaveMode::Mixed, seed, &[], |x| x.0);
+                interleave_by_key_weighted(make(), InterleaveMode::Mixed, seed, &[], &[], |x| x.0);
             assert_eq!(empty, naive, "empty map must equal naive (seed {seed})");
-            let unmatched =
-                interleave_by_key_weighted(make(), InterleaveMode::Mixed, seed, &irrelevant, |x| {
-                    x.0
-                });
+            let unmatched = interleave_by_key_weighted(
+                make(),
+                InterleaveMode::Mixed,
+                seed,
+                &irrelevant,
+                &[],
+                |x| x.0,
+            );
             assert_eq!(
                 unmatched, naive,
                 "unmatched map must equal naive (seed {seed})"
@@ -559,7 +675,7 @@ mod tests {
         // Blocked ignores weights entirely, matching the naive path.
         let pairs = vec![pair("A", "B", 3.0)];
         assert_eq!(
-            interleave_by_key_weighted(make(), InterleaveMode::Blocked, 0, &pairs, |x| x.0),
+            interleave_by_key_weighted(make(), InterleaveMode::Blocked, 0, &pairs, &[], |x| x.0),
             interleave_by_key(make(), InterleaveMode::Blocked, 0, |x| x.0),
         );
     }
@@ -580,11 +696,79 @@ mod tests {
         };
         let pairs = vec![pair("A", "C", 4.0), pair("B", "D", 2.0)];
 
-        let first = interleave_by_key_weighted(make(), InterleaveMode::Mixed, 3, &pairs, |x| x.0);
-        let second = interleave_by_key_weighted(make(), InterleaveMode::Mixed, 3, &pairs, |x| x.0);
+        let first =
+            interleave_by_key_weighted(make(), InterleaveMode::Mixed, 3, &pairs, &[], |x| x.0);
+        let second =
+            interleave_by_key_weighted(make(), InterleaveMode::Mixed, 3, &pairs, &[], |x| x.0);
         assert_eq!(first, second);
 
-        let other = interleave_by_key_weighted(make(), InterleaveMode::Mixed, 1, &pairs, |x| x.0);
+        let other =
+            interleave_by_key_weighted(make(), InterleaveMode::Mixed, 1, &pairs, &[], |x| x.0);
         assert_ne!(first, other);
+    }
+
+    fn priority(topic: &str, weight: f64) -> TopicPriority {
+        TopicPriority {
+            topic: topic.to_string(),
+            weight,
+        }
+    }
+
+    /// A priority makes its topic lead the Mixed rotation (the weakest topic comes
+    /// up first), without starving or dropping any bucket.
+    #[test]
+    fn priority_leads_the_rotation() {
+        let make = || {
+            let mut items = Vec::new();
+            for i in 0..3u32 {
+                items.push(("A", i));
+                items.push(("B", i));
+                items.push(("C", i));
+            }
+            items
+        };
+        // Seed 0 would naively start at A; prioritising C must start the session at C.
+        let out =
+            interleave_by_key_weighted(make(), InterleaveMode::Mixed, 0, &[], &[priority("C", 3.0)], |x| x.0);
+        assert_eq!(out[0].0, "C");
+        assert_eq!(out.len(), 9);
+        assert_eq!(out.iter().filter(|x| x.0 == "B").count(), 3); // nothing starved
+
+        // Highest priority wins when several are set.
+        let out2 = interleave_by_key_weighted(
+            make(),
+            InterleaveMode::Mixed,
+            0,
+            &[],
+            &[priority("B", 1.0), priority("C", 9.0)],
+            |x| x.0,
+        );
+        assert_eq!(out2[0].0, "C");
+    }
+
+    /// Empty or unmatched priorities keep the historical seed-chosen start, so the
+    /// order is byte-for-byte the naive round-robin for every seed.
+    #[test]
+    fn empty_priorities_match_naive() {
+        let make = || vec![("A", 0), ("B", 1), ("C", 2), ("A", 3), ("B", 4), ("C", 5), ("A", 6)];
+        let unmatched = vec![priority("Z", 5.0)];
+        for seed in [0u64, 1, 2, 7, 42] {
+            let naive = interleave_by_key(make(), InterleaveMode::Mixed, seed, |x| x.0);
+            let none =
+                interleave_by_key_weighted(make(), InterleaveMode::Mixed, seed, &[], &[], |x| x.0);
+            assert_eq!(none, naive, "empty priorities must equal naive (seed {seed})");
+            let unmatched_out = interleave_by_key_weighted(
+                make(),
+                InterleaveMode::Mixed,
+                seed,
+                &[],
+                &unmatched,
+                |x| x.0,
+            );
+            assert_eq!(
+                unmatched_out, naive,
+                "unmatched priorities must equal naive (seed {seed})"
+            );
+        }
     }
 }

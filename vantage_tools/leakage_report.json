@@ -1,0 +1,620 @@
+{
+  "clean": true,
+  "corpus_eval_leaks": [],
+  "leak_cutoff": 0.8,
+  "n_eval_items": 114,
+  "n_training_passages": 92,
+  "note": "No trained model exists (BM25/lexical/disabled generator), so memorisation-leakage risk is inherently low; retrieval topical overlap is expected and not flagged below the 0.80 cutoff. Held-out eval splits in evaluate_memory/performance are disjoint by construction (index cut over distinct ids).",
+  "paraphrase_self_leaks": [],
+  "per_item": [
+    {
+      "id": "g01",
+      "max_similarity": 0.188,
+      "set": "gold_question"
+    },
+    {
+      "id": "g02",
+      "max_similarity": 0.172,
+      "set": "gold_question"
+    },
+    {
+      "id": "g03",
+      "max_similarity": 0.117,
+      "set": "gold_question"
+    },
+    {
+      "id": "g04",
+      "max_similarity": 0.5,
+      "set": "gold_question"
+    },
+    {
+      "id": "g05",
+      "max_similarity": 0.337,
+      "set": "gold_question"
+    },
+    {
+      "id": "g06",
+      "max_similarity": 0.214,
+      "set": "gold_question"
+    },
+    {
+      "id": "g07",
+      "max_similarity": 0.189,
+      "set": "gold_question"
+    },
+    {
+      "id": "g08",
+      "max_similarity": 0.272,
+      "set": "gold_question"
+    },
+    {
+      "id": "g09",
+      "max_similarity": 0.156,
+      "set": "gold_question"
+    },
+    {
+      "id": "g10",
+      "max_similarity": 0.18,
+      "set": "gold_question"
+    },
+    {
+      "id": "g11",
+      "max_similarity": 0.115,
+      "set": "gold_question"
+    },
+    {
+      "id": "g12",
+      "max_similarity": 0.268,
+      "set": "gold_question"
+    },
+    {
+      "id": "g13",
+      "max_similarity": 0.168,
+      "set": "gold_question"
+    },
+    {
+      "id": "g14",
+      "max_similarity": 0.342,
+      "set": "gold_question"
+    },
+    {
+      "id": "g15",
+      "max_similarity": 0.136,
+      "set": "gold_question"
+    },
+    {
+      "id": "g16",
+      "max_similarity": 0.309,
+      "set": "gold_question"
+    },
+    {
+      "id": "g17",
+      "max_similarity": 0.108,
+      "set": "gold_question"
+    },
+    {
+      "id": "g18",
+      "max_similarity": 0.114,
+      "set": "gold_question"
+    },
+    {
+      "id": "g19",
+      "max_similarity": 0.093,
+      "set": "gold_question"
+    },
+    {
+      "id": "g20",
+      "max_similarity": 0.1,
+      "set": "gold_question"
+    },
+    {
+      "id": "g21",
+      "max_similarity": 0.192,
+      "set": "gold_question"
+    },
+    {
+      "id": "g22",
+      "max_similarity": 0.141,
+      "set": "gold_question"
+    },
+    {
+      "id": "g23",
+      "max_similarity": 0.152,
+      "set": "gold_question"
+    },
+    {
+      "id": "g24",
+      "max_similarity": 0.108,
+      "set": "gold_question"
+    },
+    {
+      "id": "g25",
+      "max_similarity": 0.314,
+      "set": "gold_question"
+    },
+    {
+      "id": "g26",
+      "max_similarity": 0.182,
+      "set": "gold_question"
+    },
+    {
+      "id": "g27",
+      "max_similarity": 0.252,
+      "set": "gold_question"
+    },
+    {
+      "id": "g28",
+      "max_similarity": 0.109,
+      "set": "gold_question"
+    },
+    {
+      "id": "g29",
+      "max_similarity": 0.233,
+      "set": "gold_question"
+    },
+    {
+      "id": "g30",
+      "max_similarity": 0.277,
+      "set": "gold_question"
+    },
+    {
+      "id": "g31",
+      "max_similarity": 0.0,
+      "set": "gold_question"
+    },
+    {
+      "id": "g32",
+      "max_similarity": 0.046,
+      "set": "gold_question"
+    },
+    {
+      "id": "g33",
+      "max_similarity": 0.022,
+      "set": "gold_question"
+    },
+    {
+      "id": "g34",
+      "max_similarity": 0.19,
+      "set": "gold_question"
+    },
+    {
+      "id": "g35",
+      "max_similarity": 0.164,
+      "set": "gold_question"
+    },
+    {
+      "id": "g36",
+      "max_similarity": 0.035,
+      "set": "gold_question"
+    },
+    {
+      "id": "g37",
+      "max_similarity": 0.0,
+      "set": "gold_question"
+    },
+    {
+      "id": "g38",
+      "max_similarity": 0.069,
+      "set": "gold_question"
+    },
+    {
+      "id": "g39",
+      "max_similarity": 0.078,
+      "set": "gold_question"
+    },
+    {
+      "id": "g40",
+      "max_similarity": 0.069,
+      "set": "gold_question"
+    },
+    {
+      "id": "g41",
+      "max_similarity": 0.094,
+      "set": "gold_question"
+    },
+    {
+      "id": "g42",
+      "max_similarity": 0.112,
+      "set": "gold_question"
+    },
+    {
+      "id": "g43",
+      "max_similarity": 0.13,
+      "set": "gold_question"
+    },
+    {
+      "id": "g44",
+      "max_similarity": 0.176,
+      "set": "gold_question"
+    },
+    {
+      "id": "g45",
+      "max_similarity": 0.184,
+      "set": "gold_question"
+    },
+    {
+      "id": "g46",
+      "max_similarity": 0.089,
+      "set": "gold_question"
+    },
+    {
+      "id": "g47",
+      "max_similarity": 0.192,
+      "set": "gold_question"
+    },
+    {
+      "id": "g48",
+      "max_similarity": 0.157,
+      "set": "gold_question"
+    },
+    {
+      "id": "g49",
+      "max_similarity": 0.046,
+      "set": "gold_question"
+    },
+    {
+      "id": "g50",
+      "max_similarity": 0.041,
+      "set": "gold_question"
+    },
+    {
+      "id": "cp_kinematics#0",
+      "max_similarity": 0.016,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_kinematics#1",
+      "max_similarity": 0.027,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_ohms_law#0",
+      "max_similarity": 0.026,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_ohms_law#1",
+      "max_similarity": 0.017,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_ideal_gas#0",
+      "max_similarity": 0.19,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_ideal_gas#1",
+      "max_similarity": 0.135,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_thermochemistry#0",
+      "max_similarity": 0.032,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_thermochemistry#1",
+      "max_similarity": 0.071,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_acid_base#0",
+      "max_similarity": 0.035,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_acid_base#1",
+      "max_similarity": 0.035,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_optics#0",
+      "max_similarity": 0.032,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_optics#1",
+      "max_similarity": 0.018,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_electrochem#0",
+      "max_similarity": 0.035,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_electrochem#1",
+      "max_similarity": 0.026,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_fluids#0",
+      "max_similarity": 0.04,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cp_fluids#1",
+      "max_similarity": 0.031,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_enzyme_kinetics#0",
+      "max_similarity": 0.093,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_enzyme_kinetics#1",
+      "max_similarity": 0.155,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_glycolysis#0",
+      "max_similarity": 0.109,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_glycolysis#1",
+      "max_similarity": 0.08,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_dna_replication#0",
+      "max_similarity": 0.032,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_dna_replication#1",
+      "max_similarity": 0.034,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_central_dogma#0",
+      "max_similarity": 0.129,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_central_dogma#1",
+      "max_similarity": 0.062,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_membrane_transport#0",
+      "max_similarity": 0.043,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_membrane_transport#1",
+      "max_similarity": 0.01,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_amino_acids#0",
+      "max_similarity": 0.047,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_amino_acids#1",
+      "max_similarity": 0.024,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_hardy_weinberg#0",
+      "max_similarity": 0.066,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_hardy_weinberg#1",
+      "max_similarity": 0.035,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_endocrine_feedback#0",
+      "max_similarity": 0.062,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "bb_endocrine_feedback#1",
+      "max_similarity": 0.0,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_operant_conditioning#0",
+      "max_similarity": 0.017,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_operant_conditioning#1",
+      "max_similarity": 0.032,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_classical_conditioning#0",
+      "max_similarity": 0.013,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_classical_conditioning#1",
+      "max_similarity": 0.048,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_memory_systems#0",
+      "max_similarity": 0.0,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_memory_systems#1",
+      "max_similarity": 0.014,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_social_influence#0",
+      "max_similarity": 0.024,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_social_influence#1",
+      "max_similarity": 0.045,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_cognitive_biases#0",
+      "max_similarity": 0.027,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_cognitive_biases#1",
+      "max_similarity": 0.0,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_attribution#0",
+      "max_similarity": 0.021,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_attribution#1",
+      "max_similarity": 0.012,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_stress_response#0",
+      "max_similarity": 0.037,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_stress_response#1",
+      "max_similarity": 0.023,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_dev_stages#0",
+      "max_similarity": 0.011,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "ps_dev_stages#1",
+      "max_similarity": 0.039,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_main_idea#0",
+      "max_similarity": 0.015,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_main_idea#1",
+      "max_similarity": 0.019,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_authors_tone#0",
+      "max_similarity": 0.042,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_authors_tone#1",
+      "max_similarity": 0.02,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_argument_structure#0",
+      "max_similarity": 0.029,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_argument_structure#1",
+      "max_similarity": 0.014,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_inference#0",
+      "max_similarity": 0.0,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_inference#1",
+      "max_similarity": 0.016,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_strengthen_weaken#0",
+      "max_similarity": 0.031,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_strengthen_weaken#1",
+      "max_similarity": 0.068,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_assumption#0",
+      "max_similarity": 0.088,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_assumption#1",
+      "max_similarity": 0.032,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_analogy#0",
+      "max_similarity": 0.04,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_analogy#1",
+      "max_similarity": 0.028,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_rhetorical_device#0",
+      "max_similarity": 0.029,
+      "set": "paraphrase_reworded"
+    },
+    {
+      "id": "cr_rhetorical_device#1",
+      "max_similarity": 0.019,
+      "set": "paraphrase_reworded"
+    }
+  ],
+  "retrofit_overlap_informational": [
+    {
+      "id": "rf_cars_q4",
+      "max_similarity": 0.209
+    },
+    {
+      "id": "rf_cars_q5",
+      "max_similarity": 0.211
+    },
+    {
+      "id": "rf_chemphys_q0",
+      "max_similarity": 0.201
+    },
+    {
+      "id": "rf_chemphys_q5",
+      "max_similarity": 0.62
+    },
+    {
+      "id": "rf_bio_q0",
+      "max_similarity": 0.26
+    },
+    {
+      "id": "rf_bio_q5",
+      "max_similarity": 0.8
+    },
+    {
+      "id": "rf_psych_q0",
+      "max_similarity": 0.133
+    },
+    {
+      "id": "rf_psych_q1",
+      "max_similarity": 0.523
+    },
+    {
+      "id": "rf_chemphys_q1_mathnotation",
+      "max_similarity": 0.0
+    }
+  ],
+  "worst_similarity": 0.5
+}

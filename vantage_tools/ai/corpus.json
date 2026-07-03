@@ -13,7 +13,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: buffer action and the Henderson-Hasselbalch equation. Verify against OpenStax Chemistry 2e (CC BY 4.0), ch. 14 'Acid-Base Equilibria'.",
+      "citation": "Concept: buffer action and the Henderson-Hasselbalch equation. Verify against OpenStax Chemistry 2e, ch. 14 'Acid-Base Equilibria'.",
       "sentences": [
         "A buffer is a solution that resists changes in pH when small amounts of acid or base are added.",
         "It contains comparable amounts of a weak acid and its conjugate base, which neutralize added base and added acid respectively.",
@@ -29,7 +29,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: Gibbs free energy criterion for spontaneity. Verify against OpenStax Chemistry 2e (CC BY 4.0), ch. 16 'Thermodynamics'.",
+      "citation": "Concept: Gibbs free energy criterion for spontaneity. Verify against OpenStax Chemistry 2e, ch. 16 'Thermodynamics'.",
       "sentences": [
         "The Gibbs free energy change determines whether a reaction is spontaneous at constant temperature and pressure.",
         "It is defined as the enthalpy change minus the temperature times the entropy change.",
@@ -44,7 +44,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: catalysis and activation energy. Verify against OpenStax Chemistry 2e (CC BY 4.0), ch. 12 'Kinetics'.",
+      "citation": "Concept: catalysis and activation energy. Verify against OpenStax Chemistry 2e, ch. 12 'Kinetics'.",
       "sentences": [
         "A catalyst speeds up a reaction by providing an alternative pathway with a lower activation energy.",
         "It lowers the activation energy for the forward and reverse directions equally.",
@@ -58,7 +58,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: reversible enzyme inhibition and its effect on kinetic parameters. Verify against OpenStax Biology 2e (CC BY 4.0), ch. 6 'Metabolism'.",
+      "citation": "Concept: reversible enzyme inhibition and its effect on kinetic parameters. Verify against OpenStax Biology 2e, ch. 6 'Metabolism'.",
       "sentences": [
         "A competitive inhibitor binds the enzyme's active site and competes directly with the substrate.",
         "Competitive inhibition raises the apparent Michaelis constant while leaving the maximum velocity unchanged.",
@@ -74,7 +74,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: Michaelis-Menten enzyme kinetics. Verify against OpenStax Biology 2e (CC BY 4.0), ch. 6 'Metabolism'.",
+      "citation": "Concept: Michaelis-Menten enzyme kinetics. Verify against OpenStax Biology 2e, ch. 6 'Metabolism'.",
       "sentences": [
         "Enzyme-catalyzed reactions often follow Michaelis-Menten kinetics, giving a hyperbolic curve of initial rate versus substrate concentration.",
         "The maximum velocity is the rate approached when the enzyme is saturated with substrate.",
@@ -88,7 +88,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: redundancy of the genetic code and point/frameshift mutations. Verify against OpenStax Biology 2e (CC BY 4.0), ch. 15 'Genes and Proteins'.",
+      "citation": "Concept: redundancy of the genetic code and point/frameshift mutations. Verify against OpenStax Biology 2e, ch. 15 'Genes and Proteins'.",
       "sentences": [
         "The genetic code is degenerate, meaning most amino acids are specified by more than one codon.",
         "A single-base change that still codes for the same amino acid is a silent mutation and leaves the protein sequence unchanged.",
@@ -102,7 +102,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: cellular respiration and anaerobic fermentation. Verify against OpenStax Biology 2e (CC BY 4.0), ch. 7 'Cellular Respiration'.",
+      "citation": "Concept: cellular respiration and anaerobic fermentation. Verify against OpenStax Biology 2e, ch. 7 'Cellular Respiration'.",
       "sentences": [
         "Glycolysis splits glucose into pyruvate and yields a small net gain of ATP without requiring oxygen.",
         "It also reduces the carrier NAD+ to NADH, which must be reoxidized for glycolysis to continue.",
@@ -183,7 +183,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: acid strength and dissociation. Verify against OpenStax Chemistry 2e (CC BY 4.0), ch. 14 'Acid-Base Equilibria'.",
+      "citation": "Concept: acid strength and dissociation. Verify against OpenStax Chemistry 2e, ch. 14 'Acid-Base Equilibria'.",
       "sentences": [
         "A strong acid dissociates completely in water, while a weak acid only partially dissociates.",
         "The lower the pKa, the stronger the acid and the more completely it donates protons.",
@@ -196,7 +196,7 @@
       "author": "Vantage (synthetic, author-written)",
       "license": "CC0-1.0",
       "synthetic": true,
-      "citation": "Concept: osmosis and tonicity. Verify against OpenStax Biology 2e (CC BY 4.0), ch. 5 'Structure and Function of Plasma Membranes'.",
+      "citation": "Concept: osmosis and tonicity. Verify against OpenStax Biology 2e, ch. 5 'Structure and Function of Plasma Membranes'.",
       "sentences": [
         "Osmosis is the passive movement of water across a semipermeable membrane from lower to higher solute concentration.",
         "A cell placed in a hypertonic solution loses water and shrinks, while one in a hypotonic solution gains water and may burst.",
@@ -214,6 +214,46 @@
         "In operant conditioning, behavior is shaped by its consequences: reinforcement increases a behavior and punishment decreases it.",
         "A variable-ratio schedule, which rewards behavior after an unpredictable number of responses, produces high and steady response rates.",
         "Negative reinforcement increases a behavior by removing an unpleasant stimulus, and is not the same as punishment."
+      ]
+    },
+    {
+      "source_id": "src_chapter_metabolism",
+      "title": "Cellular Metabolism: Enzymes, Glycolysis, and Oxidative Phosphorylation (chapter)",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: cellular metabolism (enzyme catalysis, glycolysis, the citric acid cycle, and oxidative phosphorylation). Original author-written chapter, released CC0-1.0; nothing is copied verbatim. Verify each fact against OpenStax Biology 2e, ch. 6 'Metabolism' and ch. 7 'Cellular Respiration and Fermentation'. This is the single chapter source from which the card-check generator produces its 50 candidate cards.",
+      "sentences": [
+        "Metabolism is the sum of an organism's chemical reactions, split into catabolism that releases energy by breaking molecules down and anabolism that spends energy to build molecules up.",
+        "An enzyme is a biological catalyst that lowers a reaction's activation energy without being consumed or shifting the reaction's equilibrium.",
+        "The pocket of an enzyme that binds substrate and carries out the chemistry is called the active site.",
+        "In the induced-fit model, binding of the substrate reshapes the active site so that it grips the substrate more snugly.",
+        "Every enzyme has an optimal temperature and pH at which its catalytic rate peaks, and drifting away from that optimum slows the enzyme down.",
+        "Most enzymes in the human body work fastest near 37 degrees Celsius, and excessive heat denatures them by unfolding their three-dimensional shape.",
+        "A cofactor is a nonprotein partner an enzyme requires to function, and when that partner is a small organic molecule derived from a vitamin it is termed a coenzyme.",
+        "In feedback inhibition, the final product of a metabolic pathway binds and switches off an enzyme that acts early in the same pathway.",
+        "An allosteric regulator binds an enzyme at a site separate from the active site and thereby raises or lowers the enzyme's activity.",
+        "Glycolysis takes place in the cytoplasm and cleaves a single six-carbon glucose into a pair of three-carbon pyruvate molecules.",
+        "The net payoff of glycolysis is two ATP and two NADH per glucose, and the pathway proceeds even in the complete absence of oxygen.",
+        "Glycolysis opens with an energy investment phase that spends two ATP to phosphorylate glucose before any ATP is harvested.",
+        "Under aerobic conditions, each pyruvate is oxidized and joined to coenzyme A to form acetyl-CoA while releasing carbon dioxide.",
+        "The citric acid cycle, also known as the Krebs cycle, runs in the mitochondrial matrix and finishes oxidizing glucose-derived carbon to carbon dioxide.",
+        "Each turn of the citric acid cycle generates three NADH, one FADH2, and one GTP.",
+        "The electron transport chain is embedded in the inner mitochondrial membrane and relays electrons from NADH and FADH2 toward a final acceptor.",
+        "Oxygen serves as the final electron acceptor of the electron transport chain and is reduced to water at the end of the chain.",
+        "As electrons pass down the chain, protons are driven from the matrix into the intermembrane space, storing energy as an electrochemical proton gradient.",
+        "ATP synthase taps the proton gradient by letting protons flow back into the matrix, and it couples that flow to attaching phosphate to ADP in a process called chemiosmosis.",
+        "Fully oxidizing one glucose by aerobic respiration yields roughly 30 to 32 ATP in a typical human cell.",
+        "Oxidative phosphorylation supplies the large majority of a cell's ATP, far outstripping the modest yield from glycolysis alone.",
+        "When oxygen runs out, the electron transport chain halts and leaves the NADH from earlier steps stuck in its reduced form.",
+        "In the absence of oxygen, human muscle cells run lactic acid fermentation, converting pyruvate into lactate to regenerate NAD+.",
+        "Fermentation restores the NAD+ that glycolysis depends on, yet it delivers no ATP beyond the small amount glycolysis already produced.",
+        "Gluconeogenesis assembles new glucose from noncarbohydrate sources such as certain amino acids, and it is not simply glycolysis running in reverse.",
+        "Insulin, released when blood sugar is high, lowers blood glucose by prompting cells to take up glucose and store it as glycogen.",
+        "Glucagon, released when blood sugar is low, raises blood glucose largely by triggering the breakdown of glycogen in the liver.",
+        "Beta-oxidation chops fatty acids into two-carbon acetyl-CoA units that feed the citric acid cycle and ultimately yield a large amount of ATP.",
+        "An enzyme's reaction rate rises with substrate concentration until the active sites are saturated, at which point the rate levels off at its maximum velocity.",
+        "The Michaelis constant is the substrate concentration at which an enzyme works at half of its maximum velocity, and a smaller value indicates tighter substrate binding."
       ]
     },
     {

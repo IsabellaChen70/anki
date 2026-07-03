@@ -17,29 +17,55 @@ on is **FSRS** (open source, `open-spaced-repetition/fsrs-rs`), which ships in
 Anki's Rust core. FSRS is the named source; its authors evaluate it on hundreds
 of millions of held-out reviews where it beats the simpler SM-2 baseline.
 
-## 2. Held-out evaluation (re-runnable)
+## 2. Held-out calibration + skill (re-runnable)
 
-`vantage_tools/evaluate_memory.py` holds out 20% of cards (fixed seed), then
-scores FSRS predicted recall against a base-rate baseline with the Brier score on
-the held-out set only.
+`vantage_tools/evaluate_memory.py` drives a simulated study history through Anki's
+**real** scheduler, holds out 20% of cards (fixed seed, split by card so a card is
+never in both halves), then asks two pre-registered questions on the held-out set:
+
+- **skill**: does FSRS predicted recall beat a base-rate baseline (lower Brier /
+  log-loss)? A constant base rate carries no per-card information, so beating it
+  means the predicted R is informative.
+- **calibration**: when it says `p`, does the cohort recall ~`p`? Bin the held-out
+  (predicted R, outcome) pairs and report the Expected Calibration Error (ECE,
+  n-weighted mean |predicted − observed|). Cutoff: calibrated if ECE < 0.10.
+
+**What this can and cannot show.** On a *simulated* cohort you cannot honestly test
+whether FSRS's forgetting curve matches human memory — any invented ground truth
+would differ from FSRS's own assumptions and conflate model mismatch with a wiring
+bug. So a fair simulation necessarily has the learner follow the model, which makes
+this a **pipeline self-consistency** check. It still catches real bugs: the
+elapsed-time construction (a decay-independent self-check asserts the shipped
+`R(delay = stability)` is exactly `0.9`, the definition of stability), the
+leakage-free split, the ECE/Brier arithmetic, and R being informative. FSRS's
+real-world calibration is the authors' result on hundreds of millions of held-out
+reviews (cited above), not re-derived here.
 
 ```
 out/pyenv/bin/python vantage_tools/evaluate_memory.py
 ```
 
-Result (seeded exam collection):
+Result (seeded, deterministic):
 
 ```
-cards with recall + outcome: 86  (fit 68, held-out 18)
-predictor                 held-out Brier (lower=better)
-FSRS predicted recall     0.0334
-base-rate baseline        0.0671
-result: FSRS BEATS the baseline on held-out data (50.2% lower Brier)
+cards with recall + outcome: 1500  (fit 1200, held-out 300)
+predictor                 Brier       log-loss   (held-out, lower=better)
+FSRS predicted recall     0.1515      0.4659
+base-rate baseline        0.1720      0.5282
+skill: FSRS BEATS the baseline (+11.9% Brier)
+
+reliability (held-out, 300 cards; pre-registered bins):
+  bin              n     pred   observed   |gap|
+  0.50-0.70       59    0.620      0.576   0.043
+  0.70-0.85      123    0.791      0.764   0.027
+  0.85-0.95       75    0.898      0.893   0.004
+  0.95-1.00       39    0.972      0.974   0.002
+calibration: ECE = 0.024  (cutoff 0.1) -> CALIBRATED
 ```
 
-Honesty note: this runs on a simulated study history (see
-`build_exam_collection.py`), so the number validates the pipeline, not a real
-cohort. Real-world FSRS-vs-SM-2 evidence is the fsrs-rs benchmark cited above.
+(The lowest bin, 0.00–0.50, is genuinely thin — FSRS-6's heavy tail makes very-low-R
+states rare within a reproducible delay window — so its per-bin count is small; the
+n-weighted ECE and the 0.5–1.0 bins are the robust part.)
 
 ## 3. Ablation: does the interleaving feature do what we expect?
 
@@ -53,19 +79,44 @@ grouped arm (BLOCKED). Prediction: `mixed << off < blocked`.
 out/pyenv/bin/python vantage_tools/ablation_interleave.py
 ```
 
-Result:
+**Part A — mechanism (measured on the real engine; 5 seeds [7, 13, 21, 42, 101]):**
 
 ```
-mode     same-topic adjacency
-off      0.217   (stock Anki order)
-mixed    0.000   (interleaving ON)
-blocked  0.870   (grouped arm)
+mode     same-topic adjacency  mean [min-max]      interleave exposure (mean)
+mixed    0.000                 [0.000-0.000]       0.516
+off      0.213                 [0.097-0.323]       0.265   (stock Anki order)
+blocked  0.903                 [0.903-0.903]       0.039   (grouped arm)
 result: CONFIRMED (mixed << off < blocked)
 ```
 
-MIXED is deterministic (0.000); OFF reflects the stock order (varies with card
-order) and is always far above MIXED. The feature has explicit OFF/MIXED/BLOCKED
-arms and a seed, so the on/off test is built in.
+MIXED is deterministic (0.000 adjacency on every seed); OFF is the stock order
+(varies with card order) and always far above MIXED; BLOCKED groups by topic. This
+is the real, re-runnable engine measurement — the feature genuinely reorders the
+queue as designed.
+
+**Part B — outcome model (SIMULATED, not measured):** whether that reordering
+actually *raises application accuracy* is projected by a seeded outcome model with
+memory held EQUAL across arms, so only the pre-registered discrimination effect size
+varies:
+
+```
+arm      null control (effect = 0)   literature arm (Hedges g = 0.42)
+mixed    0.510                        0.605
+off      0.510                        0.515
+blocked  0.510                        0.435
+                                      mixed - blocked = +0.170
+```
+
+Honesty (the negative-result discipline the brief asks for): the **null control ties
+all three arms at 0.510** (spread 0.0) — the correct sanity check, since with no
+assumed effect the review order alone must change nothing. The **literature arm is
+model-dependent, NOT our measurement**: it plugs in an effect size from the
+interleaving literature (Rohrer & Taylor; Brunmair & Richter's confusable-category
+moderator) and would need a real cohort (Step 4) to confirm. We report the mechanism
+as measured and the learning gain as *projected* — never as our own empirical result.
+
+Note on arms: the `off` arm is `InterleaveMode::Off` on the **same fork engine** (a
+true feature on/off toggle), not a separately-built stock Anki binary.
 
 ## 4. Give-up rule (refuses a score without enough data)
 
@@ -79,12 +130,19 @@ Pinned by tests: `test_give_up_*`, `test_readiness_abstains_*`,
 
 ```
 export CARGO_TARGET_DIR=./target
-cargo test -p anki interleave                 # 5 Rust engine tests
-out/pyenv/bin/python -m pytest \
+cargo test -p anki interleave                 # 11 Rust engine tests
+PYTHONPATH=pylib:out/pylib out/pyenv/bin/python -m pytest \
   pylib/tests/test_interleave.py \
   pylib/tests/test_vantage_scoring.py \
-  pylib/tests/test_vantage_collect.py         # scoring core + calibration + give-up
+  pylib/tests/test_vantage_collect.py         # 98 tests: scoring core + calibration + give-up
+
+just eval-all                                 # every seeded eval + safety check, one command
 ```
+
+One-command eval targets (see the [justfile](../justfile)): `just eval-memory`,
+`eval-performance`, `eval-paraphrase`, `ablation`, `leakage`, `eval-ai`, `offline-test`,
+`score-map`, `parity`, `bench`, `crash-test`. Each writes a committed result artifact
+(see `TEST_RESULTS.md` for the current numbers).
 
 ## 6. AI card generation: sourcing, retrieval, grounding, injection (built offline)
 
@@ -97,15 +155,26 @@ layer never sets `ai_used=true`; the scoring path is untouched.
 Re-run (from the repo root; `python3` or `out/pyenv/bin/python` give identical output):
 
 ```
+just eval-ai                                 # all of the below, each writing a result JSON
 python3 vantage_tools/ai/eval_cardgen.py     # A retrieval, B checker, C AI-off, D canary
+python3 vantage_tools/ai/eval_cardcheck.py   # 3-way gate on 50 tuned cards (mechanics)
+python3 vantage_tools/ai/cardcheck_holdout.py# 3-way gate on an INDEPENDENT held-out set
+python3 vantage_tools/ai/eval_llm_seam.py    # a wired LLM's output is still fully screened
 python3 vantage_tools/ai/canary.py           # full prompt-injection canary report
 ```
+
+The three-way quality gate now runs **inline in `GenerationPipeline.run()`**, so a card
+must be grounded AND useful to publish. The tuned 50-card check (`eval_cardcheck.py`)
+validates the gate's mechanics; the independent held-out (`cardcheck_holdout.py`, labels
+from mechanical perturbations of real corpus sentences) tests generalization — it blocks
+22/22 wrong cards and publishes 14/14 useful, 0 wrong published. `eval_llm_seam.py` proves
+that even a wired model's hallucination / injection / fabricated-citation are all blocked.
 
 ### 6.1 Retrieval beats a baseline (recall@k on a gold set)
 
 Baseline = classic BM25. Method (`vantage_rag`) = the same BM25 index + domain
 synonym expansion of the query, with expansion terms down-weighted (0.25, chosen
-a priori; stable for 0.15–0.35). Gold set = 38 held-out `question → correct source
+a priori; stable for 0.15–0.35). Gold set = 50 held-out `question → correct source
 span` pairs (`gold_set.json`). Retrieval is deterministic; a hit means a returned
 chunk falls inside the gold sentence span.
 

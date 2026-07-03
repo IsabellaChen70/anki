@@ -1,0 +1,712 @@
+{
+  "dataset_id": "vantage_paraphrase_v1",
+  "description": "Pinned paraphrase-test item bank for the Vantage transfer-gap (memory vs application) evaluation. Each concept links one recall card to >=2 reworded application items, each with a DISTINCT cover story (a different scenario/context, not just changed numbers). Plausible MCAT-level, synthetic and self-contained. Content only; the seeded learner model that generates outcomes lives in evaluate_paraphrase.py.",
+  "sections": ["chem_phys", "bio_biochem", "psych_soc", "cars"],
+  "note_cars": "CARS concepts are reasoning skills over short synthetic passages. They are included for the per-CONCEPT diagnostic, but scoring.transfer_gap models only the 3 science sections, so CARS never enters the per-SECTION transfer numbers ('CARS is never modeled').",
+  "concepts": [
+    {
+      "concept_id": "cp_kinematics",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Constant-acceleration kinematics: give the velocity and displacement equations.",
+        "back": "v = v0 + a*t ; dx = v0*t + 1/2*a*t^2 ; v^2 = v0^2 + 2*a*dx."
+      },
+      "reworded": [
+        {
+          "cover_story": "A wrench slips off a stationary scaffold platform and falls freely.",
+          "stem": "Ignoring air resistance, about how long does it take to fall 20 m? (g ~ 10 m/s^2)",
+          "choices": ["1 s", "2 s", "4 s", "20 s"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A cyclist brakes uniformly to a stop at a crosswalk.",
+          "stem": "A bike moving at 8 m/s decelerates at 4 m/s^2. How far does it travel before stopping?",
+          "choices": ["4 m", "8 m", "16 m", "32 m"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_ohms_law",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Ohm's law and electrical power.",
+        "back": "V = I*R ; P = I*V = I^2*R = V^2/R."
+      },
+      "reworded": [
+        {
+          "cover_story": "A space heater's resistive coil glows as current runs through it.",
+          "stem": "A 20 ohm coil carries 5 A. What power does it dissipate?",
+          "choices": ["100 W", "250 W", "500 W", "1000 W"],
+          "correct": 2
+        },
+        {
+          "cover_story": "A flashlight bulb is connected across a fresh battery.",
+          "stem": "A 6 V battery drives a bulb of resistance 3 ohm. What current flows?",
+          "choices": ["0.5 A", "2 A", "9 A", "18 A"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_ideal_gas",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Ideal gas law and Boyle's law.",
+        "back": "P*V = n*R*T. At fixed n and T, P is proportional to 1/V (Boyle)."
+      },
+      "reworded": [
+        {
+          "cover_story": "A sealed syringe with a capped tip has its plunger slowly pushed in at room temperature.",
+          "stem": "If the gas volume is halved at constant temperature and amount, the pressure...",
+          "choices": ["halves", "stays the same", "doubles", "quadruples"],
+          "correct": 2
+        },
+        {
+          "cover_story": "A rigid scuba tank is left in a hot car and warms up.",
+          "stem": "At constant volume, as the absolute temperature rises, the pressure...",
+          "choices": ["decreases", "is unchanged", "increases", "drops to zero"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_thermochemistry",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Reaction enthalpy and the sign convention.",
+        "back": "dH_rxn = sum dHf(products) - sum dHf(reactants). Exothermic: dH < 0; endothermic: dH > 0."
+      },
+      "reworded": [
+        {
+          "cover_story": "Propane burns in a camp stove and warms the pot of water above it.",
+          "stem": "For this combustion, the sign of dH is...",
+          "choices": ["positive", "negative", "zero", "undefined"],
+          "correct": 1
+        },
+        {
+          "cover_story": "An instant cold pack turns cold when the inner salt dissolves after squeezing.",
+          "stem": "A dissolution that cools its surroundings is best described as...",
+          "choices": ["exothermic, dH < 0", "endothermic, dH > 0", "adiabatic", "dH = 0"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_acid_base",
+      "section": "chem_phys",
+      "recall": {
+        "front": "pH and the Henderson-Hasselbalch equation.",
+        "back": "pH = -log[H+]. For a buffer, pH = pKa + log([A-]/[HA])."
+      },
+      "reworded": [
+        {
+          "cover_story": "A buffer is prepared with equal concentrations of acetic acid and acetate (pKa 4.76).",
+          "stem": "What is the pH of this buffer?",
+          "choices": ["1.00", "4.76", "7.00", "9.24"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A chemist dilutes a strong acid so that [H+] = 1e-3 M.",
+          "stem": "What is the approximate pH?",
+          "choices": ["1", "3", "7", "11"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_optics",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Refraction (Snell's law) and the thin-lens equation.",
+        "back": "n1*sin(t1) = n2*sin(t2). Thin lens: 1/f = 1/do + 1/di."
+      },
+      "reworded": [
+        {
+          "cover_story": "A straw looks bent at the surface where it enters a glass of water.",
+          "stem": "Light passing from air into water (higher n) bends...",
+          "choices": ["away from the normal", "toward the normal", "not at all", "back on itself"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A converging lens of focal length 10 cm is used with an object placed 30 cm away.",
+          "stem": "Where is the image formed?",
+          "choices": ["6 cm", "10 cm", "15 cm", "30 cm"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_electrochem",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Galvanic cell potentials.",
+        "back": "E_cell = E_cathode - E_anode. dG = -n*F*E. Spontaneous when E_cell > 0."
+      },
+      "reworded": [
+        {
+          "cover_story": "A galvanic cell is built from Zn (E = -0.76 V) and Cu (E = +0.34 V) half-cells.",
+          "stem": "Which electrode is the anode (site of oxidation)?",
+          "choices": ["Cu", "Zn", "both", "neither"],
+          "correct": 1
+        },
+        {
+          "cover_story": "The same Zn and Cu half-cells are connected under standard conditions.",
+          "stem": "What is the standard cell potential E_cell?",
+          "choices": ["0.42 V", "-0.42 V", "1.10 V", "-1.10 V"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "cp_fluids",
+      "section": "chem_phys",
+      "recall": {
+        "front": "Continuity and Bernoulli's principle for fluid flow.",
+        "back": "Continuity: A1*v1 = A2*v2. Bernoulli: P + 1/2*rho*v^2 + rho*g*h = constant."
+      },
+      "reworded": [
+        {
+          "cover_story": "Water flows steadily through a pipe that narrows to half its cross-sectional area.",
+          "stem": "By continuity, the water speed in the narrow section...",
+          "choices": ["halves", "is unchanged", "doubles", "quadruples"],
+          "correct": 2
+        },
+        {
+          "cover_story": "Air moves faster over the curved top of an airplane wing than along the flat underside.",
+          "stem": "By Bernoulli's principle, the pressure on top of the wing is...",
+          "choices": ["higher than below", "lower than below", "equal to below", "zero"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_enzyme_kinetics",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Michaelis-Menten kinetics: meaning of Km and effect of a competitive inhibitor.",
+        "back": "Km is the [S] at half Vmax; lower Km means higher affinity. A competitive inhibitor raises apparent Km, Vmax unchanged."
+      },
+      "reworded": [
+        {
+          "cover_story": "Two enzymes act on the same substrate; enzyme A has Km 2 mM, enzyme B has Km 10 mM.",
+          "stem": "Which enzyme has the higher affinity for the substrate?",
+          "choices": ["enzyme A", "enzyme B", "equal affinity", "cannot be determined"],
+          "correct": 0
+        },
+        {
+          "cover_story": "A drug binds the active site and competes directly with the natural substrate.",
+          "stem": "How does this competitive inhibitor change the kinetics?",
+          "choices": ["lowers Km and Vmax", "raises apparent Km, Vmax unchanged", "raises Vmax", "no effect"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_glycolysis",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Glycolysis products and location.",
+        "back": "Glucose -> 2 pyruvate in the cytosol; net yield 2 ATP + 2 NADH; does not require oxygen."
+      },
+      "reworded": [
+        {
+          "cover_story": "A muscle cell breaks down glucose in its cytosol during exercise.",
+          "stem": "What is the NET ATP yield from one glucose in glycolysis?",
+          "choices": ["0", "2", "4", "36"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A yeast cell sits in a sealed, oxygen-free fermentation vat.",
+          "stem": "Can glycolysis still proceed?",
+          "choices": ["no, it needs O2", "yes, it is anaerobic", "only inside mitochondria", "only in light"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_dna_replication",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "DNA replication: strands and semiconservative outcome.",
+        "back": "Replication is semiconservative. DNA polymerase builds 5'->3'; the leading strand is continuous, the lagging strand is made in Okazaki fragments."
+      },
+      "reworded": [
+        {
+          "cover_story": "A replication fork opens and both strands are copied at once.",
+          "stem": "Which new strand is synthesized discontinuously as Okazaki fragments?",
+          "choices": ["leading", "lagging", "template only", "neither"],
+          "correct": 1
+        },
+        {
+          "cover_story": "One parental double helix is replicated exactly once.",
+          "stem": "Each daughter duplex contains...",
+          "choices": ["two new strands", "two old strands", "one old and one new strand", "only short fragments"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_central_dogma",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Central dogma and the start codon.",
+        "back": "DNA -> (transcription) mRNA -> (translation) protein. Codons are read 5'->3'; AUG (Met) is the start codon and sets the reading frame."
+      },
+      "reworded": [
+        {
+          "cover_story": "A ribosome scans an mRNA to begin building a protein.",
+          "stem": "Which codon sets the reading frame and starts translation?",
+          "choices": ["UAA", "AUG", "TATA", "GGG"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A single extra base is inserted early in a protein-coding sequence.",
+          "stem": "The most likely consequence is...",
+          "choices": ["a silent change", "a frameshift altering downstream codons", "faster translation", "no effect"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_membrane_transport",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Passive vs active membrane transport.",
+        "back": "Diffusion (simple/facilitated) moves solutes down their gradient with no ATP. Active transport moves against the gradient using ATP; the Na+/K+ ATPase pumps 3 Na+ out and 2 K+ in per cycle."
+      },
+      "reworded": [
+        {
+          "cover_story": "A cell must pump sodium out even though sodium is already lower inside.",
+          "stem": "Moving Na+ against its gradient requires...",
+          "choices": ["no energy (simple diffusion)", "ATP (active transport)", "only an open channel", "osmosis"],
+          "correct": 1
+        },
+        {
+          "cover_story": "The sodium-potassium pump completes one full cycle using one ATP.",
+          "stem": "What does it move?",
+          "choices": ["2 Na+ in, 3 K+ out", "3 Na+ out, 2 K+ in", "1 Na+ out, 1 K+ in", "glucose in only"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_amino_acids",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Amino acid side chains and charge at physiological pH.",
+        "back": "Side chains set polarity/charge. Near pH 7: Asp/Glu are negative, Lys/Arg/His tend positive; Val/Leu/Ala are nonpolar (hydrophobic)."
+      },
+      "reworded": [
+        {
+          "cover_story": "A residue sits on a protein surface bathed in water at pH 7.4.",
+          "stem": "Which residue carries a negative charge here?",
+          "choices": ["leucine", "glutamate", "alanine", "valine"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A residue is buried in the hydrophobic core of a folded protein.",
+          "stem": "Which residue best fits that core?",
+          "choices": ["lysine", "aspartate", "valine", "serine"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_hardy_weinberg",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Hardy-Weinberg equilibrium.",
+        "back": "p + q = 1 and p^2 + 2pq + q^2 = 1. Homozygous recessive = q^2; carriers = 2pq."
+      },
+      "reworded": [
+        {
+          "cover_story": "A recessive disease affects 1 in 10,000 people, so q^2 = 0.0001.",
+          "stem": "The carrier frequency (2pq) is about...",
+          "choices": ["0.01%", "1%", "2%", "50%"],
+          "correct": 2
+        },
+        {
+          "cover_story": "In a large population a recessive allele has frequency q = 0.3.",
+          "stem": "What fraction are homozygous recessive?",
+          "choices": ["0.09", "0.30", "0.42", "0.49"],
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "concept_id": "bb_endocrine_feedback",
+      "section": "bio_biochem",
+      "recall": {
+        "front": "Negative feedback in endocrine axes.",
+        "back": "Most hormone axes use negative feedback: a high level of the end hormone suppresses its upstream releasing/stimulating hormones."
+      },
+      "reworded": [
+        {
+          "cover_story": "A patient takes exogenous thyroid hormone as a daily pill.",
+          "stem": "By negative feedback, pituitary TSH secretion will...",
+          "choices": ["increase", "decrease", "stay identical", "oscillate wildly"],
+          "correct": 1
+        },
+        {
+          "cover_story": "Cortisol rises sharply after activation of the HPA axis.",
+          "stem": "High cortisol feeds back to...",
+          "choices": ["stimulate more ACTH", "suppress CRH and ACTH", "raise TSH", "produce no feedback"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_operant_conditioning",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Operant conditioning: reinforcement vs punishment, positive vs negative.",
+        "back": "Reinforcement increases a behavior, punishment decreases it. Positive = add a stimulus; negative = remove a stimulus."
+      },
+      "reworded": [
+        {
+          "cover_story": "A car beeps until you buckle up; buckling stops the beep, and you buckle more often.",
+          "stem": "This is an example of...",
+          "choices": ["positive reinforcement", "negative reinforcement", "positive punishment", "negative punishment"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A teen who misses curfew is assigned extra chores and starts coming home on time.",
+          "stem": "Adding chores to reduce the lateness is...",
+          "choices": ["positive reinforcement", "negative reinforcement", "positive punishment", "negative punishment"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_classical_conditioning",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Classical conditioning terms.",
+        "back": "An unconditioned stimulus (US) elicits an unconditioned response innately. A neutral stimulus paired with the US becomes a conditioned stimulus (CS) that elicits a conditioned response (CR)."
+      },
+      "reworded": [
+        {
+          "cover_story": "A dog hears a bell just before every meal and begins to salivate at the bell alone.",
+          "stem": "The bell is the...",
+          "choices": ["unconditioned stimulus", "conditioned stimulus", "unconditioned response", "conditioned response"],
+          "correct": 1
+        },
+        {
+          "cover_story": "The bell is later rung many times with no food ever following.",
+          "stem": "Salivation to the bell gradually...",
+          "choices": ["strengthens", "extinguishes", "generalizes permanently", "becomes innate"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_memory_systems",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Memory: working-memory limits and the spacing effect.",
+        "back": "Working memory is limited (about 7 +/- 2 items, Miller). Chunking reduces load; spaced practice improves long-term retention."
+      },
+      "reworded": [
+        {
+          "cover_story": "Someone groups a 10-digit phone number into three chunks to hold it in mind.",
+          "stem": "Chunking helps mainly by...",
+          "choices": ["expanding long-term storage without limit", "reducing load on limited working memory", "erasing older memories", "blocking retrieval"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A student reviews material across several spaced days instead of cramming the night before.",
+          "stem": "This study pattern leverages the...",
+          "choices": ["serial position effect", "spacing effect", "cocktail-party effect", "misinformation effect"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_social_influence",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Social influence: conformity, obedience, bystander effect.",
+        "back": "Conformity = matching a group (Asch). Obedience = following an authority (Milgram). Bystander effect = help drops as onlookers rise (diffusion of responsibility)."
+      },
+      "reworded": [
+        {
+          "cover_story": "Participants give an obviously wrong answer just to match a unanimous group.",
+          "stem": "This best illustrates...",
+          "choices": ["obedience", "conformity", "the bystander effect", "social loafing"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A person collapses in a crowded plaza and every onlooker assumes someone else will step in.",
+          "stem": "Help is least likely because of...",
+          "choices": ["conformity", "diffusion of responsibility", "obedience", "groupthink"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_cognitive_biases",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Common cognitive biases and heuristics.",
+        "back": "Availability = judge by ease of recall. Representativeness = judge by resemblance to a prototype. Confirmation bias = seek evidence that confirms a prior belief."
+      },
+      "reworded": [
+        {
+          "cover_story": "After seeing news coverage of a plane crash, someone overestimates the danger of flying.",
+          "stem": "This reflects the...",
+          "choices": ["representativeness heuristic", "availability heuristic", "anchoring", "framing effect"],
+          "correct": 1
+        },
+        {
+          "cover_story": "An investor reads only the articles that agree with a stock pick they already made.",
+          "stem": "This is...",
+          "choices": ["confirmation bias", "hindsight bias", "the halo effect", "the recency effect"],
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_attribution",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Attribution: fundamental attribution error and self-serving bias.",
+        "back": "Fundamental attribution error = overweight disposition, underweight situation for others. Self-serving bias = credit self for success, blame the situation for failure."
+      },
+      "reworded": [
+        {
+          "cover_story": "A driver cuts you off and you decide they are simply a rude person, ignoring any emergency.",
+          "stem": "This snap judgment is the...",
+          "choices": ["self-serving bias", "fundamental attribution error", "just-world bias", "actor-observer symmetry"],
+          "correct": 1
+        },
+        {
+          "cover_story": "You ace a test and credit your ability, but blame bad sleep when you fail the next one.",
+          "stem": "This pattern is the...",
+          "choices": ["self-serving bias", "fundamental attribution error", "false consensus", "in-group bias"],
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_stress_response",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Stress physiology and Selye's general adaptation syndrome.",
+        "back": "Acute stress drives the sympathetic system (adrenaline) and the HPA axis (cortisol). Selye's GAS stages: alarm, resistance, exhaustion."
+      },
+      "reworded": [
+        {
+          "cover_story": "A person faces weeks of unrelenting work stress with no break.",
+          "stem": "The hormone most associated with this prolonged stress is...",
+          "choices": ["insulin", "cortisol", "melatonin", "oxytocin"],
+          "correct": 1
+        },
+        {
+          "cover_story": "Under Selye's model, the body first mobilizes hard against a sudden new threat.",
+          "stem": "This initial phase is the...",
+          "choices": ["resistance stage", "exhaustion stage", "alarm stage", "recovery stage"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "ps_dev_stages",
+      "section": "psych_soc",
+      "recall": {
+        "front": "Piaget's stages of cognitive development.",
+        "back": "Sensorimotor (object permanence), preoperational (egocentrism, no conservation), concrete operational (conservation), formal operational (abstract reasoning)."
+      },
+      "reworded": [
+        {
+          "cover_story": "A child insists a tall thin glass holds more juice than a short wide glass with the same amount.",
+          "stem": "This child is most likely in Piaget's...",
+          "choices": ["sensorimotor stage", "preoperational stage", "concrete operational stage", "formal operational stage"],
+          "correct": 1
+        },
+        {
+          "cover_story": "An infant reaches for a toy after watching it get hidden under a blanket.",
+          "stem": "This shows the infant has developed...",
+          "choices": ["conservation", "object permanence", "abstract reasoning", "formal logic"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_main_idea",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: find the main idea.",
+        "back": "The main idea is the author's overall claim, not a single supporting detail or example."
+      },
+      "reworded": [
+        {
+          "cover_story": "A passage argues that protected bike lanes cut traffic deaths, cites data from several cities, then briefly notes a cost concern.",
+          "stem": "The main idea is that...",
+          "choices": ["bike lanes are too expensive", "bike lanes reduce traffic deaths", "cities dislike cyclists", "the data is unreliable"],
+          "correct": 1
+        },
+        {
+          "cover_story": "An essay lists many diets that failed, then concludes lasting change comes from daily habits rather than quick fixes.",
+          "stem": "The central claim is that...",
+          "choices": ["all diets fail", "quick fixes work best", "lasting change comes from habits", "dieting is dangerous"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_authors_tone",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: identify the author's tone.",
+        "back": "Tone is the author's attitude, conveyed by word choice (for example skeptical, admiring, or ambivalent)."
+      },
+      "reworded": [
+        {
+          "cover_story": "A sentence reads: 'The committee's so-called solution merely rebrands the same old failures.'",
+          "stem": "The author's tone is best described as...",
+          "choices": ["admiring", "critical", "neutral", "nostalgic"],
+          "correct": 1
+        },
+        {
+          "cover_story": "A sentence reads: 'It is remarkable how gracefully the author weaves memory and place together.'",
+          "stem": "The tone here is...",
+          "choices": ["dismissive", "admiring", "indifferent", "alarmed"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_argument_structure",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: premise vs conclusion.",
+        "back": "The conclusion is what the argument tries to establish; premises are the reasons offered to support it."
+      },
+      "reworded": [
+        {
+          "cover_story": "An argument states: 'Because the bridge shows rust and cracks, it should be closed for repairs.'",
+          "stem": "The conclusion is...",
+          "choices": ["the bridge shows rust", "the bridge should be closed for repairs", "bridges rust over time", "repairs are costly"],
+          "correct": 1
+        },
+        {
+          "cover_story": "An argument states: 'Sales rose right after the ad campaign, so the campaign worked.'",
+          "stem": "Which part is a premise?",
+          "choices": ["the campaign worked", "sales rose after the campaign", "ads are expensive", "the campaign failed"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_inference",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: supported inference.",
+        "back": "A valid inference follows from what the passage states, without importing outside assumptions."
+      },
+      "reworded": [
+        {
+          "cover_story": "Passage: 'All members must pay annual dues. Ravi is a member.'",
+          "stem": "What is best supported?",
+          "choices": ["Ravi has already paid dues", "Ravi must pay dues", "Ravi is the treasurer", "Ravi will quit"],
+          "correct": 1
+        },
+        {
+          "cover_story": "Passage: 'The store closes on every public holiday. Tomorrow is a public holiday.'",
+          "stem": "What follows?",
+          "choices": ["the store will be open", "the store will be closed tomorrow", "the store is never open", "tomorrow is a weekday"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_strengthen_weaken",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: strengthen vs weaken a claim.",
+        "back": "Evidence strengthens a claim if it makes the conclusion more likely, and weakens it if it makes the conclusion less likely."
+      },
+      "reworded": [
+        {
+          "cover_story": "Claim: a tutoring app raises scores, supported only by the fact that its users score higher than non-users.",
+          "stem": "Which finding most WEAKENS the claim?",
+          "choices": ["users studied the same amount as others", "only already-motivated students chose the app", "the app is inexpensive", "scores were measured carefully"],
+          "correct": 1
+        },
+        {
+          "cover_story": "Claim: adding fluoride to tap water reduces cavities.",
+          "stem": "Which finding most STRENGTHENS the claim?",
+          "choices": ["fluoride tastes neutral", "matched towns that added fluoride had fewer cavities", "water is a common drink", "dentists stay busy"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_assumption",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: find the unstated assumption.",
+        "back": "An assumption is an unstated premise the argument needs in order to hold."
+      },
+      "reworded": [
+        {
+          "cover_story": "Argument: 'We should hire Dana; she scored highest on the coding test.'",
+          "stem": "This argument assumes that...",
+          "choices": ["Dana wants the job", "the coding test reflects job performance", "other candidates cheated", "Dana is available"],
+          "correct": 1
+        },
+        {
+          "cover_story": "Argument: 'Ban cars downtown and the air quality there will improve.'",
+          "stem": "A necessary assumption is that...",
+          "choices": ["people own cars", "cars are a significant source of downtown pollution", "buses are free", "downtown is large"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_analogy",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: parallel reasoning / analogy.",
+        "back": "A parallel argument shares the same logical structure or relationship, regardless of its topic."
+      },
+      "reworded": [
+        {
+          "cover_story": "Original relationship: 'A key opens a lock; a password opens an account.'",
+          "stem": "Which pairing shares the same relationship?",
+          "choices": ["a car needs fuel", "a ticket admits you to a show", "a book has pages", "a river flows downhill"],
+          "correct": 1
+        },
+        {
+          "cover_story": "Original relationship: 'A thermostat regulates temperature.'",
+          "stem": "Which has an analogous function?",
+          "choices": ["a clock shows the time", "a governor regulates engine speed", "a lamp gives light", "a wall blocks wind"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "cr_rhetorical_device",
+      "section": "cars",
+      "recall": {
+        "front": "CARS skill: function of a sentence.",
+        "back": "Ask what a sentence DOES in the passage, for example concede a point, give an example, or raise an objection."
+      },
+      "reworded": [
+        {
+          "cover_story": "Right after stating a thesis, the author adds: 'Admittedly, the early trials were small.'",
+          "stem": "This sentence functions to...",
+          "choices": ["restate the thesis", "concede a limitation", "introduce new data", "attack an opponent"],
+          "correct": 1
+        },
+        {
+          "cover_story": "The author writes: 'Consider a commuter who saves an hour every day.'",
+          "stem": "This sentence serves to...",
+          "choices": ["give an illustrative example", "state the conclusion", "cite a statistic", "raise an objection"],
+          "correct": 0
+        }
+      ]
+    }
+  ]
+}

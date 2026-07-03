@@ -1,0 +1,35 @@
+{
+  "ai_off_by_default": true,
+  "all_gates_pass": true,
+  "cutoff": 0.5,
+  "deterministic": true,
+  "grounding": {
+    "accuracy": 0.8461538461538461,
+    "cutoff": 0.5,
+    "false_accepts": 0,
+    "false_reject_rate": 0.2222222222222222,
+    "false_rejects": 2,
+    "held_out_labeled": 13,
+    "published": 7,
+    "supported": 7,
+    "unsupported_rejected": 4,
+    "wrong_answer_rate": 0.0
+  },
+  "injection_canary_caught": true,
+  "retrieval": {
+    "baseline_bm25": {
+      "mrr": 0.736,
+      "recall@1": 0.66,
+      "recall@3": 0.8,
+      "recall@5": 0.82
+    },
+    "beats_baseline": true,
+    "n_gold": 50,
+    "vantage_rag": {
+      "mrr": 0.795,
+      "recall@1": 0.7,
+      "recall@3": 0.86,
+      "recall@5": 0.92
+    }
+  }
+}

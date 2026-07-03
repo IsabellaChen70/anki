@@ -1,0 +1,114 @@
+{
+  "content": {
+    "confusable": [
+      [
+        "bio_glycolysis",
+        "bio_gluconeogenesis"
+      ],
+      [
+        "psy_classical",
+        "psy_operant"
+      ]
+    ],
+    "per_topic": 8,
+    "topics": [
+      "bio_glycolysis",
+      "bio_gluconeogenesis",
+      "psy_classical",
+      "psy_operant"
+    ]
+  },
+  "honesty": "Part A is the real engine measurement. Part B is a seeded simulation with memory held equal across arms; only the pre-registered discrimination effect size varies. EFFECT=0 (null control) shows arms tie. The literature arm is model-dependent and needs a real cohort (Step 4) to confirm the effect size; it is not claimed as measured.",
+  "part_a_mechanism": {
+    "hypothesis_mixed_lt_off_lt_blocked": true,
+    "interleave_exposure": {
+      "blocked": {
+        "max": 0.0645,
+        "mean": 0.0323,
+        "min": 0.0
+      },
+      "mixed": {
+        "max": 0.5161,
+        "mean": 0.5161,
+        "min": 0.5161
+      },
+      "off": {
+        "max": 0.4839,
+        "mean": 0.271,
+        "min": 0.0968
+      }
+    },
+    "same_topic_adjacency": {
+      "blocked": {
+        "max": 0.9032,
+        "mean": 0.9032,
+        "min": 0.9032
+      },
+      "mixed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0
+      },
+      "off": {
+        "max": 0.2581,
+        "mean": 0.2129,
+        "min": 0.1613
+      }
+    }
+  },
+  "part_b_outcome_model": {
+    "constants": {
+      "base": 0.6,
+      "chance": 0.25,
+      "memory": 0.85
+    },
+    "effects": {
+      "literature_g0.42": 0.42,
+      "null_control": 0.0
+    },
+    "null_control_spread": 0.0,
+    "test_accuracy": {
+      "literature_g0.42": {
+        "blocked": {
+          "max": 0.4438,
+          "mean": 0.4323,
+          "min": 0.4208
+        },
+        "mixed": {
+          "max": 0.605,
+          "mean": 0.605,
+          "min": 0.605
+        },
+        "off": {
+          "max": 0.5935,
+          "mean": 0.5175,
+          "min": 0.4553
+        }
+      },
+      "null_control": {
+        "blocked": {
+          "max": 0.51,
+          "mean": 0.51,
+          "min": 0.51
+        },
+        "mixed": {
+          "max": 0.51,
+          "mean": 0.51,
+          "min": 0.51
+        },
+        "off": {
+          "max": 0.51,
+          "mean": 0.51,
+          "min": 0.51
+        }
+      }
+    }
+  },
+  "seeds": [
+    7,
+    13,
+    21,
+    42,
+    101
+  ]
+}

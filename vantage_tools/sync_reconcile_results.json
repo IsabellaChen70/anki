@@ -1,0 +1,79 @@
+{
+  "checks": [
+    {
+      "detail": "A=351 B=351",
+      "name": "initial revlog counts match",
+      "ok": true
+    },
+    {
+      "detail": "351 -> 371",
+      "name": "A revlog grew by 20",
+      "ok": true
+    },
+    {
+      "detail": "351 -> 371",
+      "name": "B revlog grew by 20",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "A: no duplicate revlog ids",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "B: no duplicate revlog ids",
+      "ok": true
+    },
+    {
+      "detail": "A=371 B=371",
+      "name": "both sides identical revlog count",
+      "ok": true
+    },
+    {
+      "detail": "rows=5 (baseline 3)",
+      "name": "A: both conflict reviews retained (+2)",
+      "ok": true
+    },
+    {
+      "detail": "last_ease=4",
+      "name": "A: later-timestamp review wins (last ease = Easy/4)",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "A: still no duplicate revlog ids",
+      "ok": true
+    },
+    {
+      "detail": "rows=5 (baseline 3)",
+      "name": "B: both conflict reviews retained (+2)",
+      "ok": true
+    },
+    {
+      "detail": "last_ease=4",
+      "name": "B: later-timestamp review wins (last ease = Easy/4)",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "B: still no duplicate revlog ids",
+      "ok": true
+    }
+  ],
+  "endpoint": "http://127.0.0.1:8080/",
+  "n_failed": 0,
+  "n_per_device": 10,
+  "numbers": {
+    "A_distinct_ids": 371,
+    "A_revlog_after_reconcile": 371,
+    "B_distinct_ids": 371,
+    "B_revlog_after_reconcile": 371,
+    "conflict_last_ease_A": 4,
+    "conflict_last_ease_B": 4,
+    "conflict_rows_A": 5,
+    "conflict_rows_B": 5,
+    "initial_revlog": 351
+  },
+  "passed": true
+}

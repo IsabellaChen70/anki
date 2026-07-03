@@ -9,6 +9,16 @@ Rust core), plus an honest readiness layer: three separate scores (memory,
 performance, readiness), each with a range, and a give-up rule that refuses a
 number when the evidence is thin.
 
+![Vantage dashboard: three separate scores (memory, performance, readiness) with ranges, exam coverage, and the best next topic](docs/img/dashboard.png)
+
+## For reviewers (a 5-minute tour)
+
+- **The Rust engine change** (topic interleaving in the shared core, one implementation for both apps): [RUST_CHANGE_NOTE.md](RUST_CHANGE_NOTE.md) and [rslib/src/scheduler/queue/builder/interleave.rs](rslib/src/scheduler/queue/builder/interleave.rs).
+- **The honest scoring layer** (memory, performance, readiness, coverage map, give-up rule): [pylib/anki/vantage/](pylib/anki/vantage/).
+- **The dashboard UI** (desktop add-on): [vantage_addon/](vantage_addon/).
+- **All test and benchmark evidence in one place**: [vantage_tools/TEST_RESULTS.md](vantage_tools/TEST_RESULTS.md) — 109 unit tests, seeded evals, the 50k-card speed benchmark, crash and sync results. Benchmark detail is in [vantage_tools/PERF_RESULTS.md](vantage_tools/PERF_RESULTS.md), eval methodology in [vantage_tools/EVALUATION.md](vantage_tools/EVALUATION.md), and the AI safety layer in [AI_NOTE.md](AI_NOTE.md).
+- **Download and run, no build:** desktop [`.dmg` + add-on](https://github.com/IsabellaChen70/anki/releases/latest), Android [`.apk`](https://github.com/IsabellaChen70/Anki-Android/releases/latest). Install steps are below.
+
 ## One engine, three repositories
 
 Anki desktop and AnkiDroid are separate upstream projects, so the work spans
@@ -36,6 +46,12 @@ store the 220&nbsp;MB installer in the repo itself):
 
 The add-on is self-contained (it bundles its own scoring core under `vantage_core/`), so it also runs on a stock Anki install of the same version.
 
+## Install on Android (no build)
+
+Download `AnkiDroid-play-universal-debug.apk` from the [latest Android release](https://github.com/IsabellaChen70/Anki-Android/releases/latest) and sideload it (`adb install -r AnkiDroid-play-universal-debug.apk`, or open the file on the phone and allow install from this source). It installs as its own app (`com.ichi2.anki.debug`), so it sits alongside a normal AnkiDroid. Open the dashboard from the DeckPicker overflow menu, "Vantage".
+
+![Vantage dashboard on Android: the same three scores and give-up rule as desktop](docs/img/phone.png)
+
 ## Build and run
 
 **Desktop (this repo).** Needs Rust, Python 3.13, and Node/Yarn; the bundled
@@ -50,7 +66,7 @@ The add-on is self-contained (it bundles its own scoring core under `vantage_cor
 **Android.** Needs JDK 21 and the Android SDK + NDK.
 
 - Engine ([Anki-Android-Backend](https://github.com/IsabellaChen70/Anki-Android-Backend/tree/vantage/interleaving), `vantage/interleaving`): build the interleaving Rust core into the `rsdroid` AAR with `cargo run -p build_rust`.
-- App ([Anki-Android](https://github.com/IsabellaChen70/Anki-Android/tree/vantage/dashboard), `vantage/dashboard`): set `local.properties` to `sdk.dir=<sdk>` and `local_backend=true`, then `./gradlew :AnkiDroid:assemblePlayDebug`. Install the matching split, e.g. `adb install -r AnkiDroid/build/outputs/apk/play/debug/AnkiDroid-play-arm64-v8a-debug.apk`.
+- App ([Anki-Android](https://github.com/IsabellaChen70/Anki-Android/tree/vantage/dashboard), `vantage/dashboard`): set `local.properties` to `sdk.dir=<sdk>` and `local_backend=true`, then `./gradlew :AnkiDroid:assemblePlayDebug -Duniversal-apk=true`. Install the universal build (works on any device): `adb install -r AnkiDroid/build/outputs/apk/play/debug/AnkiDroid-play-universal-debug.apk` (or a per-ABI split from the same folder).
 - Dashboard: DeckPicker overflow menu, "Vantage".
 
 ## Key commits (this repo)
@@ -64,6 +80,7 @@ The add-on is self-contained (it bundles its own scoring core under `vantage_cor
 - `rslib/src/scheduler/queue/builder/interleave.rs` : the interleaving algorithm + Rust tests
 - `pylib/anki/vantage/` : scoring (memory / performance / readiness), coverage map, give-up rule, tests
 - `vantage_addon/` : the desktop dashboard (opens from the Tools menu or the "Vantage" toolbar link)
+- `vantage_tools/ai/` : AI card-generation safety layer (source traceability, grounding checker, held-out eval, injection canary) - see [AI_NOTE.md](AI_NOTE.md)
 
 ## Backlog (planned, post-Wednesday)
 

@@ -137,11 +137,14 @@ class GroundingChecker:
         # otherwise talk about the same thing (enough overlap), else it is noise.
         if coverage >= self.cutoff and (claim_neg != span_neg):
             reasons.append("negation_conflict")
-        if (
-            coverage >= self.cutoff
-            and (claim_nums - span_nums)
-            and (span_nums - claim_nums)
-        ):
+        # The cited span itself states a number, but the claim asserts a DIFFERENT
+        # one -> conflict. Keying on `span_nums and (claim_nums - span_nums)` (rather
+        # than the old symmetric difference) catches a single swapped number among
+        # repeats ("seven ATP and two NADH" cited to "two ATP and two NADH"), which
+        # the both-sides rule missed -- surfaced by the held-out card-check set --
+        # while NOT penalizing a claim that introduces a number a non-numeric prose
+        # span never quantified (that stays a coverage question, not a numeric one).
+        if coverage >= self.cutoff and span_nums and (claim_nums - span_nums):
             reasons.append("numeric_conflict")
 
         verdict = "supported" if not reasons else "rejected"

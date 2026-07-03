@@ -38,6 +38,7 @@ from sources import Chunk, SourceRef, build_chunks, load_corpus
 HERE = os.path.dirname(os.path.abspath(__file__))
 GOLD_PATH = os.path.join(HERE, "gold_set.json")
 RETROFIT_PATH = os.path.join(HERE, "retrofit_items.json")
+RESULTS_PATH = os.path.join(HERE, "eval_results.json")
 K_VALUES = (1, 3, 5)
 MRR_DEPTH = 10
 
@@ -169,7 +170,12 @@ def section_a_retrieval(chunks: list[Chunk], gold: list[dict]) -> bool:
         f"(no recall@k regression, higher MRR). It ties on in-vocabulary questions and "
         f"wins on vocabulary-mismatch ones."
     )
-    return beats
+    return beats, {
+        "n_gold": len(gold),
+        "baseline_bm25": base,
+        "vantage_rag": van,
+        "beats_baseline": beats,
+    }
 
 
 def section_b_checker(corpus, retrofit: list[dict]) -> bool:
@@ -214,6 +220,15 @@ def section_b_checker(corpus, retrofit: list[dict]) -> bool:
 
     n_retro = len(retrofit)
     n_unsup = len(UNSUPPORTED_ITEMS)
+    # Held-out labeled eval: retrofit items are ground-truth SUPPORTED, the
+    # hallucinated fixtures are ground-truth WRONG. Scored against the
+    # pre-registered cutoff BEFORE any card reaches a student.
+    total = n_retro + n_unsup
+    correct = supported + (n_unsup - false_accepts)  # right verdicts either way
+    published = supported + false_accepts  # cards the gate would let through
+    accuracy = (correct / total) if total else 0.0
+    wrong_answer_rate = (false_accepts / published) if published else 0.0
+    false_reject_rate = (false_rejects / n_retro) if n_retro else 0.0
     # Safety-critical gate: the checker must NEVER publish an unsupported claim.
     # Over-rejecting a true claim (false reject) is a documented cost, not a
     # safety failure, so it is reported but does not fail the gate.
@@ -224,9 +239,28 @@ def section_b_checker(corpus, retrofit: list[dict]) -> bool:
         f"reason matched expectation on {reason_match}/{n_unsup})"
     )
     print(
+        f"\n  held-out labeled cards: {total} ({n_retro} genuinely-sourced + {n_unsup} hallucinated)"
+        f"\n  ACCURACY (correct verdict at cutoff {COVERAGE_CUTOFF}): {correct}/{total} = {accuracy * 100:.1f}%"
+        f"\n  WRONG-ANSWER RATE (wrong cards among the {published} it would publish): "
+        f"{false_accepts}/{published} = {wrong_answer_rate * 100:.1f}%"
+        f"\n  false-reject rate (good cards blocked): {false_rejects}/{n_retro} = "
+        f"{false_reject_rate * 100:.1f}% (documented lexical limit, not a safety failure)"
+    )
+    print(
         f"  result: checker {'PASSES' if gate else 'FAILS'} its gate (safety rule: zero unsupported claims published)."
     )
-    return gate
+    return gate, {
+        "cutoff": COVERAGE_CUTOFF,
+        "held_out_labeled": total,
+        "accuracy": accuracy,
+        "wrong_answer_rate": wrong_answer_rate,
+        "false_reject_rate": false_reject_rate,
+        "published": published,
+        "false_accepts": false_accepts,
+        "false_rejects": false_rejects,
+        "supported": supported,
+        "unsupported_rejected": n_unsup - false_accepts,
+    }
 
 
 def _is_truthy_const(node: ast.AST) -> bool:
@@ -316,8 +350,8 @@ def main() -> int:
     gold = load_gold()
     retrofit = load_retrofit()
 
-    a = section_a_retrieval(chunks, gold)
-    b = section_b_checker(corpus, retrofit)
+    a, a_metrics = section_a_retrieval(chunks, gold)
+    b, b_metrics = section_b_checker(corpus, retrofit)
     c = section_c_ai_off()
     d = section_d_canary()
 
@@ -331,6 +365,20 @@ def main() -> int:
     print(f"\n  quarantined injected chunks at load: {len(quarantined)}")
     ok = a and b and c and d
     print(f"\n  OVERALL: {'ALL GATES PASS' if ok else 'ONE OR MORE GATES FAILED'}")
+
+    artifact = {
+        "cutoff": COVERAGE_CUTOFF,
+        "retrieval": a_metrics,
+        "grounding": b_metrics,
+        "ai_off_by_default": c,
+        "injection_canary_caught": d,
+        "all_gates_pass": ok,
+        "deterministic": True,
+    }
+    with open(RESULTS_PATH, "w", encoding="utf-8") as fh:
+        json.dump(artifact, fh, indent=2, sort_keys=True)
+        fh.write("\n")
+    print(f"  wrote reproducible results to {os.path.relpath(RESULTS_PATH)}")
     return 0 if ok else 1
 
 

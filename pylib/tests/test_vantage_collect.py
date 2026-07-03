@@ -230,6 +230,70 @@ def test_gather_survives_corrupt_config():
     col.close()
 
 
+def test_cars_reasoning_lifts_readiness_to_a_full_four_section_composite():
+    col = _ready_collection()  # 3 science sections above the line
+    dash3 = collect.gather(col)
+    assert dash3.readiness.extra["cars_modeled"] is False
+    assert set(dash3.readiness.extra["modeled_sections"]) == set(
+        ("chem_phys", "bio_biochem", "psych_soc")
+    )
+    # 3-section partial: sits on the 354..396 band
+    assert 354.0 <= dash3.readiness.band.low <= dash3.readiness.band.high <= 396.0
+
+    # answer enough CARS reasoning questions -> CARS becomes a 4th scored section
+    for i in range(8):
+        collect.log_reasoning_outcome(
+            col, "cars", f"cars q{i}", "a", "e", correct=(i % 3 != 0), ms=1000
+        )
+    dash4 = collect.gather(col)
+    assert dash4.readiness.extra["cars_modeled"] is True
+    assert "cars" in dash4.readiness.extra["modeled_sections"]
+    # now a full 4-section projection on the real 472..528 scale
+    assert 472.0 <= dash4.readiness.band.low <= dash4.readiness.band.high <= 528.0
+    assert 118.0 <= dash4.readiness.extra["sections"]["cars"].point <= 132.0
+    col.close()
+
+
+def test_outline_loads_topics_and_computes_topic_coverage():
+    ol = Outline.load()
+    assert len(ol.concepts) == 31
+    assert all(c.topics for c in ol.concepts)  # every category has authored topics
+    assert len(ol.topics) >= 140  # ~151 authored across the three sciences
+    tids = [t.id for t in ol.topics]
+    assert len(tids) == len(set(tids))  # topic ids are unique
+    assert all(t.id.startswith(t.category + ".") for t in ol.topics)
+
+    # unambiguous topic aliases map to exactly their topic
+    covered = ol.covered_topics(["glycolysis", "mitosis", "snells_law"])
+    assert covered == {"1D.3", "2C.1", "4D.4"}
+    assert ol.topic("1D.3").category == "1D"
+    cov = ol.topic_coverage_by_category(covered)
+    assert cov["1D"] == (1, len(ol.concept("1D").topics))
+    miss = ol.missing_topics(covered)
+    assert all(t.id not in covered for t in miss)
+    assert [t.weight for t in miss] == sorted((t.weight for t in miss), reverse=True)
+
+
+def test_topics_do_not_change_category_coverage():
+    # backward compat: adding topics leaves category-level coverage untouched.
+    ol = Outline.load()
+    tags = ["amino_acids", "glycolysis", "mitosis", "vision"]
+    assert ol.covered_concepts(tags) == {"1A", "1D", "2C", "6A"}
+    assert 0.0 < ol.weighted_coverage(ol.covered_concepts(tags)) < 1.0
+
+
+def test_next_topics_surfaces_uncovered_topic_names():
+    ol = Outline.load()
+    # 1D studied only at the glycolysis topic; the rest are still gaps
+    items = collect._next_topics(ol, {"1D"}, {"1D": [0.5]}, {"1D.3"}, top=31)
+    d = {it["concept_id"]: it for it in items}["1D"]
+    assert d["topics_total"] == len(ol.concept("1D").topics)
+    assert d["topics_covered"] == 1
+    # the surfaced topics are the UNCOVERED ones (not the studied glycolysis topic)
+    assert ol.topic("1D.3").name not in d["topics"]
+    assert 1 <= len(d["topics"]) <= 4
+
+
 # --------------------------------------------------------------------------- #
 # #7A: reasoning outcomes as real cards + revlog (sync-safe), config as fallback
 # --------------------------------------------------------------------------- #
@@ -274,6 +338,60 @@ def test_same_question_reuses_one_anchor_card_with_many_attempts():
     assert _reasoning_card_count(col) == 1  # one card, two revlog attempts
     assert len(collect._revlog_outcomes(col)) == 2
     col.close()
+
+
+def test_study_pace_reasoning_today_counts_only_todays_attempts():
+    # The practice screen's "X of Y today" counter reads study_pace.reasoning_today:
+    # reasoning attempts since the day rollover. Attempts from earlier days must not
+    # inflate today's progress.
+    col = getEmptyCol()
+    for i in range(3):
+        _log_reasoning(col, "chem_phys", f"today q{i}", correct=(i != 0))
+    # A back-dated attempt on an existing anchor card, three days before the
+    # rollover, is a real outcome but not part of *today*.
+    cid = col.db.scalar(
+        "select c.id from cards c join notes n on c.nid = n.id where n.tags like ? limit 1",
+        f"%{collect.REASONING_SECTION_TAG}%",
+    )
+    old_id = (int(col.sched.day_cutoff) - 3 * 86400) * 1000
+    col.db.execute(
+        "insert into revlog (id,cid,usn,ease,ivl,lastIvl,factor,time,type)"
+        " values (?,?,?,?,?,?,?,?,?)",
+        old_id, cid, -1, 3, 10, 5, 2500, 1200, 1,
+    )
+    dash = collect.gather(col)
+    assert len(collect._merged_outcomes(col)) == 4  # all four are real outcomes
+    assert dash.study_pace.reasoning_today == 3  # but only today's three count
+    col.close()
+
+
+# --------------------------------------------------------------------------- #
+# deck-hierarchy -> topic mapping + depth-aware (topic-grain) coverage
+# --------------------------------------------------------------------------- #
+def test_deck_topic_map_resolves_imported_hierarchy():
+    outline = Outline.load()
+    # MileDown's own topic tag resolves to its AAMC topic (via deck_topic_map.json),
+    # matched through the normal tag matcher.
+    tid = outline.match_tag_topic("MileDown::Biochemistry::Metabolism::Glycolysis")
+    assert tid is not None and tid.startswith("1D")
+    # Pankow encodes the topic in the DECK path; deck_topic() resolves it exactly.
+    dtid = outline.deck_topic("MCAT \U0001f499::P/S Deck::9B::Demographics")
+    assert dtid is not None and dtid.startswith("9B")
+    # An unmapped deck path returns None (no loose alias fallback for deck names).
+    assert outline.deck_topic("Totally::Unmapped::Deck") is None
+
+
+def test_topic_weighted_coverage_reflects_depth_not_just_breadth():
+    outline = Outline.load()
+    all_topics = {t.id for t in outline.topics}
+    assert outline.topic_weighted_coverage(set(), set()) == 0.0
+    full = outline.topic_weighted_coverage(all_topics, set())
+    assert 0.99 <= full <= 1.0  # every topic covered -> ~100%
+    # Touching every CATEGORY (breadth) but few topics (depth) stays well below 100%,
+    # which is the whole point: the display number no longer saturates at 100%.
+    one_topic_per_cat = {c.topics[0].id for c in outline.concepts if c.topics}
+    shallow = outline.topic_weighted_coverage(one_topic_per_cat, {c.id for c in outline.concepts})
+    assert 0.0 < shallow < 0.6
 
 
 def test_merged_outcomes_count_revlog_and_config_twin_once():
@@ -580,6 +698,39 @@ def test_confusability_only_pairs_concepts_within_the_same_section():
     )
     # clears the give-up gate, but the two concepts are in different sections
     assert collect.confusability_pairs(outcomes, concept_tags, CFG) == []
+
+
+def test_interleave_priorities_lead_with_the_most_missed_topic():
+    concept_tags = {"A": ["mcat::s::A"], "B": ["mcat::s::B"], "C": ["mcat::s::C"]}
+    outcomes = (
+        [{"section": "s", "concept": "C", "correct": False}] * 5  # missed most -> leads
+        + [{"section": "s", "concept": "A", "correct": False}] * 2
+        + [{"section": "s", "concept": "A", "correct": True}] * 4  # correct -> ignored
+    )
+    pri = collect.interleave_priorities(outcomes, concept_tags, CFG)
+    by_tag = {p["topic"]: p["weight"] for p in pri}
+    assert by_tag["mcat::s::C"] == 1.0  # weakest topic leads the rotation
+    assert by_tag["mcat::s::A"] < by_tag["mcat::s::C"]
+    assert "mcat::s::B" not in by_tag  # never missed -> no priority
+
+
+def test_interleave_priorities_abstain_below_the_gate():
+    concept_tags = {"A": ["mcat::s::A"], "B": ["mcat::s::B"]}
+    thin = [
+        {"section": "s", "concept": "A", "correct": False},
+        {"section": "s", "concept": "B", "correct": False},
+    ]  # 2 misses, below cfg.min_mistakes -> empty == naive seed-chosen start
+    assert collect.interleave_priorities(thin, concept_tags, CFG) == []
+
+
+def test_interleave_priorities_ignore_topics_without_a_review_bucket():
+    concept_tags = {"A": ["mcat::s::A"]}  # B teaches no card -> nothing to lead
+    outcomes = (
+        [{"section": "s", "concept": "A", "correct": False}] * 4
+        + [{"section": "s", "concept": "B", "correct": False}] * 4
+    )
+    pri = collect.interleave_priorities(outcomes, concept_tags, CFG)
+    assert [p["topic"] for p in pri] == ["mcat::s::A"]
 
 
 def test_confusability_ignores_concepts_without_a_review_bucket():

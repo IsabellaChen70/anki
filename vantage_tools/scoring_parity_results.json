@@ -1,0 +1,14 @@
+{
+  "compared_values": 27,
+  "max_abs_diff": 2.7755575615628914e-16,
+  "mismatches": [],
+  "passed": true,
+  "tolerance": 1e-06,
+  "transforms": [
+    "thetaToScale",
+    "mapAbilityToScale",
+    "irtProb",
+    "irtInformation",
+    "irtEstimate"
+  ]
+}

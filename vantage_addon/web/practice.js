@@ -106,6 +106,7 @@
             "chloride ions",
           ],
           answer: 1,
+          b: -0.8,
           explain: "In a buffer, the conjugate base (acetate) neutralizes added strong acid, so the free H+ concentration barely rises.",
         },
         {
@@ -117,6 +118,7 @@
             "Kw becomes equal to 1",
           ],
           answer: 0,
+          b: -0.2,
           explain: "pH = pKa + log([A-]/[HA]); when [A-] = [HA], log(1) = 0, so pH = pKa.",
         },
         {
@@ -128,6 +130,7 @@
             "100 to 1",
           ],
           answer: 2,
+          b: 0.8,
           explain: "5.76 = 4.76 + log(ratio) gives log(ratio) = 1, so the ratio is 10 to 1 (more conjugate base than acid).",
         },
         {
@@ -139,6 +142,7 @@
             "immediately destroy the buffer",
           ],
           answer: 1,
+          b: -1.0,
           explain: "The weak acid neutralizes added base, so pH shifts little: a buffer resists change in both directions.",
         },
         {
@@ -150,6 +154,7 @@
             "a catalyst is added",
           ],
           answer: 0,
+          b: 1.2,
           explain: "dG = dH - T*dS; with both positive, raising T makes T*dS outweigh dH, so dG turns negative (spontaneous).",
         },
         {
@@ -161,6 +166,7 @@
             "increases the enthalpy change",
           ],
           answer: 1,
+          b: 0.2,
           explain: "A catalyst opens a lower-activation-energy path (forward and reverse equally); it speeds the rate without changing dG or the equilibrium position.",
         },
       ],
@@ -185,6 +191,7 @@
             "allosteric activator",
           ],
           answer: 0,
+          b: 0.0,
           explain: "Unchanged Vmax with increased Km is the signature of competitive inhibition, which competes with substrate at the active site.",
         },
         {
@@ -196,6 +203,7 @@
             "raising the pH sharply",
           ],
           answer: 1,
+          b: -0.6,
           explain: "Excess substrate outcompetes a competitive inhibitor, so the original Vmax is still reachable.",
         },
         {
@@ -207,6 +215,7 @@
             "nowhere; it only changes the pH",
           ],
           answer: 1,
+          b: 0.4,
           explain: "Noncompetitive inhibitors bind an allosteric site and cut Vmax without changing substrate affinity (Km).",
         },
         {
@@ -218,6 +227,7 @@
             "become equal to Km",
           ],
           answer: 0,
+          b: 1.0,
           explain: "Vmax = kcat * [enzyme], so less enzyme lowers Vmax; Km (substrate affinity) does not depend on enzyme amount.",
         },
         {
@@ -229,6 +239,7 @@
             "a nonsense mutation",
           ],
           answer: 0,
+          b: -0.2,
           explain: "Several codons code for the same amino acid, so a silent substitution leaves the protein intact.",
         },
         {
@@ -240,6 +251,7 @@
             "beta-oxidizing fatty acids",
           ],
           answer: 1,
+          b: 0.6,
           explain: "Without O2 the ETC stalls; lactate fermentation reoxidizes NADH to NAD+ so glycolysis (and its 2 ATP) can continue.",
         },
       ],
@@ -264,6 +276,7 @@
             "bystander effect",
           ],
           answer: 0,
+          b: -1.2,
           explain: "Distributing study across days rather than massing it improves long-term retention: the spacing effect.",
         },
         {
@@ -275,6 +288,7 @@
             "availability heuristic",
           ],
           answer: 0,
+          b: -0.9,
           explain: "Actively retrieving information strengthens memory more than re-reading it: the testing, or retrieval-practice, effect.",
         },
         {
@@ -286,6 +300,7 @@
             "shorten the delay before the final test",
           ],
           answer: 1,
+          b: 0.3,
           explain: "Feedback lets learners correct mistakes, adding to the gains from retrieval practice.",
         },
         {
@@ -297,6 +312,7 @@
             "framing effect",
           ],
           answer: 0,
+          b: -0.5,
           explain: "Stronger recall for early list items is the primacy effect: they received more rehearsal into long-term memory.",
         },
         {
@@ -308,6 +324,7 @@
             "a longer final delay for everyone",
           ],
           answer: 1,
+          b: 1.3,
           explain: "Holding total study time constant and varying only massed vs spaced isolates spacing as the cause.",
         },
         {
@@ -319,10 +336,70 @@
             "bystander effect",
           ],
           answer: 0,
+          b: 0.0,
           explain: "Attributing successes to oneself and failures to the situation is the self-serving bias.",
         },
       ],
     },
+  };
+
+  // Additional passages so practice can keep going past a single set. CARS ships
+  // several here; a section with no extras simply reshuffles its one passage. Same
+  // shape as a bank passage: { passage:{label,paragraphs}, questions:[{stem,choices,answer,explain}] }.
+  const EXTRA_PASSAGES = {
+    cars: [
+      {
+        passage: {
+          label: 'Passage',
+          paragraphs: [
+            "When a forgery is exposed, the painting on the wall does not change; only our story about it does. Brushwork praised as luminous one day is called mechanical and cold the next. If the object is identical, our judgment was never really about the object at all, but about the name attached to it, about who we believed had stood before the canvas.",
+            "Defenders of the outrage reply that provenance is part of the work: a painting is not merely a surface but a record of one person's choices at one moment, so to be deceived about the maker is to be deceived about what the work means. Yet this defense proves more than it intends. If meaning leans so heavily on the maker's identity, then our pleasure was always resting on a fact outside the frame, and the forger's real offense is to have shown us how little we trusted our own eyes.",
+          ],
+        },
+        questions: [
+          { stem: "The central claim of the passage is that exposing a forgery mainly reveals:", choices: ["that forged paintings are technically inferior", "that our judgments lean on the maker's identity more than on the work itself", "that provenance has no bearing on meaning", "that critics are usually incompetent"], answer: 1, explain: "The object is unchanged, so the reversal shows judgment tracked the attached name, not the surface." },
+          { stem: "The praised brushwork later called \"mechanical and cold\" is offered to show that:", choices: ["forgers use cheap materials", "judgments flip even though the object is unchanged", "critics are unusually honest", "criticism is a science"], answer: 1, explain: "Identical object, reversed verdict: evidence the verdict followed the name, not the paint." },
+          { stem: "The defenders' position is best stated as:", choices: ["a work's meaning includes the record of its actual maker's choices", "forgeries should hang beside originals", "aesthetic pleasure is purely about the surface", "provenance is irrelevant to meaning"], answer: 0, explain: "They hold provenance is part of the work, so deceiving about the maker deceives about meaning." },
+          { stem: "The author replies that the defenders' view:", choices: ["settles the matter in their favor", "unintentionally concedes that pleasure depended on a fact outside the frame", "is irrelevant to forgery", "applies only to modern art"], answer: 1, explain: "\"Proves more than it intends\": if meaning leans on the maker, judgment leaned on an external fact all along." },
+          { stem: "\"How little we trusted our own eyes\" most nearly suggests viewers:", choices: ["had poor eyesight", "deferred to authorship instead of judging the work directly", "secretly preferred forgeries", "never look at paintings closely"], answer: 1, explain: "The point is deference to the maker's name over independent aesthetic judgment." },
+          { stem: "The author's attitude toward the outrage at forgeries is best described as:", choices: ["wholly sympathetic", "skeptical, treating it as self-undermining", "indifferent", "celebratory"], answer: 1, explain: "It \"should embarrass us,\" and the defense is turned against itself: a skeptical stance." },
+        ],
+      },
+      {
+        passage: {
+          label: 'Passage',
+          paragraphs: [
+            "The dream of a history without a point of view is as old as history itself, and as unattainable. To narrate is to select; to select is to rank; and to rank is already to argue. The historian who claims to just present the facts has merely hidden the argument in the order of the sentences, in which events are named causes and which are left as background.",
+            "This does not make history fiction. A novelist may invent a battle; a historian may not. Evidence can refute a claim, and a careless account can be shown to be wrong. But the constraint underdetermines the story: ten honest historians, given the same documents, will write ten different books, not because some are lying, but because significance is not printed on the surface of events. It is conferred by the questions the historian thought worth asking.",
+          ],
+        },
+        questions: [
+          { stem: "The passage primarily argues that history:", choices: ["involves interpretation yet stays constrained by evidence", "is indistinguishable from fiction", "should abandon the use of evidence", "can reach a view from nowhere with effort"], answer: 0, explain: "It denies pure objectivity (\"to narrate is to argue\") but insists evidence constrains (\"a historian may not\")." },
+          { stem: "\"Hidden the argument in the order of the sentences\" implies claims of pure factuality:", choices: ["are usually correct", "conceal rather than remove interpretation", "merely need better grammar", "are impossible to write down"], answer: 1, explain: "The argument is hidden, not absent: framing events as cause vs background is itself interpretive." },
+          { stem: "The contrast with the novelist mainly serves to:", choices: ["show history and fiction are the same", "mark the real constraint evidence places on history", "argue that novels are superior", "claim historians never make errors"], answer: 1, explain: "\"A novelist may invent a battle; a historian may not\" marks the evidential constraint." },
+          { stem: "\"Significance is not printed on the surface of events\" most nearly means:", choices: ["events have no causes", "importance is assigned by the historian's questions, not read off directly", "documents are usually forged", "surfaces do not matter in art"], answer: 1, explain: "Significance is \"conferred by the questions the historian thought worth asking.\"" },
+          { stem: "Ten honest historians writing ten different books is offered as evidence that:", choices: ["most historians are dishonest", "interpretation, not deceit, drives their divergence", "the documents are unreliable", "history is purely subjective"], answer: 1, explain: "\"Not because some are lying\": divergence comes from differing significant questions." },
+          { stem: "The author would most likely describe objectivity in history as:", choices: ["fully achievable with enough discipline", "a limit that constrains without erasing perspective", "an illusion that frees historians to invent", "irrelevant to the discipline"], answer: 1, explain: "Evidence can refute yet underdetermines; perspective remains, a limit rather than an escape from viewpoint." },
+        ],
+      },
+      {
+        passage: {
+          label: 'Passage',
+          paragraphs: [
+            "We have made boredom into an emergency. The empty minute, waiting in a line or riding an elevator, is now a wound to be dressed instantly with a glowing screen. We congratulate ourselves on never being bored, as if boredom were a disease we had finally cured. But something is lost when every gap is filled. Boredom, uncomfortable as it is, is the mind's signal that it is under-stimulated and free, and freedom is the condition in which it wanders somewhere new.",
+            "Defenders of constant input will say their screens are not empty calories but nourishment: articles, lessons, conversations. Perhaps. Yet there is a difference between feeding the mind and merely occupying it, and the second is far easier to arrange. A mind never permitted to be idle is never permitted to be surprised by itself. The daydream, the half-formed connection, the idea that arrives only when we stop reaching for one, these require exactly the vacancy we now rush to abolish.",
+          ],
+        },
+        questions: [
+          { stem: "The main idea of the passage is that:", choices: ["boredom is a disease that technology has cured", "screens never provide anything of value", "filling every idle moment costs us the mental wandering boredom enables", "people should never use their phones"], answer: 2, explain: "The author prizes boredom as the vacancy in which the mind wanders somewhere new, lost when every gap is filled." },
+          { stem: "\"A wound to be dressed instantly with a glowing screen\" chiefly conveys that people treat boredom as:", choices: ["a minor pleasure", "an injury demanding immediate relief", "a source of creativity", "an unavoidable illness"], answer: 1, explain: "The wound/dressing image casts the empty minute as something urgently to be fixed." },
+          { stem: "The author concedes that screen content:", choices: ["is always worthless", "can genuinely nourish, at least sometimes", "is superior to daydreaming", "cures boredom permanently"], answer: 1, explain: "\"Perhaps.\" grants screens may be nourishment before drawing the feeding/occupying distinction." },
+          { stem: "The distinction between feeding and \"merely occupying\" the mind is used to argue that:", choices: ["all screen use nourishes the mind", "occupation is easier to arrange and often substitutes for nourishment", "the mind cannot be fed", "boredom is always productive"], answer: 1, explain: "Nourishment is possible, but mere occupation is \"far easier to arrange,\" which is what usually happens." },
+          { stem: "\"Never permitted to be surprised by itself\" most nearly means the mind is denied:", choices: ["external information", "the spontaneous, self-generated insight that idleness allows", "rest and sleep", "social connection"], answer: 1, explain: "The daydream and half-formed connection \"arrive only when we stop reaching\": self-surprise needs vacancy." },
+          { stem: "The author's overall stance toward \"never being bored\" is:", choices: ["approving", "critical, viewing it as a hidden loss", "neutral", "celebratory"], answer: 1, explain: "The essay frames curing boredom as a loss of mental freedom, a critical stance." },
+        ],
+      },
+    ],
   };
 
   const KEYS = ['A', 'B', 'C', 'D'];
@@ -334,9 +411,51 @@
     ['time', 'Rushed the reasoning'],
     ['math', 'Arithmetic slip'],
   ];
-  const state = { section: 'cars', bank: BANKS.cars, i: 0, selected: null, confidence: 'unsure', checked: false, results: [], t0: 0 };
+  // Practice runs continuously: a section is a rotation of passages (each with its
+  // questions), served one after another; when the rotation is exhausted we reshuffle
+  // and keep going, so you can practice as far past the daily goal as you like.
+  const state = { section: 'cars', title: BANKS.cars.title, rounds: [], pi: 0, qi: 0, selected: null, confidence: 'unsure', checked: false, results: [], reported: 0, t0: 0 };
+  const curPassage = () => state.rounds[state.pi];
+  const curQuestion = () => state.rounds[state.pi].questions[state.qi];
+  // Every item checked in THIS webview load -- survives moving between passages and
+  // resets only when the dashboard reloads the page. Added to the day's persisted
+  // count, it drives the "__ of __ today" reasoning goal.
+  let answeredThisLoad = 0;
+
+  const shuffle = (arr) => {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  };
+  // Every passage available for a section: the bank's own passage plus any extras.
+  function sectionPassages(key) {
+    const src = BANKS[key] || BANKS.cars;
+    return [{ passage: src.passage, questions: src.questions }].concat(EXTRA_PASSAGES[key] || []);
+  }
+  // One fresh cycle: passages in random order, questions within each ordered by the
+  // ability frontier (a no-op unless items carry difficulty). Cloned so the shared
+  // source stays pristine.
+  function buildRounds(key) {
+    return shuffle(sectionPassages(key)).map((r) => ({ passage: r.passage, questions: adaptiveOrder(r.questions, key) }));
+  }
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   const app = () => document.getElementById('app');
+
+  // "__ of __ today": progress toward the day's reasoning goal. X = answered so far
+  // today (the count persisted at the last dashboard load, plus everything answered
+  // this load); Y = today's target from the study plan. Going over Y is intentional
+  // -- the tally keeps rising, and returning to the dashboard recomputes so the
+  // trajectory and scores reflect the extra practice. With no exam date (so no daily
+  // goal yet) we fall back to a plain tally.
+  function progressHtml() {
+    const v = (typeof window !== 'undefined' && window.__VANTAGE__) || null;
+    const sp = v && v.study_pace;
+    const goal = sp && sp.has_exam_date ? (sp.reasoning_per_day || 0) : 0;
+    if (!goal) return `<span class="progress">${answeredThisLoad} answered</span>`;
+    const done = (sp.reasoning_today || 0) + answeredThisLoad;
+    const met = done >= goal;
+    return `<span class="progress${met ? ' progress--met' : ''}">${done} of ${goal} today</span>`;
+  }
 
   // Optional adaptive ordering: when the dashboard has surfaced a per-section
   // ability estimate and the items themselves carry difficulty metadata, serve
@@ -374,22 +493,20 @@
   }
 
   function render() {
-    const bank = state.bank;
-    const q = bank.questions[state.i];
-    const total = bank.questions.length;
+    const p = curPassage();
+    const q = curQuestion();
     app().innerHTML = `<div class="wrap">
     <div class="top">
-      <div class="top__title">${esc(bank.title)}</div>
+      <div class="top__title">${esc(state.title)}</div>
       <div class="top__right">
-        <span class="progress">Question ${state.i + 1} of ${total}</span>
-        <button class="linkbtn" onclick="vpy('refresh')">Back to dashboard</button>
+        ${progressHtml()}
+        <button class="linkbtn" onclick="vpractice.finish()">Back to dashboard</button>
       </div>
     </div>
-    <div class="pbar"><div class="pbar__fill" style="width:${Math.round((state.i / total) * 100)}%"></div></div>
     <div class="grid">
       <section class="passage">
-        <div class="passage__label">${esc(bank.passage.label)}</div>
-        <div class="passage__body">${bank.passage.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+        <div class="passage__label">${esc(p.passage.label)}</div>
+        <div class="passage__body">${p.passage.paragraphs.map((x) => `<p>${esc(x)}</p>`).join('')}</div>
       </section>
       <section class="qcard">
         <div class="qcard__stem">${esc(q.stem)}</div>
@@ -407,47 +524,47 @@
     state.t0 = Date.now();
   }
 
-  function showSummary() {
-    const bank = state.bank;
-    const total = bank.questions.length;
-    const correct = state.results.filter((r) => r.correct).length;
-    app().innerHTML = `<div class="wrap">
-    <div class="top"><div class="top__title">${esc(bank.title)}</div></div>
-    <div class="summary">
-      <div class="summary__score">${correct} of ${total} correct</div>
-      <div class="summary__sub">Your scores update as you practice. The ones you missed come back for review later.</div>
-      <div class="summary__actions">
-        <button class="pbtn" onclick="vpractice.restart()">Practice again</button>
-        <button class="pbtn pbtn--ghost" onclick="vpy('refresh')">Back to dashboard</button>
-      </div>
-    </div></div>`;
-    // Report every item: confidence, correctness, miss reason, and the text of
-    // misses (so the host records outcomes and makes spaced re-review cards).
+  // Persist everything answered but not yet reported. The host anchors each item to a
+  // real card + revlog (so it syncs and feeds today's count) and turns misses into
+  // spaced re-review cards. Called when a passage completes and when leaving practice,
+  // so nothing is lost even though there is no end-of-set summary anymore.
+  function flush() {
+    const items = state.results.slice(state.reported);
+    if (!items.length) return;
+    state.reported = state.results.length;
     try {
-      pycmd('vantage:practice2:' + encodeURIComponent(JSON.stringify({ section: state.section, items: state.results })));
+      pycmd('vantage:practice2:' + encodeURIComponent(JSON.stringify({ section: state.section, items })));
     } catch (e) {
-      console.log('practice2', state.results);
+      console.log('practice2', items);
     }
   }
 
   function advance() {
-    state.i += 1;
     state.selected = null;
     state.confidence = 'unsure';
     state.checked = false;
-    if (state.i >= state.bank.questions.length) showSummary();
-    else render();
+    state.qi += 1;
+    if (state.qi >= curPassage().questions.length) {
+      // Passage finished: persist it, then move on. Never dead-end -- once the last
+      // passage is done we reshuffle and keep going so practice continues past the goal.
+      flush();
+      state.qi = 0;
+      state.pi += 1;
+      if (state.pi >= state.rounds.length) { state.rounds = buildRounds(state.section); state.pi = 0; }
+    }
+    render();
   }
 
   window.vpractice = {
     open(section) {
       const key = section && BANKS[section] ? section : 'cars';
       state.section = key;
-      // Clone the bank so the shared source stays pristine, and apply the
-      // ability-frontier ordering (a no-op unless items carry difficulty).
-      const src = BANKS[key];
-      state.bank = { title: src.title, passage: src.passage, questions: adaptiveOrder(src.questions, key) };
-      state.i = 0; state.selected = null; state.confidence = 'unsure'; state.checked = false; state.results = [];
+      state.title = (BANKS[key] || BANKS.cars).title;
+      // Build the shuffled passage rotation (source stays pristine inside buildRounds).
+      state.rounds = buildRounds(key);
+      state.pi = 0; state.qi = 0;
+      state.selected = null; state.confidence = 'unsure'; state.checked = false;
+      state.results = []; state.reported = 0;
       render();
     },
     setConf(v) {
@@ -465,8 +582,8 @@
     },
     check() {
       if (state.checked || state.selected == null) return;
-      const q = state.bank.questions[state.i];
-      const total = state.bank.questions.length;
+      const q = curQuestion();
+      const lastInPassage = state.qi === curPassage().questions.length - 1;
       state.checked = true;
       const correct = state.selected === q.answer;
       // Report the question text on every item (not just misses): the host anchors
@@ -480,6 +597,7 @@
         explain: q.explain,
       };
       state.results.push(rec);
+      answeredThisLoad += 1;  // feeds the "__ of __ today" reasoning goal
       document.querySelectorAll('.choice').forEach((el, idx) => {
         el.disabled = true;
         el.setAttribute('aria-pressed', 'false');
@@ -496,7 +614,7 @@
       ex.hidden = false;
       const act = document.getElementById('act');
       if (correct) {
-        act.textContent = state.i === total - 1 ? 'See results' : 'Next question';
+        act.textContent = lastInPassage ? (state.rounds.length > 1 ? 'Next passage' : 'Keep going') : 'Next question';
         act.onclick = () => vpractice.next();
       } else {
         act.hidden = true;  // a miss reason (one tap) advances instead
@@ -509,7 +627,9 @@
       advance();
     },
     next() { advance(); },
-    restart() { this.open(state.section); },
+    // Leave practice: persist anything not yet reported, then return to the dashboard
+    // (which recomputes so the extra practice shows in the scores and today's count).
+    finish() { flush(); vpy('refresh'); },
   };
 
   window.vpy = window.vpy || function (cmd) { try { pycmd('vantage:' + cmd); } catch (e) { console.log('vpy', cmd); } };

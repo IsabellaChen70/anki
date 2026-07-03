@@ -44,9 +44,24 @@
   }
 
   function frame(css, html) {
-    const doc =
-      "<style>html,body{margin:0}body{font-family:'Outfit',ui-sans-serif,system-ui,-apple-system,sans-serif;" +
-      "padding:1.9rem;color:#111827;line-height:1.5}" + (css || '') + '</style>' + (html || '');
+    const base =
+      "html,body{margin:0;background:#fff}body{font-family:'Outfit',ui-sans-serif,system-ui,-apple-system,sans-serif;" +
+      "padding:1.6rem;color:#1f2937;line-height:1.55;font-size:17px}";
+    // Vantage overrides, injected AFTER the note's own CSS so they win: neutralize
+    // an imported deck's theming (parchment backgrounds, oversized fonts, its own
+    // font family, source/Khan-Academy links, huge images) so every card reads
+    // like the rest of the app instead of like the source deck.
+    const overrides =
+      ".card{background:transparent!important;color:#1f2937!important;font-size:17px!important}" +
+      "*{font-family:inherit!important;background-image:none!important;max-width:100%!important}" +
+      // Equation/prompt images (in the card's Text field) stay small; explanation
+      // diagrams (MileDown puts them in the Extra field, wrapped in #extra) get a
+      // bigger box so their small labels stay readable.
+      "img{max-width:min(100%,200px)!important;max-height:150px!important;height:auto!important;width:auto!important}" +
+      "#extra img{max-width:min(100%,480px)!important;max-height:460px!important}" +
+      'a[href*="khan"],a[href*="youtu"]{display:none!important}' +
+      ".cloze{color:#2563eb!important;font-weight:700}";
+    const doc = "<style>" + base + (css || '') + overrides + "</style>" + (html || '');
     return `<div class="cardframe"><iframe id="cardframe" sandbox="allow-same-origin" srcdoc="${escAttr(doc)}"></iframe></div>`;
   }
 
@@ -54,8 +69,13 @@
     const f = document.getElementById('cardframe');
     if (!f) return;
     const fit = () => {
-      try { f.style.height = Math.max(140, f.contentWindow.document.body.scrollHeight + 8) + 'px'; }
-      catch (e) { f.style.height = '240px'; }
+      try {
+        // Cap the card to roughly one screen; taller cards scroll inside the frame
+        // so the answer/rate buttons stay visible ("fits on one page").
+        const h = f.contentWindow.document.body.scrollHeight + 8;
+        const cap = Math.max(200, Math.round(window.innerHeight * 0.62));
+        f.style.height = Math.min(Math.max(140, h), cap) + 'px';
+      } catch (e) { f.style.height = '240px'; }
     };
     f.onload = fit;
     setTimeout(fit, 60);
@@ -99,7 +119,9 @@
     },
     _show() { vpy('review:show'); },
     _rate(e) { vpy('review:answer:' + e); },
-    _close() { close(); },
+    // Drop the overlay instantly, then ask the host to recompute so the dashboard
+    // reflects the cards you just studied (memory score, ranges, counts).
+    _close() { close(); vpy('studydone'); },
   };
 
   document.addEventListener('keydown', (ev) => {

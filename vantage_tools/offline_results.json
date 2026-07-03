@@ -1,0 +1,21 @@
+{
+  "ai_probe": {
+    "ai_off_default": true,
+    "default_cards": 0,
+    "default_status": "ai_off",
+    "netloss_cards": 0,
+    "netloss_status": "generated",
+    "network_loss_graceful": true
+  },
+  "checks": {
+    "ai_off_by_default": true,
+    "empty_abstains_but_guides": true,
+    "network_loss_graceful": true,
+    "scores_computed_offline_ai_off": true
+  },
+  "degrades_cleanly": true,
+  "deterministic": true,
+  "network_used": false,
+  "ready_readiness_high": 383.7,
+  "ready_readiness_low": 377.7
+}

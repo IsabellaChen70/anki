@@ -22,6 +22,17 @@ What it measures, and how it maps to the PRD actions
   UI on deck open (§11 "any UI freeze never > 100 ms").
 * button-state compute: ``get_scheduling_states`` (button interval labels).
   Supplementary; part of showing a card.
+* sync (incremental) (< 5 s p95): ``col.sync_collection(auth, sync_media=False)`` —
+  one incremental ("normal") sync against a REAL self-hosted Anki sync server after
+  grading a card, i.e. pushing a one-card delta, which is the "sync of a normal
+  session" the PRD budgets. Only measured when ``--sync-endpoint`` is given and a
+  server is running; run on a smaller deck (``--sync-cards``, default 2000) because a
+  50k full upload is slow, while the other actions keep their 50k numbers.
+
+Pre-registered target (written here BEFORE running, per the honesty rule)
+------------------------------------------------------------------------
+* sync (incremental): p95 < 5 s. Source: PRD §11 "sync of a normal session < 5 s on
+  a normal connection" (docs/prd-vantage.md ~line 322). See ``TARGET_SYNC_P95``.
 
 Honesty notes (see the vantage rules)
 -------------------------------------
@@ -49,7 +60,14 @@ Usage
     ... vantage_tools/bench.py --cards 100000 --trials 8000
     ... vantage_tools/bench.py --cards 5000 --rebuild
 
-See `just bench` for the canonical one-liner.
+    # also measure SYNC (5th PRD action). First start a self-hosted server:
+    #   SYNC_USER1=vantage:pass SYNC_HOST=0.0.0.0 SYNC_PORT=8080 \
+    #     SYNC_BASE=out/bench_syncserver PYTHONPATH=pylib:out/pylib \
+    #     out/pyenv/bin/python -m anki.syncserver
+    # then point the bench at it (sync runs on a smaller --sync-cards deck):
+    ... vantage_tools/bench.py --sync-endpoint http://127.0.0.1:8080/
+
+See `just bench` for the canonical one-liner (no Makefile target exists).
 """
 
 from __future__ import annotations
@@ -81,6 +99,11 @@ TARGET_BUTTON_ACK_P95 = 50.0
 TARGET_NEXT_CARD_P95 = 100.0
 TARGET_DASH_LOAD_P95 = 1000.0
 TARGET_DASH_REFRESH_P95 = 500.0
+# Pre-registered BEFORE running (honesty-first): PRD §11 (docs/prd-vantage.md
+# ~line 322) budgets "sync of a normal session < 5 s on a normal connection". We
+# measure the p95 of an incremental sync (one-card delta) against a real
+# self-hosted server and PASS iff p95 < 5000 ms.
+TARGET_SYNC_P95 = 5000.0
 TARGET_NO_FREEZE = 100.0  # any interactive action must never freeze > this
 
 
@@ -367,6 +390,99 @@ def measure_dashboard(work_path: str, load_samples: int, refresh_repeats: int) -
     return {"load": load, "refresh": refresh}
 
 
+def measure_sync(
+    work_path: str,
+    endpoint: str,
+    user: str,
+    password: str,
+    trials: int,
+    n_cards: int,
+) -> dict:
+    """Time incremental ("normal") syncs against a REAL self-hosted Anki sync server.
+
+    Pre-registered target (fixed BEFORE running, per the honesty rule): PRD §11
+    (docs/prd-vantage.md ~line 322) budgets "sync of a normal session < 5 s on a
+    normal connection", so this PASSes iff the incremental-sync p95 < 5000 ms
+    (``TARGET_SYNC_P95``).
+
+    Flow mirrors the real desktop / AnkiDroid path (``qt/aqt/sync.py`` and
+    ``vantage_tools/sync_reconcile_test.py``), using anki's own Rust sync:
+      1. ``sync_login`` -> ``SyncAuth``.
+      2. One initial FULL upload (``close_for_full_sync`` + ``full_upload_or_download``
+         + ``reopen``) to seed the server with this collection. Timed separately and
+         reported as an informational cold-start cost, NOT judged against the 5 s
+         incremental budget.
+      3. ``trials`` INCREMENTAL syncs: grade one card (``getCard`` + ``answerCard``)
+         so there is a genuine one-card delta to push, then time
+         ``sync_collection(auth, sync_media=False)``.
+
+    Runs on a COPY of the deck (non-destructive) and, because a 50k full upload is
+    slow, on a smaller deck than the other actions; the deck size is recorded and
+    stated in the output so the 50k numbers elsewhere are not misread.
+    """
+    col = Collection(work_path)
+    sync = Stat("sync (incremental)")
+    info: dict = {
+        "sync": sync,
+        "endpoint": endpoint,
+        "sync_cards": n_cards,
+        "requested": trials,
+        "trials": 0,
+        "full_upload_ms": float("nan"),
+        "revlog_rows": col.db.scalar("select count() from revlog") or 0,
+        "unexpected": [],
+        "error": "",
+        "loopback": any(
+            h in endpoint for h in ("127.0.0.1", "localhost", "0.0.0.0", "::1")
+        ),
+    }
+    try:
+        auth = col.sync_login(user, password, endpoint)
+
+        # Seed the server with this collection via a full upload (cold-start cost,
+        # reported separately — not against the incremental budget).
+        t0 = time.perf_counter()
+        col.close_for_full_sync()
+        col.full_upload_or_download(auth=auth, server_usn=None, upload=True)
+        col.reopen(after_full_sync=True)
+        info["full_upload_ms"] = (time.perf_counter() - t0) * 1000.0
+
+        # Serve the whole backlog so getCard always has a due card to grade.
+        did = col.decks.id("MCAT Exam")
+        col.decks.set_current(did)
+        conf = col.decks.config_dict_for_deck_id(did)
+        conf["new"]["perDay"] = 1_000_000
+        conf["rev"]["perDay"] = 1_000_000
+        col.decks.update_config(conf)
+        col.decks.set_current(did)
+
+        # One untimed warm-up sync (no delta) to establish the HTTP connection, so the
+        # timed samples reflect steady-state incremental cost, not first-call setup.
+        col.sync_collection(auth, sync_media=False)
+
+        for _ in range(trials):
+            card = col.sched.getCard()
+            if card is None:
+                break  # ran out of due cards; record however many we got (honest)
+            col.sched.answerCard(card, 3)  # Good -> a real one-card delta to push
+            t0 = time.perf_counter()
+            out = col.sync_collection(auth, sync_media=False)
+            sync.samples.append((time.perf_counter() - t0) * 1000.0)
+            info["trials"] += 1
+            # After the seed upload a single client should only ever fast-forward; a
+            # full-sync demand here would be an anomaly, so surface it rather than hide it.
+            if out.required not in (out.NO_CHANGES, out.NORMAL_SYNC):
+                info["unexpected"].append(int(out.required))
+    except Exception as exc:  # network/server error: abstain honestly, don't fake it
+        info["error"] = f"{type(exc).__name__}: {exc}"
+    finally:
+        try:
+            col.close()
+        except Exception:
+            pass
+    return info
+
+
 def _best_ms(fn: Callable[[], object], n: int = 5) -> float:
     """Best-of-n wall time in ms (best isolates the stage cost from noise)."""
     best = float("inf")
@@ -476,17 +592,26 @@ def _fmt(x: float) -> str:
     return f"{x:.2f}"
 
 
-def build_rows(review: dict, dash: dict) -> list[Row]:
-    return [
+def build_rows(review: dict, dash: dict, sync: Optional[dict] = None) -> list[Row]:
+    rows = [
         Row("button ack (answer_card)", review["button_ack"], TARGET_BUTTON_ACK_P95, True),
         Row("next card (get_queued_cards)", review["next_card"], TARGET_NEXT_CARD_P95, True),
         Row("dashboard load (cold gather)", dash["load"], TARGET_DASH_LOAD_P95, False),
         Row("dashboard refresh (warm gather)", dash["refresh"], TARGET_DASH_REFRESH_P95, False),
         Row("button-state compute (get_scheduling_states)", review["states"], None, True),
     ]
+    # Sync is a background/network action, not a UI-thread interactive one, so it is
+    # judged only against the 5 s p95 budget (freeze_check=False). Only add the row
+    # when we actually collected samples; otherwise the table would imply a 0-sample
+    # verdict.
+    if sync is not None and sync["sync"].samples:
+        rows.append(Row("sync (incremental)", sync["sync"], TARGET_SYNC_P95, False))
+    return rows
 
 
-def print_table(rows: list[Row], review: dict, facts: dict, machine: str) -> None:
+def print_table(
+    rows: list[Row], review: dict, facts: dict, machine: str, sync: Optional[dict] = None
+) -> None:
     print()
     print("=" * 78)
     print("VANTAGE BENCHMARK — latency on a synthetic MCAT deck")
@@ -511,6 +636,31 @@ def print_table(rows: list[Row], review: dict, facts: dict, machine: str) -> Non
         f"cold queue build (first get_queued after open): "
         f"{_fmt(review['cold_build_ms'])} ms over {review['due_at_open']} due cards"
     )
+    if sync is not None:
+        if sync.get("error"):
+            print(
+                f"sync: NOT MEASURED — {sync['error']} "
+                f"(is the server at {sync['endpoint']} running?)"
+            )
+        elif sync["sync"].samples:
+            print(
+                f"sync (incremental) measured on a {sync['sync_cards']}-card deck via "
+                f"{sync['endpoint']} over {sync['trials']} one-card-delta syncs; "
+                f"initial full upload {_fmt(sync['full_upload_ms'])} ms (cold-start, "
+                f"not vs the 5 s budget)"
+            )
+            if sync.get("loopback"):
+                print(
+                    "  note: loopback server — this is sync protocol + processing "
+                    "cost, not wide-area network latency (see results file)"
+                )
+            if sync["unexpected"]:
+                print(
+                    f"  ! {len(sync['unexpected'])} sync(s) unexpectedly required a full "
+                    f"sync (codes {sorted(set(sync['unexpected']))})"
+                )
+        else:
+            print(f"sync: NOT MEASURED — no due cards to grade on the sync deck")
     print(f"peak RSS: {_fmt(peak_rss_mb())} MiB")
     print("=" * 78)
 
@@ -568,34 +718,28 @@ def overall_pass(rows: list[Row], review: dict) -> tuple[bool, list[str]]:
 def freeze_findings(dash: dict, review: dict) -> list[str]:
     """Honest UI-freeze assessment beyond the raw p95 budgets.
 
-    The dashboard passes its explicit load(<1s)/refresh(<500ms) budgets, but the
-    add-on calls ``gather`` synchronously on the Qt main thread
-    (``vantage_addon/__init__.py`` ``reload()``), so any gather over 100 ms is a
-    real main-thread block against the §11 "never freeze > 100 ms" rule.
+    The dashboard's ``gather`` -> ``dashboard_dict`` -> render runs OFF the Qt main
+    thread, on a background worker via ``QueryOp(...).run_in_background()``
+    (``vantage_addon/__init__.py`` ``reload()``); only the final webview swap returns
+    to the main thread. So however long ``gather`` takes it never blocks the UI: the
+    §11 "never freeze > 100 ms" rule is met by construction, and the gather cost is
+    judged only against the dashboard load(<1s)/refresh(<500ms) budgets. No dashboard
+    freeze finding is emitted here; interactive-action freezes (button ack, next card)
+    are still checked in ``overall_pass``.
     """
-    findings: list[str] = []
-    worst_dash = max(dash["refresh"].p95, dash["load"].p95)
-    if worst_dash > TARGET_NO_FREEZE:
-        findings.append(
-            "the dashboard's `gather` is invoked synchronously on the Qt main "
-            "thread (vantage_addon/__init__.py `reload()`), so its "
-            f"p95 of {_fmt(dash['load'].p95)} ms (load) / {_fmt(dash['refresh'].p95)} "
-            f"ms (refresh) is a main-thread block above the {_fmt(TARGET_NO_FREEZE)} "
-            "ms no-freeze rule. It stays inside the explicit load/refresh budgets, "
-            "so this is a wiring fix (run it off-thread), not a scoring-cost failure."
-        )
-    return findings
+    return []
 
 
 def optimization_notes(prof: dict) -> list[str]:
-    """Top optimization opportunities, each grounded in the measured attribution."""
+    """Top optimization opportunities, each grounded in the measured attribution.
+
+    Note: the two biggest wins are already shipped -- `gather` runs off the UI thread
+    (QueryOp, so no freeze at any size), and the reasoning-outcome revlog query is
+    short-circuited in the read path (`collect._merged_outcomes` skips it via
+    `_has_reasoning_cards` when there are zero application items). The bench still times
+    both raw stages for attribution; what remains below is the un-done work.
+    """
     notes: list[str] = []
-    notes.append(
-        "Run `gather` off the UI thread (aqt QueryOp / taskman.run_in_background) "
-        "and show a spinner: the dashboard then never blocks the main thread at any "
-        "deck size. It is currently called synchronously in "
-        "vantage_addon/__init__.py `reload()`. (Biggest win: fixes the freeze rule.)"
-    )
     unc = prof.get("match_uncached_ms")
     cac = prof.get("match_cached_ms")
     if unc == unc and cac == cac and unc and cac:  # not NaN
@@ -605,14 +749,6 @@ def optimization_notes(prof: dict) -> list[str]:
             f"match_tag once per card, so the tag->concept loop drops from "
             f"{_fmt(unc)} ms to {_fmt(cac)} ms (~{_fmt(unc - cac)} ms saved) at this "
             f"size. Safe, pure-Python, no behavior change."
-        )
-    rev = prof.get("revlog_outcomes_ms")
-    if rev == rev and rev and rev > 5:
-        notes.append(
-            f"Short-circuit (or index) the reasoning-outcome revlog query: it costs "
-            f"{_fmt(rev)} ms as a full revlog join + tag LIKE scan on every gather, "
-            f"even when the collection has zero application items. Skipping it when no "
-            f"reasoning cards exist removes that from the common early-usage path."
         )
     scan = prof.get("card_scan_ms")
     if scan == scan and scan and scan > 20:
@@ -639,6 +775,7 @@ def write_results_md(
     prof: dict,
     freezes: list[str],
     opts: list[str],
+    sync: Optional[dict] = None,
 ) -> None:
     ts = time.strftime("%Y-%m-%d %H:%M:%S %Z", time.localtime())
     lines: list[str] = []
@@ -663,8 +800,7 @@ def write_results_md(
         overall = "FAIL — see notes"
     elif freezes:
         overall = (
-            "PASS on all p50/p95 latency budgets; 1 caveat on the §11 "
-            '"never freeze > 100 ms" rule (dashboard is synchronous — see below)'
+            "PASS on all p50/p95 latency budgets; 1 UI-freeze caveat — see below"
         )
     else:
         overall = "PASS vs PRD §10.7 / §11 targets"
@@ -694,6 +830,74 @@ def write_results_md(
         f"(each = one `answer_card` + one `get_queued_cards`)."
     )
     lines.append("")
+    if sync is not None:
+        lines.append("## Sync (5th PRD action)")
+        lines.append("")
+        lines.append(
+            "Pre-registered target (fixed before running, honesty-first): PRD §11 "
+            '"sync of a normal session < 5 s on a normal connection" '
+            "(docs/prd-vantage.md ~line 322). Measured as the p95 of an incremental "
+            '("normal") `col.sync_collection(auth, sync_media=False)` against a real '
+            "self-hosted Anki sync server (`python -m anki.syncserver`), each after "
+            "grading one card so there is a genuine one-card delta to push — the same "
+            "Rust sync path desktop and AnkiDroid use."
+        )
+        lines.append("")
+        if sync.get("error"):
+            lines.append(
+                f"- **NOT MEASURED** this run: {sync['error']}. Start the server "
+                f"(command below) and re-run with `--sync-endpoint`."
+            )
+        elif sync["sync"].samples:
+            s = sync["sync"]
+            verdict = "PASS" if s.p95 < TARGET_SYNC_P95 else "FAIL"
+            lines.append(
+                f"- deck used for sync: **{sync['sync_cards']} cards** "
+                f"({sync['revlog_rows']} revlog rows) — deliberately smaller than the "
+                f"50k deck used for every other action, because a 50k full upload is "
+                f"slow. All rows above except the sync row are the 50k numbers; only "
+                f"the `sync (incremental)` row uses this {sync['sync_cards']}-card deck."
+            )
+            lines.append(f"- endpoint: `{sync['endpoint']}` (self-hosted, loopback)")
+            lines.append(
+                f"- incremental sync p50 / p95 / worst over {sync['trials']} one-card "
+                f"syncs: **{_fmt(s.p50)} / {_fmt(s.p95)} / {_fmt(s.worst)} ms** "
+                f"(target p95 < {_fmt(TARGET_SYNC_P95)} ms -> **{verdict}**)"
+            )
+            lines.append(
+                f"- initial full upload (seeds the server; a cold-start cost, NOT "
+                f"judged against the 5 s incremental budget): "
+                f"{_fmt(sync['full_upload_ms'])} ms"
+            )
+            if sync.get("loopback"):
+                lines.append(
+                    "- honesty caveat: the server runs on loopback (same machine), so "
+                    "this measures the sync protocol + client/server processing cost, "
+                    "NOT wide-area network latency. A real broadband connection adds "
+                    "round-trip time (a normal sync does a few round trips), but for a "
+                    "one-card delta that stays far under the 5 s budget. What this "
+                    "proves: Vantage's per-session sync payload and processing are "
+                    "negligible; the only real risk against the 5 s budget is the "
+                    "user's own connection, not the app."
+                )
+            if sync["unexpected"]:
+                lines.append(
+                    f"- caveat: {len(sync['unexpected'])} sync(s) unexpectedly required "
+                    f"a full sync (codes {sorted(set(sync['unexpected']))}); the rest "
+                    f"were clean fast-forward normal syncs."
+                )
+            lines.append(
+                "- reproduce: start `SYNC_USER1=vantage:pass SYNC_HOST=0.0.0.0 "
+                "SYNC_PORT=8080 SYNC_BASE=out/bench_syncserver "
+                "PYTHONPATH=pylib:out/pylib out/pyenv/bin/python -m anki.syncserver`, "
+                "then run the bench with `--sync-endpoint http://127.0.0.1:8080/`."
+            )
+        else:
+            lines.append(
+                "- **NOT MEASURED**: the sync deck had no due cards to grade, so no "
+                "delta could be pushed."
+            )
+        lines.append("")
     lines.append("## Where the dashboard time goes (measured attribution)")
     lines.append("")
     lines.append(
@@ -723,8 +927,12 @@ def write_results_md(
             lines.append(f"- {f}")
     else:
         lines.append(
-            "- No freeze concern at this deck size: the dashboard gather stays under "
-            "the 100 ms no-freeze threshold."
+            "- No UI-freeze concern at any deck size: the dashboard's gather + render "
+            "run off the Qt main thread via `QueryOp(...).run_in_background()` "
+            "(`vantage_addon/__init__.py` `reload()`), and only the webview swap "
+            "returns to the main thread. The gather cost is therefore judged only "
+            "against the load(<1s)/refresh(<500ms) budgets, never the 100 ms "
+            "no-freeze rule."
         )
     lines.append("")
     lines.append("## Top optimization opportunities")
@@ -745,6 +953,11 @@ def write_results_md(
     lines.append("- **Dashboard first load (< 1 s):** cold `anki.vantage.collect.gather(col)`.")
     lines.append("- **Dashboard refresh (< 500 ms):** warm `gather(col)`.")
     lines.append(
+        "- **Sync of a normal session (< 5 s):** incremental "
+        "`col.sync_collection(auth, sync_media=False)` (one-card delta) against a "
+        "self-hosted sync server — see the Sync section above for the deck size."
+    )
+    lines.append(
         "- **Any UI freeze never > 100 ms:** worst-case of the interactive actions "
         "above; the cold queue build and dashboard load are cold-start costs judged "
         "against their own budgets."
@@ -759,15 +972,19 @@ def write_results_md(
             lines.append(f"- {n}")
     else:
         lines.append("- All explicit p50/p95 latency budgets are met.")
-    if freezes:
-        lines.append(
-            "- Caveat: the §11 \"never freeze > 100 ms\" rule is NOT met by the "
-            "dashboard as currently wired — `gather` runs synchronously on the Qt "
-            "main thread, so the ~250 ms call blocks the UI. It is within the "
-            "explicit load/refresh budgets; the fix is opportunity #1 (run it "
-            "off-thread). The per-keystroke review actions (button ack, next card) "
-            "are sub-millisecond and never freeze."
-        )
+    lines.append(
+        "- The dashboard never freezes the UI: `gather` + render run off the Qt main "
+        "thread via `QueryOp(...).run_in_background()` (`reload()`); only the webview "
+        "swap is on the main thread. The gather cost is an O(cards) background "
+        "computation judged against the load(<1s)/refresh(<500ms) budgets. The "
+        "per-keystroke review actions (button ack, next card) are sub-millisecond."
+    )
+    lines.append(
+        "- Read-path efficiency: the reasoning-outcome revlog query is short-circuited "
+        "in `collect._merged_outcomes` (skipped via `_has_reasoning_cards` when the "
+        "collection has zero application items), so early-usage collections don't pay "
+        "the full revlog join + tag LIKE scan shown in the attribution table."
+    )
     lines.append("")
     lines.append(
         "- The dashboard number is the cost of `gather(col)` exactly as the task "
@@ -830,6 +1047,22 @@ def main(argv: list[str]) -> int:
     )
     ap.add_argument("--rebuild", action="store_true", help="force regenerate the deck")
     ap.add_argument("--keep", action="store_true", help="keep the working copies")
+    ap.add_argument(
+        "--sync-endpoint",
+        default="",
+        help="self-hosted sync server URL (e.g. http://127.0.0.1:8080/); "
+        "when set, also measures the 5th PRD action (sync of a normal session)",
+    )
+    ap.add_argument("--sync-user", default="vantage", help="sync server username")
+    ap.add_argument("--sync-password", default="pass", help="sync server password")
+    ap.add_argument("--sync-trials", type=int, default=20, help="incremental syncs to time")
+    ap.add_argument(
+        "--sync-cards",
+        type=int,
+        default=2000,
+        help="deck size for the sync measurement only (a 50k full upload is slow); "
+        "the other actions still use --cards",
+    )
     args = ap.parse_args(argv[1:])
 
     collection = args.collection or os.path.join(
@@ -845,6 +1078,11 @@ def main(argv: list[str]) -> int:
         "PYTHONPATH=pylib:out/pylib out/pyenv/bin/python vantage_tools/bench.py "
         f"--cards {args.cards} --seed {args.seed} --trials {args.trials}"
     )
+    if args.sync_endpoint:
+        cmd += (
+            f" --sync-endpoint {args.sync_endpoint} --sync-cards {args.sync_cards} "
+            f"--sync-trials {args.sync_trials}"
+        )
 
     facts = ensure_collection(collection, args.cards, args.seed, args.rebuild)
 
@@ -867,8 +1105,36 @@ def main(argv: list[str]) -> int:
                 except OSError:
                     pass
 
-    rows = build_rows(review, dash)
-    print_table(rows, review, facts, machine)
+    # 5th PRD action: sync of a normal session. Measured only when a server URL is
+    # given, on its own (smaller) deck so the 50k numbers above are untouched.
+    sync: Optional[dict] = None
+    if args.sync_endpoint:
+        sync_collection_path = os.path.join(
+            "out", "vantage_bench", f"bench_sync_{args.sync_cards}.anki2"
+        )
+        print(f"ensuring {args.sync_cards}-card sync deck ...")
+        ensure_collection(sync_collection_path, args.sync_cards, args.seed, args.rebuild)
+        sync_work = sync_collection_path + ".sync.work"
+        shutil.copy(sync_collection_path, sync_work)
+        try:
+            print(f"measuring sync (incremental) against {args.sync_endpoint} ...")
+            sync = measure_sync(
+                sync_work,
+                args.sync_endpoint,
+                args.sync_user,
+                args.sync_password,
+                args.sync_trials,
+                args.sync_cards,
+            )
+        finally:
+            if not args.keep:
+                try:
+                    os.remove(sync_work)
+                except OSError:
+                    pass
+
+    rows = build_rows(review, dash, sync)
+    print_table(rows, review, facts, machine, sync)
     ok, notes = overall_pass(rows, review)
     freezes = freeze_findings(dash, review)
     opts = optimization_notes(prof)
@@ -877,11 +1143,13 @@ def main(argv: list[str]) -> int:
     for n in notes:
         print(f"  - {n}")
     if freezes:
-        print("  caveat: dashboard is synchronous on the UI thread (see freeze finding above)")
+        print("  caveat: see the UI-freeze finding above")
+    else:
+        print("  dashboard runs off the UI thread (QueryOp): no main-thread freeze")
 
     write_results_md(
         args.results, rows, review, dash, facts, machine, args.seed, cmd, ok, notes,
-        prof, freezes, opts,
+        prof, freezes, opts, sync,
     )
     return 0 if ok else 1
 

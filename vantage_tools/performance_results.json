@@ -1,0 +1,166 @@
+{
+  "accuracy_baseline": 0.620438,
+  "accuracy_baseline_ci": [
+    0.53694,
+    0.697366
+  ],
+  "accuracy_model": 0.664234,
+  "accuracy_model_ci": [
+    0.58163,
+    0.737878
+  ],
+  "all_signs_match": true,
+  "base_rate": 0.575937,
+  "beats_baseline": true,
+  "bias": 0.408852,
+  "brier_baseline": 0.237475,
+  "brier_improvement": 0.061496,
+  "brier_model": 0.222871,
+  "coeffs_raw_units": {
+    "coverage": 1.215769,
+    "difficulty": -3.800174,
+    "latency": -0.050058,
+    "mastery": 3.109156
+  },
+  "coeffs_standardized": {
+    "coverage": 0.254226,
+    "difficulty": -0.710355,
+    "latency": -0.820949,
+    "mastery": 0.58943
+  },
+  "cohort": "synthetic (generate_dataset); validates methodology, not a real cohort",
+  "data_seed": 20260702,
+  "ece": 0.097104,
+  "expected_signs": {
+    "coverage": 1.0,
+    "difficulty": -1.0,
+    "latency": -1.0,
+    "mastery": 1.0
+  },
+  "fit_concepts": 64,
+  "fit_items": 507,
+  "held_concepts": 16,
+  "held_items": 137,
+  "held_out_concept_frac": 0.2,
+  "iterations": 5000,
+  "l2": 0.0001,
+  "label_flip_noise": 0.05,
+  "leakage_clean": true,
+  "learning_rate": 0.3,
+  "logloss_baseline": 0.667947,
+  "logloss_model": 0.651033,
+  "n_concepts": 80,
+  "n_items": 644,
+  "reliability_deciles": [
+    {
+      "decile": 1,
+      "gap": 0.0364,
+      "mean_predicted": 0.1944,
+      "n": 13,
+      "observed_rate": 0.2308,
+      "pred_hi": 0.2852,
+      "pred_lo": 0.0686
+    },
+    {
+      "decile": 2,
+      "gap": 0.072,
+      "mean_predicted": 0.3565,
+      "n": 14,
+      "observed_rate": 0.4286,
+      "pred_hi": 0.4304,
+      "pred_lo": 0.289
+    },
+    {
+      "decile": 3,
+      "gap": 0.1566,
+      "mean_predicted": 0.4863,
+      "n": 14,
+      "observed_rate": 0.6429,
+      "pred_hi": 0.5336,
+      "pred_lo": 0.436
+    },
+    {
+      "decile": 4,
+      "gap": 0.0295,
+      "mean_predicted": 0.5859,
+      "n": 13,
+      "observed_rate": 0.6154,
+      "pred_hi": 0.6078,
+      "pred_lo": 0.5483
+    },
+    {
+      "decile": 5,
+      "gap": 0.0802,
+      "mean_predicted": 0.6341,
+      "n": 14,
+      "observed_rate": 0.7143,
+      "pred_hi": 0.6502,
+      "pred_lo": 0.617
+    },
+    {
+      "decile": 6,
+      "gap": 0.0206,
+      "mean_predicted": 0.6936,
+      "n": 14,
+      "observed_rate": 0.7143,
+      "pred_hi": 0.7188,
+      "pred_lo": 0.6515
+    },
+    {
+      "decile": 7,
+      "gap": 0.1465,
+      "mean_predicted": 0.7619,
+      "n": 13,
+      "observed_rate": 0.6154,
+      "pred_hi": 0.7886,
+      "pred_lo": 0.7318
+    },
+    {
+      "decile": 8,
+      "gap": 0.1726,
+      "mean_predicted": 0.8155,
+      "n": 14,
+      "observed_rate": 0.6429,
+      "pred_hi": 0.8472,
+      "pred_lo": 0.7924
+    },
+    {
+      "decile": 9,
+      "gap": 0.1719,
+      "mean_predicted": 0.8862,
+      "n": 14,
+      "observed_rate": 0.7143,
+      "pred_hi": 0.914,
+      "pred_lo": 0.8617
+    },
+    {
+      "decile": 10,
+      "gap": 0.0791,
+      "mean_predicted": 0.9363,
+      "n": 14,
+      "observed_rate": 0.8571,
+      "pred_hi": 0.9704,
+      "pred_lo": 0.9148
+    }
+  ],
+  "scaler_means": {
+    "coverage": 0.543352,
+    "difficulty": 0.511324,
+    "latency": 45.931466,
+    "mastery": 0.583597
+  },
+  "scaler_stds": {
+    "coverage": 0.209107,
+    "difficulty": 0.186927,
+    "latency": 16.39983,
+    "mastery": 0.189579
+  },
+  "split_seed": 909,
+  "true_coeffs": {
+    "bias": 0.3,
+    "coverage": 1.4,
+    "difficulty": -2.6,
+    "latency": -0.7,
+    "mastery": 3.0
+  }
+}

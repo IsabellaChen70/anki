@@ -141,7 +141,7 @@ surface. The naive default is unchanged and every prior test still passes.
 
 ## Tests
 
-- **8 Rust unit tests** (`interleave.rs`). The original 5 (unchanged): mixed separates
+- **11 Rust unit tests** (`interleave.rs`). The original 5: mixed separates
   topics; blocked groups topics; deterministic for a given seed; single-topic/untagged is a
   no-op; regression for a note with more than one review-due card (id de-duplication). Plus 3
   for the confusability upgrade:
@@ -153,6 +153,18 @@ surface. The naive default is unchanged and every prior test still passes.
     unaffected by weights.
   - `weighted_deterministic_with_seed` — same seed + weights ⇒ identical order; a different
     seed rotates the start bucket to a different order.
+
+  Plus 3 edge-case tests (this change) that pin the honest limits of the guarantee:
+  - `off_mode_is_identity` — `Off` returns a multi-topic input untouched, any seed.
+  - `uneven_buckets_repeat_only_at_tail` — A×4/B×1 ⇒ `[A,B,A,A,A]`: once one bucket is
+    exhausted the remainder is unavoidably consecutive (the "no two in a row" guarantee holds
+    only while ≥2 buckets are non-empty), and nothing is dropped.
+  - `untagged_cards_form_their_own_bucket` — cards without a topic map to the shared
+    `::untagged` key: interleaved as their own topic under Mixed, grouped under Blocked.
+
+  Scope: only the mature review pool is interleaved; intraday/interday learning cards keep
+  their time-ordered sequence (documented in the module header, an intentional scope choice —
+  extending to interday-learning `DueCard`s would mirror `interleave_reviews_by_topic`).
 - **2 Python tests** (`test_interleave.py`):
   - `test_set_interleave_mode_mixes_topics` (unchanged) — calls `set_interleave_mode` through
     the backend, checks no two consecutive cards share a topic, asserts the study-queue
@@ -163,7 +175,7 @@ surface. The naive default is unchanged and every prior test still passes.
     collection stays integrity-clean. Proves the engine consumes the map end-to-end with **no
     proto/RPC change**.
 
-Verified locally: `cargo test -p anki interleave` → 8 passed; `pytest pylib/tests/test_interleave.py`
+Verified locally: `cargo test -p anki interleave` → 11 passed; `pytest pylib/tests/test_interleave.py`
 → 2 passed; the file is `cargo +nightly fmt`-clean and `cargo clippy -p anki` reports no warnings.
 
 ## Shipped to the phone

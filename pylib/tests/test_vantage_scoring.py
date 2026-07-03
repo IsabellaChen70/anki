@@ -495,6 +495,24 @@ def test_study_pace_flags_a_past_date():
     assert p.has_exam_date and p.passed and p.days_left == -30 and "passed" in p.message
 
 
+def test_study_pace_carries_today_progress_through_every_branch():
+    # reasoning_today is the day's practice count that drives the "X of Y today"
+    # counter; it is display-only and must survive on the abstain, past-date, and
+    # live branches alike (it never changes the pace math).
+    live = study_pace("2026-07-31", "2026-07-01", reviews_due=0, new_remaining=0,
+                      reasoning_done=12, cfg=CFG, concepts_to_practice=30, reasoning_today=7)
+    assert live.reasoning_today == 7 and live.reasoning_per_day == 10  # unaffected by today's count
+    no_date = study_pace(None, "2026-07-01", reviews_due=0, new_remaining=0,
+                         reasoning_done=0, cfg=CFG, reasoning_today=4)
+    assert no_date.reasoning_today == 4 and no_date.has_exam_date is False
+    passed = study_pace("2026-06-01", "2026-07-01", reviews_due=0, new_remaining=0,
+                        reasoning_done=0, cfg=CFG, reasoning_today=2)
+    assert passed.reasoning_today == 2 and passed.passed
+    # Default stays 0 for callers that don't track it (e.g. older collections).
+    assert study_pace("2026-07-31", "2026-07-01", reviews_due=0, new_remaining=0,
+                      reasoning_done=0, cfg=CFG).reasoning_today == 0
+
+
 def test_study_pace_handles_exam_today_without_dividing_by_zero():
     p = study_pace("2026-07-01", "2026-07-01", reviews_due=5, new_remaining=10,
                    reasoning_done=0, cfg=CFG, concepts_to_practice=30)
@@ -604,11 +622,23 @@ def test_trajectory_anchors_on_most_recent_by_date():
 
 
 def test_trajectory_clamps_to_three_section_band():
-    # a steep recent slope can't project past the 3-section maximum (3 * 132 = 396)
+    # a steep recent slope can't project past the 3-section maximum (3 * 132 = 396).
+    # Target is on the 3-section scale so it's the clamp, not the scale gate, we test.
     hist = [{"d": f"2026-07-0{i}", "point": 380.0 + 4 * (i - 1)} for i in range(1, 6)]
-    t = trajectory(hist, 400, 30, "bio_biochem", CFG)
+    t = trajectory(hist, 390, 30, "bio_biochem", CFG)
     assert not t.abstained
     assert t.projected == pytest.approx(396.0)  # clamped to the band ceiling
+
+
+def test_trajectory_abstains_when_target_is_off_the_current_scale():
+    # A full-scale target (472-528) can't be compared to a 3-section projection
+    # (354-396): the trajectory abstains and asks for an in-scale target rather than
+    # always reading "behind". Once CARS lifts it to 4 sections, 500 becomes valid.
+    hist = [{"d": f"2026-07-0{i}", "point": 380.0} for i in range(1, 6)]
+    t3 = trajectory(hist, 500, 30, "bio_biochem", CFG, n_sections=3)
+    assert t3.abstained and t3.scale_lo == 354 and t3.scale_hi == 396
+    t4 = trajectory(hist, 500, 30, "bio_biochem", CFG, n_sections=4)
+    assert not t4.abstained and t4.scale_lo == 472 and t4.scale_hi == 528
 
 
 # --------------------------------------------------------------------------- #

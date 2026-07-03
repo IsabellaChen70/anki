@@ -1,44 +1,2500 @@
 {
-  "version": "aamc-approx-2023.v1",
-  "note": "Approximation of the AAMC MCAT content outline (three science sections) for coverage gating. Weights are a rough, documented emphasis proxy (integers, normalized at read time) and are TUNABLE (see spec-readiness-score D-SCORE4 / D11). Not an official AAMC weighting.",
+  "version": "aamc-approx-2023.v2-topics",
+  "note": "Approximation of the AAMC MCAT content outline (three science sections) for coverage gating. Each content category now carries a `topics` list (the AAMC topics under it) for finer coverage/gap detection; topic ids are <category>.<n>. Category- and topic-level weights are a rough, documented emphasis proxy (integers, normalized at read time) and are TUNABLE (see spec-readiness-score D-SCORE4 / D11). Not an official AAMC weighting.",
   "sections": {
     "chem_phys": "Chemical and Physical Foundations of Biological Systems",
     "bio_biochem": "Biological and Biochemical Foundations of Living Systems",
     "psych_soc": "Psychological, Social, and Biological Foundations of Behavior"
   },
   "concepts": [
-    {"id": "4A", "section": "chem_phys", "name": "Translational motion, forces, work, energy, equilibrium", "weight": 3, "aliases": ["kinematics", "forces", "work_energy", "equilibrium", "mechanics"]},
-    {"id": "4B", "section": "chem_phys", "name": "Importance of fluids for circulation of blood, gas movement", "weight": 2, "aliases": ["fluids", "hydrostatics", "gases", "circulation"]},
-    {"id": "4C", "section": "chem_phys", "name": "Electrochemistry and electrical circuits", "weight": 2, "aliases": ["electrochemistry", "circuits", "electrostatics"]},
-    {"id": "4D", "section": "chem_phys", "name": "How light and sound interact with matter", "weight": 1, "aliases": ["optics", "light", "sound", "waves"]},
-    {"id": "4E", "section": "chem_phys", "name": "Atoms, nuclear decay, electronic structure, atomic chemical behavior", "weight": 3, "aliases": ["atomic_structure", "periodic_table", "nuclear", "quantum"]},
-    {"id": "5A", "section": "chem_phys", "name": "Unique nature of water and its solutions", "weight": 2, "aliases": ["water", "solutions", "acid_base", "ph", "buffers"]},
-    {"id": "5B", "section": "chem_phys", "name": "Nature of molecules and intermolecular interactions", "weight": 3, "aliases": ["bonding", "intermolecular", "molecular_structure"]},
-    {"id": "5C", "section": "chem_phys", "name": "Separation and purification methods", "weight": 2, "aliases": ["chromatography", "distillation", "separation", "spectroscopy"]},
-    {"id": "5D", "section": "chem_phys", "name": "Structure, function, and reactivity of biological molecules", "weight": 4, "aliases": ["organic_chemistry", "functional_groups", "reactions", "stereochemistry"]},
-    {"id": "5E", "section": "chem_phys", "name": "Principles of chemical thermodynamics and kinetics", "weight": 3, "aliases": ["thermodynamics", "kinetics", "enthalpy", "entropy", "gibbs"]},
-
-    {"id": "1A", "section": "bio_biochem", "name": "Structure and function of proteins and amino acids", "weight": 5, "aliases": ["amino_acids", "proteins", "enzymes", "protein_structure"]},
-    {"id": "1B", "section": "bio_biochem", "name": "Transmission of genetic information from gene to protein", "weight": 3, "aliases": ["transcription", "translation", "central_dogma", "gene_expression"]},
-    {"id": "1C", "section": "bio_biochem", "name": "Transmission of heritable information and its variation", "weight": 2, "aliases": ["genetics", "inheritance", "evolution", "meiosis"]},
-    {"id": "1D", "section": "bio_biochem", "name": "Principles of bioenergetics and fuel molecule metabolism", "weight": 4, "aliases": ["metabolism", "bioenergetics", "glycolysis", "krebs", "oxidative_phosphorylation"]},
-    {"id": "2A", "section": "bio_biochem", "name": "Assemblies of molecules, cells, and groups of cells", "weight": 4, "aliases": ["cell_biology", "membranes", "organelles", "cell_theory"]},
-    {"id": "2B", "section": "bio_biochem", "name": "Structure, growth, physiology, genetics of prokaryotes and viruses", "weight": 2, "aliases": ["prokaryotes", "bacteria", "viruses", "microbiology"]},
-    {"id": "2C", "section": "bio_biochem", "name": "Processes of cell division, differentiation, and specialization", "weight": 3, "aliases": ["cell_cycle", "mitosis", "differentiation", "stem_cells"]},
-    {"id": "3A", "section": "bio_biochem", "name": "Structure and function of the nervous and endocrine systems", "weight": 4, "aliases": ["nervous_system", "endocrine", "neurons", "hormones"]},
-    {"id": "3B", "section": "bio_biochem", "name": "Structure and function of the main organ systems", "weight": 4, "aliases": ["physiology", "organ_systems", "circulatory", "respiratory", "renal", "immune"]},
-
-    {"id": "6A", "section": "psych_soc", "name": "Sensing the environment", "weight": 2, "aliases": ["sensation", "perception", "senses", "vision", "hearing"]},
-    {"id": "6B", "section": "psych_soc", "name": "Making sense of the environment", "weight": 3, "aliases": ["cognition", "memory", "attention", "consciousness", "intelligence"]},
-    {"id": "6C", "section": "psych_soc", "name": "Responding to the world", "weight": 2, "aliases": ["emotion", "stress", "motivation"]},
-    {"id": "7A", "section": "psych_soc", "name": "Individual influences on behavior", "weight": 3, "aliases": ["learning", "conditioning", "personality", "biological_bases"]},
-    {"id": "7B", "section": "psych_soc", "name": "Social processes that influence human behavior", "weight": 3, "aliases": ["social_influence", "conformity", "groups", "socialization"]},
-    {"id": "7C", "section": "psych_soc", "name": "Attitude and behavior change", "weight": 2, "aliases": ["attitudes", "persuasion", "behavior_change"]},
-    {"id": "8A", "section": "psych_soc", "name": "Self-identity", "weight": 2, "aliases": ["self_concept", "identity", "self_esteem"]},
-    {"id": "8B", "section": "psych_soc", "name": "Social thinking", "weight": 3, "aliases": ["attribution", "prejudice", "stereotypes", "social_cognition"]},
-    {"id": "8C", "section": "psych_soc", "name": "Social interactions", "weight": 3, "aliases": ["social_interaction", "attraction", "aggression", "altruism"]},
-    {"id": "9A", "section": "psych_soc", "name": "Understanding social structure", "weight": 3, "aliases": ["social_structure", "institutions", "culture", "social_theory"]},
-    {"id": "9B", "section": "psych_soc", "name": "Demographic characteristics and processes", "weight": 2, "aliases": ["demographics", "population", "migration"]},
-    {"id": "10A", "section": "psych_soc", "name": "Social inequality", "weight": 3, "aliases": ["inequality", "stratification", "poverty", "healthcare_disparities"]}
+    {
+      "id": "4A",
+      "section": "chem_phys",
+      "name": "Translational motion, forces, work, energy, equilibrium",
+      "weight": 3,
+      "aliases": [
+        "kinematics",
+        "forces",
+        "work_energy",
+        "equilibrium",
+        "mechanics"
+      ],
+      "topics": [
+        {
+          "id": "4A.1",
+          "name": "Translational motion",
+          "weight": 2,
+          "aliases": [
+            "translational_motion",
+            "kinematics",
+            "vectors",
+            "displacement",
+            "velocity",
+            "acceleration",
+            "projectile_motion"
+          ]
+        },
+        {
+          "id": "4A.2",
+          "name": "Force and Newton's laws",
+          "weight": 3,
+          "aliases": [
+            "newtons_laws",
+            "force",
+            "friction",
+            "free_body_diagram",
+            "inertia",
+            "center_of_mass",
+            "normal_force"
+          ]
+        },
+        {
+          "id": "4A.3",
+          "name": "Equilibrium and torque",
+          "weight": 2,
+          "aliases": [
+            "torque",
+            "lever_arm",
+            "rotational_equilibrium",
+            "statics",
+            "net_torque",
+            "moment_arm"
+          ]
+        },
+        {
+          "id": "4A.4",
+          "name": "Work",
+          "weight": 2,
+          "aliases": [
+            "work_energy_theorem",
+            "mechanical_advantage",
+            "conservative_forces",
+            "work_done_by_force",
+            "joules"
+          ]
+        },
+        {
+          "id": "4A.5",
+          "name": "Energy and conservation",
+          "weight": 3,
+          "aliases": [
+            "kinetic_energy",
+            "potential_energy",
+            "conservation_of_energy",
+            "mechanical_energy",
+            "power",
+            "gravitational_potential_energy"
+          ]
+        },
+        {
+          "id": "4A.6",
+          "name": "Periodic motion",
+          "weight": 1,
+          "aliases": [
+            "simple_harmonic_motion",
+            "periodic_motion",
+            "oscillation",
+            "pendulum",
+            "hookes_law",
+            "restoring_force"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4B",
+      "section": "chem_phys",
+      "name": "Importance of fluids for circulation of blood, gas movement",
+      "weight": 2,
+      "aliases": [
+        "fluids",
+        "hydrostatics",
+        "gases",
+        "circulation"
+      ],
+      "topics": [
+        {
+          "id": "4B.1",
+          "name": "Fluids and hydrostatics",
+          "weight": 3,
+          "aliases": [
+            "fluids",
+            "hydrostatics",
+            "density",
+            "specific_gravity",
+            "buoyancy",
+            "archimedes",
+            "hydrostatic_pressure",
+            "pascals_law"
+          ]
+        },
+        {
+          "id": "4B.2",
+          "name": "Fluid dynamics",
+          "weight": 3,
+          "aliases": [
+            "fluid_dynamics",
+            "bernoulli",
+            "continuity_equation",
+            "viscosity",
+            "poiseuille",
+            "flow_rate",
+            "venturi",
+            "surface_tension"
+          ]
+        },
+        {
+          "id": "4B.3",
+          "name": "Ideal gases",
+          "weight": 2,
+          "aliases": [
+            "ideal_gas_law",
+            "gas_laws",
+            "boyles_law",
+            "charles_law",
+            "avogadros_law",
+            "partial_pressure",
+            "daltons_law",
+            "mole_fraction"
+          ]
+        },
+        {
+          "id": "4B.4",
+          "name": "Kinetic molecular theory",
+          "weight": 1,
+          "aliases": [
+            "kinetic_molecular_theory",
+            "kmt",
+            "real_gases",
+            "van_der_waals",
+            "boltzmann",
+            "maxwell_boltzmann"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4C",
+      "section": "chem_phys",
+      "name": "Electrochemistry and electrical circuits",
+      "weight": 2,
+      "aliases": [
+        "electrochemistry",
+        "circuits",
+        "electrostatics"
+      ],
+      "topics": [
+        {
+          "id": "4C.1",
+          "name": "Electrostatics",
+          "weight": 3,
+          "aliases": [
+            "electrostatics",
+            "coulombs_law",
+            "electric_field",
+            "electric_charge",
+            "electric_potential",
+            "field_lines",
+            "point_charge"
+          ]
+        },
+        {
+          "id": "4C.2",
+          "name": "Circuit elements",
+          "weight": 3,
+          "aliases": [
+            "circuits",
+            "ohms_law",
+            "resistance",
+            "resistors",
+            "capacitance",
+            "capacitors",
+            "voltage",
+            "current"
+          ]
+        },
+        {
+          "id": "4C.3",
+          "name": "Magnetism",
+          "weight": 1,
+          "aliases": [
+            "magnetism",
+            "magnetic_field",
+            "lorentz_force",
+            "magnetic_force",
+            "right_hand_rule"
+          ]
+        },
+        {
+          "id": "4C.4",
+          "name": "Electrochemistry",
+          "weight": 2,
+          "aliases": [
+            "electrochemistry",
+            "galvanic_cell",
+            "voltaic_cell",
+            "electrolytic_cell",
+            "nernst_equation",
+            "reduction_potential",
+            "faradays_law",
+            "cell_potential"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4D",
+      "section": "chem_phys",
+      "name": "How light and sound interact with matter",
+      "weight": 1,
+      "aliases": [
+        "optics",
+        "light",
+        "sound",
+        "waves"
+      ],
+      "topics": [
+        {
+          "id": "4D.1",
+          "name": "Sound",
+          "weight": 2,
+          "aliases": [
+            "sound",
+            "doppler_effect",
+            "sound_intensity",
+            "decibels",
+            "resonance",
+            "ultrasound",
+            "pitch",
+            "sound_waves"
+          ]
+        },
+        {
+          "id": "4D.2",
+          "name": "Light and electromagnetic radiation",
+          "weight": 2,
+          "aliases": [
+            "electromagnetic_radiation",
+            "interference",
+            "diffraction",
+            "polarization",
+            "em_spectrum",
+            "double_slit",
+            "photon_energy"
+          ]
+        },
+        {
+          "id": "4D.3",
+          "name": "Absorption spectra and spectroscopy",
+          "weight": 2,
+          "aliases": [
+            "spectroscopy",
+            "ir_spectroscopy",
+            "nmr_spectroscopy",
+            "uv_vis",
+            "absorption_spectra",
+            "infrared"
+          ]
+        },
+        {
+          "id": "4D.4",
+          "name": "Geometrical optics",
+          "weight": 3,
+          "aliases": [
+            "geometrical_optics",
+            "snells_law",
+            "refraction",
+            "reflection",
+            "lenses",
+            "mirrors",
+            "total_internal_reflection",
+            "thin_lens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4E",
+      "section": "chem_phys",
+      "name": "Atoms, nuclear decay, electronic structure, atomic chemical behavior",
+      "weight": 3,
+      "aliases": [
+        "atomic_structure",
+        "periodic_table",
+        "nuclear",
+        "quantum"
+      ],
+      "topics": [
+        {
+          "id": "4E.1",
+          "name": "Atomic nucleus and nuclear decay",
+          "weight": 2,
+          "aliases": [
+            "nuclear_decay",
+            "radioactive_decay",
+            "atomic_nucleus",
+            "isotopes",
+            "half_life",
+            "alpha_beta_gamma",
+            "mass_spectrometry"
+          ]
+        },
+        {
+          "id": "4E.2",
+          "name": "Electronic structure",
+          "weight": 3,
+          "aliases": [
+            "electron_configuration",
+            "quantum_numbers",
+            "electronic_structure",
+            "bohr_model",
+            "orbitals",
+            "photoelectric_effect",
+            "emission_spectra",
+            "pauli_exclusion"
+          ]
+        },
+        {
+          "id": "4E.3",
+          "name": "Periodic table and trends",
+          "weight": 3,
+          "aliases": [
+            "periodic_trends",
+            "periodic_table",
+            "electronegativity",
+            "ionization_energy",
+            "electron_affinity",
+            "atomic_radius",
+            "effective_nuclear_charge"
+          ]
+        },
+        {
+          "id": "4E.4",
+          "name": "Stoichiometry",
+          "weight": 3,
+          "aliases": [
+            "stoichiometry",
+            "mole",
+            "molar_mass",
+            "empirical_formula",
+            "limiting_reactant",
+            "percent_composition",
+            "balancing_equations",
+            "oxidation_number"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5A",
+      "section": "chem_phys",
+      "name": "Unique nature of water and its solutions",
+      "weight": 2,
+      "aliases": [
+        "water",
+        "solutions",
+        "acid_base",
+        "ph",
+        "buffers"
+      ],
+      "topics": [
+        {
+          "id": "5A.1",
+          "name": "Acid/base equilibria",
+          "weight": 3,
+          "aliases": [
+            "acid_base",
+            "ph",
+            "pka",
+            "bronsted_lowry",
+            "weak_acids",
+            "buffers",
+            "conjugate_base",
+            "henderson_hasselbalch"
+          ]
+        },
+        {
+          "id": "5A.2",
+          "name": "Ions in solution",
+          "weight": 1,
+          "aliases": [
+            "ions_in_solution",
+            "hydronium",
+            "hydration",
+            "polyatomic_ions",
+            "cation_anion",
+            "common_ions"
+          ]
+        },
+        {
+          "id": "5A.3",
+          "name": "Solubility",
+          "weight": 2,
+          "aliases": [
+            "solubility",
+            "ksp",
+            "solubility_product",
+            "common_ion_effect",
+            "precipitation",
+            "complex_ions"
+          ]
+        },
+        {
+          "id": "5A.4",
+          "name": "Titration",
+          "weight": 2,
+          "aliases": [
+            "titration",
+            "titration_curve",
+            "indicators",
+            "neutralization",
+            "equivalence_point",
+            "redox_titration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5B",
+      "section": "chem_phys",
+      "name": "Nature of molecules and intermolecular interactions",
+      "weight": 3,
+      "aliases": [
+        "bonding",
+        "intermolecular",
+        "molecular_structure"
+      ],
+      "topics": [
+        {
+          "id": "5B.1",
+          "name": "Covalent bonds and Lewis structures",
+          "weight": 3,
+          "aliases": [
+            "covalent_bond",
+            "lewis_structures",
+            "formal_charge",
+            "resonance",
+            "bond_polarity",
+            "dipole_moment",
+            "octet_rule"
+          ]
+        },
+        {
+          "id": "5B.2",
+          "name": "Molecular geometry and hybridization",
+          "weight": 2,
+          "aliases": [
+            "vsepr",
+            "molecular_geometry",
+            "hybridization",
+            "sigma_pi_bonds",
+            "bond_angles",
+            "orbital_hybridization",
+            "sp3_sp2_sp"
+          ]
+        },
+        {
+          "id": "5B.3",
+          "name": "Stereochemistry",
+          "weight": 3,
+          "aliases": [
+            "stereochemistry",
+            "chirality",
+            "enantiomers",
+            "diastereomers",
+            "r_s_configuration",
+            "optical_activity",
+            "cis_trans",
+            "isomers"
+          ]
+        },
+        {
+          "id": "5B.4",
+          "name": "Intermolecular forces",
+          "weight": 2,
+          "aliases": [
+            "intermolecular_forces",
+            "hydrogen_bonding",
+            "london_dispersion",
+            "van_der_waals",
+            "dipole_dipole",
+            "imf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5C",
+      "section": "chem_phys",
+      "name": "Separation and purification methods",
+      "weight": 2,
+      "aliases": [
+        "chromatography",
+        "distillation",
+        "separation",
+        "spectroscopy"
+      ],
+      "topics": [
+        {
+          "id": "5C.1",
+          "name": "Extraction",
+          "weight": 2,
+          "aliases": [
+            "extraction",
+            "liquid_liquid_extraction",
+            "immiscible_solvents",
+            "distribution_coefficient",
+            "separatory_funnel"
+          ]
+        },
+        {
+          "id": "5C.2",
+          "name": "Distillation",
+          "weight": 2,
+          "aliases": [
+            "distillation",
+            "fractional_distillation",
+            "simple_distillation",
+            "boiling_point_separation"
+          ]
+        },
+        {
+          "id": "5C.3",
+          "name": "Chromatography",
+          "weight": 3,
+          "aliases": [
+            "chromatography",
+            "tlc",
+            "column_chromatography",
+            "gas_chromatography",
+            "hplc",
+            "ion_exchange",
+            "size_exclusion",
+            "affinity_chromatography"
+          ]
+        },
+        {
+          "id": "5C.4",
+          "name": "Electrophoresis",
+          "weight": 2,
+          "aliases": [
+            "electrophoresis",
+            "gel_electrophoresis",
+            "sds_page",
+            "isoelectric_focusing",
+            "protein_separation"
+          ]
+        },
+        {
+          "id": "5C.5",
+          "name": "Separation of enantiomers",
+          "weight": 1,
+          "aliases": [
+            "racemic_mixture",
+            "enantiomer_separation",
+            "chiral_resolution",
+            "resolution_of_enantiomers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5D",
+      "section": "chem_phys",
+      "name": "Structure, function, and reactivity of biological molecules",
+      "weight": 4,
+      "aliases": [
+        "organic_chemistry",
+        "functional_groups",
+        "reactions",
+        "stereochemistry"
+      ],
+      "topics": [
+        {
+          "id": "5D.1",
+          "name": "Nucleic acids and nucleotides",
+          "weight": 2,
+          "aliases": [
+            "nucleic_acids",
+            "nucleotides",
+            "dna",
+            "rna",
+            "purines",
+            "pyrimidines",
+            "double_helix",
+            "sugar_phosphate_backbone"
+          ]
+        },
+        {
+          "id": "5D.2",
+          "name": "Amino acids, peptides, and proteins",
+          "weight": 3,
+          "aliases": [
+            "amino_acids",
+            "peptides",
+            "proteins",
+            "peptide_bond",
+            "isoelectric_point",
+            "protein_folding",
+            "amino_acid_classification"
+          ]
+        },
+        {
+          "id": "5D.3",
+          "name": "Lipids",
+          "weight": 2,
+          "aliases": [
+            "lipids",
+            "fatty_acids",
+            "triacylglycerols",
+            "phospholipids",
+            "steroids",
+            "saponification",
+            "terpenes"
+          ]
+        },
+        {
+          "id": "5D.4",
+          "name": "Carbohydrates",
+          "weight": 2,
+          "aliases": [
+            "carbohydrates",
+            "monosaccharides",
+            "epimers",
+            "anomers",
+            "glycosidic_bond",
+            "hexoses",
+            "disaccharides"
+          ]
+        },
+        {
+          "id": "5D.5",
+          "name": "Aldehydes and ketones",
+          "weight": 3,
+          "aliases": [
+            "aldehydes",
+            "ketones",
+            "nucleophilic_addition",
+            "keto_enol_tautomerism",
+            "aldol_condensation",
+            "acetal_hemiacetal",
+            "carbonyl"
+          ]
+        },
+        {
+          "id": "5D.6",
+          "name": "Alcohols",
+          "weight": 2,
+          "aliases": [
+            "alcohols",
+            "hydroxyl_group",
+            "alcohol_oxidation",
+            "sn1_sn2",
+            "tosylate_mesylate",
+            "dehydration"
+          ]
+        },
+        {
+          "id": "5D.7",
+          "name": "Carboxylic acids and derivatives",
+          "weight": 3,
+          "aliases": [
+            "carboxylic_acids",
+            "esters",
+            "amides",
+            "anhydrides",
+            "acid_derivatives",
+            "nucleophilic_acyl_substitution",
+            "decarboxylation",
+            "transesterification"
+          ]
+        },
+        {
+          "id": "5D.8",
+          "name": "Phenols and aromatic compounds",
+          "weight": 1,
+          "aliases": [
+            "phenols",
+            "aromatic_heterocycles",
+            "quinones",
+            "hydroquinones",
+            "ubiquinone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5E",
+      "section": "chem_phys",
+      "name": "Principles of chemical thermodynamics and kinetics",
+      "weight": 3,
+      "aliases": [
+        "thermodynamics",
+        "kinetics",
+        "enthalpy",
+        "entropy",
+        "gibbs"
+      ],
+      "topics": [
+        {
+          "id": "5E.1",
+          "name": "Enzymes",
+          "weight": 3,
+          "aliases": [
+            "enzymes",
+            "enzyme_kinetics",
+            "michaelis_menten",
+            "enzyme_inhibition",
+            "active_site",
+            "allosteric_regulation",
+            "cofactors",
+            "catalysis"
+          ]
+        },
+        {
+          "id": "5E.2",
+          "name": "Bioenergetics",
+          "weight": 1,
+          "aliases": [
+            "bioenergetics",
+            "atp_hydrolysis",
+            "atp_group_transfer",
+            "biological_redox",
+            "phosphorylation"
+          ]
+        },
+        {
+          "id": "5E.3",
+          "name": "Thermochemistry and thermodynamics",
+          "weight": 3,
+          "aliases": [
+            "thermodynamics",
+            "thermochemistry",
+            "enthalpy",
+            "entropy",
+            "gibbs_free_energy",
+            "hess_law",
+            "calorimetry",
+            "heat_transfer"
+          ]
+        },
+        {
+          "id": "5E.4",
+          "name": "Kinetics and equilibrium",
+          "weight": 3,
+          "aliases": [
+            "chemical_kinetics",
+            "reaction_rate",
+            "rate_law",
+            "activation_energy",
+            "arrhenius",
+            "catalysts",
+            "le_chatelier",
+            "equilibrium_constant"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1A",
+      "section": "bio_biochem",
+      "name": "Structure and function of proteins and amino acids",
+      "weight": 5,
+      "aliases": [
+        "amino_acids",
+        "proteins",
+        "enzymes",
+        "protein_structure"
+      ],
+      "topics": [
+        {
+          "id": "1A.1",
+          "name": "Amino acids",
+          "weight": 3,
+          "aliases": [
+            "amino_acids",
+            "amino_acid",
+            "zwitterion",
+            "absolute_configuration",
+            "amino_acid_classification",
+            "peptide_bond",
+            "cysteine_disulfide"
+          ]
+        },
+        {
+          "id": "1A.2",
+          "name": "Protein structure",
+          "weight": 3,
+          "aliases": [
+            "protein_structure",
+            "primary_structure",
+            "secondary_structure",
+            "tertiary_structure",
+            "quaternary_structure",
+            "denaturation",
+            "protein_folding",
+            "isoelectric_point"
+          ]
+        },
+        {
+          "id": "1A.3",
+          "name": "Nonenzymatic protein function",
+          "weight": 1,
+          "aliases": [
+            "nonenzymatic_protein_function",
+            "motor_proteins",
+            "kinesin",
+            "dynein",
+            "protein_binding",
+            "structural_proteins"
+          ]
+        },
+        {
+          "id": "1A.4",
+          "name": "Enzyme structure and function",
+          "weight": 3,
+          "aliases": [
+            "enzymes",
+            "enzyme_catalysis",
+            "active_site",
+            "induced_fit",
+            "cofactors_coenzymes",
+            "activation_energy",
+            "enzyme_specificity"
+          ]
+        },
+        {
+          "id": "1A.5",
+          "name": "Control of enzyme activity",
+          "weight": 3,
+          "aliases": [
+            "enzyme_kinetics",
+            "michaelis_menten",
+            "cooperativity",
+            "enzyme_inhibition",
+            "competitive_inhibition",
+            "noncompetitive_inhibition",
+            "allosteric_enzyme",
+            "feedback_inhibition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1B",
+      "section": "bio_biochem",
+      "name": "Transmission of genetic information from gene to protein",
+      "weight": 3,
+      "aliases": [
+        "transcription",
+        "translation",
+        "central_dogma",
+        "gene_expression"
+      ],
+      "topics": [
+        {
+          "id": "1B.1",
+          "name": "Nucleic acid structure and function",
+          "weight": 3,
+          "aliases": [
+            "nucleic_acids",
+            "dna_structure",
+            "nucleotides",
+            "base_pairing",
+            "double_helix",
+            "purines_pyrimidines",
+            "watson_crick"
+          ]
+        },
+        {
+          "id": "1B.2",
+          "name": "DNA replication",
+          "weight": 3,
+          "aliases": [
+            "dna_replication",
+            "semiconservative",
+            "dna_polymerase",
+            "okazaki_fragments",
+            "replication_fork",
+            "helicase",
+            "primase",
+            "dna_ligase"
+          ]
+        },
+        {
+          "id": "1B.3",
+          "name": "DNA repair",
+          "weight": 1,
+          "aliases": [
+            "dna_repair",
+            "mismatch_repair",
+            "nucleotide_excision_repair",
+            "proofreading",
+            "dna_damage"
+          ]
+        },
+        {
+          "id": "1B.4",
+          "name": "Genetic code",
+          "weight": 2,
+          "aliases": [
+            "genetic_code",
+            "central_dogma",
+            "codon",
+            "anticodon",
+            "wobble",
+            "degenerate_code",
+            "reading_frame"
+          ]
+        },
+        {
+          "id": "1B.5",
+          "name": "Transcription",
+          "weight": 3,
+          "aliases": [
+            "transcription",
+            "rna_polymerase",
+            "mrna_processing",
+            "splicing",
+            "introns_exons",
+            "spliceosome",
+            "poly_a_tail"
+          ]
+        },
+        {
+          "id": "1B.6",
+          "name": "Translation",
+          "weight": 3,
+          "aliases": [
+            "translation",
+            "ribosome",
+            "trna",
+            "aminoacyl_trna",
+            "translation_initiation",
+            "post_translational_modification",
+            "peptidyl_transferase"
+          ]
+        },
+        {
+          "id": "1B.7",
+          "name": "Eukaryotic chromosome organization",
+          "weight": 1,
+          "aliases": [
+            "chromosome_organization",
+            "chromatin",
+            "histones",
+            "nucleosome",
+            "heterochromatin_euchromatin",
+            "telomeres_centromeres",
+            "supercoiling"
+          ]
+        },
+        {
+          "id": "1B.8",
+          "name": "Control of gene expression in prokaryotes",
+          "weight": 2,
+          "aliases": [
+            "prokaryotic_gene_regulation",
+            "operon",
+            "lac_operon",
+            "trp_operon",
+            "jacob_monod",
+            "repressor",
+            "inducible_operon"
+          ]
+        },
+        {
+          "id": "1B.9",
+          "name": "Control of gene expression in eukaryotes",
+          "weight": 3,
+          "aliases": [
+            "eukaryotic_gene_regulation",
+            "transcription_factors",
+            "dna_methylation",
+            "histone_modification",
+            "enhancers",
+            "oncogenes_tumor_suppressors",
+            "noncoding_rna",
+            "epigenetics"
+          ]
+        },
+        {
+          "id": "1B.10",
+          "name": "Recombinant DNA and biotechnology",
+          "weight": 3,
+          "aliases": [
+            "biotechnology",
+            "recombinant_dna",
+            "pcr",
+            "restriction_enzymes",
+            "gel_electrophoresis",
+            "dna_cloning",
+            "southern_blot",
+            "dna_sequencing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1C",
+      "section": "bio_biochem",
+      "name": "Transmission of heritable information and its variation",
+      "weight": 2,
+      "aliases": [
+        "genetics",
+        "inheritance",
+        "evolution",
+        "meiosis"
+      ],
+      "topics": [
+        {
+          "id": "1C.1",
+          "name": "Evidence that DNA is genetic material",
+          "weight": 1,
+          "aliases": [
+            "dna_genetic_material",
+            "griffith_experiment",
+            "hershey_chase",
+            "avery_macleod_mccarty",
+            "transformation_experiment"
+          ]
+        },
+        {
+          "id": "1C.2",
+          "name": "Mendelian concepts",
+          "weight": 3,
+          "aliases": [
+            "mendelian_genetics",
+            "genotype_phenotype",
+            "dominant_recessive",
+            "alleles",
+            "homozygous_heterozygous",
+            "incomplete_dominance",
+            "codominance",
+            "punnett_square"
+          ]
+        },
+        {
+          "id": "1C.3",
+          "name": "Meiosis and genetic variability",
+          "weight": 3,
+          "aliases": [
+            "meiosis",
+            "independent_assortment",
+            "crossing_over",
+            "recombination",
+            "genetic_linkage",
+            "sex_linked_inheritance",
+            "nondisjunction",
+            "mutation_types"
+          ]
+        },
+        {
+          "id": "1C.4",
+          "name": "Analytic methods",
+          "weight": 2,
+          "aliases": [
+            "hardy_weinberg",
+            "testcross",
+            "backcross",
+            "gene_mapping",
+            "crossover_frequency",
+            "allele_frequency"
+          ]
+        },
+        {
+          "id": "1C.5",
+          "name": "Evolution",
+          "weight": 3,
+          "aliases": [
+            "evolution",
+            "natural_selection",
+            "fitness",
+            "speciation",
+            "genetic_drift",
+            "gene_flow",
+            "adaptation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1D",
+      "section": "bio_biochem",
+      "name": "Principles of bioenergetics and fuel molecule metabolism",
+      "weight": 4,
+      "aliases": [
+        "metabolism",
+        "bioenergetics",
+        "glycolysis",
+        "krebs",
+        "oxidative_phosphorylation"
+      ],
+      "topics": [
+        {
+          "id": "1D.1",
+          "name": "Principles of bioenergetics",
+          "weight": 2,
+          "aliases": [
+            "bioenergetics",
+            "gibbs_free_energy",
+            "atp_hydrolysis",
+            "redox_half_reactions",
+            "keq_delta_g",
+            "phosphoryl_transfer",
+            "electron_carriers"
+          ]
+        },
+        {
+          "id": "1D.2",
+          "name": "Carbohydrates",
+          "weight": 2,
+          "aliases": [
+            "carbohydrates",
+            "monosaccharides",
+            "disaccharides",
+            "polysaccharides",
+            "glycosidic_bond",
+            "epimers_anomers",
+            "sugar_configuration"
+          ]
+        },
+        {
+          "id": "1D.3",
+          "name": "Glycolysis, gluconeogenesis, and the pentose phosphate pathway",
+          "weight": 3,
+          "aliases": [
+            "glycolysis",
+            "gluconeogenesis",
+            "pentose_phosphate_pathway",
+            "fermentation",
+            "pyruvate",
+            "hexokinase",
+            "glycogen_feeder_pathway"
+          ]
+        },
+        {
+          "id": "1D.4",
+          "name": "Principles of metabolic regulation",
+          "weight": 2,
+          "aliases": [
+            "metabolic_regulation",
+            "glycogen_metabolism",
+            "glycogenolysis",
+            "glycogenesis",
+            "allosteric_regulation",
+            "hormonal_metabolic_control"
+          ]
+        },
+        {
+          "id": "1D.5",
+          "name": "Citric acid cycle",
+          "weight": 3,
+          "aliases": [
+            "citric_acid_cycle",
+            "krebs_cycle",
+            "tca_cycle",
+            "acetyl_coa",
+            "oxaloacetate",
+            "citrate",
+            "nadh_fadh2_production"
+          ]
+        },
+        {
+          "id": "1D.6",
+          "name": "Metabolism of fatty acids and proteins",
+          "weight": 3,
+          "aliases": [
+            "fatty_acid_metabolism",
+            "beta_oxidation",
+            "ketone_bodies",
+            "lipolysis",
+            "fatty_acid_synthesis",
+            "protein_catabolism",
+            "lipid_biosynthesis"
+          ]
+        },
+        {
+          "id": "1D.7",
+          "name": "Oxidative phosphorylation",
+          "weight": 3,
+          "aliases": [
+            "oxidative_phosphorylation",
+            "electron_transport_chain",
+            "chemiosmosis",
+            "atp_synthase",
+            "proton_motive_force",
+            "cytochromes",
+            "oxidative_stress"
+          ]
+        },
+        {
+          "id": "1D.8",
+          "name": "Hormonal regulation and integration of metabolism",
+          "weight": 2,
+          "aliases": [
+            "metabolic_integration",
+            "hormonal_fuel_regulation",
+            "tissue_specific_metabolism",
+            "insulin_glucagon",
+            "body_mass_regulation",
+            "obesity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2A",
+      "section": "bio_biochem",
+      "name": "Assemblies of molecules, cells, and groups of cells",
+      "weight": 4,
+      "aliases": [
+        "cell_biology",
+        "membranes",
+        "organelles",
+        "cell_theory"
+      ],
+      "topics": [
+        {
+          "id": "2A.1",
+          "name": "Plasma membrane",
+          "weight": 3,
+          "aliases": [
+            "plasma_membrane",
+            "fluid_mosaic_model",
+            "phospholipid_bilayer",
+            "membrane_transport",
+            "osmosis",
+            "active_transport",
+            "sodium_potassium_pump",
+            "cell_junctions"
+          ]
+        },
+        {
+          "id": "2A.2",
+          "name": "Membrane-bound organelles and eukaryotic cells",
+          "weight": 3,
+          "aliases": [
+            "organelles",
+            "eukaryotic_cell",
+            "nucleus",
+            "mitochondria",
+            "endoplasmic_reticulum",
+            "golgi_apparatus",
+            "lysosomes",
+            "peroxisomes"
+          ]
+        },
+        {
+          "id": "2A.3",
+          "name": "Cytoskeleton",
+          "weight": 2,
+          "aliases": [
+            "cytoskeleton",
+            "microfilaments",
+            "microtubules",
+            "intermediate_filaments",
+            "cilia_flagella",
+            "centrioles",
+            "actin_filaments"
+          ]
+        },
+        {
+          "id": "2A.4",
+          "name": "Tissues formed from eukaryotic cells",
+          "weight": 1,
+          "aliases": [
+            "epithelial_tissue",
+            "connective_tissue",
+            "tissue_types",
+            "epithelium",
+            "extracellular_matrix"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2B",
+      "section": "bio_biochem",
+      "name": "Structure, growth, physiology, genetics of prokaryotes and viruses",
+      "weight": 2,
+      "aliases": [
+        "prokaryotes",
+        "bacteria",
+        "viruses",
+        "microbiology"
+      ],
+      "topics": [
+        {
+          "id": "2B.1",
+          "name": "Cell theory",
+          "weight": 1,
+          "aliases": [
+            "cell_theory",
+            "cell_doctrine",
+            "cell_theory_history",
+            "fundamental_unit_of_life"
+          ]
+        },
+        {
+          "id": "2B.2",
+          "name": "Classification and structure of prokaryotic cells",
+          "weight": 2,
+          "aliases": [
+            "prokaryotes",
+            "bacterial_structure",
+            "bacterial_shapes",
+            "cocci_bacilli_spirilli",
+            "bacterial_cell_wall",
+            "nucleoid",
+            "gram_stain"
+          ]
+        },
+        {
+          "id": "2B.3",
+          "name": "Growth and physiology of prokaryotic cells",
+          "weight": 2,
+          "aliases": [
+            "bacterial_growth",
+            "binary_fission",
+            "antibiotic_resistance",
+            "aerobic_anaerobic_bacteria",
+            "chemotaxis",
+            "exponential_growth",
+            "bacterial_symbiosis"
+          ]
+        },
+        {
+          "id": "2B.4",
+          "name": "Genetics of prokaryotic cells",
+          "weight": 2,
+          "aliases": [
+            "bacterial_genetics",
+            "plasmids",
+            "bacterial_transformation",
+            "conjugation",
+            "transposons",
+            "extragenomic_dna",
+            "horizontal_gene_transfer"
+          ]
+        },
+        {
+          "id": "2B.5",
+          "name": "Virus structure",
+          "weight": 2,
+          "aliases": [
+            "virus_structure",
+            "capsid",
+            "bacteriophage",
+            "viral_genome",
+            "enveloped_virus",
+            "viral_nucleic_acid"
+          ]
+        },
+        {
+          "id": "2B.6",
+          "name": "Viral life cycle",
+          "weight": 2,
+          "aliases": [
+            "viral_life_cycle",
+            "lytic_lysogenic",
+            "retrovirus",
+            "reverse_transcriptase",
+            "transduction",
+            "prions_viroids",
+            "hiv"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2C",
+      "section": "bio_biochem",
+      "name": "Processes of cell division, differentiation, and specialization",
+      "weight": 3,
+      "aliases": [
+        "cell_cycle",
+        "mitosis",
+        "differentiation",
+        "stem_cells"
+      ],
+      "topics": [
+        {
+          "id": "2C.1",
+          "name": "Mitosis",
+          "weight": 3,
+          "aliases": [
+            "mitosis",
+            "cell_cycle",
+            "interphase",
+            "mitotic_phases",
+            "spindle_apparatus",
+            "cell_cycle_control",
+            "cyclins_cdk"
+          ]
+        },
+        {
+          "id": "2C.2",
+          "name": "Biosignaling",
+          "weight": 1,
+          "aliases": [
+            "apoptosis",
+            "oncogenes",
+            "programmed_cell_death",
+            "tumor_suppressor_genes",
+            "cancer_cell_signaling"
+          ]
+        },
+        {
+          "id": "2C.3",
+          "name": "Reproductive system",
+          "weight": 2,
+          "aliases": [
+            "gametogenesis",
+            "spermatogenesis",
+            "oogenesis",
+            "ovum_sperm",
+            "fertilization",
+            "reproductive_sequence"
+          ]
+        },
+        {
+          "id": "2C.4",
+          "name": "Embryogenesis",
+          "weight": 2,
+          "aliases": [
+            "embryogenesis",
+            "cleavage",
+            "blastula",
+            "gastrulation",
+            "germ_layers",
+            "neurulation",
+            "blastocyst",
+            "morula"
+          ]
+        },
+        {
+          "id": "2C.5",
+          "name": "Mechanisms of development",
+          "weight": 2,
+          "aliases": [
+            "cell_differentiation",
+            "determination",
+            "stem_cells",
+            "cell_migration",
+            "morphogenesis",
+            "pluripotency",
+            "senescence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3A",
+      "section": "bio_biochem",
+      "name": "Structure and function of the nervous and endocrine systems",
+      "weight": 4,
+      "aliases": [
+        "nervous_system",
+        "endocrine",
+        "neurons",
+        "hormones"
+      ],
+      "topics": [
+        {
+          "id": "3A.1",
+          "name": "Nervous system: structure and function",
+          "weight": 3,
+          "aliases": [
+            "nervous_system",
+            "central_peripheral_nervous_system",
+            "autonomic_nervous_system",
+            "sympathetic_parasympathetic",
+            "reflex_arc",
+            "sensor_effector_neurons",
+            "cns_pns"
+          ]
+        },
+        {
+          "id": "3A.2",
+          "name": "Nerve cell",
+          "weight": 3,
+          "aliases": [
+            "neuron",
+            "action_potential",
+            "resting_potential",
+            "axon_dendrite",
+            "myelin_sheath",
+            "synapse",
+            "neurotransmitters",
+            "saltatory_conduction"
+          ]
+        },
+        {
+          "id": "3A.3",
+          "name": "Electrochemistry",
+          "weight": 1,
+          "aliases": [
+            "nernst_equation",
+            "concentration_cell",
+            "electrochemistry",
+            "reduction_potential"
+          ]
+        },
+        {
+          "id": "3A.4",
+          "name": "Biosignaling",
+          "weight": 2,
+          "aliases": [
+            "biosignaling",
+            "gated_ion_channels",
+            "voltage_gated_channels",
+            "ligand_gated_channels",
+            "gpcr",
+            "receptor_tyrosine_kinase",
+            "second_messengers"
+          ]
+        },
+        {
+          "id": "3A.5",
+          "name": "Lipids",
+          "weight": 1,
+          "aliases": [
+            "lipids",
+            "steroids",
+            "terpenes",
+            "terpenoids",
+            "cholesterol",
+            "fat_soluble_vitamins"
+          ]
+        },
+        {
+          "id": "3A.6",
+          "name": "Endocrine system: hormones and their sources",
+          "weight": 3,
+          "aliases": [
+            "endocrine_system",
+            "hormones",
+            "endocrine_glands",
+            "peptide_steroid_hormones",
+            "hypothalamus_pituitary",
+            "hormone_types",
+            "neuroendocrine"
+          ]
+        },
+        {
+          "id": "3A.7",
+          "name": "Endocrine system: mechanisms of hormone action",
+          "weight": 2,
+          "aliases": [
+            "hormone_action",
+            "hormone_receptors",
+            "hormone_second_messenger",
+            "hormone_feedback",
+            "target_tissue_specificity",
+            "direct_indirect_hormones"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3B",
+      "section": "bio_biochem",
+      "name": "Structure and function of the main organ systems",
+      "weight": 4,
+      "aliases": [
+        "physiology",
+        "organ_systems",
+        "circulatory",
+        "respiratory",
+        "renal",
+        "immune"
+      ],
+      "topics": [
+        {
+          "id": "3B.1",
+          "name": "Respiratory system",
+          "weight": 3,
+          "aliases": [
+            "respiratory_system",
+            "lungs_alveoli",
+            "gas_exchange",
+            "breathing_mechanics",
+            "diaphragm",
+            "partial_pressure_gas",
+            "respiratory_ph_control"
+          ]
+        },
+        {
+          "id": "3B.2",
+          "name": "Circulatory system",
+          "weight": 3,
+          "aliases": [
+            "circulatory_system",
+            "cardiovascular_system",
+            "heart_chambers",
+            "blood_vessels",
+            "blood_pressure",
+            "hemoglobin_oxygen_transport",
+            "systemic_pulmonary_circulation",
+            "capillary_exchange"
+          ]
+        },
+        {
+          "id": "3B.3",
+          "name": "Lymphatic system",
+          "weight": 1,
+          "aliases": [
+            "lymphatic_system",
+            "lymph",
+            "lymph_nodes",
+            "lymph_fluid_balance",
+            "lacteals"
+          ]
+        },
+        {
+          "id": "3B.4",
+          "name": "Immune system",
+          "weight": 3,
+          "aliases": [
+            "immune_system",
+            "innate_adaptive_immunity",
+            "antibodies",
+            "antigens",
+            "t_cells_b_cells",
+            "lymphocytes",
+            "mhc",
+            "clonal_selection"
+          ]
+        },
+        {
+          "id": "3B.5",
+          "name": "Digestive system",
+          "weight": 3,
+          "aliases": [
+            "digestive_system",
+            "gastrointestinal_tract",
+            "digestive_enzymes",
+            "liver_bile",
+            "pancreas_digestion",
+            "peristalsis",
+            "nutrient_absorption"
+          ]
+        },
+        {
+          "id": "3B.6",
+          "name": "Excretory system",
+          "weight": 3,
+          "aliases": [
+            "excretory_system",
+            "kidney",
+            "nephron",
+            "urine_formation",
+            "glomerular_filtration",
+            "osmoregulation",
+            "loop_of_henle",
+            "countercurrent_multiplier"
+          ]
+        },
+        {
+          "id": "3B.7",
+          "name": "Reproductive system",
+          "weight": 2,
+          "aliases": [
+            "reproductive_system",
+            "gonads",
+            "menstrual_cycle",
+            "reproductive_hormones",
+            "testes_ovaries",
+            "pregnancy_lactation",
+            "sexual_development"
+          ]
+        },
+        {
+          "id": "3B.8",
+          "name": "Muscle system",
+          "weight": 2,
+          "aliases": [
+            "muscle_system",
+            "skeletal_smooth_cardiac_muscle",
+            "muscle_contraction",
+            "neuromuscular_junction",
+            "muscle_fiber_types",
+            "motor_control"
+          ]
+        },
+        {
+          "id": "3B.9",
+          "name": "Specialized cell: muscle cell",
+          "weight": 3,
+          "aliases": [
+            "muscle_cell",
+            "sarcomere",
+            "actin_myosin",
+            "sliding_filament_model",
+            "troponin_tropomyosin",
+            "cross_bridge",
+            "calcium_contraction",
+            "myofibril"
+          ]
+        },
+        {
+          "id": "3B.10",
+          "name": "Skeletal system",
+          "weight": 2,
+          "aliases": [
+            "skeletal_system",
+            "bone",
+            "bone_structure",
+            "cartilage",
+            "joints",
+            "ligaments_tendons",
+            "osteoblast_osteoclast"
+          ]
+        },
+        {
+          "id": "3B.11",
+          "name": "Skin system",
+          "weight": 1,
+          "aliases": [
+            "skin_system",
+            "integumentary_system",
+            "epidermis_dermis",
+            "skin_thermoregulation",
+            "sweat_glands",
+            "skin_layers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6A",
+      "section": "psych_soc",
+      "name": "Sensing the environment",
+      "weight": 2,
+      "aliases": [
+        "sensation",
+        "perception",
+        "senses",
+        "vision",
+        "hearing"
+      ],
+      "topics": [
+        {
+          "id": "6A.1",
+          "name": "Sensation and thresholds",
+          "weight": 3,
+          "aliases": [
+            "sensation",
+            "absolute_threshold",
+            "difference_threshold",
+            "weber_law",
+            "signal_detection_theory",
+            "sensory_adaptation",
+            "psychophysics"
+          ]
+        },
+        {
+          "id": "6A.2",
+          "name": "Vision",
+          "weight": 2,
+          "aliases": [
+            "vision",
+            "retina",
+            "rods_and_cones",
+            "visual_pathways",
+            "feature_detection",
+            "parallel_processing"
+          ]
+        },
+        {
+          "id": "6A.3",
+          "name": "Hearing",
+          "weight": 2,
+          "aliases": [
+            "hearing",
+            "auditory_processing",
+            "cochlea",
+            "hair_cells",
+            "auditory_pathways"
+          ]
+        },
+        {
+          "id": "6A.4",
+          "name": "Other senses",
+          "weight": 2,
+          "aliases": [
+            "somatosensation",
+            "taste",
+            "olfaction",
+            "smell",
+            "pheromones",
+            "kinesthetic_sense",
+            "vestibular_sense"
+          ]
+        },
+        {
+          "id": "6A.5",
+          "name": "Perception",
+          "weight": 3,
+          "aliases": [
+            "perception",
+            "bottom_up_processing",
+            "top_down_processing",
+            "gestalt_principles",
+            "perceptual_constancy",
+            "depth_perception"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6B",
+      "section": "psych_soc",
+      "name": "Making sense of the environment",
+      "weight": 3,
+      "aliases": [
+        "cognition",
+        "memory",
+        "attention",
+        "consciousness",
+        "intelligence"
+      ],
+      "topics": [
+        {
+          "id": "6B.1",
+          "name": "Attention",
+          "weight": 2,
+          "aliases": [
+            "attention",
+            "selective_attention",
+            "divided_attention",
+            "cocktail_party_effect"
+          ]
+        },
+        {
+          "id": "6B.2",
+          "name": "Cognition",
+          "weight": 3,
+          "aliases": [
+            "cognition",
+            "piaget",
+            "cognitive_development",
+            "problem_solving",
+            "heuristics",
+            "intelligence",
+            "information_processing"
+          ]
+        },
+        {
+          "id": "6B.3",
+          "name": "Consciousness",
+          "weight": 3,
+          "aliases": [
+            "consciousness",
+            "sleep_stages",
+            "circadian_rhythm",
+            "dreaming",
+            "hypnosis",
+            "psychoactive_drugs",
+            "drug_addiction"
+          ]
+        },
+        {
+          "id": "6B.4",
+          "name": "Memory",
+          "weight": 3,
+          "aliases": [
+            "memory",
+            "encoding",
+            "retrieval",
+            "working_memory",
+            "long_term_potentiation",
+            "forgetting",
+            "memory_dysfunction"
+          ]
+        },
+        {
+          "id": "6B.5",
+          "name": "Language",
+          "weight": 2,
+          "aliases": [
+            "language",
+            "language_development",
+            "nativist_theory",
+            "broca_area",
+            "wernicke_area",
+            "linguistic_relativity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6C",
+      "section": "psych_soc",
+      "name": "Responding to the world",
+      "weight": 2,
+      "aliases": [
+        "emotion",
+        "stress",
+        "motivation"
+      ],
+      "topics": [
+        {
+          "id": "6C.1",
+          "name": "Emotion",
+          "weight": 3,
+          "aliases": [
+            "emotion",
+            "theories_of_emotion",
+            "james_lange",
+            "cannon_bard",
+            "schachter_singer",
+            "limbic_system",
+            "universal_emotions"
+          ]
+        },
+        {
+          "id": "6C.2",
+          "name": "Stress",
+          "weight": 2,
+          "aliases": [
+            "stress",
+            "stress_appraisal",
+            "stressors",
+            "coping",
+            "general_adaptation_syndrome",
+            "stress_management"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7A",
+      "section": "psych_soc",
+      "name": "Individual influences on behavior",
+      "weight": 3,
+      "aliases": [
+        "learning",
+        "conditioning",
+        "personality",
+        "biological_bases"
+      ],
+      "topics": [
+        {
+          "id": "7A.1",
+          "name": "Biological bases of behavior",
+          "weight": 3,
+          "aliases": [
+            "nervous_system",
+            "neurotransmitters",
+            "endocrine_system",
+            "behavioral_genetics",
+            "nature_vs_nurture",
+            "brain_regions",
+            "heritability"
+          ]
+        },
+        {
+          "id": "7A.2",
+          "name": "Personality",
+          "weight": 3,
+          "aliases": [
+            "personality",
+            "psychoanalytic_theory",
+            "humanistic_theory",
+            "trait_theory",
+            "big_five",
+            "social_cognitive_theory",
+            "defense_mechanisms"
+          ]
+        },
+        {
+          "id": "7A.3",
+          "name": "Psychological disorders",
+          "weight": 3,
+          "aliases": [
+            "psychological_disorders",
+            "anxiety_disorders",
+            "mood_disorders",
+            "depression",
+            "schizophrenia",
+            "personality_disorders",
+            "ocd",
+            "dsm"
+          ]
+        },
+        {
+          "id": "7A.4",
+          "name": "Motivation",
+          "weight": 2,
+          "aliases": [
+            "motivation",
+            "drive_reduction_theory",
+            "incentive_theory",
+            "maslow_hierarchy",
+            "arousal_theory",
+            "instinct_theory"
+          ]
+        },
+        {
+          "id": "7A.5",
+          "name": "Attitudes",
+          "weight": 2,
+          "aliases": [
+            "attitudes",
+            "cognitive_dissonance",
+            "foot_in_the_door",
+            "abc_model_attitudes",
+            "attitude_behavior_link"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7B",
+      "section": "psych_soc",
+      "name": "Social processes that influence human behavior",
+      "weight": 3,
+      "aliases": [
+        "social_influence",
+        "conformity",
+        "groups",
+        "socialization"
+      ],
+      "topics": [
+        {
+          "id": "7B.1",
+          "name": "Presence of others",
+          "weight": 3,
+          "aliases": [
+            "social_facilitation",
+            "deindividuation",
+            "bystander_effect",
+            "social_loafing",
+            "conformity",
+            "obedience",
+            "peer_pressure"
+          ]
+        },
+        {
+          "id": "7B.2",
+          "name": "Group decision-making",
+          "weight": 2,
+          "aliases": [
+            "group_polarization",
+            "groupthink",
+            "risky_shift",
+            "group_decision_making"
+          ]
+        },
+        {
+          "id": "7B.3",
+          "name": "Normative and non-normative behavior",
+          "weight": 2,
+          "aliases": [
+            "social_norms",
+            "deviance",
+            "folkways",
+            "mores",
+            "taboos",
+            "anomie",
+            "labeling_theory",
+            "sanctions"
+          ]
+        },
+        {
+          "id": "7B.4",
+          "name": "Socialization",
+          "weight": 2,
+          "aliases": [
+            "socialization",
+            "agents_of_socialization",
+            "primary_socialization",
+            "secondary_socialization",
+            "resocialization"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7C",
+      "section": "psych_soc",
+      "name": "Attitude and behavior change",
+      "weight": 2,
+      "aliases": [
+        "attitudes",
+        "persuasion",
+        "behavior_change"
+      ],
+      "topics": [
+        {
+          "id": "7C.1",
+          "name": "Habituation and dishabituation",
+          "weight": 1,
+          "aliases": [
+            "habituation",
+            "dishabituation",
+            "sensitization"
+          ]
+        },
+        {
+          "id": "7C.2",
+          "name": "Associative learning",
+          "weight": 3,
+          "aliases": [
+            "associative_learning",
+            "classical_conditioning",
+            "operant_conditioning",
+            "reinforcement",
+            "punishment",
+            "reinforcement_schedules",
+            "pavlov",
+            "skinner"
+          ]
+        },
+        {
+          "id": "7C.3",
+          "name": "Observational learning",
+          "weight": 2,
+          "aliases": [
+            "observational_learning",
+            "modeling",
+            "mirror_neurons",
+            "bandura",
+            "vicarious_learning"
+          ]
+        },
+        {
+          "id": "7C.4",
+          "name": "Theories of attitude and behavior change",
+          "weight": 2,
+          "aliases": [
+            "elaboration_likelihood_model",
+            "social_cognitive_theory",
+            "attitude_change",
+            "persuasion",
+            "central_route",
+            "peripheral_route"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8A",
+      "section": "psych_soc",
+      "name": "Self-identity",
+      "weight": 2,
+      "aliases": [
+        "self_concept",
+        "identity",
+        "self_esteem"
+      ],
+      "topics": [
+        {
+          "id": "8A.1",
+          "name": "Self-concept and identity",
+          "weight": 2,
+          "aliases": [
+            "self_concept",
+            "self_esteem",
+            "self_efficacy",
+            "locus_of_control",
+            "social_identity",
+            "identity_types"
+          ]
+        },
+        {
+          "id": "8A.2",
+          "name": "Formation of identity",
+          "weight": 3,
+          "aliases": [
+            "identity_formation",
+            "looking_glass_self",
+            "erikson_stages",
+            "psychosexual_stages",
+            "moral_development",
+            "kohlberg",
+            "reference_group"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8B",
+      "section": "psych_soc",
+      "name": "Social thinking",
+      "weight": 3,
+      "aliases": [
+        "attribution",
+        "prejudice",
+        "stereotypes",
+        "social_cognition"
+      ],
+      "topics": [
+        {
+          "id": "8B.1",
+          "name": "Attribution",
+          "weight": 3,
+          "aliases": [
+            "attribution_theory",
+            "fundamental_attribution_error",
+            "actor_observer_bias",
+            "self_serving_bias",
+            "dispositional_attribution",
+            "situational_attribution"
+          ]
+        },
+        {
+          "id": "8B.2",
+          "name": "Prejudice and bias",
+          "weight": 3,
+          "aliases": [
+            "prejudice",
+            "stereotypes",
+            "ethnocentrism",
+            "stigma",
+            "cultural_relativism"
+          ]
+        },
+        {
+          "id": "8B.3",
+          "name": "Processes related to stereotypes",
+          "weight": 2,
+          "aliases": [
+            "self_fulfilling_prophecy",
+            "stereotype_threat",
+            "stereotype_boost"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8C",
+      "section": "psych_soc",
+      "name": "Social interactions",
+      "weight": 3,
+      "aliases": [
+        "social_interaction",
+        "attraction",
+        "aggression",
+        "altruism"
+      ],
+      "topics": [
+        {
+          "id": "8C.1",
+          "name": "Elements of social interaction",
+          "weight": 3,
+          "aliases": [
+            "social_status",
+            "social_roles",
+            "role_conflict",
+            "primary_groups",
+            "in_group_out_group",
+            "bureaucracy",
+            "social_networks"
+          ]
+        },
+        {
+          "id": "8C.2",
+          "name": "Self-presentation",
+          "weight": 2,
+          "aliases": [
+            "self_presentation",
+            "impression_management",
+            "dramaturgical_approach",
+            "front_stage_back_stage",
+            "nonverbal_communication",
+            "goffman"
+          ]
+        },
+        {
+          "id": "8C.3",
+          "name": "Social behavior",
+          "weight": 2,
+          "aliases": [
+            "attraction",
+            "aggression",
+            "attachment",
+            "altruism",
+            "social_support",
+            "inclusive_fitness",
+            "mate_choice"
+          ]
+        },
+        {
+          "id": "8C.4",
+          "name": "Discrimination",
+          "weight": 2,
+          "aliases": [
+            "discrimination",
+            "institutional_discrimination",
+            "individual_discrimination",
+            "prejudice_and_discrimination"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9A",
+      "section": "psych_soc",
+      "name": "Understanding social structure",
+      "weight": 3,
+      "aliases": [
+        "social_structure",
+        "institutions",
+        "culture",
+        "social_theory"
+      ],
+      "topics": [
+        {
+          "id": "9A.1",
+          "name": "Theoretical approaches",
+          "weight": 3,
+          "aliases": [
+            "functionalism",
+            "conflict_theory",
+            "symbolic_interactionism",
+            "social_constructionism",
+            "feminist_theory",
+            "rational_choice_theory",
+            "macrosociology"
+          ]
+        },
+        {
+          "id": "9A.2",
+          "name": "Social institutions",
+          "weight": 3,
+          "aliases": [
+            "social_institutions",
+            "hidden_curriculum",
+            "kinship",
+            "religiosity",
+            "medicalization",
+            "sick_role",
+            "secularization"
+          ]
+        },
+        {
+          "id": "9A.3",
+          "name": "Culture",
+          "weight": 2,
+          "aliases": [
+            "culture",
+            "material_culture",
+            "symbolic_culture",
+            "culture_lag",
+            "culture_shock",
+            "assimilation",
+            "multiculturalism",
+            "subculture"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9B",
+      "section": "psych_soc",
+      "name": "Demographic characteristics and processes",
+      "weight": 2,
+      "aliases": [
+        "demographics",
+        "population",
+        "migration"
+      ],
+      "topics": [
+        {
+          "id": "9B.1",
+          "name": "Demographic structure of society",
+          "weight": 3,
+          "aliases": [
+            "demographics",
+            "age_cohort",
+            "social_construction_of_gender",
+            "race_and_ethnicity",
+            "immigration_status",
+            "sexual_orientation",
+            "social_construction_of_race"
+          ]
+        },
+        {
+          "id": "9B.2",
+          "name": "Demographic shifts and social change",
+          "weight": 2,
+          "aliases": [
+            "demographic_transition",
+            "population_growth",
+            "fertility_and_mortality",
+            "migration",
+            "social_movements",
+            "globalization",
+            "urbanization",
+            "malthusian_theory"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10A",
+      "section": "psych_soc",
+      "name": "Social inequality",
+      "weight": 3,
+      "aliases": [
+        "inequality",
+        "stratification",
+        "poverty",
+        "healthcare_disparities"
+      ],
+      "topics": [
+        {
+          "id": "10A.1",
+          "name": "Spatial inequality",
+          "weight": 2,
+          "aliases": [
+            "spatial_inequality",
+            "residential_segregation",
+            "environmental_justice",
+            "neighborhood_safety"
+          ]
+        },
+        {
+          "id": "10A.2",
+          "name": "Social class",
+          "weight": 3,
+          "aliases": [
+            "social_class",
+            "socioeconomic_status",
+            "social_stratification",
+            "social_mobility",
+            "cultural_capital",
+            "poverty",
+            "meritocracy",
+            "intersectionality"
+          ]
+        },
+        {
+          "id": "10A.3",
+          "name": "Health disparities",
+          "weight": 2,
+          "aliases": [
+            "health_disparities",
+            "class_health_inequality",
+            "race_health_inequality",
+            "gender_health_inequality"
+          ]
+        },
+        {
+          "id": "10A.4",
+          "name": "Health care disparities",
+          "weight": 2,
+          "aliases": [
+            "health_care_disparities",
+            "access_to_care",
+            "healthcare_inequality",
+            "healthcare_access"
+          ]
+        }
+      ]
+    }
   ]
 }

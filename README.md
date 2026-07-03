@@ -4,6 +4,12 @@
 
 Vantage is a desktop and Android study app built on this Anki fork. It keeps Anki's FSRS spaced repetition, adds a topic-interleaving review order in the shared Rust core, and adds an honest readiness layer: three separate scores (memory, performance, readiness), each with a range and a give-up rule that shows no number when the evidence is thin. See **[VANTAGE.md](./VANTAGE.md)** for the project overview, the three repositories, and build and run instructions.
 
+![Vantage dashboard: three separate scores with ranges, exam coverage, and the best next topic](docs/img/dashboard.png)
+
+**Reviewing this?** Start with the 5-minute tour in [VANTAGE.md](./VANTAGE.md#for-reviewers-a-5-minute-tour). All test and benchmark evidence is collected in one place at [vantage_tools/TEST_RESULTS.md](vantage_tools/TEST_RESULTS.md), and the Rust engine change is written up in [RUST_CHANGE_NOTE.md](RUST_CHANGE_NOTE.md).
+
+**Download and run (no build):** desktop `.dmg` + add-on from the [latest release](https://github.com/IsabellaChen70/anki/releases/latest); Android `.apk` from the [Android release](https://github.com/IsabellaChen70/Anki-Android/releases/latest).
+
 The rest of this file is the upstream Anki README.
 
 ---

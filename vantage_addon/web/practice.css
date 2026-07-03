@@ -33,6 +33,7 @@ html, body {
 .top__title { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; }
 .top__right { display: flex; align-items: baseline; gap: 1.25rem; }
 .progress { color: var(--gray-500); font-weight: 600; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.progress--met { color: var(--ok); }  /* today's reasoning goal reached (going over is fine) */
 .linkbtn { font-family: inherit; font-weight: 600; font-size: 0.9rem; color: var(--gray-500); background: none; border: 0; cursor: pointer; padding: 0.3rem 0; }
 .linkbtn:hover { color: var(--fg); }
 .linkbtn:focus-visible { outline: 2px solid var(--cars); outline-offset: 3px; border-radius: 4px; }

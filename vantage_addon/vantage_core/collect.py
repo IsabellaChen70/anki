@@ -134,6 +134,9 @@ class Dashboard:
     n_cards_seen: int
     best_next: Optional[dict] = None
     next_topics: list = field(default_factory=list)
+    topic_gaps: list = field(default_factory=list)  # areas with the most topics left
+    topic_coverage: float = 0.0  # depth-aware (topic-grain) coverage, for display
+    topic_coverage_by_section: dict = field(default_factory=dict)
     book_set: str = "kaplan"  # which prep-book set to name in "Study this next"
     updated_ts: int = 0
     ai_used: bool = False  # the scoring path never calls a model (D12)
@@ -547,21 +550,49 @@ def gather(
     # --- memory + coverage + per-concept mastery in one pass over the cards ---
     r_values: list[float] = []
     covered: set[str] = set()
+    covered_topics: set[str] = set()  # finer than `covered`; drives topic-level gaps
     concept_r: dict[str, list[float]] = {}
     for tags, r in _cards_r_and_tags(col):
+        toks = tags.split()
         card_concepts = {
-            cid
-            for cid in (outline.match_tag(t) for t in tags.split())
-            if cid is not None
+            cid for cid in (outline.match_tag(t) for t in toks) if cid is not None
+        }
+        card_topics = {
+            tid for tid in (outline.match_tag_topic(t) for t in toks) if tid is not None
         }
         covered |= card_concepts
+        covered_topics |= card_topics
         if r is not None:
             r_values.append(r)
             for cid in card_concepts:
                 concept_r.setdefault(cid, []).append(r)
 
+    # Some decks encode the topic in the DECK path rather than in tags (e.g. Pankow
+    # P/S subdecks like ".../9B::Demographics"). Match those deck names too, via the
+    # exact deck_topic_map, so their topics count -- non-destructive (no card edits).
+    for d in col.decks.all_names_and_ids():
+        tid = outline.deck_topic(d.name)
+        if tid is not None and col.db.scalar(
+            "select 1 from cards where did = ? limit 1", d.id
+        ):
+            covered_topics.add(tid)
+
+    # A card that matches a finer TOPIC also covers that topic's parent category,
+    # so topic-tagged decks (e.g. MileDown "Cytoskeleton" -> topic 2A.3) count
+    # toward category coverage even when the category's own aliases miss the tag.
+    for tid in covered_topics:
+        t = outline.topic(tid)
+        if t is not None:
+            covered.add(t.category)
+
     coverage = outline.weighted_coverage(covered)
     coverage_by_section = outline.coverage_by_section(covered)
+    # Depth-aware coverage for DISPLAY (how much of the exam you actually have cards
+    # for, at the topic grain). The category-level `coverage` above still drives the
+    # readiness breadth gate (touched every area); this finer number is what the UI
+    # shows so "% covered" no longer saturates at 100% while topics remain to study.
+    topic_coverage = outline.topic_weighted_coverage(covered_topics, covered)
+    topic_coverage_by_section = outline.topic_coverage_by_section(covered_topics, covered)
     n_reviews = _graded_reviews(col)
 
     memory = scoring.memory_score(r_values, coverage, cfg)
@@ -602,7 +633,9 @@ def gather(
     # classic result above. Item difficulty/discrimination come from metadata when
     # present, else a fixed prior.
     if cfg.readiness_use_irt:
-        section_items: dict[str, list[scoring.IrtItem]] = {s: [] for s in SECTIONS}
+        section_items: dict[str, list[scoring.IrtItem]] = {
+            s: [] for s in scoring.READINESS_SECTIONS
+        }
         for o in perf:
             s = o.get("section")
             if s in section_items:
@@ -653,8 +686,12 @@ def gather(
             calib_pairs.extend((section_recall[s], o) for o in outs)
     calib = scoring.calibration(calib_pairs, cfg)
 
-    next_topics = _next_topics(outline, covered, concept_r)
+    next_topics = _next_topics(outline, covered, concept_r, covered_topics)
     best_next = next_topics[0] if next_topics else None
+    # Only show the finer topic breakdown once some cards actually carry
+    # topic-grain tags; a category-only-tagged deck would otherwise read 0/N
+    # everywhere, overstating the gap.
+    topic_gaps = _topic_gaps(outline, covered_topics) if covered_topics else []
     plan = study_plan(outline, covered, concept_r, cfg)
 
     # metacognition + diagnosis from the per-item practice records
@@ -687,25 +724,34 @@ def gather(
             d = h.get("d")
             point = _as_float(h.get("point"))
             if isinstance(d, str) and d and point is not None:
-                history.append({"d": d, "point": point})
+                n_raw = h.get("n")
+                n_pt = int(n_raw) if isinstance(n_raw, (int, float)) else len(SECTIONS)
+                history.append({"d": d, "point": point, "n": n_pt})
 
-    # Only record a readiness point that is LIVE and a FULL 3-section composite:
-    # a partial/abstained readiness isn't comparable day to day, so we never write
-    # it (and don't let it feed the trajectory below).
+    # Record a readiness point that is LIVE and covers at least all three science
+    # sections (CARS optional). Tag it with how many sections it spans so a later
+    # jump from a 3-section to a 4-section composite (once CARS is scored) never mixes
+    # two scales into one misleading slope. A partial/abstained readiness is never
+    # written and never feeds the trajectory below.
     modeled = set((readiness.extra or {}).get("modeled_sections", []))
+    n_modeled = len(modeled)
     is_full_composite = (
         not readiness.abstained
         and readiness.band is not None
-        and modeled == set(SECTIONS)
+        and set(SECTIONS) <= modeled
     )
     if is_full_composite:
         point = round(readiness.band.point, 1)
         existing = next((h for h in history if h["d"] == today_iso), None)
-        # Write at most once per day: only when today's point is missing or has
-        # moved, so a dashboard refresh doesn't rewrite the collection every render.
-        if existing is None or existing["point"] != point:
+        # Write at most once per day: only when today's point or its scale changed,
+        # so a dashboard refresh doesn't rewrite the collection every render.
+        if (
+            existing is None
+            or existing.get("point") != point
+            or existing.get("n") != n_modeled
+        ):
             history = [h for h in history if h["d"] != today_iso]
-            history.append({"d": today_iso, "point": point})
+            history.append({"d": today_iso, "point": point, "n": n_modeled})
             col.set_config(HISTORY_CONFIG_KEY, history)
 
     target = col.get_config(TARGET_CONFIG_KEY, None)
@@ -724,9 +770,22 @@ def gather(
         weakest = min(r_sections, key=lambda s: r_sections[s].point)
     # Only project while readiness is a live full composite; once it drops below
     # the give-up line, stop feeding stale points so the trajectory panel abstains
-    # instead of projecting from an out-of-date snapshot.
-    traj_history = history if is_full_composite else []
-    traj = scoring.trajectory(traj_history, int(target) if target else None, days_left, weakest, cfg)
+    # instead of projecting from an out-of-date snapshot. Feed only same-scale
+    # snapshots (today's section count), so adding CARS restarts the trend cleanly
+    # rather than projecting across two scales.
+    traj_history = (
+        [h for h in history if h.get("n", len(SECTIONS)) == n_modeled]
+        if is_full_composite
+        else []
+    )
+    traj = scoring.trajectory(
+        traj_history,
+        int(target) if target else None,
+        days_left,
+        weakest,
+        cfg,
+        n_sections=n_modeled or len(SECTIONS),
+    )
 
     # study pace: days until the exam + a transparent daily target to get there.
     # The reasoning goal scales to how many AAMC concepts are not yet exam-ready
@@ -737,6 +796,14 @@ def gather(
         recall = (sum(rs) / len(rs)) if rs else 0.0
         if recall < cfg.content_ready_recall:
             concepts_to_practice += 1
+    # Reasoning answered *today*, for the practice screen's "X of Y today" counter.
+    # Anki's day boundary (col.sched.day_cutoff is the next rollover), so today's
+    # window is [cutoff - 1 day, cutoff). Legacy config-only outcomes with no ts are
+    # simply not counted toward today (they lack an attempt time).
+    day_start = int(col.sched.day_cutoff) - 86400
+    reasoning_today = sum(
+        1 for o in perf if isinstance(o.get("ts"), int) and o["ts"] >= day_start
+    )
     pace = scoring.study_pace(
         exam_date,
         _today_iso(),
@@ -746,6 +813,7 @@ def gather(
         cfg,
         concepts_to_practice=concepts_to_practice,
         cards_studied=len(r_values),
+        reasoning_today=reasoning_today,
     )
 
     return Dashboard(
@@ -754,11 +822,14 @@ def gather(
         readiness=readiness,
         coverage=coverage,
         coverage_by_section=coverage_by_section,
+        topic_coverage=topic_coverage,
+        topic_coverage_by_section=topic_coverage_by_section,
         outline_version=outline.version,
         n_reviews=n_reviews,
         n_cards_seen=len(r_values),
         best_next=best_next,
         next_topics=next_topics,
+        topic_gaps=topic_gaps,
         book_set=_book_set(col),
         updated_ts=int(time.time()),
         ai_used=False,
@@ -776,14 +847,36 @@ def gather(
 
 
 def _next_topics(
-    outline: Outline, covered: set[str], concept_r: dict[str, list[float]], top: int = 6
+    outline: Outline,
+    covered: set[str],
+    concept_r: dict[str, list[float]],
+    covered_topics: Optional[set[str]] = None,
+    top: int = 6,
 ) -> list[dict]:
     """Concepts ranked by weight x (1 - mastery), heaviest-weakest first; uncovered
-    concepts count as mastery 0 (D10). Each carries where-to-study info."""
+    concepts count as mastery 0 (D10). Each carries where-to-study info.
+
+    When the outline has topics, `topics` lists the category's still-UNCOVERED
+    topic names (heaviest first) so "study next" points at the specific gaps, not
+    generic aliases; `topics_covered`/`topics_total` give the finer progress. Falls
+    back to category aliases when a category has no authored topics."""
+    covered_topics = covered_topics or set()
     items = []
     for c in outline.concepts:
         rs = concept_r.get(c.id, [])
         mastery = (sum(rs) / len(rs)) if rs else 0.0
+        if c.topics:
+            uncovered = [t for t in c.topics if t.id not in covered_topics]
+            # heaviest-first; if every topic is already touched, show the heaviest
+            # ones as review targets rather than an empty list.
+            shown = sorted(uncovered or list(c.topics), key=lambda t: t.weight, reverse=True)
+            topic_names = [t.name for t in shown[:4]]
+            topics_total = len(c.topics)
+            topics_covered = topics_total - len(uncovered)
+        else:
+            topic_names = [a.replace("_", " ") for a in c.aliases[:4]]
+            topics_total = 0
+            topics_covered = 0
         items.append(
             {
                 "concept_id": c.id,
@@ -794,11 +887,45 @@ def _next_topics(
                 "covered": c.id in covered,
                 "priority": round(c.weight * (1.0 - mastery), 3),
                 "subject": SUBJECT_BY_CONCEPT.get(c.id, ""),
-                "topics": [a.replace("_", " ") for a in c.aliases[:4]],
+                "topics": topic_names,
+                "topics_covered": topics_covered,
+                "topics_total": topics_total,
             }
         )
     items.sort(key=lambda x: x["priority"], reverse=True)
     return items[:top]
+
+
+def _topic_gaps(
+    outline: Outline, covered_topics: set[str], top: int = 6
+) -> list[dict]:
+    """Content areas with the most still-unstudied topics, for the coverage panel's
+    finer breakdown. Ranked by unstudied-topic count times the area's weight, so the
+    heaviest gaps lead. Only areas that still have a gap are returned (a fully
+    covered area is not a to-do)."""
+    coverage = outline.topic_coverage_by_category(covered_topics)
+    rows = []
+    for c in outline.concepts:
+        pair = coverage.get(c.id)
+        if not pair:
+            continue
+        covered_n, total = pair
+        if covered_n >= total:
+            continue
+        rows.append(
+            {
+                "concept_id": c.id,
+                "name": c.name,
+                "section": c.section,
+                "covered": covered_n,
+                "total": total,
+                "_rank": (total - covered_n) * (c.weight or 1.0),
+            }
+        )
+    rows.sort(key=lambda r: r["_rank"], reverse=True)
+    for r in rows:
+        del r["_rank"]
+    return rows[:top]
 
 
 @dataclass
@@ -948,6 +1075,47 @@ def confusability_pairs(
     return pairs
 
 
+def interleave_priorities(
+    outcomes: list[dict],
+    concept_tags: dict[str, list[str]],
+    cfg: ScoringConfig,
+) -> list[dict]:
+    """Per-topic study priority for the Rust Mixed interleaver: lead the session
+    with the topics the student misses most, so weak areas come up first.
+
+    Same miss signal and give-up gate as `confusability_pairs`: a tag inherits its
+    concept's application-item miss count, normalized to 0..1 (the engine only uses
+    the relative order, to pick the starting bucket). Returns an EMPTY list below
+    the gate, which the engine treats as the historical seed-chosen start.
+    Deterministic and de-duplicated."""
+    miss: dict[str, int] = {}
+    total_missed = 0
+    for o in outcomes:
+        if o.get("correct"):
+            continue
+        cid = o.get("concept")
+        if not (isinstance(cid, str) and cid):
+            continue
+        total_missed += 1
+        if concept_tags.get(cid):
+            miss[cid] = miss.get(cid, 0) + 1
+
+    if total_missed < cfg.min_mistakes or not miss:
+        return []
+
+    max_miss = max(miss.values())
+    out: list[dict] = []
+    seen: set[str] = set()
+    for cid in sorted(miss, key=lambda c: (-miss[c], c)):
+        weight = round(miss[cid] / max_miss, 6)
+        for tag in concept_tags.get(cid, []):
+            if tag in seen:
+                continue
+            seen.add(tag)
+            out.append({"topic": tag, "weight": weight})
+    return out
+
+
 def _concept_tags(
     col: "Collection", outline: Outline, prefix: str
 ) -> dict[str, list[str]]:
@@ -1000,11 +1168,15 @@ def set_interleave_confusability(
 
     concept_tags = _concept_tags(col, outline, prefix)
     pairs = confusability_pairs(outcomes, concept_tags, cfg)
+    priorities = interleave_priorities(outcomes, concept_tags, cfg)
 
     existing = conf_cfg.get("confusability")
     existing_norm = existing if isinstance(existing, list) else []
-    if existing_norm == pairs:
+    existing_pri = conf_cfg.get("priorities")
+    existing_pri_norm = existing_pri if isinstance(existing_pri, list) else []
+    if existing_norm == pairs and existing_pri_norm == priorities:
         return pairs  # unchanged -> don't rewrite (avoids needless sync churn)
     conf_cfg["confusability"] = pairs
+    conf_cfg["priorities"] = priorities
     col.set_config(INTERLEAVE_CONFIG_KEY, conf_cfg)
     return pairs

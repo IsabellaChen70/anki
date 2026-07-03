@@ -25,6 +25,14 @@ SECTION_LABELS: dict[str, str] = {
     "psych_soc": "Psych/Soc",
 }
 
+# Sections that can receive a readiness SCORE. CARS has no flashcard/FSRS memory,
+# so it never enters coverage or the memory score, but its reasoning-practice
+# accuracy is scored like any application section. So CARS joins the readiness
+# composite once it has enough answered items, lifting the 3-section partial to a
+# full 4-section 472-528 projection; until then it abstains and the composite stays
+# partial. (SECTIONS stays the three science sections that coverage/memory use.)
+READINESS_SECTIONS: tuple[str, ...] = (*SECTIONS, "cars")
+
 # "how sure" levels, ordered.
 INSUFFICIENT = "insufficient"
 LOW = "low"
@@ -705,7 +713,10 @@ def irt_readiness(
     sections_out: dict[str, Band] = {}
     per_section_est: dict[str, IrtEstimate] = {}
     usable: list[str] = []
-    for s in SECTIONS:
+    # Score the three science sections plus CARS: CARS joins the composite (lifting
+    # it toward the full 4-section 472-528 scale) only once it has enough answered
+    # reasoning items; the activation gate above still keys on the science sections.
+    for s in READINESS_SECTIONS:
         items = list(section_items.get(s, []))
         # Include a section once it has enough answered items (the same count gate
         # as the classic path). A section the student aces carries little Fisher
@@ -761,12 +772,12 @@ def irt_readiness(
         how_sure = LOW
 
     reasons = [
-        f"IRT latent-ability estimate over {len(usable)} of 3 science sections",
+        f"IRT latent-ability estimate over {len(usable)} section(s)",
         f"weighted coverage {coverage:.0%}",
     ]
     weakest = min(usable, key=lambda s: sections_out[s].point)
     reasons.append(
-        f"weakest modeled section: {SECTION_LABELS[weakest]} "
+        f"weakest modeled section: {SECTION_LABELS.get(weakest, weakest)} "
         f"({per_section_est[weakest].n} items)"
     )
 
@@ -781,8 +792,12 @@ def irt_readiness(
         extra={
             "sections": {s: sections_out[s] for s in usable},
             "modeled_sections": usable,
-            "cars_modeled": False,
-            "scale_note": "3-section partial of the 472-528 scale; CARS not modeled",
+            "cars_modeled": "cars" in usable,
+            "scale_note": (
+                "full 4-section 472-528 composite"
+                if "cars" in usable
+                else f"{len(usable)}-section partial of the 472-528 scale; CARS not yet scored"
+            ),
             "model": "irt_2pl_eap",
             # per-section latent estimates, so an adaptive practice layer can call
             # irt_next_item against the student's current theta.
@@ -1022,8 +1037,15 @@ class StudyPace:
     new_per_day: int = 0
     reasoning_target: int = 0
     reasoning_done: int = 0
+    reasoning_today: int = 0  # reasoning items answered since the day rollover (today's progress)
     reasoning_remaining: int = 0
     reasoning_per_day: int = 0
+    # Cumulative "between now and exam day" projections at the daily pace. Unlike the
+    # per-day numbers (flashcards = today's FSRS-due count; reasoning floored at a few
+    # a day), these DO scale with the exam date -- push the date out and the totals
+    # grow -- so the plan visibly responds to the date.
+    flashcards_to_exam: int = 0
+    reasoning_to_exam: int = 0
     message: str = ""
 
 
@@ -1036,6 +1058,7 @@ def study_pace(
     cfg: ScoringConfig,
     concepts_to_practice: int = 0,
     cards_studied: int = 0,
+    reasoning_today: int = 0,
 ) -> StudyPace:
     """Days until the exam and a transparent daily target to get there.
 
@@ -1051,6 +1074,7 @@ def study_pace(
         new_remaining=new_remaining,
         reasoning_target=target,
         reasoning_done=reasoning_done,
+        reasoning_today=reasoning_today,
         reasoning_remaining=remaining,
     )
     if not exam_date:
@@ -1085,6 +1109,11 @@ def study_pace(
     # through your remaining new cards and a full pass of your deck by exam day;
     # never below what's actually due.
     flashcards_per_day = max(reviews_due, math.ceil((new_remaining + cards_studied) / div))
+    # "Before exam day" totals at the pace above. These scale with the exam date (more
+    # days left -> more total work remaining), which the per-day flashcard number can't:
+    # FSRS, not the calendar, sets how many cards fall due each day.
+    flashcards_to_exam = flashcards_per_day * days_left
+    reasoning_to_exam = reasoning_per_day * days_left
     return StudyPace(
         has_exam_date=True,
         exam_date=exam_date,
@@ -1092,6 +1121,8 @@ def study_pace(
         flashcards_per_day=flashcards_per_day,
         new_per_day=math.ceil(new_remaining / div),
         reasoning_per_day=reasoning_per_day,
+        flashcards_to_exam=flashcards_to_exam,
+        reasoning_to_exam=reasoning_to_exam,
         **base,
     )
 
@@ -1286,6 +1317,8 @@ class Trajectory:
     on_pace: Optional[bool] = None
     per_week: Optional[float] = None  # points gained per week (the slope)
     weakest_section: Optional[str] = None
+    scale_lo: Optional[int] = None  # low end of the current composite scale
+    scale_hi: Optional[int] = None  # high end (n_sections * 118..132)
     reason: str = ""
 
 
@@ -1295,6 +1328,7 @@ def trajectory(
     days_to_exam: Optional[int],
     weakest_section: Optional[str],
     cfg: ScoringConfig,
+    n_sections: int = 3,
 ) -> Trajectory:
     """Project the readiness composite to exam day from dated snapshots.
 
@@ -1302,13 +1336,36 @@ def trajectory(
     over the real snapshots and extrapolates to the exam date, honestly
     abstaining until there are at least a couple of days of data and a target +
     exam date are set. Never invents a trend from a single point.
+
+    `n_sections` is how many sections the current composite covers (3 science, or 4
+    once CARS is scored). It sets the scale both the projection and the target live
+    on (n * 118 .. n * 132), so a full-scale target is never compared to a partial
+    projection: if the target isn't on the current scale, the trajectory abstains
+    and asks for one that is.
     """
-    if not target or days_to_exam is None:
-        return Trajectory(abstained=True, target=target, reason="set a target score and an exam date")
+    n = max(1, n_sections)
+    scale_lo = int(round(n * cfg.section_scale_min))
+    scale_hi = int(round(n * cfg.section_scale_max))
+    if days_to_exam is None:
+        return Trajectory(
+            abstained=True, target=target, scale_lo=scale_lo, scale_hi=scale_hi,
+            reason="set a target score and an exam date",
+        )
+    if not target:
+        return Trajectory(
+            abstained=True, target=target, scale_lo=scale_lo, scale_hi=scale_hi,
+            reason=f"set a target on the {scale_lo}-{scale_hi} scale and an exam date",
+        )
+    if not (scale_lo <= target <= scale_hi):
+        return Trajectory(
+            abstained=True, target=target, scale_lo=scale_lo, scale_hi=scale_hi,
+            reason=f"set a target on the {scale_lo}-{scale_hi} scale for the sections you're modeling",
+        )
     days = sorted({h["d"] for h in history})
     if len(days) < cfg.min_trajectory_days:
         return Trajectory(
-            abstained=True, target=target, reason="your trajectory appears after a few days of study"
+            abstained=True, target=target, scale_lo=scale_lo, scale_hi=scale_hi,
+            reason="your trajectory appears after a few days of study",
         )
     pts = [(date.fromisoformat(h["d"]).toordinal(), float(h["point"])) for h in history]
     m = len(pts)
@@ -1322,13 +1379,10 @@ def trajectory(
     # entry in input order, so an out-of-order history still projects from the
     # latest real point.
     base_point = max(pts, key=lambda p: p[0])[1]
-    # Clamp the linear extrapolation to the readiness scale (a score can't run
-    # past the three-section maximum), so a steep recent slope can't project an
-    # impossible number. Valid because readiness only records full 3-section
-    # composites (collect.gather), so the base always sits on the 354..396 band.
-    lo = 3 * cfg.section_scale_min
-    hi = 3 * cfg.section_scale_max
-    projected = min(hi, max(lo, base_point + slope * days_to_exam))
+    # Clamp the linear extrapolation to the current composite scale so a steep
+    # recent slope can't project an impossible number. collect.gather feeds only
+    # same-scale snapshots, so the base always sits on the [scale_lo, scale_hi] band.
+    projected = min(scale_hi, max(scale_lo, base_point + slope * days_to_exam))
     return Trajectory(
         abstained=False,
         projected=round(projected, 1),
@@ -1336,5 +1390,7 @@ def trajectory(
         on_pace=projected >= target,
         per_week=round(slope * 7, 2),
         weakest_section=weakest_section,
+        scale_lo=scale_lo,
+        scale_hi=scale_hi,
         reason="",
     )

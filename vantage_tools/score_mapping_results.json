@@ -1,0 +1,107 @@
+{
+  "anchors": {
+    "classic": {
+      "high_anchor": [
+        0.9,
+        132.0
+      ],
+      "low_anchor": [
+        0.4,
+        118.0
+      ],
+      "transform": "linear through two anchors, clamped"
+    },
+    "composite": {
+      "full_scale_note": "3-section partial of the 472-528 total; CARS not modeled",
+      "partial_range": [
+        354.0,
+        396.0
+      ],
+      "sections": 3
+    },
+    "irt_default": {
+      "midpoint": 125.0,
+      "monotonic": "strictly increasing (per_theta > 0)",
+      "per_theta": 3.0,
+      "section_scale": [
+        118.0,
+        132.0
+      ],
+      "theta_at_max_scale": 2.333,
+      "theta_at_min_scale": -2.333,
+      "transform": "scale = midpoint + per_theta * theta, clamped to [min,max]"
+    }
+  },
+  "deterministic": true,
+  "pilot": {
+    "bias": 0.025,
+    "cohort": "SYNTHETIC placeholder (not a real cohort)",
+    "mae": 0.475,
+    "n_pairs": 8,
+    "pearson_r": 0.9891,
+    "rmse": 0.515,
+    "tolerance_points": 3.0,
+    "within_tolerance": 1.0
+  },
+  "sensitivity": {
+    "max_section_delta_from_anchor_perturbation": 1.0,
+    "note": "a +/-0.5 per-theta or +/-1 midpoint change moves a section by at most the value above; the composite moves ~3x that. Small + bounded, so the mapping is a documented anchor, not a free knob.",
+    "section_scale_by_variant": {
+      "midpoint+": [
+        120.0,
+        123.0,
+        124.5,
+        126.0,
+        127.5,
+        129.0,
+        132.0
+      ],
+      "midpoint-": [
+        118.0,
+        121.0,
+        122.5,
+        124.0,
+        125.5,
+        127.0,
+        130.0
+      ],
+      "per_theta+": [
+        118.0,
+        121.5,
+        123.25,
+        125.0,
+        126.75,
+        128.5,
+        132.0
+      ],
+      "per_theta-": [
+        120.0,
+        122.5,
+        123.75,
+        125.0,
+        126.25,
+        127.5,
+        130.0
+      ],
+      "shipped": [
+        119.0,
+        122.0,
+        123.5,
+        125.0,
+        126.5,
+        128.0,
+        131.0
+      ]
+    },
+    "shipped_monotonic": true,
+    "thetas": [
+      -2.0,
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0,
+      2.0
+    ]
+  }
+}

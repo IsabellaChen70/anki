@@ -182,11 +182,86 @@ clean *args:
 # + PERF_RESULTS.md. Pass args through, e.g. `just bench --cards 100000`. (macOS/Linux)
 bench *args:
     {{ ninja }} pylib
-    PYTHONPATH=pylib:out/pylib out/pyenv/bin/python vantage_tools/bench.py {{ args }}
+    {{ vpy }} vantage_tools/bench.py {{ args }}
+
+# Vantage: held-out memory calibration -> memory_calibration.json (macOS/Linux)
+eval-memory:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/evaluate_memory.py
+
+# Vantage: held-out performance calibration -> performance_results.json (macOS/Linux)
+eval-performance:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/evaluate_performance.py
+
+# Vantage: paraphrase transfer-gap harness -> paraphrase_results.json (macOS/Linux)
+eval-paraphrase:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/evaluate_paraphrase.py
+
+# Vantage: 3-arm interleaving ablation (mixed/off/blocked) -> ablation_results.json (macOS/Linux)
+ablation:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/ablation_interleave.py
+
+# Vantage: leakage scan (eval items vs training corpus) -> leakage_report.json (macOS/Linux)
+leakage:
+    {{ vpy }} vantage_tools/leakage_check.py
+
+# Vantage: readiness score-mapping anchors + sensitivity + pilot-ingest harness (macOS/Linux)
+score-map:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/score_mapping.py
+
+# Vantage: desktop<->phone scoring parity (Python core vs mobile_scoring.js via node) (macOS/Linux)
+parity:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/scoring_parity_test.py
+
+# Vantage: AI safety evals - retrieval+grounding, 3-way gate, independent held-out,
+# wired-LLM-seam screening, injection canary (macOS/Linux)
+eval-ai:
+    {{ vpy }} vantage_tools/ai/eval_cardgen.py
+    {{ vpy }} vantage_tools/ai/eval_cardcheck.py
+    {{ vpy }} vantage_tools/ai/cardcheck_holdout.py
+    {{ vpy }} vantage_tools/ai/eval_llm_seam.py
+    {{ vpy }} vantage_tools/ai/canary.py
+
+# Vantage: desktop crash test (20x SIGKILL mid-review) -> crash_results.json (macOS/Linux)
+crash-test:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/crash_test.py
+
+# Vantage: offline degrade check (network off -> AI off, apps still score) -> offline_results.json (macOS/Linux)
+offline-test:
+    {{ ninja }} pylib
+    {{ vpy }} vantage_tools/offline_test.py
+
+# Vantage: the whole re-runnable eval suite + unit tests, in order (macOS/Linux).
+# Excludes bench/crash/sync (heavier or need a server); run those on their own.
+eval-all:
+    {{ ninja }} pylib
+    cargo test -p anki interleave
+    {{ vpy }} -m pytest pylib/tests/test_interleave.py pylib/tests/test_vantage_scoring.py pylib/tests/test_vantage_collect.py -q
+    {{ vpy }} vantage_tools/evaluate_memory.py
+    {{ vpy }} vantage_tools/evaluate_performance.py
+    {{ vpy }} vantage_tools/evaluate_paraphrase.py
+    {{ vpy }} vantage_tools/ablation_interleave.py
+    {{ vpy }} vantage_tools/leakage_check.py
+    {{ vpy }} vantage_tools/ai/eval_cardgen.py
+    {{ vpy }} vantage_tools/ai/eval_cardcheck.py
+    {{ vpy }} vantage_tools/ai/cardcheck_holdout.py
+    {{ vpy }} vantage_tools/ai/eval_llm_seam.py
+    {{ vpy }} vantage_tools/ai/canary.py
+    {{ vpy }} vantage_tools/offline_test.py
+    {{ vpy }} vantage_tools/score_mapping.py
+    {{ vpy }} vantage_tools/scoring_parity_test.py
 
 # Helpers to get the right commands for the platform
 
 ninja := if os() == "windows" { "tools\\ninja" } else { "./ninja" }
+# Vantage eval interpreter (pylib on the path). macOS/Linux; mirrors the bench recipe.
+vpy := "PYTHONPATH=pylib:out/pylib out/pyenv/bin/python"
 run_script := if os() == "windows" { ".\\run.bat" } else { "./run" }
 playwright_env := if os() == "windows" { "set PLAYWRIGHT_BROWSERS_PATH=out\\playwright-browsers&&" } else { "PLAYWRIGHT_BROWSERS_PATH=out/playwright-browsers" }
 yarn := if os() == "windows" { "out\\extracted\\node\\yarn.cmd" } else { "out/extracted/node/bin/yarn" }

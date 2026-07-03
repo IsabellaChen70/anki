@@ -1,0 +1,494 @@
+{
+  "abstained_concepts": [
+    {
+      "concept_id": "bb_membrane_transport",
+      "n_app": 2,
+      "reason": "only 2 reworded outcomes (need >= 3)",
+      "section": "bio_biochem"
+    },
+    {
+      "concept_id": "cp_acid_base",
+      "n_app": 2,
+      "reason": "only 2 reworded outcomes (need >= 3)",
+      "section": "chem_phys"
+    }
+  ],
+  "cars_note": "scoring.transfer_gap models only the 3 science sections (SECTIONS), so CARS is never in the per-section numbers. CARS concepts still appear in the per-concept diagnostic below, labeled and separate.",
+  "cars_section_excluded": true,
+  "concepts": [
+    {
+      "application": 0.308,
+      "concept_id": "bb_glycolysis",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.499,
+      "ground_truth_prone": true,
+      "mastery": 0.7243,
+      "n_app": 52,
+      "recall": 0.806,
+      "section": "bio_biochem"
+    },
+    {
+      "application": 0.273,
+      "concept_id": "bb_central_dogma",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.447,
+      "ground_truth_prone": true,
+      "mastery": 0.6638,
+      "n_app": 55,
+      "recall": 0.72,
+      "section": "bio_biochem"
+    },
+    {
+      "application": 0.617,
+      "concept_id": "ps_operant_conditioning",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.383,
+      "ground_truth_prone": true,
+      "mastery": 0.9546,
+      "n_app": 47,
+      "recall": 1.0,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.576,
+      "concept_id": "cr_argument_structure",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.335,
+      "ground_truth_prone": true,
+      "mastery": 0.8929,
+      "n_app": 33,
+      "recall": 0.911,
+      "section": "cars"
+    },
+    {
+      "application": 0.643,
+      "concept_id": "cr_main_idea",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.332,
+      "ground_truth_prone": true,
+      "mastery": 0.8873,
+      "n_app": 42,
+      "recall": 0.974,
+      "section": "cars"
+    },
+    {
+      "application": 0.3,
+      "concept_id": "cp_kinematics",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.318,
+      "ground_truth_prone": true,
+      "mastery": 0.6636,
+      "n_app": 40,
+      "recall": 0.618,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.659,
+      "concept_id": "bb_enzyme_kinetics",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.317,
+      "ground_truth_prone": true,
+      "mastery": 0.9351,
+      "n_app": 41,
+      "recall": 0.976,
+      "section": "bio_biochem"
+    },
+    {
+      "application": 0.36,
+      "concept_id": "cp_ohms_law",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.307,
+      "ground_truth_prone": true,
+      "mastery": 0.6345,
+      "n_app": 50,
+      "recall": 0.667,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.433,
+      "concept_id": "cr_analogy",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.304,
+      "ground_truth_prone": true,
+      "mastery": 0.7144,
+      "n_app": 30,
+      "recall": 0.737,
+      "section": "cars"
+    },
+    {
+      "application": 0.474,
+      "concept_id": "ps_attribution",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.282,
+      "ground_truth_prone": true,
+      "mastery": 0.7572,
+      "n_app": 38,
+      "recall": 0.756,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.4,
+      "concept_id": "ps_stress_response",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.249,
+      "ground_truth_prone": true,
+      "mastery": 0.6426,
+      "n_app": 35,
+      "recall": 0.649,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.474,
+      "concept_id": "ps_cognitive_biases",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.209,
+      "ground_truth_prone": true,
+      "mastery": 0.6649,
+      "n_app": 38,
+      "recall": 0.683,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.574,
+      "concept_id": "cr_assumption",
+      "correct_flag": true,
+      "fluency_risk": true,
+      "gap": 0.165,
+      "ground_truth_prone": true,
+      "mastery": 0.7195,
+      "n_app": 54,
+      "recall": 0.739,
+      "section": "cars"
+    },
+    {
+      "application": 0.436,
+      "concept_id": "ps_social_influence",
+      "correct_flag": false,
+      "fluency_risk": false,
+      "gap": 0.136,
+      "ground_truth_prone": true,
+      "mastery": 0.706,
+      "n_app": 39,
+      "recall": 0.571,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.771,
+      "concept_id": "cr_strengthen_weaken",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": 0.123,
+      "ground_truth_prone": false,
+      "mastery": 0.874,
+      "n_app": 35,
+      "recall": 0.895,
+      "section": "cars"
+    },
+    {
+      "application": 0.667,
+      "concept_id": "cp_ideal_gas",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": 0.088,
+      "ground_truth_prone": false,
+      "mastery": 0.7437,
+      "n_app": 45,
+      "recall": 0.755,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.703,
+      "concept_id": "cp_fluids",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": 0.07,
+      "ground_truth_prone": false,
+      "mastery": 0.7617,
+      "n_app": 37,
+      "recall": 0.773,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.585,
+      "concept_id": "ps_memory_systems",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": 0.061,
+      "ground_truth_prone": false,
+      "mastery": 0.6297,
+      "n_app": 53,
+      "recall": 0.646,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.677,
+      "concept_id": "ps_dev_stages",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": 0.034,
+      "ground_truth_prone": false,
+      "mastery": 0.7499,
+      "n_app": 31,
+      "recall": 0.711,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.867,
+      "concept_id": "bb_amino_acids",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": 0.006,
+      "ground_truth_prone": false,
+      "mastery": 0.8811,
+      "n_app": 30,
+      "recall": 0.872,
+      "section": "bio_biochem"
+    },
+    {
+      "application": 0.649,
+      "concept_id": "cp_optics",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.003,
+      "ground_truth_prone": false,
+      "mastery": 0.6798,
+      "n_app": 37,
+      "recall": 0.646,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.786,
+      "concept_id": "bb_dna_replication",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.012,
+      "ground_truth_prone": false,
+      "mastery": 0.831,
+      "n_app": 56,
+      "recall": 0.774,
+      "section": "bio_biochem"
+    },
+    {
+      "application": 0.673,
+      "concept_id": "cp_thermochemistry",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.029,
+      "ground_truth_prone": false,
+      "mastery": 0.766,
+      "n_app": 52,
+      "recall": 0.644,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.969,
+      "concept_id": "cr_inference",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.033,
+      "ground_truth_prone": false,
+      "mastery": 0.8892,
+      "n_app": 32,
+      "recall": 0.935,
+      "section": "cars"
+    },
+    {
+      "application": 0.8,
+      "concept_id": "cp_electrochem",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.037,
+      "ground_truth_prone": false,
+      "mastery": 0.7403,
+      "n_app": 50,
+      "recall": 0.763,
+      "section": "chem_phys"
+    },
+    {
+      "application": 0.737,
+      "concept_id": "ps_classical_conditioning",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.039,
+      "ground_truth_prone": false,
+      "mastery": 0.6291,
+      "n_app": 57,
+      "recall": 0.698,
+      "section": "psych_soc"
+    },
+    {
+      "application": 0.977,
+      "concept_id": "bb_hardy_weinberg",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.077,
+      "ground_truth_prone": false,
+      "mastery": 0.8372,
+      "n_app": 43,
+      "recall": 0.9,
+      "section": "bio_biochem"
+    },
+    {
+      "application": 0.645,
+      "concept_id": "cr_rhetorical_device",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.086,
+      "ground_truth_prone": false,
+      "mastery": 0.623,
+      "n_app": 31,
+      "recall": 0.559,
+      "section": "cars"
+    },
+    {
+      "application": 0.633,
+      "concept_id": "cr_authors_tone",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.1,
+      "ground_truth_prone": false,
+      "mastery": 0.6252,
+      "n_app": 30,
+      "recall": 0.533,
+      "section": "cars"
+    },
+    {
+      "application": 0.703,
+      "concept_id": "bb_endocrine_feedback",
+      "correct_flag": true,
+      "fluency_risk": false,
+      "gap": -0.157,
+      "ground_truth_prone": false,
+      "mastery": 0.6882,
+      "n_app": 37,
+      "recall": 0.545,
+      "section": "bio_biochem"
+    }
+  ],
+  "meta": {
+    "cohort": "simulated; validates the harness + gap formulas, not a real cohort",
+    "dataset_hash_sha256": "94706ef4f6be9c9b0b215d5c14bfcc5eeeda4ebdda29b1fa391f0562d7f1090a",
+    "dataset_path": "vantage_tools/paraphrase_items.json",
+    "fluency_prone_rate": 0.5,
+    "mastery_range": [
+      0.62,
+      0.96
+    ],
+    "n_attempt_range": [
+      30,
+      60
+    ],
+    "n_concepts": 32,
+    "n_recall_range": [
+      30,
+      50
+    ],
+    "seed": 20260702,
+    "thin_attempts": 2,
+    "thin_concepts": [
+      "bb_membrane_transport",
+      "cp_acid_base"
+    ],
+    "thresholds": {
+      "fluency_gap_threshold": 0.15,
+      "min_outcomes_transfer": 10,
+      "min_outcomes_transfer_card": 3
+    },
+    "transfer_penalty": 0.3
+  },
+  "sections": {
+    "bio_biochem": {
+      "application": 0.62,
+      "fluency_risk": true,
+      "gap": 0.163,
+      "label": "Bio/Biochem",
+      "n_app": 316,
+      "recall": 0.784
+    },
+    "chem_phys": {
+      "application": 0.597,
+      "fluency_risk": false,
+      "gap": 0.129,
+      "label": "Chem/Phys",
+      "n_app": 313,
+      "recall": 0.726
+    },
+    "psych_soc": {
+      "application": 0.562,
+      "fluency_risk": true,
+      "gap": 0.152,
+      "label": "Psych/Soc",
+      "n_app": 338,
+      "recall": 0.714
+    }
+  },
+  "summary": {
+    "flagged_concepts": [
+      "bb_glycolysis",
+      "bb_central_dogma",
+      "ps_operant_conditioning",
+      "cr_argument_structure",
+      "cr_main_idea",
+      "cp_kinematics",
+      "bb_enzyme_kinetics",
+      "cp_ohms_law",
+      "cr_analogy",
+      "ps_attribution",
+      "ps_stress_response",
+      "ps_cognitive_biases",
+      "cr_assumption"
+    ],
+    "hidden_weak_concepts": [
+      {
+        "flagged_concepts": [
+          "cp_kinematics",
+          "cp_ohms_law"
+        ],
+        "section": "chem_phys"
+      }
+    ],
+    "n_abstained": 2,
+    "n_flagged": 13,
+    "n_null": 17,
+    "n_scored": 30,
+    "null_concepts": [
+      "ps_social_influence",
+      "cr_strengthen_weaken",
+      "cp_ideal_gas",
+      "cp_fluids",
+      "ps_memory_systems",
+      "ps_dev_stages",
+      "bb_amino_acids",
+      "cp_optics",
+      "bb_dna_replication",
+      "cp_thermochemistry",
+      "cr_inference",
+      "cp_electrochem",
+      "ps_classical_conditioning",
+      "bb_hardy_weinberg",
+      "cr_rhetorical_device",
+      "cr_authors_tone",
+      "bb_endocrine_feedback"
+    ]
+  },
+  "validation": {
+    "accuracy": 0.9667,
+    "fn": 1,
+    "fp": 0,
+    "note": "harness fluency_risk flag vs the seeded ground-truth transfer-prone label, over scored (non-abstained) concepts. Off-diagonal cells are Bernoulli noise near the 0.15 boundary.",
+    "tn": 16,
+    "tp": 13
+  }
+}

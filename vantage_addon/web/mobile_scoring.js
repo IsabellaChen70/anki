@@ -322,6 +322,12 @@
   // log-space with a max-subtraction so a long item list can't underflow. Returns
   // theta (posterior mean), theta_sd (its SD), information (2PL test info at theta).
   // items: [{ correct: 0|1, a, b }]. Fully deterministic (no PRNG).
+  function nowStamp() {
+    const d = new Date();
+    const p = (n) => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
   function irtEstimate(items) {
     const grid = irtGrid();
     const logPost = [];
@@ -375,7 +381,10 @@
     const sections = {};
     const est = {};
     const usable = [];
-    for (const s of ['chem_phys', 'bio_biochem', 'psych_soc']) {
+    // Score the three science sections plus CARS: CARS joins the composite (lifting
+    // it toward the full 4-section 472-528 scale) only once it has enough answered
+    // reasoning items; the activation gate above keys on the science sections.
+    for (const s of ['chem_phys', 'bio_biochem', 'psych_soc', 'cars']) {
       const items = sectionItems[s] || [];
       // include a section once it has enough answered items (matches the classic
       // count gate); a section the student aces yields little Fisher information,
@@ -408,15 +417,27 @@
     const avgWidth = widthSum / usable.length;
     const how = avgWidth <= CFG.ready_high_max_width && coverage >= CFG.ready_high_min_coverage ? 'high' : avgWidth <= 2 * CFG.ready_high_max_width ? 'medium' : 'low';
     const reasonsOut = [
-      `projected across ${usable.length} of 3 science sections`,
+      `projected across ${usable.length} section(s)`,
       `${Math.round(coverage * 100)}% of the exam covered`,
     ];
     let weakest = null, weakestPt = Infinity;
     for (const s of usable) if (sections[s].point < weakestPt) { weakestPt = sections[s].point; weakest = s; }
-    if (weakest) reasonsOut.push(`weakest section so far: ${OUTLINE.sections[weakest]} (${est[weakest].n} questions)`);
+    if (weakest) reasonsOut.push(`weakest section so far: ${OUTLINE.sections[weakest] || (weakest === 'cars' ? 'CARS' : weakest)} (${est[weakest].n} questions)`);
+    const r4 = (x) => Math.round(x * 1e4) / 1e4;
+    const carsModeled = usable.indexOf('cars') !== -1;
     return {
-      abstained: false, how_sure: how, n: nReviews, cars_modeled: false,
+      abstained: false, how_sure: how, n: nReviews, cars_modeled: carsModeled,
       point, low, high, sections, reasons: reasonsOut,
+      // Parity with desktop _readiness: expose the IRT metadata so the readiness
+      // card shows practice-question wording AND practice.js adaptiveOrder can read
+      // each section's latent theta to serve the most-informative item first.
+      model: 'irt_2pl_eap',
+      modeled_sections: usable.slice(),
+      scale_note: carsModeled ? 'full 4-section 472-528 composite' : `${usable.length}-section partial of the 472-528 scale; CARS not yet scored`,
+      irt: usable.reduce((o, s) => {
+        o[s] = { theta: r4(est[s].theta), theta_sd: r4(est[s].theta_sd), information: r4(est[s].information), n: est[s].n };
+        return o;
+      }, {}),
     };
   }
 
@@ -454,8 +475,9 @@
       const application = outs.reduce((a, b) => a + b, 0) / outs.length;
       const r = clamp(conceptRecall[cid], 0, 1);
       const gap = r - application;
+      const c = byId[cid.toLowerCase()];
       out.push({
-        concept_id: cid, section: conceptSection[cid] || '',
+        concept_id: cid, name: (c && c.name) || cid, section: conceptSection[cid] || (c && c.section) || '',
         recall: round3(r), application: round3(application), gap: round3(gap),
         n_app: outs.length, fluency_risk: gap >= CFG.fluency_gap_threshold,
       });
@@ -573,12 +595,12 @@
     return { abstained: false, n: timed.length, sections, overall_on_pace: sections.every((x) => x.on_pace) };
   }
 
-  function studyPace(raw, reasoningDone, conceptsToPractice, cardsStudied) {
+  function studyPace(raw, reasoningDone, conceptsToPractice, cardsStudied, reasoningToday) {
     const target = CFG.pace_reasoning_target;
     const remaining = Math.max(0, target - reasoningDone);
     const base = {
       reviews_due: raw.reviews_due || 0, new_remaining: raw.new_remaining || 0,
-      reasoning_target: target, reasoning_done: reasoningDone, reasoning_remaining: remaining,
+      reasoning_target: target, reasoning_done: reasoningDone, reasoning_today: reasoningToday || 0, reasoning_remaining: remaining,
     };
     const exam = raw.exam_date;
     if (!exam) return Object.assign({ has_exam_date: false, message: 'Set your exam date to get a daily study target.' }, base);
@@ -593,9 +615,11 @@
     const reasoningPerDay = Math.max(CFG.pace_reasoning_floor || 3, Math.ceil(prep / div));
     // Flashcards: FSRS due today, ramping to a full pass by exam day as time shrinks.
     const flashcardsPerDay = Math.max(raw.reviews_due || 0, Math.ceil(((raw.new_remaining || 0) + (cardsStudied || 0)) / div));
+    // "Before exam day" totals that scale with the date (mirrors scoring.study_pace).
     return Object.assign({
       has_exam_date: true, exam_date: exam, days_left: dl, passed: false, flashcards_per_day: flashcardsPerDay,
-      new_per_day: Math.ceil((raw.new_remaining || 0) / div), reasoning_per_day: reasoningPerDay, message: '',
+      new_per_day: Math.ceil((raw.new_remaining || 0) / div), reasoning_per_day: reasoningPerDay,
+      flashcards_to_exam: flashcardsPerDay * dl, reasoning_to_exam: reasoningPerDay * dl, message: '',
     }, base);
   }
 
@@ -635,15 +659,28 @@
   // on_pace / per_week / weakest_section / reason). history is
   // [{ d: 'YYYY-MM-DD', point: number }]; daysToExam is an integer day count
   // (may be 0 or negative, exactly as collect.gather passes days_left), or null.
-  function trajectory(history, target, daysToExam, weakest) {
-    if (!target || daysToExam === null || daysToExam === undefined) {
-      return { abstained: true, target: target || null, reason: 'set a target score and an exam date' };
+  function trajectory(history, target, daysToExam, weakest, nSections) {
+    // The target lives on the scale of the sections currently modeled: 3 science
+    // (354-396) or the full 472-528 once CARS is scored. A full-scale target is
+    // never compared to a partial projection; if it's off-scale, we abstain and ask
+    // for an in-scale one (mirrors scoring.trajectory).
+    const n = Math.max(1, nSections || 3);
+    const scaleLo = Math.round(n * CFG.section_scale_min);
+    const scaleHi = Math.round(n * CFG.section_scale_max);
+    if (daysToExam === null || daysToExam === undefined) {
+      return { abstained: true, target: target || null, scale_lo: scaleLo, scale_hi: scaleHi, reason: 'set a target score and an exam date' };
+    }
+    if (!target) {
+      return { abstained: true, target: target || null, scale_lo: scaleLo, scale_hi: scaleHi, reason: `set a target on the ${scaleLo}-${scaleHi} scale and an exam date` };
+    }
+    if (!(target >= scaleLo && target <= scaleHi)) {
+      return { abstained: true, target, scale_lo: scaleLo, scale_hi: scaleHi, reason: `set a target on the ${scaleLo}-${scaleHi} scale for the sections you're modeling` };
     }
     // distinct-days gate: mirrors sorted({h["d"]}) then len < min_trajectory_days
     const days = new Set();
     for (const h of history) days.add(h.d);
     if (days.size < CFG.min_trajectory_days) {
-      return { abstained: true, target, reason: 'your trajectory appears after a few days of study' };
+      return { abstained: true, target, scale_lo: scaleLo, scale_hi: scaleHi, reason: 'your trajectory appears after a few days of study' };
     }
     // least-squares slope over ALL snapshots (not de-duplicated), accumulated in
     // input order to match the Python core's summation exactly.
@@ -657,12 +694,10 @@
     // like Python's max), so an out-of-order history still projects from the latest.
     let base = pts[0][1], baseOrd = pts[0][0];
     for (let i = 1; i < m; i++) if (pts[i][0] > baseOrd) { baseOrd = pts[i][0]; base = pts[i][1]; }
-    // clamp the linear extrapolation to the three-section band, so a steep recent
-    // slope can't project an impossible number (readiness only ever records full
-    // 3-section composites, so the base sits on the 354..396 band).
-    const lo = 3 * CFG.section_scale_min;
-    const hi = 3 * CFG.section_scale_max;
-    const projected = Math.min(hi, Math.max(lo, base + slope * daysToExam));
+    // clamp the linear extrapolation to the current composite scale, so a steep
+    // recent slope can't project an impossible number (only same-scale snapshots
+    // feed this, so the base sits on the [scaleLo, scaleHi] band).
+    const projected = Math.min(scaleHi, Math.max(scaleLo, base + slope * daysToExam));
     return {
       abstained: false,
       projected: round1(projected),
@@ -670,6 +705,8 @@
       on_pace: projected >= target, // uses the UNrounded projected, like desktop
       per_week: round2(slope * 7),
       weakest_section: weakest || null,
+      scale_lo: scaleLo,
+      scale_hi: scaleHi,
       reason: '',
     };
   }
@@ -714,7 +751,7 @@
     // modeled), matching collect.gather's total_outcomes / total_items. Performance
     // and study pace still use every outcome (perfN) as on desktop.
     let scienceTotal = 0;
-    for (const s in sectionOutcomes) scienceTotal += sectionOutcomes[s].length;
+    for (const s of ['chem_phys', 'bio_biochem', 'psych_soc']) scienceTotal += (sectionOutcomes[s] || []).length;
 
     // Readiness. The classic ability->scale projection is the honest fallback; the
     // 2PL IRT latent-ability path is the desktop default. IRT overrides the classic
@@ -722,7 +759,7 @@
     // min items, per-section test information) -- exactly like collect.gather.
     let readinessOut = readinessScore(outcomes, sectionRecall, coverage, nReviews, scienceTotal);
     if (CFG.readiness_use_irt) {
-      const sectionItems = { chem_phys: [], bio_biochem: [], psych_soc: [] };
+      const sectionItems = { chem_phys: [], bio_biochem: [], psych_soc: [], cars: [] };
       for (const o of outcomes) {
         if (!(o.section in sectionItems)) continue;
         // difficulty/discrimination come from item metadata when present, else the
@@ -785,9 +822,13 @@
     // Only a LIVE, full 3-section composite is comparable day to day; a partial or
     // abstained readiness is never recorded (and never feeds the projection).
     const modeledSections = (!readinessOut.abstained && readinessOut.sections) ? Object.keys(readinessOut.sections) : [];
+    // Full composite = live and covering at least all three science sections (CARS
+    // optional). n_modeled tags the scale so a 3->4 section jump (once CARS is
+    // scored) restarts the trend instead of mixing two scales.
     const isFullComposite = !readinessOut.abstained &&
       readinessOut.point !== undefined && readinessOut.point !== null &&
-      modeledSections.length === SCI.length && SCI.every((s) => modeledSections.includes(s));
+      SCI.every((s) => modeledSections.includes(s));
+    const nModeled = modeledSections.length;
 
     // Stored history is user-writable and synced, so keep only well-formed
     // { d: <iso str>, point: <number> } points -- exactly collect.gather's guard.
@@ -796,7 +837,10 @@
       for (const h of raw.readiness_history) {
         if (h && typeof h === 'object') {
           const d = h.d, point = asFloat(h.point);
-          if (typeof d === 'string' && d && point !== null) history.push({ d, point });
+          if (typeof d === 'string' && d && point !== null) {
+            const nPt = (typeof h.n === 'number') ? Math.trunc(h.n) : 3;
+            history.push({ d, point, n: nPt });
+          }
         }
       }
     }
@@ -808,15 +852,16 @@
     if (isFullComposite && todayIso) {
       const point = round1(readinessOut.point);
       const existing = history.find((h) => h.d === todayIso);
-      if (!existing || existing.point !== point) {
+      if (!existing || existing.point !== point || existing.n !== nModeled) {
         history = history.filter((h) => h.d !== todayIso);
-        history.push({ d: todayIso, point });
+        history.push({ d: todayIso, point, n: nModeled });
         readinessHistoryPersist = history;
       }
     }
     // Only project while readiness is a live full composite; otherwise abstain
     // rather than projecting from a stale snapshot (collect.gather's traj_history).
-    const trajHistory = isFullComposite ? history : [];
+    // Feed only same-scale snapshots so adding CARS restarts the trend cleanly.
+    const trajHistory = isFullComposite ? history.filter((h) => ((typeof h.n === 'number') ? h.n : 3) === nModeled) : [];
     const rawTarget = asFloat(raw.target);
     const targetScore = rawTarget ? Math.trunc(rawTarget) : null;
     // days to exam = exam ordinal - today ordinal, matching collect.gather's
@@ -826,7 +871,7 @@
       const eo = isoToOrdinal(raw.exam_date), to = isoToOrdinal(todayIso);
       if (Number.isFinite(eo) && Number.isFinite(to)) daysToExam = eo - to;
     }
-    const trajectoryOut = trajectory(trajHistory, targetScore, daysToExam, weakestReady);
+    const trajectoryOut = trajectory(trajHistory, targetScore, daysToExam, weakestReady, nModeled || 3);
 
     return {
       coverage,
@@ -835,7 +880,7 @@
       n_reviews: nReviews,
       n_cards_seen: rValues.length,
       ai_used: false,
-      updated: raw.updated || '',
+      updated: raw.updated || nowStamp(),
       best_next: nextTops[0] || null,
       next_topics: nextTops,
       book_set: raw.book_set || 'kaplan',
@@ -845,7 +890,10 @@
       performance: performanceScore({ n: perfN, k: perfK }),
       readiness: readinessOut,
       calibration: calibration(calibPairs),
-      study_pace: studyPace(raw, perfN, conceptsToPractice, rValues.length),
+      // reasoning_today (today's practice progress) is surfaced on desktop's practice
+      // screen; the mobile app has no practice screen, so it stays 0 unless the host
+      // provides raw.reasoning_today (kept for output-shape parity with desktop).
+      study_pace: studyPace(raw, perfN, conceptsToPractice, rValues.length, raw.reasoning_today || 0),
       confidence: confidenceCalibration(outcomes),
       mistakes: mistakeTaxonomy(outcomes),
       study_plan: studyPlanJS(covered, conceptR),

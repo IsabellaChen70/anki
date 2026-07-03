@@ -1,0 +1,48 @@
+{
+  "all_published_traceable": true,
+  "bad_teaching_published": 0,
+  "blocked": 16,
+  "confusion": {
+    "correct_but_bad_teaching": {
+      "correct_but_bad_teaching": 8,
+      "correct_useful": 0,
+      "wrong": 0
+    },
+    "correct_useful": {
+      "correct_but_bad_teaching": 0,
+      "correct_useful": 34,
+      "wrong": 0
+    },
+    "wrong": {
+      "correct_but_bad_teaching": 0,
+      "correct_useful": 0,
+      "wrong": 8
+    }
+  },
+  "cutoff": 0.5,
+  "deterministic": true,
+  "gate_accuracy": 1.0,
+  "gate_verdict_counts": {
+    "correct_but_bad_teaching": 8,
+    "correct_useful": 34,
+    "wrong": 8
+  },
+  "intended_counts": {
+    "correct_but_bad_teaching": 8,
+    "correct_useful": 34,
+    "wrong": 8
+  },
+  "llm_off": true,
+  "misclassified": [],
+  "n_cards": 50,
+  "published": 34,
+  "safe": true,
+  "seed": 7,
+  "source": "src_chapter_metabolism",
+  "thresholds": {
+    "duplicate_trigram_jaccard": 0.85,
+    "grounding_cutoff": 0.5,
+    "min_answer_content_tokens": 3
+  },
+  "wrong_published": 0
+}

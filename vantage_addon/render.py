@@ -96,8 +96,11 @@ def _study_pace(p) -> dict:
         "new_per_day": p.new_per_day,
         "reasoning_target": p.reasoning_target,
         "reasoning_done": p.reasoning_done,
+        "reasoning_today": getattr(p, "reasoning_today", 0),
         "reasoning_remaining": p.reasoning_remaining,
         "reasoning_per_day": p.reasoning_per_day,
+        "flashcards_to_exam": getattr(p, "flashcards_to_exam", 0),
+        "reasoning_to_exam": getattr(p, "reasoning_to_exam", 0),
         "message": p.message,
     }
 
@@ -164,6 +167,8 @@ def _trajectory(t) -> dict:
         "on_pace": t.on_pace,
         "per_week": t.per_week,
         "weakest_section": t.weakest_section,
+        "scale_lo": getattr(t, "scale_lo", None),
+        "scale_hi": getattr(t, "scale_hi", None),
         "reason": t.reason,
     }
 
@@ -215,6 +220,8 @@ def dashboard_dict(col) -> dict:
     return {
         "coverage": d.coverage,
         "coverage_by_section": dict(d.coverage_by_section),
+        "topic_coverage": getattr(d, "topic_coverage", 0.0),
+        "topic_coverage_by_section": dict(getattr(d, "topic_coverage_by_section", {}) or {}),
         "outline_version": d.outline_version,
         "n_reviews": d.n_reviews,
         "n_cards_seen": d.n_cards_seen,
@@ -222,6 +229,7 @@ def dashboard_dict(col) -> dict:
         "updated": time.strftime("%Y-%m-%d %H:%M", time.localtime(d.updated_ts)),
         "best_next": d.best_next,
         "next_topics": list(getattr(d, "next_topics", []) or []),
+        "topic_gaps": list(getattr(d, "topic_gaps", []) or []),
         "book_set": getattr(d, "book_set", "kaplan"),
         "section_labels": dict(SECTION_LABELS),
         "thresholds": {
@@ -402,7 +410,6 @@ _SUMMARY_CSS = (
     "color:#3b82f6;line-height:1.05;}"
     ".vtg-abstain{margin-top:8px;font-size:20px;font-weight:800;letter-spacing:-.01em;}"
     ".vtg-lead{margin-top:6px;font-size:13px;font-weight:500;opacity:.8;}"
-    ".vtg-partial{margin-top:6px;font-size:12px;font-weight:500;opacity:.6;}"
     ".vtg-meta{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 16px;"
     "font-size:13px;font-weight:600;}"
     ".vtg-meta .vtg-k{opacity:.55;font-weight:500;}"
@@ -548,12 +555,6 @@ def build_summary(cache: dict | None, now_ts: float | None = None) -> str:
     low = cache.get("low")
     high = cache.get("high")
     how = cache.get("how_sure") or "medium"
-    n_sections = cache.get("n_sections") or 0
-    partial = (
-        f"Covers {n_sections} of the 4 MCAT sections. CARS is not scored."
-        if n_sections
-        else "CARS is not scored."
-    )
     meta = (
         '<div class="vtg-meta">'
         f'<span>{_summary_pct(cache.get("coverage"))} <span class="vtg-k">of the exam covered</span></span>'
@@ -564,7 +565,6 @@ def build_summary(cache: dict | None, now_ts: float | None = None) -> str:
         f"{eyebrow}"
         '<div class="vtg-label">Projected score range</div>'
         f'<div class="vtg-range">{low} to {high}</div>'
-        f'<div class="vtg-partial">{partial}</div>'
         f"{meta}{best}{_summary_footer(cache, now)}"
     )
     return _summary_shell(inner)
@@ -619,7 +619,10 @@ def build_mobile_page(data: dict | None, error: str | None = None) -> str:
     scoring = (_WEB / "mobile_scoring.js").read_text(encoding="utf-8")
     js = (_WEB / "dashboard.js").read_text(encoding="utf-8")
     practice_js = (_WEB / "practice.js").read_text(encoding="utf-8")
-    data_js = _data_script(data, error)
+    # live=True mirrors the desktop honesty contract: the mobile page never falls
+    # back to MOCK demo numbers; if the on-device compute fails it shows the error
+    # card instead. The AnkiDroid host injects real scores right after load.
+    data_js = _data_script(data, error, live=True)
     body = (
         f"<style>{css}{practice_css}</style>"
         f'<div class="app" id="app"></div>'

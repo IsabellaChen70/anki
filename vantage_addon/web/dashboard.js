@@ -32,15 +32,16 @@ function bullets(lines) {
   return `<ul class="reasons">${lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
 }
 
-// Confidence ("how sure") plus its reason, and the % of the exam covered.
-function meta(how, reason, coverage) {
+// Confidence ("how sure") plus its reason. Coverage is deliberately NOT repeated
+// here: it's the same number on every card, already shown once in the header chip
+// and broken out per section in the Exam coverage panel.
+function meta(how, reason) {
   const label = how === 'insufficient' ? 'not enough data yet' : how;
   const conf = `<div class="conf conf--${how}">Confidence: ${label}${reason ? ', ' + reason : ''}</div>`;
-  const cov = coverage == null ? '' : `<div class="cover">${pct(coverage)} of the exam covered</div>`;
-  return `<div class="cardmeta">${conf}${cov}</div>`;
+  return `<div class="cardmeta">${conf}</div>`;
 }
 
-function pctCard(kind, iconName, title, sub, s, coverage, reason, abstainLine) {
+function pctCard(kind, iconName, title, sub, s, reason, abstainLine) {
   const cls = kind === 'memory' ? 'memory' : 'perf';
   const head = `<div class="card__top"><div class="iconwrap i-${s.abstained ? 'abstain' : cls}">${svg(iconName)}</div>
       <div><div class="card__label">${esc(title)}</div><div class="card__sub">${esc(sub)}</div></div></div>`;
@@ -51,9 +52,8 @@ function pctCard(kind, iconName, title, sub, s, coverage, reason, abstainLine) {
       ${bullets([abstainLine])}${cta}</div>`;
   }
   return `<div class="card card--${cls}">${head}
-    <div class="metric metric--${cls}"><span class="metric__num">${Math.round(s.point * 100)}</span><span class="metric__unit">%</span></div>
-    <div class="range"><b>(${pct(s.low)}&ndash;${pct(s.high)})</b></div>
-    ${meta(s.how_sure, reason, coverage)}</div>`;
+    <div class="metricline"><span class="metricline__val">${Math.round(s.point * 100)}%</span><span class="metricline__range">(${pct(s.low)}&ndash;${pct(s.high)})</span></div>
+    ${meta(s.how_sure, reason)}</div>`;
 }
 
 // Plain-language "how sure" for readiness. When the latent-ability estimate is
@@ -64,16 +64,14 @@ function readinessReason(s, d) {
   if (s.model === 'irt_2pl_eap' && s.irt) {
     let nApp = 0;
     Object.keys(s.irt).forEach((k) => { nApp += (s.irt[k] && s.irt[k].n) || 0; });
-    const settle = s.how_sure === 'high'
-      ? 'your section scores have settled into a narrow range'
-      : s.how_sure === 'medium'
-        ? 'your section scores are still settling'
-        : 'your section scores can still move a lot';
+    const settle = s.how_sure === 'high' ? 'settled'
+      : s.how_sure === 'medium' ? 'still settling'
+      : 'still moving a lot';
     return nApp > 0
-      ? `from how you answered ${nApp} practice question${nApp === 1 ? '' : 's'}, ${settle}`
+      ? `${settle} after ${nApp} practice question${nApp === 1 ? '' : 's'}`
       : settle;
   }
-  return `based on ${d.n_reviews} reviews and ${pct(d.coverage)} of the exam covered`;
+  return `based on ${d.n_reviews} reviews`;
 }
 
 function readinessCard(s, labels, d) {
@@ -87,39 +85,55 @@ function readinessCard(s, labels, d) {
       items.push(`${pct(d.thresholds.coverage)} of the exam covered (you have ${pct(d.coverage)})`);
     if (d.performance.n < d.thresholds.performance_outcomes)
       items.push(`${d.thresholds.performance_outcomes} exam-style practice questions answered (you have ${d.performance.n})`);
+    // The gates above can all be met yet readiness still abstains (e.g. no single
+    // section has enough answered items yet). Never show an empty "You need:" list.
+    if (!items.length) items.push('a bit more exam-style practice, spread across sections');
     return `<div class="card card--abstain">${head}
       <div class="abstain__title">No score yet</div>
       <p class="abstain__lead">You need:</p>${bullets(items)}
       <button class="card__cta" onclick="vpractice.open()">Start practice</button></div>`;
   }
   const subs = Object.entries(s.sections || {}).map(([k, b]) => {
-    return `<div class="subrow"><div class="subrow__label">${esc(labels[k] || k)}</div>
+    return `<div class="subrow"><div class="subrow__label">${esc(labels[k] || (k === 'cars' ? 'CARS' : k))}</div>
       <div class="subrow__score"><span class="subrow__val">${Math.round(b.point)}</span><span class="subrow__range">(${Math.round(b.low)}&ndash;${Math.round(b.high)})</span></div></div>`;
   }).join('');
   const reason = readinessReason(s, d);
-  const nSec = Object.keys(s.sections || {}).length;
-  const partial = `<div class="readypartial">Covers ${nSec} of the 4 MCAT sections. CARS is not scored.</div>`;
   return `<div class="card card--ready">${head}
     <div class="subsections">${subs}</div>
-    ${partial}
-    ${meta(s.how_sure, reason, d.coverage)}</div>`;
+    ${meta(s.how_sure, reason)}</div>`;
 }
 
 function coverageBlock(d) {
+  // Depth-aware, topic-grain coverage: the headline % and the per-section bars are
+  // computed from how many AAMC topics actually have cards (falls back to the
+  // category number only if the topic field is absent). This is now honest -- the
+  // deck hierarchy is mapped to topics -- so "% covered" and "topics left" agree.
   const labels = d.section_labels;
+  const bySec = d.topic_coverage_by_section || d.coverage_by_section || {};
   const bars = Object.keys(labels).map((k) => {
-    const v = (d.coverage_by_section && d.coverage_by_section[k]) || 0;
+    const v = bySec[k] || 0;
     return `<div class="bar bar--${k}"><div class="bar__head"><span>${esc(labels[k])}</span><span>${pct(v)}</span></div>
       <div class="bar__track"><div class="bar__fill" style="width:${Math.round(v * 100)}%"></div></div></div>`;
   }).join('');
+  const gaps = (d.topic_gaps || []).map((g) => {
+    const w = g.total ? Math.round((g.covered / g.total) * 100) : 0;
+    return `<div class="tgap bar--${g.section}">
+      <div class="tgap__head"><span class="tgap__name"><b>${esc(g.concept_id)}</b> ${esc(g.name)}</span><span class="tgap__count">${g.covered}/${g.total}</span></div>
+      <div class="bar__track"><div class="bar__fill" style="width:${w}%"></div></div></div>`;
+  }).join('');
+  const gapBlock = gaps
+    ? `<div class="tgaps"><div class="tgaps__head">Most topics left to study</div>${gaps}</div>`
+    : '';
+  const overall = typeof d.topic_coverage === 'number' ? d.topic_coverage : d.coverage;
   return `<div class="coverblock">
-    <div class="cover__overall"><span class="cover__num">${pct(d.coverage)}</span><span class="cover__of">of the exam covered</span></div>
-    <div class="bars">${bars}</div></div>`;
+    <div class="cover__overall"><span class="cover__num">${pct(overall)}</span><span class="cover__of">of the exam covered</span></div>
+    <div class="bars">${bars}</div>${gapBlock}</div>`;
 }
 
 function studyRow(key, label, sub, opts) {
   const acts = [];
   if (opts.flashcards) acts.push(`<button class="btn btn--study" onclick="vpy('study:${key}')">${svg('play')} Flashcards</button>`);
+  if (opts.cram) acts.push(`<button class="btn btn--ghost" onclick="vpy('cram:${key}')">Study all</button>`);
   if (opts.reason) acts.push(`<button class="btn btn--reason" onclick="vpractice.open('${key}')">${svg('book')} Reasoning</button>`);
   const subHtml = sub ? `<div class="srow__sub">${esc(sub)}</div>` : '';
   return `<div class="srow srow--${key}">
@@ -136,9 +150,9 @@ function studyBlock(d) {
     <div class="srow__meta"><div class="srow__name">Interleaved review</div></div>
     <div class="srow__actions"><button class="btn btn--study" onclick="vpy('study:interleave')">${svg('layers')} Start mixed review</button></div></div>`);
   Object.keys(labels).forEach((k) => {
-    rows.push(studyRow(k, labels[k], '', { flashcards: true, reason: true }));
+    rows.push(studyRow(k, labels[k], '', { flashcards: true, cram: true, reason: true }));
   });
-  rows.push(studyRow('cars', 'CARS', 'reading reasoning practice', { flashcards: false, reason: true }));
+  rows.push(studyRow('cars', 'CARS', '', { flashcards: false, reason: true }));
   return `<section class="section">
     <div class="section__head"><div class="section__title">Study &amp; practice</div></div>
     <div class="studygrid">${rows.join('')}</div>
@@ -332,6 +346,7 @@ function renderNextTopic(d) {
     <div class="nextblock__meta">
       <span class="tag tag--accent">${esc((d.section_labels && d.section_labels[bn.section]) || bn.section)}</span>
       <span class="tag">${esc(state)}</span>
+      ${bn.topics_total ? `<span class="tag">${bn.topics_covered}/${bn.topics_total} topics studied</span>` : ''}
     </div>
     ${where}`;
 }
@@ -404,12 +419,24 @@ function planBlock(d) {
     const hint = p.reasoning_remaining > 0 ? `${p.reasoning_remaining} more to a confident score` : 'keeps your score sharp';
     items.push(planItem(n, `reasoning question${s(n)} a day`, hint));
   }
+  // Cumulative "before exam day" totals: unlike the per-day numbers (flashcards =
+  // today's FSRS-due count, reasoning floored at a few a day), these scale with the
+  // exam date, so pushing the date out visibly leaves more to do.
+  const fmt = (n) => (n || 0).toLocaleString();
+  const leftBits = [];
+  if (p.flashcards_to_exam > 0)
+    leftBits.push(`<b>${fmt(p.flashcards_to_exam)}</b> flashcard review${s(p.flashcards_to_exam)}`);
+  if (p.reasoning_to_exam > 0)
+    leftBits.push(`<b>${fmt(p.reasoning_to_exam)}</b> reasoning question${s(p.reasoning_to_exam)}`);
+  const leftNote = leftBits.length
+    ? `<div class="plan__note plan__note--left">About ${leftBits.join(' and ')} between now and exam day at this pace.</div>`
+    : '';
   return `<section class="section"><div class="plancard">
     <div class="plan__eyebrow">Exam countdown</div>
     <div class="plan__count"><span class="plan__days">${p.days_left}</span> ${dayWord} until your MCAT</div>
     <div class="plan__daterow">${input}</div>
     <div class="plan__grid">${items.join('')}</div>
-    <div class="plan__note">To stay on pace: clear today's flashcards and keep up your daily reasoning practice.</div>
+    ${leftNote}
   </div></section>`;
 }
 
@@ -440,7 +467,7 @@ function calibrationBlock(d) {
         <div class="calibbar"><span class="calibbar__k">From memory</span><div class="calibbar__track"><div class="calibbar__fill calibbar__fill--pred" style="width:${fromMem}%"></div></div><span class="calibbar__v">${fromMem}%</span></div>
         <div class="calibbar"><span class="calibbar__k">On real questions</span><div class="calibbar__track"><div class="calibbar__fill calibbar__fill--obs" style="width:${onReal}%"></div></div><span class="calibbar__v">${onReal}%</span></div>
       </div>
-      ${meta(c.how_sure, 'based on ' + c.n + ' questions', null)}
+      ${meta(c.how_sure, 'based on ' + c.n + ' questions')}
     </div></section>`;
 }
 
@@ -502,7 +529,7 @@ function confidencePanel(d) {
   return `<section class="section">${head}<div class="coverblock">
     <div class="calibsummary"><b>${esc(c.insight)}</b></div>
     <div class="calib">${rows}</div>
-    <div class="cover" style="margin-top:0.85rem">right answers by how sure you felt, based on ${c.n} answers</div>
+    <div class="cover" style="margin-top:0.85rem">based on ${c.n} answers</div>
   </div></section>`;
 }
 
@@ -538,10 +565,10 @@ function planPanel(d) {
   if (!p || (!(p.study || []).length && !(p.practice || []).length)) return '';
   const chips = (list, empty) => (list && list.length ? list.slice(0, 5).map((x) => `<span class="planchip">${esc(x.name)}</span>`).join('') : `<span class="planempty">${empty}</span>`);
   return `<section class="section">
-    <div class="section__head"><div class="section__title">Learn first, then practice</div></div>
+    <div class="section__head"><div class="section__title">Where to focus</div></div>
     <div class="plansplit">
-      <div class="plancol"><div class="plancol__h">Learn first, on flashcards</div><div class="planchips">${chips(p.study, 'nothing pressing')}</div></div>
-      <div class="plancol plancol--ready"><div class="plancol__h">Ready to practice, with reasoning</div><div class="planchips">${chips(p.practice, 'study a bit more first')}</div></div>
+      <div class="plancol"><div class="plancol__h">Study these</div><div class="planchips">${chips(p.study, 'nothing pressing')}</div></div>
+      <div class="plancol plancol--ready"><div class="plancol__h">Ready to practice</div><div class="planchips">${chips(p.practice, 'study a bit more first')}</div></div>
     </div>
   </section>`;
 }
@@ -578,24 +605,30 @@ function pacingPanel(d) {
 function trajectoryPanel(d) {
   const t = d.trajectory;
   if (!t) return '';
-  const head = '<div class="section__head"><div class="section__title">Score trajectory</div></div>';
-  const input = `<input class="targetin" type="number" min="354" max="396" placeholder="target" value="${t.target || ''}" onchange="vpy('target:' + this.value)">`;
+  // Label sits INSIDE the card as an eyebrow (like the Exam countdown) so the two
+  // outlook cards line up at the top instead of an outside title pushing this down.
+  const eyebrow = '<div class="plan__eyebrow" style="margin-bottom:0.85rem">Score trajectory</div>';
+  // The target lives on the scale of the sections you're currently modeling: the 3
+  // science sections (354-396), or the full 472-528 once you've practiced CARS.
+  const lo = t.scale_lo || 354;
+  const hi = t.scale_hi || 396;
+  const input = `<input class="targetin" type="number" min="${lo}" max="${hi}" placeholder="target" value="${t.target || ''}" onchange="vpy('target:' + this.value)">`;
   if (t.abstained) {
-    return `<section class="section">${head}<div class="coverblock">
-      <div class="plan__setrow"><div class="plan__title">${esc(t.reason || 'Set a target score and an exam date.')}</div><div>Target: ${input}</div></div>
+    return `<section class="section"><div class="coverblock">${eyebrow}
+      <div class="plan__setrow"><div class="plan__title">${esc(t.reason || 'Set a target score and an exam date.')}</div><div>Target (${lo}\u2013${hi}): ${input}</div></div>
     </div></section>`;
   }
-  const secLabel = (d.section_labels && d.section_labels[t.weakest_section]) || t.weakest_section || '';
-  const verdict = t.on_pace ? 'On pace to hit your target.' : `Behind your target${secLabel ? ', focus on ' + esc(secLabel) : ''}.`;
+  const secName = t.weakest_section === 'cars' ? 'CARS' : ((d.section_labels && d.section_labels[t.weakest_section]) || t.weakest_section || '');
+  const verdict = t.on_pace ? 'On pace to hit your target.' : `Behind your target${secName ? ', focus on ' + esc(secName) : ''}.`;
   const wk = (t.per_week > 0 ? '+' : '') + t.per_week;
-  return `<section class="section">${head}<div class="coverblock">
+  return `<section class="section"><div class="coverblock">${eyebrow}
     <div class="calibsummary calibverdict--${t.on_pace ? 'ok' : 'off'}"><b>${verdict}</b></div>
     <div class="trajstats">
       <div class="trajstat"><span class="trajstat__num">${t.projected}</span><span class="trajstat__lbl">projected by exam day</span></div>
       <div class="trajstat"><span class="trajstat__num">${t.target}</span><span class="trajstat__lbl">your target</span></div>
       <div class="trajstat"><span class="trajstat__num">${wk}</span><span class="trajstat__lbl">points per week</span></div>
     </div>
-    <div class="cover" style="margin-top:0.85rem">Covers your three section scores, not CARS yet. Change target: ${input}</div>
+    <div class="cover" style="margin-top:0.85rem">Change target (${lo}\u2013${hi}): ${input}</div>
   </div></section>`;
 }
 
@@ -613,13 +646,15 @@ function errorCard() {
       </div>
     </div>
   </header>
+  <div class="app__body">
   <section class="section">
     <div class="card card--abstain">
       <div class="abstain__title">Couldn't load your scores</div>
       <p class="abstain__lead">${esc(msg)}</p>
       <button class="card__cta" onclick="vpy('refresh')">Refresh</button>
     </div>
-  </section>`;
+  </section>
+  </div>`;
 }
 
 function render() {
@@ -645,17 +680,21 @@ function render() {
       </div>
     </div>
     <div class="chips">
-      <span class="chip">${svg('grid')} ${pct(d.coverage)} of the exam covered</span>
+      <span class="chip">${svg('grid')} ${pct(d.topic_coverage)} of the exam covered</span>
       <span class="chip">${svg('bolt')} ${d.n_reviews} reviews</span>
     </div>
   </header>
 
-  ${planBlock(d)}
+  <div class="app__body">
+  <div class="outlook">
+    ${planBlock(d)}
+    ${trajectoryPanel(d)}
+  </div>
 
   <section class="section">
     <div class="scores">
-      ${pctCard('memory', 'brain', 'Memory', 'how well you remember your cards', d.memory, d.coverage, memReason, memAbstain)}
-      ${pctCard('perf', 'target', 'Performance', 'how well you apply it to new questions', d.performance, d.coverage, perfReason, perfAbstain)}
+      ${pctCard('memory', 'brain', 'Memory', 'how well you remember your cards', d.memory, memReason, memAbstain)}
+      ${pctCard('perf', 'target', 'Performance', 'how well you apply it to new questions', d.performance, perfReason, perfAbstain)}
       ${readinessCard(d.readiness, d.section_labels, d)}
     </div>
   </section>
@@ -669,25 +708,39 @@ function render() {
     <div class="coverage">${coverageBlock(d)}${nextBlock(d)}</div>
   </section>
 
-  <div class="insights">
-    ${calibrationBlock(d)}
-    ${fluencyPanel(d)}
-    ${confidencePanel(d)}
-    ${mistakesPanel(d)}
-    ${pacingPanel(d)}
-    ${trajectoryPanel(d)}
-  </div>
+  <section class="section">
+    <div class="section__head"><div class="section__title">Knowledge check</div></div>
+    <div class="insightgrid insightgrid--3">
+      ${calibrationBlock(d)}
+      ${fluencyPanel(d)}
+      ${confidencePanel(d)}
+    </div>
+  </section>
 
-  <p class="giveup">No readiness score until you have ${d.thresholds.reviews} graded reviews, ${pct(d.thresholds.coverage)} of the exam covered, and some exam-style practice questions.</p>
+  <section class="section">
+    <div class="section__head"><div class="section__title">Test-day readiness</div></div>
+    <div class="insightgrid insightgrid--2">
+      ${mistakesPanel(d)}
+      ${pacingPanel(d)}
+    </div>
+  </section>
 
-  <div class="footmeta"><span>Scores updated ${esc(d.updated)}</span></div>`;
+  <div class="footmeta"><span>Scores updated ${esc(d.updated)}</span></div>
+  </div>`;
 }
 
 // Bridge to the app (desktop add-on or the AnkiDroid WebView). No-op in preview.
 window.vpy = function (cmd) { try { pycmd('vantage:' + cmd); } catch (e) { console.log('vpy', cmd); } };
 
 const MOCK = {
-  coverage: 0.79, coverage_by_section: { chem_phys: 1.0, bio_biochem: 1.0, psych_soc: 0.42 },
+  coverage: 1.0, coverage_by_section: { chem_phys: 1.0, bio_biochem: 1.0, psych_soc: 1.0 },
+  topic_coverage: 0.69, topic_coverage_by_section: { chem_phys: 0.71, bio_biochem: 0.74, psych_soc: 0.6 },
+  topic_gaps: [
+    { concept_id: '2B', name: 'Microbiology (prokaryotes, viruses)', section: 'bio_biochem', covered: 0, total: 6 },
+    { concept_id: '5C', name: 'Separation and purification methods', section: 'chem_phys', covered: 1, total: 5 },
+    { concept_id: '1B', name: 'Transmission of genetic information', section: 'bio_biochem', covered: 6, total: 10 },
+    { concept_id: '7C', name: 'Attitude and behavior change', section: 'psych_soc', covered: 1, total: 4 },
+  ],
   outline_version: 'aamc-approx-2023.v1', n_reviews: 240, n_cards_seen: 72, ai_used: false, updated: '2026-07-01 08:00',
   section_labels: { chem_phys: 'Chem/Phys', bio_biochem: 'Bio/Biochem', psych_soc: 'Psych/Soc' },
   thresholds: { memory_cards: 20, performance_outcomes: 20, reviews: 200, coverage: 0.5 },
@@ -712,7 +765,8 @@ const MOCK = {
   calibration: { abstained: false, how_sure: 'medium', n: 24, brier: 0.187, mean_predicted: 0.89, mean_observed: 0.71, well_calibrated: false,
     bins: [{ lo: 0.6, hi: 0.8, n: 8, pred_mean: 0.72, obs_rate: 0.75 }, { lo: 0.8, hi: 1.0, n: 16, pred_mean: 0.93, obs_rate: 0.69 }] },
   study_pace: { has_exam_date: true, exam_date: '2026-08-30', days_left: 60, passed: false, reviews_due: 32, flashcards_per_day: 32,
-    new_remaining: 0, new_per_day: 0, reasoning_target: 60, reasoning_done: 24, reasoning_remaining: 36, reasoning_per_day: 5 },
+    new_remaining: 0, new_per_day: 0, reasoning_target: 60, reasoning_done: 24, reasoning_today: 2, reasoning_remaining: 36, reasoning_per_day: 5,
+    flashcards_to_exam: 1920, reasoning_to_exam: 300 },
   confidence: { abstained: false, n: 24, insight: 'When you felt sure you were right 70%. Slow down on the ones you are sure about.',
     levels: [{ level: 'guess', n: 6, rate: 0.5 }, { level: 'unsure', n: 8, rate: 0.62 }, { level: 'sure', n: 10, rate: 0.7 }] },
   mistakes: { abstained: false, n_wrong: 8, top_reason: 'trap', top_section: 'psych_soc',
@@ -723,7 +777,7 @@ const MOCK = {
     { section: 'chem_phys', n: 8, median_sec: 112, target_sec: 97, on_pace: false, projected_left: 9, spare_min: 0 },
     { section: 'bio_biochem', n: 8, median_sec: 78, target_sec: 97, on_pace: true, projected_left: 0, spare_min: 18.4 },
     { section: 'psych_soc', n: 8, median_sec: 70, target_sec: 97, on_pace: true, projected_left: 0, spare_min: 26.5 }] },
-  trajectory: { abstained: false, projected: 388, target: 396, on_pace: false, per_week: 6.5, weakest_section: 'psych_soc', reason: '' },
+  trajectory: { abstained: false, projected: 388, target: 396, on_pace: false, per_week: 6.5, weakest_section: 'psych_soc', scale_lo: 354, scale_hi: 396, reason: '' },
 };
 
 // Exposed so the AnkiDroid host can re-render after injecting live collection data.
