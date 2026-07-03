@@ -1,0 +1,774 @@
+{
+  "section": "psych_soc",
+  "title": "Psych/Soc reasoning",
+  "passages": [
+    {
+      "label": "Screening lab",
+      "paragraphs": [
+        "A perception laboratory runs three short tasks with volunteers. In the tone task, a quiet sound starts below hearing level and slowly grows louder until the volunteer first reports hearing it. In the weight task, a volunteer holds a standard object and a slightly heavier one and says whether the two feel different. In the screening task, trained inspectors watch a fast stream of bag images and press a key whenever they spot a rare hidden blade.",
+        "The team records several patterns. Inspectors who are told that blades are common report far more blades, including in bags that are actually empty. A steady ventilation hum in the room stops being noticed after a few minutes. Adding a small weight is easier to detect when the standard object is light than when it is heavy. When the room lights are dimmed, volunteers say colors wash out but they still catch movement at the edges of their vision."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 5 (Sensation and Perception)",
+      "questions": [
+        {
+          "stem": "In the tone task, the softest sound level a volunteer can detect on about half of the trials is best described as which of the following?",
+          "choices": ["The difference threshold", "The absolute threshold", "Weber's fraction", "The just noticeable difference"],
+          "answer": 1,
+          "explain": "The absolute threshold is the lowest stimulus intensity a person can detect 50 percent of the time, while the difference threshold and just noticeable difference involve telling two stimuli apart.",
+          "concept": "6A",
+          "cover_story": "screening lab",
+          "b": -1.2
+        },
+        {
+          "stem": "Volunteers notice an added weight more easily when the standard object is light than when it is heavy. Which principle best explains this?",
+          "choices": ["The just noticeable difference is a roughly constant proportion of the standard stimulus", "The absolute threshold falls as stimulus intensity rises", "Adaptation erases any constant stimulus within seconds", "Detection depends only on the observer's expectations"],
+          "answer": 0,
+          "explain": "Weber's law holds that the just noticeable difference is a constant fraction of the original stimulus, so a heavier standard needs a larger absolute change before the difference is felt.",
+          "concept": "6A",
+          "cover_story": "screening lab",
+          "b": 0.3
+        },
+        {
+          "stem": "Inspectors told that blades are common report more blades even in empty bags. In signal detection terms, this instruction most directly shifts which of the following?",
+          "choices": ["Their absolute sensitivity to the visual stimulus", "Their decision criterion for reporting a blade", "The Weber fraction for their visual system", "The rate of transduction in their retina"],
+          "answer": 1,
+          "explain": "Expecting frequent targets lowers the response criterion, increasing both hits and false alarms without changing the underlying ability to see the blade.",
+          "concept": "6A",
+          "cover_story": "screening lab",
+          "b": 0.9
+        },
+        {
+          "stem": "The volunteers stop noticing the steady ventilation hum after a few minutes. This change is best described as which of the following?",
+          "choices": ["Sensory adaptation", "Weber's law", "Bottom-up processing", "Perceptual constancy"],
+          "answer": 0,
+          "explain": "Sensory adaptation is the decline in sensitivity to a constant, unchanging stimulus over time.",
+          "concept": "6A",
+          "cover_story": "screening lab",
+          "b": -0.9
+        },
+        {
+          "stem": "The tendency for expectation to make inspectors perceive blades that are not present is the clearest example of which of the following?",
+          "choices": ["Bottom-up processing", "Top-down processing", "Sensory transduction", "Sensory adaptation"],
+          "answer": 1,
+          "explain": "Top-down processing uses prior knowledge and expectations to interpret sensory input, which can produce perceptions that do not match the actual stimulus.",
+          "concept": "6A",
+          "cover_story": "screening lab",
+          "b": -0.2
+        },
+        {
+          "stem": "When the room is dimmed, colors fade but movement at the edges of vision is still detected. Which explanation fits best?",
+          "choices": ["Cones in the periphery specialize in dim-light motion", "Rods, dense in the periphery, work in dim light but do not code color", "The fovea contains only rods that detect motion", "Rods encode fine color while cones handle dim light"],
+          "answer": 1,
+          "explain": "Rods are concentrated in the peripheral retina and are highly sensitive in low light but do not encode color, so peripheral motion is seen while color washes out.",
+          "concept": "6A",
+          "cover_story": "screening lab",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Study habits study",
+      "paragraphs": [
+        "A psychology class tests how study methods affect memory. Students learn a 30-item word list, then take a recall test either right away or after a delay. One group repeats the words over and over silently. A second group links each word to a personal image or story. A third group is quizzed repeatedly instead of rereading.",
+        "The results show that the story group recalls far more words than the repeating group. On the immediate test, students recall the first and last items best. A week later, several students confidently recall a related word, sofa, that was never on the list after learning words like chair, table, and couch. Students who were quizzed during learning outperform those who only reread."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 8 (Memory)",
+      "questions": [
+        {
+          "stem": "The group that linked each word to a personal image or story remembered the most. This advantage is best explained by which of the following?",
+          "choices": ["Maintenance rehearsal strengthens the sensory register", "Deeper, elaborative encoding creates more retrieval routes", "Shorter words move faster into long-term memory", "Rote repetition prevents proactive interference"],
+          "answer": 1,
+          "explain": "Elaborative encoding that connects new material to existing knowledge produces more durable memories and more cues for later retrieval than simple repetition.",
+          "concept": "6B",
+          "cover_story": "study habits study",
+          "b": -0.2
+        },
+        {
+          "stem": "On the immediate test, students recall the first and last words best. The strong recall of the last few words just presented is best attributed to which of the following?",
+          "choices": ["The primacy effect and long-term storage", "The recency effect and recent items still in working memory", "Proactive interference from earlier items", "Deeper encoding of the final items"],
+          "answer": 1,
+          "explain": "The recency effect reflects the last items still being available in short-term or working memory, while the primacy effect reflects earlier items reaching long-term storage.",
+          "concept": "6B",
+          "cover_story": "study habits study",
+          "b": 0.2
+        },
+        {
+          "stem": "A week later some students confidently recall the word sofa, which was never shown, after learning words like chair, table, and couch. This best illustrates which of the following?",
+          "choices": ["Proactive interference", "A false memory built from related, activated concepts", "State-dependent retrieval", "Anterograde amnesia"],
+          "answer": 1,
+          "explain": "Recalling a strongly related but unpresented word reflects a false memory produced when associated concepts are activated during encoding and later mistaken for the original.",
+          "concept": "6B",
+          "cover_story": "study habits study",
+          "b": 0.9
+        },
+        {
+          "stem": "Students quizzed during learning later outperform those who only reread. This finding is best labeled as which of the following?",
+          "choices": ["The spacing effect", "The testing, or retrieval practice, effect", "State-dependent memory", "The misinformation effect"],
+          "answer": 1,
+          "explain": "The testing effect is the finding that actively retrieving information strengthens later memory more than passive rereading.",
+          "concept": "6B",
+          "cover_story": "study habits study",
+          "b": -0.1
+        },
+        {
+          "stem": "One student recalls more words when tested in the same room where she studied than in a new room. This is best explained by which of the following?",
+          "choices": ["Context-dependent retrieval cues", "Increased storage capacity", "Reduced interference from chunking", "Faster transduction of the stimulus"],
+          "answer": 0,
+          "explain": "Context-dependent memory reflects encoding specificity, where cues present at encoding, such as the room, aid retrieval when they are present again.",
+          "concept": "6B",
+          "cover_story": "study habits study",
+          "b": 0.4
+        },
+        {
+          "stem": "To hold a 10-digit number long enough to dial it, a student groups the digits into three clusters. Grouping helps mainly by doing which of the following?",
+          "choices": ["Expanding the absolute capacity of long-term memory", "Reducing the number of items working memory must juggle", "Converting the digits into iconic sensory memory", "Preventing retroactive interference at retrieval"],
+          "answer": 1,
+          "explain": "Chunking reorganizes many items into a few meaningful units, easing the limited capacity of working memory.",
+          "concept": "6B",
+          "cover_story": "study habits study",
+          "b": -0.6
+        }
+      ]
+    },
+    {
+      "label": "Emotion study",
+      "paragraphs": [
+        "Researchers study how the body and mind combine to produce emotion. In one setup, volunteers are shown a frightening film while their heart rate and sweating are recorded. In another, volunteers exercise on a bike and then meet a stranger, and researchers measure how attracted they feel.",
+        "Some volunteers are given a shot they are told is a vitamin but that actually speeds the heart. When these aroused volunteers wait with a cheerful actor, they report feeling happy; when they wait with an irritated actor, they report feeling angry. Volunteers who just exercised rate the stranger as more attractive than resting volunteers do."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 10 (Emotion and Motivation)",
+      "questions": [
+        {
+          "stem": "Aroused volunteers feel happy near a cheerful actor but angry near an irritated actor. Which theory best explains this pattern?",
+          "choices": ["James-Lange theory", "Cannon-Bard theory", "Schachter-Singer two-factor theory", "Drive-reduction theory"],
+          "answer": 2,
+          "explain": "The two-factor theory holds that emotion arises from physiological arousal plus a cognitive label drawn from the situation, so the same arousal is interpreted differently depending on context.",
+          "concept": "6C",
+          "cover_story": "emotion study",
+          "b": 0.4
+        },
+        {
+          "stem": "Volunteers who just exercised rate a stranger as more attractive than resting volunteers do. This is best explained as which of the following?",
+          "choices": ["Misattribution of physiological arousal to the stranger", "A conditioned emotional response to exercise", "The facial feedback hypothesis", "Sensory adaptation to arousal"],
+          "answer": 0,
+          "explain": "Leftover arousal from exercise is misattributed to the stranger, increasing reported attraction, an application of two-factor emotion ideas.",
+          "concept": "6C",
+          "cover_story": "emotion study",
+          "b": 1.0
+        },
+        {
+          "stem": "A different theory claims the volunteers first notice their racing heart and sweating and then feel afraid because of those bodily changes. This describes which theory?",
+          "choices": ["Cannon-Bard theory", "James-Lange theory", "Schachter-Singer theory", "The Yerkes-Dodson law"],
+          "answer": 1,
+          "explain": "The James-Lange theory proposes that a physiological reaction to a stimulus comes first and the felt emotion is our reading of that bodily state.",
+          "concept": "6C",
+          "cover_story": "emotion study",
+          "b": -0.2
+        },
+        {
+          "stem": "Suppose data showed that the racing heart and the feeling of fear begin at the same time and independently. This finding would most support which theory?",
+          "choices": ["James-Lange theory", "Cannon-Bard theory", "Two-factor theory", "Drive-reduction theory"],
+          "answer": 1,
+          "explain": "The Cannon-Bard theory holds that physiological arousal and the subjective emotion occur simultaneously and independently.",
+          "concept": "6C",
+          "cover_story": "emotion study",
+          "b": 0.3
+        },
+        {
+          "stem": "The rapid fear response to the frightening film is most associated with activity in which brain structure?",
+          "choices": ["The amygdala", "The cerebellum", "Broca's area", "The medulla"],
+          "answer": 0,
+          "explain": "The amygdala, part of the limbic system, is central to processing fear and other strong emotional responses.",
+          "concept": "6C",
+          "cover_story": "emotion study",
+          "b": -0.7
+        },
+        {
+          "stem": "Researchers find that people across very different cultures produce and recognize the same facial expression for disgust. This best supports which idea?",
+          "choices": ["Display rules fully determine facial expressions", "Some basic emotional expressions are universal", "Emotions are learned only through operant conditioning", "Facial expressions have no link to felt emotion"],
+          "answer": 1,
+          "explain": "Cross-cultural recognition of the same expressions supports the view that a set of basic emotions and their expressions are universal, consistent with work by Ekman.",
+          "concept": "6C",
+          "cover_story": "emotion study",
+          "b": -0.3
+        }
+      ]
+    },
+    {
+      "label": "Personality clinic",
+      "paragraphs": [
+        "A counseling center interviews clients and records how they describe themselves and handle conflict. One client, after being passed over for a promotion, insists the job was boring anyway and channels his frustration into intense exercise. Another completes a questionnaire that scores five broad traits.",
+        "The center also asks about beliefs. One client strongly agrees that outcomes in life come from his own actions, while another believes outcomes are mostly due to luck and powerful others. A therapist notes that a warm, accepting environment seems to help clients move toward their goals, and that one client is imaginative, curious, and eager to try new activities."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 11 (Personality)",
+      "questions": [
+        {
+          "stem": "The client who calls the lost job boring and pours frustration into exercise is using which pair of defense mechanisms?",
+          "choices": ["Projection and regression", "Rationalization and sublimation", "Denial and displacement", "Reaction formation and repression"],
+          "answer": 1,
+          "explain": "Rationalization offers a self-justifying reason (the job was boring), while sublimation channels unacceptable impulses into a socially acceptable outlet like exercise.",
+          "concept": "7A",
+          "cover_story": "personality clinic",
+          "b": 0.7
+        },
+        {
+          "stem": "The client who believes outcomes come from his own actions rather than luck would be described as having which of the following?",
+          "choices": ["An external locus of control", "An internal locus of control", "Low self-efficacy", "A repressive coping style"],
+          "answer": 1,
+          "explain": "An internal locus of control is the belief that one's own actions determine outcomes, in contrast to an external locus that credits luck or powerful others.",
+          "concept": "7A",
+          "cover_story": "personality clinic",
+          "b": -0.3
+        },
+        {
+          "stem": "According to psychoanalytic theory, the part of personality that would push the passed-over client to lash out immediately, with no concern for consequences, is which of the following?",
+          "choices": ["The ego", "The superego", "The id", "The persona"],
+          "answer": 2,
+          "explain": "The id seeks immediate gratification of impulses without regard for reality or morality, unlike the reality-oriented ego and the moralistic superego.",
+          "concept": "7A",
+          "cover_story": "personality clinic",
+          "b": -0.6
+        },
+        {
+          "stem": "The therapist's finding that a warm, accepting environment helps clients grow toward their goals fits most closely with which approach?",
+          "choices": ["Trait theory", "Humanistic theory", "Behaviorist theory", "Psychoanalytic theory"],
+          "answer": 1,
+          "explain": "Humanistic theorists such as Rogers emphasize unconditional positive regard and a supportive environment as conditions for growth and self-actualization.",
+          "concept": "7A",
+          "cover_story": "personality clinic",
+          "b": -0.4
+        },
+        {
+          "stem": "One client scores very high on a broad trait: she is imaginative, curious, and eager to try new activities. She is highest on which of the Big Five traits?",
+          "choices": ["Conscientiousness", "Openness to experience", "Agreeableness", "Neuroticism"],
+          "answer": 1,
+          "explain": "Openness to experience captures imagination, curiosity, and willingness to try new things.",
+          "concept": "7A",
+          "cover_story": "personality clinic",
+          "b": 0.0
+        },
+        {
+          "stem": "Bandura's social-cognitive view differs from pure trait theory mainly because it emphasizes which of the following?",
+          "choices": ["Fixed traits present from birth", "The ongoing interaction of personal factors, behavior, and environment", "Unconscious conflicts among id, ego, and superego", "A single universal hierarchy of needs"],
+          "answer": 1,
+          "explain": "Social-cognitive theory stresses reciprocal determinism, the two-way interaction among personal factors, behavior, and the environment, rather than fixed traits or unconscious drives.",
+          "concept": "7A",
+          "cover_story": "personality clinic",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Campus experiments",
+      "paragraphs": [
+        "A social psychology team runs several campus studies. In one, students solve simple problems either alone or in front of an audience. In another, students pull a rope alone or as part of a group while the team measures effort. In a third, a staged emergency, someone drops a stack of books, and researchers vary how many bystanders are present.",
+        "The team finds that experts perform simple tasks faster with an audience, while beginners do worse on hard tasks when watched. Individual effort on the rope drops as group size grows. Help for the person who dropped the books is offered quickly when one bystander is present but is delayed when many are present. In a mock jury task, small groups make riskier decisions than the members did on their own."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 12 (Social Psychology)",
+      "questions": [
+        {
+          "stem": "Experts complete simple tasks faster with an audience, but beginners do worse on hard tasks when watched. This overall pattern is best explained by which of the following?",
+          "choices": ["Social loafing", "Social facilitation, where arousal boosts the dominant response", "Deindividuation", "Groupthink"],
+          "answer": 1,
+          "explain": "Social facilitation predicts that the arousal from an audience strengthens the dominant response, helping performance on easy or well-learned tasks and hurting it on difficult or novel ones.",
+          "concept": "7B",
+          "cover_story": "campus experiments",
+          "b": 0.5
+        },
+        {
+          "stem": "Individual effort on the rope-pull drops as the group grows larger. This reduction in personal effort is best labeled as which of the following?",
+          "choices": ["Social facilitation", "Social loafing", "The bystander effect", "Group polarization"],
+          "answer": 1,
+          "explain": "Social loafing is the tendency to exert less individual effort when working in a group than when working alone.",
+          "concept": "7B",
+          "cover_story": "campus experiments",
+          "b": -0.8
+        },
+        {
+          "stem": "Help is offered quickly with one bystander but delayed when many are present. The best explanation is which of the following?",
+          "choices": ["Diffusion of responsibility among many bystanders", "Deindividuation in small groups", "Informational conformity to experts", "Social facilitation of helping"],
+          "answer": 0,
+          "explain": "As the number of bystanders rises, responsibility to act is diffused across the group, so any single person feels less compelled to help.",
+          "concept": "7B",
+          "cover_story": "campus experiments",
+          "b": -0.2
+        },
+        {
+          "stem": "In a follow-up, a student gives an obviously wrong answer to a simple line-length question after hearing several confederates give that same wrong answer. This behavior is best explained by which of the following?",
+          "choices": ["Informational social influence based on genuine confusion", "Normative social influence to fit in with the group", "Obedience to an authority figure", "Diffusion of responsibility"],
+          "answer": 1,
+          "explain": "Conforming to a clearly wrong majority on an easy task reflects normative influence, the desire to be accepted, rather than genuine uncertainty about the answer.",
+          "concept": "7B",
+          "cover_story": "campus experiments",
+          "b": 0.6
+        },
+        {
+          "stem": "A different study asks participants to follow an experimenter's direct instructions to deliver what they believe are harmful shocks. This situation tests which of the following most directly?",
+          "choices": ["Conformity to peers", "Obedience to authority", "Social loafing", "Group polarization"],
+          "answer": 1,
+          "explain": "Following the direct commands of an authority figure, even against one's conscience, is obedience, as studied by Milgram, and differs from peer conformity.",
+          "concept": "7B",
+          "cover_story": "campus experiments",
+          "b": -0.1
+        },
+        {
+          "stem": "The mock juries make riskier decisions than the individual members did beforehand. This shift toward a more extreme group position is best described as which of the following?",
+          "choices": ["Groupthink", "Group polarization", "Deindividuation", "Social loafing"],
+          "answer": 1,
+          "explain": "Group polarization is the tendency for group discussion to strengthen the members' initial leanings, producing a more extreme collective decision.",
+          "concept": "7B",
+          "cover_story": "campus experiments",
+          "b": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Clinic and classroom",
+      "paragraphs": [
+        "A clinic uses learning principles to change behavior. A child learns that a soft chime always comes right before a bitter cough syrup, and after several pairings the child grimaces at the chime alone. A teacher gives a sticker for every correct answer at first, then switches to rewarding correct answers only now and then.",
+        "In another program, a therapist praises a nail-biting client for progress, and separately removes an annoying alarm as soon as the client completes a task. A parent notes that a toddler learns to say please more often after watching an older sibling get treats for saying it."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 6 (Learning)",
+      "questions": [
+        {
+          "stem": "The child grimaces at the chime alone after it repeatedly precedes bitter syrup. In classical conditioning terms, the chime has become which of the following?",
+          "choices": ["An unconditioned stimulus", "A conditioned stimulus", "A conditioned response", "A negative reinforcer"],
+          "answer": 1,
+          "explain": "Through pairing with the bitter syrup, the unconditioned stimulus, the previously neutral chime becomes a conditioned stimulus that triggers the grimace.",
+          "concept": "7C",
+          "cover_story": "clinic and classroom",
+          "b": -0.3
+        },
+        {
+          "stem": "The teacher switches from a sticker for every correct answer to rewarding correct answers only occasionally and unpredictably. This unpredictable schedule tends to produce which outcome?",
+          "choices": ["Rapid extinction once rewards stop", "High, steady responding that resists extinction", "Responding only right after each reward", "No change compared with rewarding every answer"],
+          "answer": 1,
+          "explain": "A variable-ratio schedule produces high, steady response rates that are especially resistant to extinction, which is why occasional unpredictable rewards are powerful.",
+          "concept": "7C",
+          "cover_story": "clinic and classroom",
+          "b": 0.6
+        },
+        {
+          "stem": "The therapist removes an annoying alarm as soon as the client finishes a task, and task completion rises. Removing the alarm is an example of which of the following?",
+          "choices": ["Positive reinforcement", "Negative reinforcement", "Positive punishment", "Negative punishment"],
+          "answer": 1,
+          "explain": "Negative reinforcement increases a behavior by removing an unpleasant stimulus, here the alarm, when the desired behavior occurs.",
+          "concept": "7C",
+          "cover_story": "clinic and classroom",
+          "b": 0.3
+        },
+        {
+          "stem": "Praising the client for reducing nail-biting, which then decreases nail-biting further, uses praise as which of the following?",
+          "choices": ["A positive reinforcer for the competing behavior", "A conditioned stimulus", "A negative punisher", "An unconditioned response"],
+          "answer": 0,
+          "explain": "Praise here is a positive reinforcer that strengthens the desired behavior by adding a pleasant consequence.",
+          "concept": "7C",
+          "cover_story": "clinic and classroom",
+          "b": 0.0
+        },
+        {
+          "stem": "The toddler says please more often after seeing an older sibling rewarded for saying it. This best illustrates which of the following?",
+          "choices": ["Classical conditioning", "Observational learning through vicarious reinforcement", "Habituation", "Negative reinforcement"],
+          "answer": 1,
+          "explain": "Learning by watching another person be rewarded is observational learning driven by vicarious reinforcement, as described by Bandura.",
+          "concept": "7C",
+          "cover_story": "clinic and classroom",
+          "b": -0.5
+        },
+        {
+          "stem": "A dog that once barked at every passing train gradually stops reacting to the harmless, repeated sound, with no reward involved. This decline in response to a repeated, meaningless stimulus is best called which of the following?",
+          "choices": ["Extinction of a conditioned response", "Habituation", "Stimulus generalization", "Spontaneous recovery"],
+          "answer": 1,
+          "explain": "Habituation is a decrease in responding to a repeated, harmless stimulus and does not require any prior conditioned association, unlike extinction.",
+          "concept": "7C",
+          "cover_story": "clinic and classroom",
+          "b": 0.7
+        }
+      ]
+    },
+    {
+      "label": "Development study",
+      "paragraphs": [
+        "A longitudinal study follows people from childhood into adulthood and records how they resolve life challenges. A teenager tries out different clubs, majors, and friend groups while asking who she really is. A toddler in the same study explores freely when a caregiver is reliably present and grows anxious when the caregiver is unpredictable.",
+        "Researchers also present moral dilemmas. A young child says stealing is wrong because you might get caught and punished. An adult says a law can be unjust and that broader ethical principles can outweigh it. Over the years, the team also tracks how each participant describes the self and how confident each feels about specific tasks."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 9 (Lifespan Development)",
+      "questions": [
+        {
+          "stem": "The teenager who tries out many clubs and roles while asking who she is fits which of Erikson's stages?",
+          "choices": ["Trust versus mistrust", "Identity versus role confusion", "Intimacy versus isolation", "Generativity versus stagnation"],
+          "answer": 1,
+          "explain": "Adolescence centers on the identity versus role confusion stage, in which a person explores roles to form a coherent sense of self.",
+          "concept": "8A",
+          "cover_story": "development study",
+          "b": -0.4
+        },
+        {
+          "stem": "The young child who says stealing is wrong only because you might be punished is reasoning at which level of moral development?",
+          "choices": ["Preconventional", "Conventional", "Postconventional", "Concrete operational"],
+          "answer": 0,
+          "explain": "Preconventional moral reasoning focuses on avoiding punishment and gaining rewards, not on social approval or abstract principles.",
+          "concept": "8A",
+          "cover_story": "development study",
+          "b": -0.2
+        },
+        {
+          "stem": "The adult who argues that an unjust law can be outweighed by broader ethical principles is reasoning at which level?",
+          "choices": ["Preconventional", "Conventional", "Postconventional", "Formal operational"],
+          "answer": 2,
+          "explain": "Postconventional reasoning appeals to abstract principles and universal ethics that can override specific laws.",
+          "concept": "8A",
+          "cover_story": "development study",
+          "b": 0.3
+        },
+        {
+          "stem": "In Erikson's framework, the toddler who explores confidently only when the caregiver is reliably present is working through which stage?",
+          "choices": ["Autonomy versus shame and doubt", "Trust versus mistrust", "Initiative versus guilt", "Industry versus inferiority"],
+          "answer": 1,
+          "explain": "The earliest Eriksonian stage, trust versus mistrust, concerns whether a dependable caregiver leads the infant to view the world as safe.",
+          "concept": "8A",
+          "cover_story": "development study",
+          "b": 0.4
+        },
+        {
+          "stem": "Researchers note that young children describe themselves mostly by concrete features like hair color, while adolescents describe themselves using abstract traits and beliefs. This shift best reflects which of the following?",
+          "choices": ["A steady decline in self-esteem with age", "The development of a more abstract self-concept", "The onset of identity foreclosure", "An external locus of control"],
+          "answer": 1,
+          "explain": "As cognition matures, the self-concept moves from concrete physical descriptions toward abstract psychological traits and values.",
+          "concept": "8A",
+          "cover_story": "development study",
+          "b": 0.1
+        },
+        {
+          "stem": "A participant is very confident she can pass a specific chemistry exam if she studies, though her overall sense of self-worth is only average. Her exam confidence is best described as which of the following?",
+          "choices": ["High global self-esteem", "High self-efficacy for that task", "An external locus of control", "Identity diffusion"],
+          "answer": 1,
+          "explain": "Self-efficacy is the belief in one's ability to succeed at a specific task, which can be high even when general self-esteem is only moderate.",
+          "concept": "8A",
+          "cover_story": "development study",
+          "b": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Attribution survey",
+      "paragraphs": [
+        "A social psychology study examines how people explain behavior. Participants read about a driver who cuts off another car and about a student who fails a test. They also rate their own successes and failures, and complete measures of beliefs and feelings toward unfamiliar groups.",
+        "Most participants say the rude driver is simply a bad person, while explaining their own rude driving as caused by being in a rush. They credit their own good grades to ability but blame bad grades on unfair tests. In a separate task, teachers who are told that certain randomly chosen students are gifted later rate those students as higher achievers, and those students improve."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 12 (Social Psychology)",
+      "questions": [
+        {
+          "stem": "Participants call the rude driver a bad person while blaming their own rude driving on being rushed. Their judgment of the other driver reflects which of the following?",
+          "choices": ["The self-serving bias", "The fundamental attribution error", "The just-world hypothesis", "Deindividuation"],
+          "answer": 1,
+          "explain": "The fundamental attribution error is the tendency to overweight personal, dispositional causes and underweight situational causes when explaining others' behavior.",
+          "concept": "8B",
+          "cover_story": "attribution survey",
+          "b": 0.1
+        },
+        {
+          "stem": "The contrast between blaming the other driver's character but blaming the situation for one's own identical behavior is best labeled as which of the following?",
+          "choices": ["Actor-observer bias", "Cognitive dissonance", "Stereotype threat", "Social facilitation"],
+          "answer": 0,
+          "explain": "The actor-observer bias is the tendency to attribute others' actions to disposition while attributing our own to the situation.",
+          "concept": "8B",
+          "cover_story": "attribution survey",
+          "b": 0.5
+        },
+        {
+          "stem": "Participants credit their good grades to ability but blame bad grades on unfair tests. This pattern is best described as which of the following?",
+          "choices": ["The fundamental attribution error", "The self-serving bias", "The actor-observer bias", "The halo effect"],
+          "answer": 1,
+          "explain": "The self-serving bias protects self-esteem by attributing successes to internal factors and failures to external ones.",
+          "concept": "8B",
+          "cover_story": "attribution survey",
+          "b": -0.2
+        },
+        {
+          "stem": "Teachers told that random students are gifted later rate them as higher achievers, and those students improve. This outcome best illustrates which of the following?",
+          "choices": ["Stereotype threat", "A self-fulfilling prophecy", "The just-world hypothesis", "Out-group homogeneity"],
+          "answer": 1,
+          "explain": "A self-fulfilling prophecy occurs when an initially false expectation changes behavior in ways that make the expectation come true.",
+          "concept": "8B",
+          "cover_story": "attribution survey",
+          "b": 0.4
+        },
+        {
+          "stem": "A participant believes an unfamiliar group is lazy, dislikes them, and refuses to hire them. The refusal to hire is best classified as which of the following?",
+          "choices": ["A stereotype", "Prejudice", "Discrimination", "Ethnocentrism"],
+          "answer": 2,
+          "explain": "Discrimination is the behavioral component, unequal treatment based on group membership, distinct from the cognitive stereotype and the affective prejudice.",
+          "concept": "8B",
+          "cover_story": "attribution survey",
+          "b": -0.1
+        },
+        {
+          "stem": "Reminding students of a negative stereotype about their group right before a test lowers their scores, even though nothing about the test changed. This effect is best described as which of the following?",
+          "choices": ["Stereotype threat", "The self-serving bias", "A self-fulfilling prophecy created by the teacher", "Out-group bias"],
+          "answer": 0,
+          "explain": "Stereotype threat is the drop in performance that arises when people fear confirming a negative stereotype about their own group.",
+          "concept": "8B",
+          "cover_story": "attribution survey",
+          "b": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Hospital roles",
+      "paragraphs": [
+        "A sociologist observes a busy teaching hospital. A resident is a physician to patients, a student to attending doctors, and a mentor to nurses in training, and she sometimes struggles to meet all of these expectations at once. Staff behave formally and reassuringly at the bedside but joke and vent in the break room.",
+        "The sociologist notes that some positions, like being born into a wealthy family, are assigned at birth, while others, like becoming a lead surgeon, are earned. A new nurse carefully manages how he dresses and speaks to appear competent to patients and supervisors."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 4 (Society and Social Interaction)",
+      "questions": [
+        {
+          "stem": "The resident struggles to satisfy the different demands of being a physician, a student, and a mentor at the same time. This clash between the expectations of her different statuses is best called which of the following?",
+          "choices": ["Role strain", "Role conflict", "Role exit", "Status inconsistency"],
+          "answer": 1,
+          "explain": "Role conflict arises from incompatible demands of two or more different statuses a person holds at once, unlike role strain, which comes from a single role.",
+          "concept": "8C",
+          "cover_story": "hospital roles",
+          "b": 0.4
+        },
+        {
+          "stem": "Suppose instead the resident feels torn by competing demands within the single role of physician, such as being both efficient and caring. This tension within one role is best labeled as which of the following?",
+          "choices": ["Role conflict", "Role strain", "Role exit", "Master status"],
+          "answer": 1,
+          "explain": "Role strain is the tension among the various demands of a single role, whereas role conflict is between separate roles.",
+          "concept": "8C",
+          "cover_story": "hospital roles",
+          "b": 0.6
+        },
+        {
+          "stem": "Staff act formal and reassuring at the bedside but joke and vent in the break room. In Goffman's dramaturgical approach, the break room functions as which of the following?",
+          "choices": ["The front stage", "The back stage", "A total institution", "A reference group"],
+          "answer": 1,
+          "explain": "In dramaturgical analysis, the back stage is where people relax and drop the managed performance they present on the front stage.",
+          "concept": "8C",
+          "cover_story": "hospital roles",
+          "b": 0.2
+        },
+        {
+          "stem": "The new nurse carefully manages his dress and speech to appear competent to patients and supervisors. This effort is best described as which of the following?",
+          "choices": ["Impression management", "Role exit", "Resocialization", "Deindividuation"],
+          "answer": 0,
+          "explain": "Impression management is the process of controlling how one presents oneself in order to shape others' perceptions.",
+          "concept": "8C",
+          "cover_story": "hospital roles",
+          "b": -0.4
+        },
+        {
+          "stem": "Being born into a wealthy family versus becoming a lead surgeon illustrates the difference between which pair?",
+          "choices": ["Master status and role set", "Ascribed status and achieved status", "Front stage and back stage", "Primary group and secondary group"],
+          "answer": 1,
+          "explain": "An ascribed status is assigned without effort, such as by birth, while an achieved status is earned through one's actions.",
+          "concept": "8C",
+          "cover_story": "hospital roles",
+          "b": -0.6
+        },
+        {
+          "stem": "For one physician, being a famous surgeon overshadows all her other statuses in how others treat her. A status that dominates others in this way is best called which of the following?",
+          "choices": ["An ascribed status", "A master status", "A reference group", "A role set"],
+          "answer": 1,
+          "explain": "A master status is the status that dominates how a person is perceived and organizes their social identity above their other statuses.",
+          "concept": "8C",
+          "cover_story": "hospital roles",
+          "b": 0.1
+        }
+      ]
+    },
+    {
+      "label": "Paradigms on schooling",
+      "paragraphs": [
+        "A sociology seminar asks students to explain public schooling using different theoretical lenses. One student argues that schools exist because they perform useful functions for society, such as teaching skills and sorting people into jobs. Another argues that schools mainly reproduce the advantages of wealthy families and keep power unequal.",
+        "A third student focuses on the small-scale meanings created in classrooms, such as how a label like troublemaker shapes a student's self-image and behavior. The seminar also notes that openly socializing children is a benefit everyone recognizes, while keeping young people out of the job market is a less obvious effect."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 1 (An Introduction to Sociology)",
+      "questions": [
+        {
+          "stem": "The student who says schools exist because they perform useful functions like teaching skills and sorting workers is using which theoretical approach?",
+          "choices": ["Conflict theory", "Structural functionalism", "Symbolic interactionism", "Rational choice theory"],
+          "answer": 1,
+          "explain": "Structural functionalism explains social institutions by the functions they perform to maintain the stability of society as a whole.",
+          "concept": "9A",
+          "cover_story": "paradigms on schooling",
+          "b": -0.3
+        },
+        {
+          "stem": "The student who argues that schools mainly reproduce the advantages of the wealthy and preserve unequal power is using which approach?",
+          "choices": ["Functionalism", "Conflict theory", "Symbolic interactionism", "Social exchange theory"],
+          "answer": 1,
+          "explain": "Conflict theory, rooted in Marx, emphasizes how institutions maintain inequality and serve the interests of powerful groups.",
+          "concept": "9A",
+          "cover_story": "paradigms on schooling",
+          "b": -0.1
+        },
+        {
+          "stem": "The student focused on how a label like troublemaker shapes a student's self-image in everyday classroom interactions is using which approach?",
+          "choices": ["Macrosociology", "Symbolic interactionism", "Functionalism", "Conflict theory"],
+          "answer": 1,
+          "explain": "Symbolic interactionism is a micro-level approach that studies how people create and respond to shared meanings and labels in interaction.",
+          "concept": "9A",
+          "cover_story": "paradigms on schooling",
+          "b": 0.2
+        },
+        {
+          "stem": "Openly socializing children is a benefit everyone recognizes, while keeping young people out of the job market is a hidden effect. These two are best described as which pair?",
+          "choices": ["Manifest function and latent function", "Function and dysfunction", "Norm and sanction", "Value and belief"],
+          "answer": 0,
+          "explain": "A manifest function is an intended, recognized consequence, while a latent function is an unintended, less obvious one.",
+          "concept": "9A",
+          "cover_story": "paradigms on schooling",
+          "b": 0.5
+        },
+        {
+          "stem": "Which pair of approaches is best matched to a macro-level, large-scale analysis of schooling rather than a micro-level one?",
+          "choices": ["Symbolic interactionism and dramaturgy", "Functionalism and conflict theory", "Labeling theory and exchange theory", "Ethnomethodology and interactionism"],
+          "answer": 1,
+          "explain": "Functionalism and conflict theory are macro-level paradigms that analyze large social structures, while symbolic interactionism is micro-level.",
+          "concept": "9A",
+          "cover_story": "paradigms on schooling",
+          "b": 0.7
+        },
+        {
+          "stem": "A researcher predicts that unequal school funding will widen the gap between rich and poor neighborhoods over time. This prediction follows most directly from which approach?",
+          "choices": ["Functionalism", "Conflict theory", "Symbolic interactionism", "Rational choice theory"],
+          "answer": 1,
+          "explain": "Conflict theory predicts that institutional arrangements like unequal funding will reproduce and deepen social inequality.",
+          "concept": "9A",
+          "cover_story": "paradigms on schooling",
+          "b": 0.1
+        }
+      ]
+    },
+    {
+      "label": "Country dataset",
+      "paragraphs": [
+        "A demographer compares two countries. Country A has high birth rates and high death rates and a young population. Country B has low birth rates, low death rates, and a growing share of older adults. Over 50 years, Country A's death rate falls sharply due to better sanitation while births stay high, and its population surges.",
+        "The demographer also studies movement of people. Many young workers leave rural areas of Country A because there are few jobs, and they move to cities in Country B that offer employment. Some analysts warn that population may outgrow the food supply, while others point to new farming technology as a solution."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 20 (Population, Urbanization, and the Environment)",
+      "questions": [
+        {
+          "stem": "Country A's death rate falls sharply while birth rates stay high, causing its population to surge. This pattern is characteristic of which of the following?",
+          "choices": ["The final stage of the demographic transition", "An early stage of the demographic transition", "A post-industrial equilibrium", "Zero population growth"],
+          "answer": 1,
+          "explain": "In an early transition stage, death rates drop due to improvements like sanitation while birth rates remain high, producing rapid population growth.",
+          "concept": "9B",
+          "cover_story": "country dataset",
+          "b": 0.4
+        },
+        {
+          "stem": "Country B has low birth and death rates and a rising share of older adults. A useful tool for displaying this age-and-sex structure is which of the following?",
+          "choices": ["A population pyramid", "A Punnett square", "A dependency contract", "A sociogram"],
+          "answer": 0,
+          "explain": "A population pyramid displays the distribution of a population by age and sex, revealing patterns such as an aging society.",
+          "concept": "9B",
+          "cover_story": "country dataset",
+          "b": -0.2
+        },
+        {
+          "stem": "Young workers leave rural Country A because of scarce jobs and move to cities in Country B that offer work. The scarce jobs at home are best described as which of the following?",
+          "choices": ["A pull factor", "A push factor", "Chain migration", "Net migration"],
+          "answer": 1,
+          "explain": "Push factors drive people away from an origin, such as a lack of jobs, while pull factors attract them to a destination.",
+          "concept": "9B",
+          "cover_story": "country dataset",
+          "b": -0.3
+        },
+        {
+          "stem": "The analysts who warn that population may outgrow the food supply are drawing on which perspective?",
+          "choices": ["Malthusian theory", "Demographic transition theory", "The cornucopian view", "World-systems theory"],
+          "answer": 0,
+          "explain": "Malthusian theory warns that population, growing geometrically, can outpace food production, which grows more slowly.",
+          "concept": "9B",
+          "cover_story": "country dataset",
+          "b": 0.3
+        },
+        {
+          "stem": "The large-scale movement of people from the countryside into the cities of Country B is best described as which of the following?",
+          "choices": ["Suburbanization", "Urbanization", "Gentrification", "Assimilation"],
+          "answer": 1,
+          "explain": "Urbanization is the growing concentration of a population in cities, often driven by rural-to-urban migration for work.",
+          "concept": "9B",
+          "cover_story": "country dataset",
+          "b": -0.6
+        },
+        {
+          "stem": "The analysts who respond that new farming technology can keep pace with population growth best represent which view?",
+          "choices": ["Malthusian theory", "The cornucopian view", "The first stage of the demographic transition", "Zero population growth"],
+          "answer": 1,
+          "explain": "The cornucopian view holds that human innovation and technology will continue to solve resource limits as population grows.",
+          "concept": "9B",
+          "cover_story": "country dataset",
+          "b": 0.8
+        }
+      ]
+    },
+    {
+      "label": "Mobility study",
+      "paragraphs": [
+        "A sociologist studies how people move up or down the social ladder. In one country, a person's position is fixed at birth by the family they are born into and cannot change, no matter their effort. In another, people can move between levels based on education and work, though family background still shapes their chances.",
+        "The study finds that children of college-educated parents are far more likely to attend college themselves, partly because they grow up with books, museum visits, and comfort navigating institutions. Many people nonetheless believe that anyone who works hard can get ahead. In one family, the children become professionals while their parents worked in manual jobs."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 9 (Social Stratification in the United States)",
+      "questions": [
+        {
+          "stem": "The country where a person's position is fixed at birth and cannot change describes which type of stratification system?",
+          "choices": ["A class system", "A caste system", "A meritocracy", "A contradictory class location"],
+          "answer": 1,
+          "explain": "A caste system fixes status at birth with no legitimate mobility, unlike an open class system where movement is possible.",
+          "concept": "10A",
+          "cover_story": "mobility study",
+          "b": -0.4
+        },
+        {
+          "stem": "Children of college-educated parents grow up with books, museum visits, and ease navigating institutions, which later helps them succeed. These advantages are best described as which of the following?",
+          "choices": ["Economic capital", "Cultural capital", "Structural mobility", "Meritocracy"],
+          "answer": 1,
+          "explain": "Cultural capital refers to non-financial assets such as knowledge, tastes, and skills that help people succeed within social institutions.",
+          "concept": "10A",
+          "cover_story": "mobility study",
+          "b": 0.5
+        },
+        {
+          "stem": "Many people believe anyone who works hard can get ahead, even though family background strongly shapes outcomes. This belief system is best described as which of the following?",
+          "choices": ["The ideology of meritocracy", "Structural mobility", "Social reproduction", "Relative poverty"],
+          "answer": 0,
+          "explain": "The ideology of meritocracy holds that rewards flow from individual effort and talent, which can obscure the structural advantages of birth.",
+          "concept": "10A",
+          "cover_story": "mobility study",
+          "b": 0.4
+        },
+        {
+          "stem": "In one family, the children become professionals while their parents worked in manual jobs. This rise in position from parents to children is best described as which of the following?",
+          "choices": ["Intragenerational mobility", "Intergenerational mobility", "Horizontal mobility", "Caste mobility"],
+          "answer": 1,
+          "explain": "Intergenerational mobility is a change in social position from one generation to the next, such as children reaching a higher class than their parents.",
+          "concept": "10A",
+          "cover_story": "mobility study",
+          "b": 0.2
+        },
+        {
+          "stem": "A functionalist argues that societies pay surgeons more than clerks because such important, hard-to-fill jobs must attract talented people. This argument is known as which of the following?",
+          "choices": ["The Davis-Moore thesis", "The conflict theory of stratification", "The culture of poverty thesis", "The Thomas theorem"],
+          "answer": 0,
+          "explain": "The Davis-Moore thesis is the functionalist claim that stratification is useful because greater rewards motivate the most qualified people to fill the most important positions.",
+          "concept": "10A",
+          "cover_story": "mobility study",
+          "b": 1.1
+        },
+        {
+          "stem": "During a technology boom, a whole cohort of workers moves into higher-paying jobs as the economy adds many new positions. This upward movement of many people due to changes in the economy is best described as which of the following?",
+          "choices": ["Horizontal mobility", "Structural mobility", "Intragenerational decline", "Relative deprivation"],
+          "answer": 1,
+          "explain": "Structural mobility is movement of many people up or down the ladder caused by changes in the wider economy rather than by individual effort alone.",
+          "concept": "10A",
+          "cover_story": "mobility study",
+          "b": 0.6
+        }
+      ]
+    }
+  ]
+}

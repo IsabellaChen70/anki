@@ -46,6 +46,7 @@ html, body {
 .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.25rem; margin-top: 1.75rem; align-items: start; }
 .passage__label { font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-400); margin-bottom: 0.8rem; }
 .passage__body p { max-width: 40rem; line-height: 1.72; margin-bottom: 1.05rem; font-size: 1.02rem; color: #1f2937; }
+.passage__src { margin-top: 0.5rem; font-size: 0.78rem; color: var(--gray-400); font-style: italic; }
 
 /* question card */
 .qcard { background: var(--muted); border-radius: var(--radius); padding: 1.6rem; position: sticky; top: 1rem; }

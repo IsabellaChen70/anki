@@ -22,11 +22,12 @@ covered by the one-command runners in the [justfile](../justfile) (`just eval-al
 # Rust: the topic-interleaving engine change (11 unit tests)
 cargo test -p anki interleave
 
-# Python: interleaving end-to-end + the honest scoring layer (98 tests)
+# Python: interleaving end-to-end, the honest scoring layer, and the bank validator (113 tests)
 PYTHONPATH=pylib:out/pylib ./out/pyenv/bin/python -m pytest \
   pylib/tests/test_interleave.py \
   pylib/tests/test_vantage_scoring.py \
-  pylib/tests/test_vantage_collect.py -q
+  pylib/tests/test_vantage_collect.py \
+  pylib/tests/test_vantage_reasoning_bank.py -q
 
 # Everything re-runnable in one shot (unit tests + all seeded evals + safety):
 just eval-all
@@ -58,13 +59,14 @@ together; `Off` is the exact identity; order is deterministic for a fixed seed; 
 confusability upgrade biases confusable pairs without starving others and is byte-identical
 to naive when unset; and a note with multiple review cards is handled during queue build.
 
-## Honest scoring + interleaving from Python: `pytest` (98 passed)
+## Honest scoring + interleaving from Python: `pytest` (113 passed)
 
 ```
 pylib/tests/test_interleave.py ........................................ 2 passed
-pylib/tests/test_vantage_scoring.py .................................. 65 passed
-pylib/tests/test_vantage_collect.py ................................... 31 passed
-================================ 98 passed ================================
+pylib/tests/test_vantage_scoring.py .................................. 67 passed
+pylib/tests/test_vantage_collect.py ................................... 41 passed
+pylib/tests/test_vantage_reasoning_bank.py ...... 3 passed
+================================ 113 passed ================================
 ```
 
 These cover: the outline + weighted coverage; the three scores (memory / performance /
@@ -72,6 +74,10 @@ readiness) with ranges; the give-up rule (≥200 reviews AND ≥50% coverage); c
 (Brier, Wilson, IRT/EAP); reasoning outcomes as real sync-safe cards + revlog; per-device
 metacognition merge (no clobber / no double-count); confusability pairing; and the
 interleaving RPC end-to-end (no two consecutive same-topic cards, undo + integrity clean).
+
+## Reasoning question bank
+
+The application/reasoning practice bank ships **264 questions across 44 passages**: every AAMC science content category (Chem/Phys 10, Bio/Biochem 9, Psych/Soc 12) plus 11 original CARS passages. Every item is original; each science item is tagged to its AAMC concept (`vantage::concept::<id>`, which powers the per-concept transfer gap) and cites an OpenStax (CC BY 4.0) chapter as a verification anchor. The banks live in `vantage_addon/web/reasoning_bank.{cars,chem_phys,bio_biochem,psych_soc}.json`, are injected identically on desktop and mobile by `render.py`, and are validated by `pylib/tests/test_vantage_reasoning_bank.py` (well-formed items, in-range answers, no orphan concepts).
 
 ## Re-runnable evals + safety harness (committed artifacts)
 
@@ -102,6 +108,7 @@ Each writes a seeded result file; run individually or via `just eval-all`.
 | Suite | Command | Result |
 | --- | --- | --- |
 | Rust engine change (interleaving) | `cargo test -p anki interleave` | **11 passed** |
-| Interleaving E2E + honest scoring (Python) | `pytest` (3 files) | **98 passed** |
-| **Unit-test total** | | **109 passed, 0 failed** |
+| Interleaving E2E + honest scoring (Python) | `pytest` (4 files) | **113 passed** |
+| Reasoning question bank (264 items, no orphan concepts) | `pytest test_vantage_reasoning_bank.py` | **validated** |
+| **Unit-test total** | | **124 passed, 0 failed** |
 | Re-runnable evals + safety | `just eval-all` | all pass (see table above) |

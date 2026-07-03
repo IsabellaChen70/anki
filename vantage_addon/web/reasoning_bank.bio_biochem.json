@@ -1,0 +1,946 @@
+{
+  "section": "bio_biochem",
+  "title": "Bio/Biochem reasoning",
+  "passages": [
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A research team isolates a small globular protein, which they call vantagin, from pancreatic tissue. The mature protein is a single chain of 128 amino acids that folds into a compact shape with most of its nonpolar side chains buried in the interior. Three pairs of cysteine residues form disulfide bonds that lock the folded shape in place.",
+        "To probe how structure supports function, the team measures the protein's net charge across a pH gradient and finds it carries no net charge at pH 6.8. Separately, they treat active protein with heat, with a reducing agent that breaks disulfide bonds, and with a detergent that disrupts noncovalent contacts. Each treatment abolishes activity, yet analysis shows the peptide backbone remains intact."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 3 (Biological Macromolecules)",
+      "questions": [
+        {
+          "stem": "The team loads vantagin onto a column buffered at pH 4.0. Based on its behavior in the pH gradient, what net charge will the protein most likely carry?",
+          "choices": [
+            "Net positive, because the pH is below its isoelectric point",
+            "Net negative, because the pH is below its isoelectric point",
+            "No net charge, because pH 4.0 equals its isoelectric point",
+            "No charge at all, because the buried residues are nonpolar"
+          ],
+          "answer": 0,
+          "explain": "At a pH below the isoelectric point of 6.8, acidic and basic groups gain protons, so the protein carries a net positive charge.",
+          "concept": "1A",
+          "cover_story": "protein folding",
+          "b": -1.3
+        },
+        {
+          "stem": "The reducing agent abolishes activity even though the amino acid sequence is unchanged. What does this best demonstrate about the disulfide bonds?",
+          "choices": [
+            "They form part of the primary sequence that encodes the protein",
+            "They stabilize the folded three dimensional shape needed for activity",
+            "They are the peptide bonds that link adjacent residues",
+            "They shield the protein from changes in solution pH"
+          ],
+          "answer": 1,
+          "explain": "Disulfide bonds are covalent cross links that stabilize tertiary structure, so breaking them lets the chain unfold and lose function even though the sequence is intact.",
+          "concept": "1A",
+          "cover_story": "protein folding",
+          "b": -0.2
+        },
+        {
+          "stem": "Heating the solution destroys activity but leaves every peptide bond intact. Which conclusion is best supported?",
+          "choices": [
+            "Heat changed the order of amino acids in the chain",
+            "Heat added new amino acids to the active site",
+            "Heat disrupted higher order folding while the primary structure was preserved",
+            "Heat converted the protein into a different polymer"
+          ],
+          "answer": 2,
+          "explain": "Denaturation disrupts the noncovalent interactions that hold secondary and tertiary structure, so the protein unfolds and loses function while its covalent sequence stays the same.",
+          "concept": "1A",
+          "cover_story": "protein folding",
+          "b": 0.4
+        },
+        {
+          "stem": "Why are most nonpolar side chains found buried in the protein's interior rather than on its surface?",
+          "choices": [
+            "Nonpolar groups form strong hydrogen bonds with surrounding water",
+            "Nonpolar groups carry negative charges that repel one another",
+            "Only nonpolar groups can form peptide bonds",
+            "Burying nonpolar groups away from water is favorable in an aqueous cell"
+          ],
+          "answer": 3,
+          "explain": "In water, clustering hydrophobic side chains in the interior minimizes their contact with water and helps drive folding.",
+          "concept": "1A",
+          "cover_story": "protein folding",
+          "b": -0.7
+        },
+        {
+          "stem": "A later study shows the active enzyme is actually two identical vantagin chains bound together. A single substitution at the contact surface blocks the two chains from associating without changing how either chain folds on its own. The lost activity is best explained by disruption of which structural level?",
+          "choices": [
+            "Quaternary structure",
+            "Primary structure",
+            "Secondary structure",
+            "Tertiary structure"
+          ],
+          "answer": 0,
+          "explain": "Quaternary structure is the assembly of multiple folded subunits, so preventing the subunits from associating removes quaternary structure while each chain's own fold is unchanged.",
+          "concept": "1A",
+          "cover_story": "protein folding",
+          "b": 0.7
+        },
+        {
+          "stem": "Spectroscopy reveals a repeating pattern of hydrogen bonds between backbone carbonyl oxygens and backbone amide hydrogens, producing regular coils and sheets. These features are examples of which level of protein structure?",
+          "choices": [
+            "Primary structure",
+            "Secondary structure",
+            "Tertiary structure",
+            "Quaternary structure"
+          ],
+          "answer": 1,
+          "explain": "Regular local folding such as alpha helices and beta sheets, stabilized by backbone hydrogen bonds, defines secondary structure.",
+          "concept": "1A",
+          "cover_story": "protein folding",
+          "b": -0.4
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A different team studies an enzyme, hydrolase X, that cleaves a colorless substrate into a colored product, letting them track reaction rate by color intensity. They hold the amount of enzyme fixed and vary substrate concentration, recording the initial rate at each level.",
+        "As substrate rises, the rate climbs steeply at first and then levels off at a maximum, Vmax. The team then repeats the experiment with two candidate drugs. Drug A raises the substrate concentration needed to reach half of Vmax but does not change Vmax. Drug B lowers Vmax while leaving the half maximal substrate concentration unchanged."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 6 (Metabolism)",
+      "questions": [
+        {
+          "stem": "Why does the reaction rate level off at high substrate concentration?",
+          "choices": [
+            "The substrate begins to inhibit itself at high levels",
+            "The product is being converted back into substrate",
+            "Nearly all enzyme active sites are occupied, so the enzyme is saturated",
+            "The enzyme is permanently denatured by excess substrate"
+          ],
+          "answer": 2,
+          "explain": "At saturating substrate, essentially all active sites are occupied at any instant, so adding more substrate cannot raise the rate and the enzyme works at its maximum.",
+          "concept": "1A",
+          "cover_story": "enzyme kinetics",
+          "b": -0.8
+        },
+        {
+          "stem": "Drug A increases the substrate concentration needed to reach half of Vmax but does not change Vmax. This pattern is most consistent with which type of inhibition?",
+          "choices": [
+            "Noncompetitive inhibition",
+            "Irreversible denaturation",
+            "Feedback activation",
+            "Competitive inhibition"
+          ],
+          "answer": 3,
+          "explain": "A competitive inhibitor competes for the active site, so more substrate is needed to reach half maximal rate, yet enough substrate can still drive the reaction to the normal Vmax.",
+          "concept": "1A",
+          "cover_story": "enzyme kinetics",
+          "b": 0.1
+        },
+        {
+          "stem": "Drug B lowers Vmax while leaving the half maximal substrate concentration unchanged, and adding more substrate does not restore the original maximum rate. Which mechanism best explains Drug B?",
+          "choices": [
+            "It binds a site other than the active site and reduces the number of functional enzymes",
+            "It binds the active site and competes with substrate",
+            "It increases the enzyme's affinity for substrate",
+            "It is consumed as a second substrate"
+          ],
+          "answer": 0,
+          "explain": "A noncompetitive inhibitor binds away from the active site and lowers Vmax, and because it does not compete for the active site, extra substrate cannot overcome it and the half maximal point is unchanged.",
+          "concept": "1A",
+          "cover_story": "enzyme kinetics",
+          "b": 0.5
+        },
+        {
+          "stem": "For the enzyme exposed to Drug A, what should happen to the reaction rate if the team greatly increases substrate concentration?",
+          "choices": [
+            "The rate stays suppressed no matter how much substrate is added",
+            "The rate can approach the original Vmax as substrate outcompetes the drug",
+            "Vmax will rise above the drug free value",
+            "The enzyme will switch to making a different product"
+          ],
+          "answer": 1,
+          "explain": "Because a competitive inhibitor and substrate compete for the same site, high substrate concentration outcompetes the inhibitor and the rate approaches the normal Vmax.",
+          "concept": "1A",
+          "cover_story": "enzyme kinetics",
+          "b": 0.0
+        },
+        {
+          "stem": "The team finds hydrolase X works best near 37 C and loses almost all activity at 70 C, with activity that does not return on cooling. What is the most likely reason for the loss at 70 C?",
+          "choices": [
+            "The substrate evaporated at 70 C",
+            "The enzyme ran out of active sites",
+            "The high temperature permanently denatured the enzyme",
+            "High temperature made the reaction thermodynamically impossible"
+          ],
+          "answer": 2,
+          "explain": "Well above its optimum, heat disrupts the folded active site, and because the shape does not refold on cooling, activity does not return.",
+          "concept": "1A",
+          "cover_story": "enzyme kinetics",
+          "b": -0.6
+        },
+        {
+          "stem": "In the cell, the end product of hydrolase X's pathway binds a distant regulatory site on the enzyme and slows it down, so flux through the pathway drops when product accumulates. This regulation is best described as...",
+          "choices": [
+            "Competitive inhibition at the active site",
+            "An increase in Vmax caused by the product",
+            "Irreversible covalent modification of the substrate",
+            "Allosteric feedback inhibition"
+          ],
+          "answer": 3,
+          "explain": "Binding of the pathway's end product to a separate regulatory site that reduces activity is allosteric feedback inhibition, a common way cells match output to demand.",
+          "concept": "1A",
+          "cover_story": "enzyme kinetics",
+          "b": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A lab engineers a bacterial strain to study how a single gene is expressed into a functional protein. They can label newly made RNA and newly made protein separately, and they can introduce precise changes into the gene's DNA sequence.",
+        "In one experiment they insert a single extra nucleotide near the start of the protein coding region. In another they change a single base so that a codon that once specified an amino acid becomes a stop codon. They then compare the length and activity of the protein produced in each case."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 15 (Genes and Proteins)",
+      "questions": [
+        {
+          "stem": "Inserting a single extra nucleotide near the start of the coding region abolishes the protein's function almost completely. What is the best explanation?",
+          "choices": [
+            "The insertion shifts the reading frame, so most codons downstream are misread",
+            "The insertion only changes one amino acid and leaves the rest normal",
+            "Extra nucleotides cannot be transcribed into RNA",
+            "The ribosome simply skips the extra nucleotide"
+          ],
+          "answer": 0,
+          "explain": "Because codons are read in nonoverlapping groups of three, adding one nucleotide shifts the reading frame and changes essentially every downstream codon, usually destroying function.",
+          "concept": "1B",
+          "cover_story": "gene expression",
+          "b": 0.5
+        },
+        {
+          "stem": "Changing one base converts an internal codon into a stop codon. Compared with normal protein, the product of this gene will most likely be...",
+          "choices": [
+            "Longer than normal because translation continues past the change",
+            "Truncated because translation stops early",
+            "The same length but with one different amino acid",
+            "Unchanged because stop codons are ignored inside a gene"
+          ],
+          "answer": 1,
+          "explain": "A premature stop codon ends translation early, producing a shortened protein that is usually nonfunctional.",
+          "concept": "1B",
+          "cover_story": "gene expression",
+          "b": 0.0
+        },
+        {
+          "stem": "A third change swaps one base but the encoded amino acid stays the same, and the protein is fully active. This outcome is best explained by which feature of the genetic code?",
+          "choices": [
+            "The code is read one base at a time",
+            "tRNA can carry any amino acid to any codon",
+            "The code is degenerate, so several codons can specify the same amino acid",
+            "The ribosome proofreads and corrects the base"
+          ],
+          "answer": 2,
+          "explain": "The genetic code is degenerate, meaning most amino acids are specified by more than one codon, so some single base changes are silent and do not alter the protein.",
+          "concept": "1B",
+          "cover_story": "gene expression",
+          "b": 0.8
+        },
+        {
+          "stem": "The team labels newly made RNA and finds label appears in RNA before any labeled protein shows up. Which ordering of events does this support?",
+          "choices": [
+            "Protein is made first and then copied into RNA",
+            "RNA and protein are made independently of the gene",
+            "Protein is translated directly from DNA without RNA",
+            "DNA is transcribed into RNA, which is then translated into protein"
+          ],
+          "answer": 3,
+          "explain": "RNA is synthesized from the DNA template during transcription and then serves as the message for protein synthesis during translation, so labeled RNA precedes labeled protein.",
+          "concept": "1B",
+          "cover_story": "gene expression",
+          "b": -0.3
+        },
+        {
+          "stem": "Which cellular machine directly reads the messenger RNA codons and joins amino acids into a chain?",
+          "choices": [
+            "The ribosome",
+            "RNA polymerase",
+            "DNA polymerase",
+            "The spliceosome"
+          ],
+          "answer": 0,
+          "explain": "The ribosome binds mRNA, pairs each codon with the matching aminoacyl tRNA, and catalyzes peptide bond formation during translation.",
+          "concept": "1B",
+          "cover_story": "gene expression",
+          "b": -0.7
+        },
+        {
+          "stem": "The bacterium normally makes this protein only when a specific sugar is present. When the sugar is absent, a repressor binds the DNA and blocks transcription, and adding the sugar relieves the block. This behavior is characteristic of...",
+          "choices": [
+            "A constitutive gene that is always on",
+            "An inducible operon controlled by a repressor",
+            "A gene lacking any promoter",
+            "A eukaryotic enhancer far from the gene"
+          ],
+          "answer": 1,
+          "explain": "An inducible operon is normally off because a repressor blocks transcription, and the inducer, here the sugar, inactivates the repressor so transcription can proceed, matching the lac operon logic.",
+          "concept": "1B",
+          "cover_story": "gene expression",
+          "b": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Cross",
+      "paragraphs": [
+        "A plant breeder studies flower color and stem height in a garden species. Flower color shows two forms, purple and white, and stem height shows tall and short. From earlier crosses the breeder knows that purple is dominant to white and tall is dominant to short, and the two genes sit on different chromosomes.",
+        "The breeder crosses a plant that is heterozygous for both traits with a plant that is white flowered and short. Hundreds of offspring are scored for both traits, and the breeder also tracks how alleles are distributed into gametes."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 12 (Mendel's Experiments and Heredity)",
+      "questions": [
+        {
+          "stem": "The cross is a purple tall double heterozygote by a white short plant. Among the offspring, what phenotype ratio is expected for the four combinations?",
+          "choices": [
+            "9 purple tall : 3 purple short : 3 white tall : 1 white short",
+            "3 purple tall : 1 white short",
+            "1 purple tall : 1 purple short : 1 white tall : 1 white short",
+            "All offspring purple and tall"
+          ],
+          "answer": 2,
+          "explain": "A test cross of a double heterozygote to a fully recessive parent gives a 1 to 1 to 1 to 1 ratio of the four phenotype combinations.",
+          "concept": "1C",
+          "cover_story": "inheritance cross",
+          "b": 0.2
+        },
+        {
+          "stem": "The equal 1 to 1 to 1 to 1 result, with new trait combinations appearing, is best explained by which principle?",
+          "choices": [
+            "The two genes are tightly linked and inherited together",
+            "One trait blends into the other in offspring",
+            "Both traits are controlled by a single gene",
+            "Genes on different chromosomes assort independently during meiosis"
+          ],
+          "answer": 3,
+          "explain": "Because the two genes are on different chromosomes, they assort independently in meiosis, producing all four gamete types in equal proportions.",
+          "concept": "1C",
+          "cover_story": "inheritance cross",
+          "b": 0.1
+        },
+        {
+          "stem": "A white flowered plant always breeds true for white when self crossed. What does this indicate about the white allele?",
+          "choices": [
+            "White is the recessive phenotype, so white plants are homozygous recessive",
+            "White is dominant to purple",
+            "White plants must be heterozygous",
+            "White results from a new mutation in each plant"
+          ],
+          "answer": 0,
+          "explain": "Because purple is dominant, a white plant must carry two recessive alleles, and homozygous recessive plants breed true for the recessive trait.",
+          "concept": "1C",
+          "cover_story": "inheritance cross",
+          "b": -1.1
+        },
+        {
+          "stem": "In a related species, two genes sit close together on the same chromosome. Compared with genes on different chromosomes, the alleles of these two linked genes will...",
+          "choices": [
+            "Assort completely independently",
+            "Tend to be inherited together, with new combinations arising mainly through crossing over",
+            "Never recombine under any circumstances",
+            "Always produce a 9 to 3 to 3 to 1 ratio"
+          ],
+          "answer": 1,
+          "explain": "Linked genes tend to travel together, and recombination between them occurs mainly by crossing over, so the closer they are, the rarer new combinations become.",
+          "concept": "1C",
+          "cover_story": "inheritance cross",
+          "b": 0.9
+        },
+        {
+          "stem": "In a large, randomly mating population at equilibrium, the recessive white phenotype appears in 16 percent of plants. What fraction of plants are expected to be heterozygous carriers?",
+          "choices": [
+            "0.16",
+            "0.36",
+            "0.48",
+            "0.64"
+          ],
+          "answer": 2,
+          "explain": "If the recessive homozygote frequency is 0.16 then the recessive allele frequency is 0.4 and the dominant is 0.6, so heterozygotes equal two times 0.6 times 0.4, which is 0.48.",
+          "concept": "1C",
+          "cover_story": "inheritance cross",
+          "b": 1.0
+        },
+        {
+          "stem": "A fungus arrives that kills short plants before they reproduce but spares tall plants. Over several generations, what is the most likely effect on the allele for tall stems?",
+          "choices": [
+            "Its frequency will fall because tall is dominant",
+            "It will stay exactly the same because mutation is random",
+            "The tall allele will disappear entirely in one generation",
+            "Its frequency will rise because tall plants leave more offspring"
+          ],
+          "answer": 3,
+          "explain": "Selection that lets tall plants reproduce more raises the frequency of the tall allele over generations, the core idea of natural selection acting on heritable variation.",
+          "concept": "1C",
+          "cover_story": "inheritance cross",
+          "b": -0.2
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A physiology class studies how muscle cells generate ATP from glucose. They can measure oxygen use, glucose consumption, and the buildup of small molecules such as pyruvate and lactate in cultured cells under different oxygen conditions.",
+        "In one run, cells have plenty of oxygen. In another, oxygen is nearly removed. The class also uses a chemical that makes the inner mitochondrial membrane leaky to protons, and they record what happens to ATP production and oxygen use."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 7 (Cellular Respiration)",
+      "questions": [
+        {
+          "stem": "When oxygen is nearly absent, the cells still make a small amount of ATP and accumulate lactate. Which pathway is supplying this ATP?",
+          "choices": [
+            "Glycolysis followed by fermentation in the cytoplasm",
+            "Oxidative phosphorylation in the mitochondria",
+            "The citric acid cycle in the mitochondrial matrix",
+            "Beta oxidation of fatty acids"
+          ],
+          "answer": 0,
+          "explain": "Without oxygen, glycolysis in the cytoplasm still yields a net of two ATP per glucose, and fermentation to lactate regenerates NAD+ so glycolysis can continue.",
+          "concept": "1D",
+          "cover_story": "cellular respiration",
+          "b": -0.3
+        },
+        {
+          "stem": "Why is converting pyruvate to lactate useful for a cell that has no oxygen?",
+          "choices": [
+            "It produces most of the cell's ATP directly",
+            "It regenerates NAD+ so glycolysis can keep running",
+            "It stores oxygen for later use",
+            "It converts lactate into glucose for energy"
+          ],
+          "answer": 1,
+          "explain": "Lactate fermentation reoxidizes NADH back to NAD+, the electron acceptor glycolysis needs, so without it glycolysis would stall once NAD+ ran out.",
+          "concept": "1D",
+          "cover_story": "cellular respiration",
+          "b": 0.5
+        },
+        {
+          "stem": "With oxygen present, the cells consume far more oxygen and make much more ATP per glucose. What direct role does oxygen play?",
+          "choices": [
+            "It is the starting fuel that is split to release energy",
+            "It donates electrons to start the chain",
+            "It is the final electron acceptor at the end of the electron transport chain",
+            "It is a product of the citric acid cycle"
+          ],
+          "answer": 2,
+          "explain": "In aerobic respiration oxygen is the terminal electron acceptor of the electron transport chain, forming water, and without it the chain backs up and ATP output drops.",
+          "concept": "1D",
+          "cover_story": "cellular respiration",
+          "b": 0.2
+        },
+        {
+          "stem": "The chemical that makes the inner mitochondrial membrane leaky to protons causes oxygen use to stay high while ATP production collapses. What best explains this result?",
+          "choices": [
+            "The electron transport chain stops moving electrons",
+            "Oxygen can no longer accept electrons",
+            "Glycolysis is directly blocked by the chemical",
+            "The proton gradient is dissipated, so ATP synthase can no longer use it to make ATP"
+          ],
+          "answer": 3,
+          "explain": "Uncouplers let protons leak back across the membrane, collapsing the gradient that drives ATP synthase, so electron transport and oxygen use continue but are no longer coupled to ATP synthesis.",
+          "concept": "1D",
+          "cover_story": "cellular respiration",
+          "b": 1.1
+        },
+        {
+          "stem": "Which statement best describes what the citric acid cycle contributes to ATP production?",
+          "choices": [
+            "It produces electron carriers, NADH and FADH2, that feed the electron transport chain",
+            "It directly makes most of the cell's ATP",
+            "It consumes oxygen directly to make water",
+            "It converts glucose into pyruvate"
+          ],
+          "answer": 0,
+          "explain": "The citric acid cycle harvests high energy electrons as NADH and FADH2, which then drive the electron transport chain where most ATP is made.",
+          "concept": "1D",
+          "cover_story": "cellular respiration",
+          "b": 0.0
+        },
+        {
+          "stem": "Cells use the energy released by breaking down glucose to attach a phosphate to ADP, forming ATP. Coupling an energy releasing reaction to an energy requiring one in this way means the overall process is...",
+          "choices": [
+            "Impossible without an outside enzyme adding energy",
+            "Energetically favorable overall, releasing net free energy",
+            "Always exactly at equilibrium",
+            "Independent of the cell's energy needs"
+          ],
+          "answer": 1,
+          "explain": "Cells couple exergonic reactions such as glucose breakdown to endergonic ones such as ATP synthesis so the combined process has a negative free energy change and proceeds.",
+          "concept": "1D",
+          "cover_story": "cellular respiration",
+          "b": -0.6
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "Students place animal cells that normally sit in a balanced salt solution into three beakers. Beaker 1 holds pure distilled water, beaker 2 holds a solution matched to the inside of the cell, and beaker 3 holds a concentrated salt solution far saltier than the cell interior.",
+        "They watch the cells under a microscope over several minutes and also track the activity of a membrane pump that uses ATP to move sodium out of the cell and potassium in against their gradients."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 5 (Structure and Function of Plasma Membranes)",
+      "questions": [
+        {
+          "stem": "In beaker 1, holding distilled water, what will most likely happen to the animal cells?",
+          "choices": [
+            "They will shrink as water leaves",
+            "They will stay the same size",
+            "They will swell and may burst as water enters",
+            "They will actively pump water outward and stay unchanged"
+          ],
+          "answer": 2,
+          "explain": "Distilled water is hypotonic to the cell, so water moves in by osmosis toward the higher solute concentration inside, swelling and possibly bursting the cell.",
+          "concept": "2A",
+          "cover_story": "membrane transport",
+          "b": -1.2
+        },
+        {
+          "stem": "In beaker 3, holding concentrated salt, what is the expected change in the cells?",
+          "choices": [
+            "They swell as salt enters",
+            "They stay the same size",
+            "They gain salt until they burst",
+            "They shrink as water leaves toward the saltier solution"
+          ],
+          "answer": 3,
+          "explain": "The outside is hypertonic, so water leaves the cell by osmosis toward the higher external solute concentration and the cell shrinks.",
+          "concept": "2A",
+          "cover_story": "membrane transport",
+          "b": -0.7
+        },
+        {
+          "stem": "The sodium potassium pump moves both ions against their concentration gradients and requires ATP. This is an example of...",
+          "choices": [
+            "Primary active transport",
+            "Simple diffusion",
+            "Facilitated diffusion",
+            "Osmosis"
+          ],
+          "answer": 0,
+          "explain": "Moving ions against their gradients using energy taken directly from ATP is primary active transport.",
+          "concept": "2A",
+          "cover_story": "membrane transport",
+          "b": 0.1
+        },
+        {
+          "stem": "A poison blocks ATP production in these cells. What is the most likely effect on the sodium potassium pump and the ion gradients?",
+          "choices": [
+            "The pump speeds up to compensate",
+            "The pump stops and the sodium and potassium gradients gradually run down",
+            "The gradients grow stronger without ATP",
+            "Sodium is still pumped out but potassium stops moving"
+          ],
+          "answer": 1,
+          "explain": "The pump depends on ATP, so without it pumping stops and ions leak down their gradients, dissipating the concentration differences over time.",
+          "concept": "2A",
+          "cover_story": "membrane transport",
+          "b": 0.9
+        },
+        {
+          "stem": "The cells that keep their pumps running longest are those richest in mitochondria. Why would that be expected?",
+          "choices": [
+            "Mitochondria store sodium for the pump",
+            "Mitochondria are where osmosis occurs",
+            "Mitochondria supply the ATP the pump needs",
+            "Mitochondria pump ions directly across the plasma membrane"
+          ],
+          "answer": 2,
+          "explain": "Mitochondria generate most of the cell's ATP, so cells rich in mitochondria can sustain ATP dependent pumping longer.",
+          "concept": "2A",
+          "cover_story": "membrane transport",
+          "b": -0.2
+        },
+        {
+          "stem": "A small nonpolar gas crosses the plasma membrane freely, but a charged ion cannot cross without a protein channel. Which membrane feature best explains this difference?",
+          "choices": [
+            "The membrane is a single layer of protein",
+            "The membrane contains no proteins at all",
+            "Charged ions are too small to interact with the membrane",
+            "The hydrophobic interior of the lipid bilayer blocks charged particles but allows small nonpolar molecules"
+          ],
+          "answer": 3,
+          "explain": "The nonpolar core of the phospholipid bilayer lets small uncharged nonpolar molecules pass but repels charged ions, which need transport proteins.",
+          "concept": "2A",
+          "cover_story": "membrane transport",
+          "b": 0.3
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A microbiology team grows a bacterial culture and tracks its numbers over time. In fresh medium the population doubles at a steady interval, then slows as nutrients run low. The team also exposes the culture to an antibiotic and to a bacteriophage, a virus that infects bacteria.",
+        "They find that a few bacteria carry a small circular DNA molecule separate from the main chromosome that lets them survive the antibiotic. These survivors can pass copies of this molecule to neighboring bacteria through direct contact. Meanwhile, the bacteriophage injects its genetic material and forces the host to build new virus particles."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 21 (Viruses) and Ch. 22 (Prokaryotes: Bacteria and Archaea)",
+      "questions": [
+        {
+          "stem": "During the steady doubling phase, the number of bacteria over time increases...",
+          "choices": [
+            "Exponentially, doubling each interval",
+            "Linearly, by the same number added each interval",
+            "By a decreasing amount each interval",
+            "Not at all until nutrients run out"
+          ],
+          "answer": 0,
+          "explain": "Binary fission with a constant doubling time produces exponential growth, so the count multiplies rather than adding a fixed amount each interval.",
+          "concept": "2B",
+          "cover_story": "bacteria and phage",
+          "b": -0.2
+        },
+        {
+          "stem": "The small circular DNA molecule that carries antibiotic survival and exists apart from the chromosome is best identified as a...",
+          "choices": [
+            "Ribosome",
+            "Plasmid",
+            "Capsid",
+            "Nucleus"
+          ],
+          "answer": 1,
+          "explain": "A plasmid is a small circular DNA molecule separate from the bacterial chromosome that often carries extra genes such as antibiotic resistance.",
+          "concept": "2B",
+          "cover_story": "bacteria and phage",
+          "b": 0.1
+        },
+        {
+          "stem": "Survivors transfer copies of this resistance molecule to neighboring bacteria through direct contact. This form of horizontal gene transfer is...",
+          "choices": [
+            "Binary fission",
+            "Mutation",
+            "Conjugation",
+            "Translation"
+          ],
+          "answer": 2,
+          "explain": "Transfer of DNA, often a plasmid, between bacteria through direct cell to cell contact is conjugation, a route by which resistance spreads.",
+          "concept": "2B",
+          "cover_story": "bacteria and phage",
+          "b": 0.6
+        },
+        {
+          "stem": "After antibiotic treatment, the surviving population is almost entirely resistant. What best explains this shift?",
+          "choices": [
+            "The antibiotic taught the bacteria to resist it",
+            "Every bacterium mutated in response to the antibiotic",
+            "The antibiotic converted itself into food for the bacteria",
+            "The antibiotic killed susceptible cells and left resistant ones to reproduce"
+          ],
+          "answer": 3,
+          "explain": "The antibiotic selects against susceptible cells, so pre existing resistant cells survive and reproduce and the population becomes dominated by resistant bacteria.",
+          "concept": "2B",
+          "cover_story": "bacteria and phage",
+          "b": 0.8
+        },
+        {
+          "stem": "The bacteriophage must inject its genes and use the host's machinery to reproduce. This illustrates that viruses are...",
+          "choices": [
+            "Obligate intracellular agents that require a host cell to replicate",
+            "Free living cells that grow by binary fission",
+            "Bacteria with an extra membrane",
+            "Organelles found inside bacteria"
+          ],
+          "answer": 0,
+          "explain": "Viruses lack their own machinery to make proteins and energy, so they must hijack a host cell to replicate, making them obligate intracellular parasites.",
+          "concept": "2B",
+          "cover_story": "bacteria and phage",
+          "b": 0.0
+        },
+        {
+          "stem": "In this infection the phage quickly forces the host to make many new virus particles that burst the cell to spread. This describes which viral pathway?",
+          "choices": [
+            "The lysogenic cycle with a dormant integrated genome",
+            "The lytic cycle",
+            "Binary fission",
+            "Conjugation"
+          ],
+          "answer": 1,
+          "explain": "Rapid production of new virions followed by lysis of the host cell is the lytic cycle, in contrast to the lysogenic cycle where the viral genome integrates and stays dormant.",
+          "concept": "2B",
+          "cover_story": "bacteria and phage",
+          "b": -0.4
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A cancer biology lab studies how cells decide whether to divide. They grow cells in a dish and can measure DNA content per cell, detect damaged DNA, and switch specific regulatory proteins on or off. Normal cells pause at checkpoints if conditions are not right.",
+        "In one line, a checkpoint protein that normally halts the cycle when DNA is damaged has been inactivated. The team compares how normal cells and mutant cells respond after their DNA is damaged, and they also follow how a single fertilized egg gives rise to specialized tissues."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 10 (Cell Reproduction)",
+      "questions": [
+        {
+          "stem": "Before a normal cell divides, its measured DNA content doubles during one part of interphase. During which phase does this DNA doubling occur?",
+          "choices": [
+            "G1 phase",
+            "M phase, or mitosis",
+            "S phase",
+            "Cytokinesis"
+          ],
+          "answer": 2,
+          "explain": "DNA is replicated during S, the synthesis phase of interphase, so DNA content per cell doubles before mitosis distributes it.",
+          "concept": "2C",
+          "cover_story": "cell cycle control",
+          "b": 0.2
+        },
+        {
+          "stem": "What is the main purpose of the checkpoint that pauses the cycle when DNA is damaged?",
+          "choices": [
+            "To speed cells through division regardless of damage",
+            "To permanently stop all cell division in the body",
+            "To convert the cell into a gamete",
+            "To allow time for repair before the damage is copied and passed on"
+          ],
+          "answer": 3,
+          "explain": "Checkpoints halt the cycle so damage can be repaired before replication or division, preventing errors from being passed to daughter cells.",
+          "concept": "2C",
+          "cover_story": "cell cycle control",
+          "b": 0.0
+        },
+        {
+          "stem": "In the mutant line missing the damage checkpoint protein, what is the most likely outcome after DNA is damaged?",
+          "choices": [
+            "The cells divide despite the damage, passing mutations to daughter cells",
+            "The cells repair perfectly and never divide again",
+            "The cells immediately die before dividing",
+            "The damage repairs itself without any checkpoint"
+          ],
+          "answer": 0,
+          "explain": "Without the checkpoint to pause the cycle, damaged DNA is replicated and segregated, so daughter cells inherit mutations, a step toward cancer.",
+          "concept": "2C",
+          "cover_story": "cell cycle control",
+          "b": 0.9
+        },
+        {
+          "stem": "Progress through the cycle is driven by enzymes that are active only when bound to a partner protein whose level rises and falls at each stage. Which pair fits this description?",
+          "choices": [
+            "DNA polymerase activated by RNA",
+            "Cyclin dependent kinases activated by cyclins",
+            "Ribosomes activated by tRNA",
+            "Hemoglobin activated by oxygen"
+          ],
+          "answer": 1,
+          "explain": "Cyclin dependent kinases are active only when bound to cyclins, whose levels oscillate through the cycle, driving orderly progression.",
+          "concept": "2C",
+          "cover_story": "cell cycle control",
+          "b": 0.8
+        },
+        {
+          "stem": "A single fertilized egg gives rise to muscle cells and nerve cells that look and act very differently, yet all carry the same DNA. What best explains this difference?",
+          "choices": [
+            "Each cell type deleted the genes it does not use",
+            "Muscle and nerve cells have completely different genomes",
+            "Different cell types express different subsets of the same genes",
+            "The egg divided its genome unequally among cell types"
+          ],
+          "answer": 2,
+          "explain": "Differentiation results from differential gene expression, so cells with identical genomes turn on different sets of genes to become specialized types.",
+          "concept": "2C",
+          "cover_story": "cell cycle control",
+          "b": 0.5
+        },
+        {
+          "stem": "A cell with irreparable DNA damage triggers an orderly self destruction program rather than dividing. This programmed cell death is called...",
+          "choices": [
+            "Necrosis from injury",
+            "Binary fission",
+            "Differentiation",
+            "Apoptosis"
+          ],
+          "answer": 3,
+          "explain": "Apoptosis is programmed, controlled cell death that removes damaged or unneeded cells, unlike the messy injury driven death of necrosis.",
+          "concept": "2C",
+          "cover_story": "cell cycle control",
+          "b": -0.1
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A neurophysiology lab records electrical activity from a single neuron. At rest the inside of the cell is negative relative to the outside, and this difference is maintained by ion pumps and channels. When the neuron is stimulated strongly enough, a rapid spike of voltage travels down the axon.",
+        "The team can block specific ion channels and can wrap or strip the axon's insulating sheath. They also study how a hormone released into the blood affects distant target cells, comparing a steroid hormone with a protein hormone."
+      ],
+      "source_ref": "OpenStax Anatomy and Physiology, Ch. 12 (The Nervous System and Nervous Tissue) and Ch. 17 (The Endocrine System)",
+      "questions": [
+        {
+          "stem": "At rest, the neuron's interior is negative compared with the outside. Which best accounts for maintaining this resting membrane potential?",
+          "choices": [
+            "Active pumping of sodium out and potassium in, plus selective ion permeability",
+            "Equal, unregulated leak of all ions across the membrane",
+            "Continuous firing of action potentials",
+            "The absence of any ions inside the cell"
+          ],
+          "answer": 0,
+          "explain": "The sodium potassium pump together with the membrane's selective permeability, especially to potassium, sets up and maintains the negative resting potential.",
+          "concept": "3A",
+          "cover_story": "neuron signaling",
+          "b": -0.2
+        },
+        {
+          "stem": "During the rising phase of the action potential, the membrane voltage rapidly becomes positive inside. Which ion movement is chiefly responsible?",
+          "choices": [
+            "Potassium rushing into the cell",
+            "Sodium rushing into the cell",
+            "Chloride rushing out of the cell",
+            "Calcium leaving the cell"
+          ],
+          "answer": 1,
+          "explain": "Voltage gated sodium channels open and sodium flows in down its gradient, driving the sharp depolarization of the action potential.",
+          "concept": "3A",
+          "cover_story": "neuron signaling",
+          "b": 0.2
+        },
+        {
+          "stem": "A weak stimulus produces no action potential, but once the stimulus reaches threshold the spike fires at full size, and a stronger stimulus does not make a bigger spike. This behavior is described as...",
+          "choices": [
+            "A graded response proportional to stimulus size",
+            "A response that grows with stimulus strength without limit",
+            "An all or none response above threshold",
+            "A response that requires no threshold at all"
+          ],
+          "answer": 2,
+          "explain": "Action potentials are all or none, so below threshold nothing fires and at or above threshold the spike reaches its full fixed amplitude regardless of extra stimulus strength.",
+          "concept": "3A",
+          "cover_story": "neuron signaling",
+          "b": 0.6
+        },
+        {
+          "stem": "When the team strips the insulating sheath from the axon, the action potential travels much more slowly. What does the intact sheath normally do?",
+          "choices": [
+            "It generates the action potential at each point along the axon",
+            "It supplies ATP to the axon",
+            "It blocks all ion movement across the axon permanently",
+            "It lets the signal jump between gaps, speeding conduction"
+          ],
+          "answer": 3,
+          "explain": "Myelin insulates the axon so the impulse regenerates only at the nodes between segments, jumping node to node in saltatory conduction and greatly speeding transmission.",
+          "concept": "3A",
+          "cover_story": "neuron signaling",
+          "b": 0.9
+        },
+        {
+          "stem": "A steroid hormone acts on its target cells more slowly but with longer lasting effects than a protein hormone. Which difference best explains this?",
+          "choices": [
+            "Steroid hormones are lipid soluble, enter cells, and often alter gene transcription directly",
+            "Steroid hormones bind surface receptors and act through fast second messengers",
+            "Protein hormones enter the nucleus while steroids stay outside",
+            "Steroid hormones cannot reach target cells through the blood"
+          ],
+          "answer": 0,
+          "explain": "Lipid soluble steroids cross the membrane and bind intracellular receptors that regulate gene transcription, a slower but longer lasting route than the surface receptor and second messenger pathway of peptide hormones.",
+          "concept": "3A",
+          "cover_story": "neuron signaling",
+          "b": 1.0
+        },
+        {
+          "stem": "When blood levels of a hormone rise, they signal the gland to reduce further release of that hormone. This regulatory pattern is...",
+          "choices": [
+            "Positive feedback",
+            "Negative feedback",
+            "Feedforward amplification",
+            "An all or none response"
+          ],
+          "answer": 1,
+          "explain": "Negative feedback opposes the initial change, so rising hormone levels inhibit further secretion and keep levels within a set range.",
+          "concept": "3A",
+          "cover_story": "neuron signaling",
+          "b": -0.4
+        }
+      ]
+    },
+    {
+      "label": "Case",
+      "paragraphs": [
+        "A sports physiologist monitors a volunteer during hard exercise. Heart rate and breathing rate rise, the working muscles receive more blood, and the volunteer sweats heavily. The physiologist records oxygen delivery, carbon dioxide removal, and how the kidneys adjust urine output.",
+        "They also examine how oxygen is carried in the blood and how contracting muscle fibers shorten. All measurements are compared with the same volunteer at rest."
+      ],
+      "source_ref": "OpenStax Anatomy and Physiology, Ch. 20 (Cardiovascular System: Blood Vessels and Circulation), Ch. 22 (Respiratory System), and Ch. 25 (Urinary System)",
+      "questions": [
+        {
+          "stem": "During exercise the volunteer's heart rate and the volume pumped per beat both rise. The total blood pumped per minute, the product of these two, is called...",
+          "choices": [
+            "Blood pressure",
+            "Vital capacity",
+            "Cardiac output",
+            "Tidal volume"
+          ],
+          "answer": 2,
+          "explain": "Cardiac output is heart rate times stroke volume, so raising both increases the blood delivered to tissues per minute during exercise.",
+          "concept": "3B",
+          "cover_story": "exercise physiology",
+          "b": -0.2
+        },
+        {
+          "stem": "Working muscle is warmer, more acidic, and higher in carbon dioxide than resting tissue. How does this environment affect oxygen release from hemoglobin there?",
+          "choices": [
+            "It makes hemoglobin hold oxygen more tightly, releasing less",
+            "It has no effect on oxygen binding",
+            "It stops hemoglobin from binding oxygen in the lungs",
+            "It promotes oxygen release, so more oxygen is unloaded to active muscle"
+          ],
+          "answer": 3,
+          "explain": "Higher carbon dioxide, lower pH, and higher temperature lower hemoglobin's oxygen affinity, shifting the curve so more oxygen is unloaded where active tissue needs it most.",
+          "concept": "3B",
+          "cover_story": "exercise physiology",
+          "b": 1.0
+        },
+        {
+          "stem": "Breathing rate rises sharply during exercise. What is the most direct benefit of increased ventilation for the working body?",
+          "choices": [
+            "It brings in more oxygen and clears more carbon dioxide",
+            "It cools the blood by evaporation in the lungs",
+            "It raises blood pressure directly",
+            "It increases the number of red blood cells immediately"
+          ],
+          "answer": 0,
+          "explain": "Greater ventilation increases oxygen uptake and carbon dioxide removal at the alveoli, matching the higher metabolic demand of exercise.",
+          "concept": "3B",
+          "cover_story": "exercise physiology",
+          "b": 0.1
+        },
+        {
+          "stem": "Because the volunteer loses a lot of water through sweat, the kidneys produce a smaller volume of more concentrated urine. This adjustment mainly helps to...",
+          "choices": [
+            "Excrete excess glucose",
+            "Conserve body water and maintain blood volume",
+            "Remove extra oxygen from the blood",
+            "Increase sweating even further"
+          ],
+          "answer": 1,
+          "explain": "Facing water loss, the kidneys reabsorb more water and produce concentrated urine to conserve body water and help maintain blood volume and pressure.",
+          "concept": "3B",
+          "cover_story": "exercise physiology",
+          "b": 0.6
+        },
+        {
+          "stem": "In contracting muscle fibers, the filaments slide past one another so the muscle shortens. Which statement best describes this process?",
+          "choices": [
+            "Actin and myosin filaments each shorten individually",
+            "The filaments dissolve and reform shorter",
+            "Myosin heads pull actin filaments inward, shortening the sarcomere without shortening the filaments",
+            "Only myosin filaments move while actin stays fixed permanently"
+          ],
+          "answer": 2,
+          "explain": "In the sliding filament model, myosin cross bridges pull actin toward the center of the sarcomere, so the filaments keep their length while the sarcomere shortens.",
+          "concept": "3B",
+          "cover_story": "exercise physiology",
+          "b": 0.3
+        },
+        {
+          "stem": "During hard exercise, blood flow to the digestive tract drops while flow to muscles rises. What is the most reasonable consequence?",
+          "choices": [
+            "Digestion speeds up because muscles need nutrients",
+            "The stomach produces more blood cells",
+            "The intestines take over gas exchange",
+            "Digestion and absorption slow while more blood serves active muscle"
+          ],
+          "answer": 3,
+          "explain": "Blood is redirected toward working muscle during exercise, so digestive activity slows because the gut temporarily receives less blood flow.",
+          "concept": "3B",
+          "cover_story": "exercise physiology",
+          "b": -0.3
+        }
+      ]
+    }
+  ]
+}

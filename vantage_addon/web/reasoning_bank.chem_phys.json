@@ -1,0 +1,710 @@
+{
+  "section": "chem_phys",
+  "title": "Chem/Phys reasoning",
+  "passages": [
+    {
+      "label": "Cart on a ramp",
+      "paragraphs": [
+        "A teaching lab studies motion with a 2.0 kg cart on a straight track tilted 30 degrees above the horizontal. The track is nearly frictionless, and a motion sensor records the cart after it is released from rest. Students use g = 10 m/s^2 and ignore air resistance.",
+        "In one run the cart starts 1.0 m up the track, measured along the incline, and slides to the bottom. A light spring bumper there briefly stops the cart and pushes it back. The class then repeats the run with a stiffer spring."
+      ],
+      "source_ref": "OpenStax University Physics Vol 1, Ch. 5-8 (Newton's Laws, Work, and Energy)",
+      "questions": [
+        {
+          "stem": "The cart is released from rest and slides 1.0 m down the incline. Using energy conservation, what is its speed at the bottom?",
+          "choices": ["2.2 m/s", "3.2 m/s", "4.5 m/s", "5.0 m/s"],
+          "answer": 1,
+          "explain": "Only the vertical drop counts: h = 1.0 sin 30 = 0.5 m, so v = sqrt(2gh) = sqrt(10) which is about 3.2 m/s. Using the full 1.0 m as the height gives the too large 4.5 m/s.",
+          "concept": "4A",
+          "cover_story": "cart on a ramp",
+          "b": -0.3
+        },
+        {
+          "stem": "While the cart slides down the frictionless incline, how does the normal force from the track compare with the cart's weight?",
+          "choices": ["Greater than the weight", "Equal to the weight", "Zero", "Less than the weight"],
+          "answer": 3,
+          "explain": "On an incline the normal force is mg cos 30, which is smaller than mg because cos 30 is less than 1. It equals the weight only on level ground.",
+          "concept": "4A",
+          "cover_story": "cart on a ramp",
+          "b": -0.9
+        },
+        {
+          "stem": "What is the magnitude of the cart's acceleration down the frictionless incline?",
+          "choices": ["2.5 m/s^2", "5.0 m/s^2", "8.7 m/s^2", "10 m/s^2"],
+          "answer": 1,
+          "explain": "On a frictionless incline a = g sin(theta) = 10 times 0.5 = 5 m/s^2. The value 8.7 comes from wrongly using cos 30.",
+          "concept": "4A",
+          "cover_story": "cart on a ramp",
+          "b": -0.5
+        },
+        {
+          "stem": "How much work does gravity do on the 2.0 kg cart as it slides the 1.0 m down to the bottom?",
+          "choices": ["5 J", "10 J", "17 J", "20 J"],
+          "answer": 1,
+          "explain": "Work by gravity is mgh with h = 0.5 m, so 2 times 10 times 0.5 = 10 J. Using the 1.0 m path length as the height double counts and gives 20 J.",
+          "concept": "4A",
+          "cover_story": "cart on a ramp",
+          "b": -0.3
+        },
+        {
+          "stem": "The cart reaches the spring and compresses it until it stops for an instant. If a stiffer spring (larger force constant k) is used for the same incoming speed, the maximum compression of the spring will be:",
+          "choices": ["Smaller", "Larger", "Unchanged", "Zero"],
+          "answer": 0,
+          "explain": "The kinetic energy delivered is fixed, and it all becomes spring energy one half k x squared, so a larger k forces a smaller maximum compression x.",
+          "concept": "4A",
+          "cover_story": "cart on a ramp",
+          "b": 0.4
+        },
+        {
+          "stem": "In a later run the cart takes 2.0 s to reach the bottom, and the drop releases 10 J of gravitational potential energy. What is the average power delivered by gravity during the slide?",
+          "choices": ["2.5 W", "5 W", "10 W", "20 W"],
+          "answer": 1,
+          "explain": "Average power is work over time, 10 J divided by 2.0 s = 5 W.",
+          "concept": "4A",
+          "cover_story": "cart on a ramp",
+          "b": -0.6
+        }
+      ]
+    },
+    {
+      "label": "IV line and blood flow",
+      "paragraphs": [
+        "A nurse hangs a bag of saline for an intravenous drip. A tube carries fluid from the bag down to a needle in a patient's arm. The saline has about the density of water, 1000 kg/m^3, and it flows because the bag sits above the arm. Use g = 10 m/s^2.",
+        "In a separate model of a partly blocked artery, a rigid tube narrows so that the radius of the narrow segment is half the radius of the wide segment. The fluid is treated as incompressible and the flow as steady."
+      ],
+      "source_ref": "OpenStax University Physics Vol 1, Ch. 14 (Fluid Mechanics)",
+      "questions": [
+        {
+          "stem": "Raising the saline bag higher above the arm increases the flow into the vein mainly by increasing the:",
+          "choices": ["density of the saline", "viscosity of the saline", "surface tension of the saline", "hydrostatic pressure driving the flow"],
+          "answer": 3,
+          "explain": "The driving pressure is the hydrostatic head rho g h, so a greater height h means more pressure pushing fluid into the vein.",
+          "concept": "4B",
+          "cover_story": "IV drip and a narrowed vessel",
+          "b": -1.2
+        },
+        {
+          "stem": "If the bag hangs 1.0 m above the needle, about how much pressure does that height add at the needle?",
+          "choices": ["100 Pa", "1,000 Pa", "10,000 Pa", "100,000 Pa"],
+          "answer": 2,
+          "explain": "Hydrostatic pressure is rho g h = 1000 times 10 times 1.0 = 10,000 Pa.",
+          "concept": "4B",
+          "cover_story": "IV drip and a narrowed vessel",
+          "b": -0.6
+        },
+        {
+          "stem": "In the narrowed artery model the radius drops to half. By the continuity equation, the fluid speed in the narrow segment becomes about:",
+          "choices": ["half the wide-segment speed", "twice the wide-segment speed", "four times the wide-segment speed", "eight times the wide-segment speed"],
+          "answer": 2,
+          "explain": "Continuity keeps area times speed constant. Halving the radius cuts the area to one quarter, so the speed must rise fourfold.",
+          "concept": "4B",
+          "cover_story": "IV drip and a narrowed vessel",
+          "b": 0.5
+        },
+        {
+          "stem": "Compared with the wide segment, the fluid pressure in the fast, narrow segment is best predicted by Bernoulli's principle to be:",
+          "choices": ["Lower than in the wide segment", "Higher than in the wide segment", "The same as in the wide segment", "Zero"],
+          "answer": 0,
+          "explain": "For an ideal fluid, faster flow goes with lower pressure, so the narrow, high-speed region has lower pressure than the wide region.",
+          "concept": "4B",
+          "cover_story": "IV drip and a narrowed vessel",
+          "b": 0.2
+        },
+        {
+          "stem": "Blood is actually viscous. If a vessel keeps the same pressure difference but its radius falls to half, Poiseuille's law predicts the volume flow rate falls to about:",
+          "choices": ["one half", "one quarter", "one eighth", "one sixteenth"],
+          "answer": 3,
+          "explain": "Poiseuille flow scales with the radius to the fourth power, so halving the radius gives (1/2) to the fourth = 1/16 of the flow.",
+          "concept": "4B",
+          "cover_story": "IV drip and a narrowed vessel",
+          "b": 1.0
+        },
+        {
+          "stem": "A sealed drug capsule with a density less than saline is dropped into the bag and floats. The buoyant force on the floating capsule is:",
+          "choices": ["Greater than the capsule's weight", "Equal to the capsule's weight", "Less than the capsule's weight", "Zero"],
+          "answer": 1,
+          "explain": "A floating object is in equilibrium, so the buoyant force exactly balances its weight.",
+          "concept": "4B",
+          "cover_story": "IV drip and a narrowed vessel",
+          "b": -0.5
+        }
+      ]
+    },
+    {
+      "label": "Sensor circuit and a magnet",
+      "paragraphs": [
+        "A bioinstrumentation student powers a small sensor from a 9 V battery. She can wire two resistors, 100 ohm and 200 ohm, either in series or in parallel, and she adds a 2 microfarad parallel-plate capacitor to store a little charge.",
+        "Nearby she studies how charges behave. She measures the force between two fixed point charges as she changes their separation, and she watches a positive ion drift to the right through a region where a magnetic field points out of the page."
+      ],
+      "source_ref": "OpenStax University Physics Vol 2, Ch. 5-11 (Electric Charges and Fields through Magnetic Forces)",
+      "questions": [
+        {
+          "stem": "The student doubles the distance between two fixed point charges. The electric force between them becomes:",
+          "choices": ["twice as large", "half as large", "one quarter as large", "four times as large"],
+          "answer": 2,
+          "explain": "Coulomb's law makes the force scale as 1 over distance squared, so doubling the distance cuts the force to one quarter.",
+          "concept": "4C",
+          "cover_story": "a sensor circuit",
+          "b": -0.5
+        },
+        {
+          "stem": "With the 100 ohm and 200 ohm resistors in series across the 9 V battery, what current flows from the battery?",
+          "choices": ["0.01 A", "0.03 A", "0.09 A", "0.30 A"],
+          "answer": 1,
+          "explain": "Series resistances add to 300 ohm, so I = V over R = 9 divided by 300 = 0.03 A.",
+          "concept": "4C",
+          "cover_story": "a sensor circuit",
+          "b": -0.4
+        },
+        {
+          "stem": "If instead the two resistors are wired in parallel, the total resistance is:",
+          "choices": ["less than 100 ohm", "exactly 150 ohm", "exactly 300 ohm", "more than 300 ohm"],
+          "answer": 0,
+          "explain": "Resistors in parallel always give a total smaller than the smallest branch, so less than 100 ohm (about 67 ohm here).",
+          "concept": "4C",
+          "cover_story": "a sensor circuit",
+          "b": -0.6
+        },
+        {
+          "stem": "One 100 ohm resistor carries a current of 0.03 A. About how much power does it dissipate as heat?",
+          "choices": ["0.03 W", "0.09 W", "0.3 W", "9 W"],
+          "answer": 1,
+          "explain": "Power is I squared times R = (0.03) squared times 100 = 0.09 W.",
+          "concept": "4C",
+          "cover_story": "a sensor circuit",
+          "b": 0.5
+        },
+        {
+          "stem": "The 2 microfarad capacitor sits across the full 9 V. How much charge does it store?",
+          "choices": ["about 4.5 microcoulombs", "about 11 microcoulombs", "about 18 microcoulombs", "about 36 microcoulombs"],
+          "answer": 2,
+          "explain": "Stored charge is Q = C times V = 2 microfarad times 9 V = 18 microcoulombs.",
+          "concept": "4C",
+          "cover_story": "a sensor circuit",
+          "b": 0.1
+        },
+        {
+          "stem": "The positive ion moves to the right while the magnetic field points out of the page. The magnetic force on the ion points:",
+          "choices": ["toward the top of the page", "in the same direction it is moving", "opposite to its motion", "toward the bottom of the page"],
+          "answer": 3,
+          "explain": "Using F = q v cross B with velocity to the right and field out of the page, the right-hand rule gives a force toward the bottom of the page. The magnetic force is always perpendicular to the velocity, so it cannot point along the motion.",
+          "concept": "4C",
+          "cover_story": "a sensor circuit",
+          "b": 1.1
+        }
+      ]
+    },
+    {
+      "label": "Endoscope optics",
+      "paragraphs": [
+        "An endoscope guides light along thin glass fibers and uses small lenses to form images inside the body. Light passes from glass, where it travels slower, into tissue, where it travels faster, and it also reflects back into the fibers.",
+        "One converging lens in the tip has a focal length of 2 cm, and a small structure sits 6 cm in front of it. The doctor also compares red and blue light and checks the optics with a pair of narrow slits."
+      ],
+      "source_ref": "OpenStax University Physics Vol 3, Ch. 1-4 (The Nature of Light, Geometric Optics, Interference, and Diffraction)",
+      "questions": [
+        {
+          "stem": "Light passes from glass into tissue, where it travels faster. As it crosses the boundary, the light bends:",
+          "choices": ["toward the normal", "away from the normal", "straight back the way it came", "not at all"],
+          "answer": 1,
+          "explain": "Moving into a medium with a lower index, light speeds up and bends away from the normal, as Snell's law requires.",
+          "concept": "4D",
+          "cover_story": "inside an endoscope",
+          "b": 0.1
+        },
+        {
+          "stem": "Light stays trapped inside the glass fiber because, when it strikes the fiber wall at a shallow angle, it undergoes:",
+          "choices": ["Complete absorption", "Refraction out of the fiber", "Total internal reflection", "A Doppler shift"],
+          "answer": 2,
+          "explain": "Beyond the critical angle, light in the denser glass is totally internally reflected, so it stays inside the fiber.",
+          "concept": "4D",
+          "cover_story": "inside an endoscope",
+          "b": -0.5
+        },
+        {
+          "stem": "For the 2 cm focal length lens with the object 6 cm away, the image distance (using 1/f = 1/do + 1/di) is:",
+          "choices": ["1.5 cm", "3 cm", "6 cm", "12 cm"],
+          "answer": 1,
+          "explain": "1/di = 1/f - 1/do = 1/2 - 1/6 = 1/3, so di = 3 cm.",
+          "concept": "4D",
+          "cover_story": "inside an endoscope",
+          "b": 0.6
+        },
+        {
+          "stem": "That image, formed by a converging lens with the object outside the focal length, is:",
+          "choices": ["Virtual and upright", "Virtual and inverted", "Real and inverted", "Real and upright"],
+          "answer": 2,
+          "explain": "For a converging lens with the object beyond the focal length, the image is real and inverted.",
+          "concept": "4D",
+          "cover_story": "inside an endoscope",
+          "b": 0.3
+        },
+        {
+          "stem": "The doctor compares blue light and red light. Because blue light has a higher frequency, each blue photon carries:",
+          "choices": ["Less energy than a red photon", "The same energy as a red photon", "No energy", "More energy than a red photon"],
+          "answer": 3,
+          "explain": "Photon energy E = h times f rises with frequency, so higher-frequency blue photons carry more energy than red ones.",
+          "concept": "4D",
+          "cover_story": "inside an endoscope",
+          "b": -0.6
+        },
+        {
+          "stem": "In the double-slit alignment check, if the two slits are moved closer together, the bright fringes on the screen will be:",
+          "choices": ["Spaced farther apart", "Spaced closer together", "Unchanged", "Removed entirely"],
+          "answer": 0,
+          "explain": "Fringe spacing is inversely proportional to slit separation, so bringing the slits closer spreads the fringes farther apart.",
+          "concept": "4D",
+          "cover_story": "inside an endoscope",
+          "b": 0.7
+        }
+      ]
+    },
+    {
+      "label": "Radiotracer and the periodic table",
+      "paragraphs": [
+        "A hospital uses a radioactive tracer with a half-life of 6 hours. A technician prepares a dose and reviews the chemistry of the elements involved, including where they sit on the periodic table and how their atoms are built.",
+        "One isotope decays by turning a neutron into a proton while emitting a light negative particle. The technician also plans a simple labeling reaction and counts the atoms it needs."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 3, 6, and 21 (Composition of Substances, Electronic Structure, and Nuclear Chemistry)",
+      "questions": [
+        {
+          "stem": "A sample of the tracer starts with 80 mg. After 12 hours (two half-lives of 6 hours each), how much remains?",
+          "choices": ["40 mg", "20 mg", "10 mg", "0 mg"],
+          "answer": 1,
+          "explain": "Each 6-hour half-life halves the amount: 80 to 40 after 6 hours, then 40 to 20 after 12 hours.",
+          "concept": "4E",
+          "cover_story": "a hospital radiotracer",
+          "b": -0.6
+        },
+        {
+          "stem": "An isotope decays by converting a neutron into a proton and emitting a light negative particle. This is:",
+          "choices": ["Alpha decay", "Gamma decay", "Electron capture", "Beta-minus decay"],
+          "answer": 3,
+          "explain": "Turning a neutron into a proton while emitting an electron (a beta particle) is beta-minus decay, and it raises the atomic number by one.",
+          "concept": "4E",
+          "cover_story": "a hospital radiotracer",
+          "b": 0.0
+        },
+        {
+          "stem": "When a different nucleus emits an alpha particle, its mass number changes by:",
+          "choices": ["unchanged", "increases by 2", "decreases by 2", "decreases by 4"],
+          "answer": 3,
+          "explain": "An alpha particle carries away 2 protons and 2 neutrons, so the mass number drops by 4 (and the atomic number by 2).",
+          "concept": "4E",
+          "cover_story": "a hospital radiotracer",
+          "b": -0.5
+        },
+        {
+          "stem": "Moving from left to right across a period of the periodic table, atomic radius generally:",
+          "choices": ["Decreases", "Increases", "Stays the same", "Doubles"],
+          "answer": 0,
+          "explain": "Across a period the nuclear charge felt by the outer electrons rises while they stay in the same shell, pulling them inward, so the radius shrinks.",
+          "concept": "4E",
+          "cover_story": "a hospital radiotracer",
+          "b": -0.7
+        },
+        {
+          "stem": "An element in group 16, such as oxygen or sulfur, typically gains how many electrons to reach a noble-gas configuration?",
+          "choices": ["1", "2", "3", "6"],
+          "answer": 1,
+          "explain": "Group 16 atoms have six valence electrons and gain two to complete an octet.",
+          "concept": "4E",
+          "cover_story": "a hospital radiotracer",
+          "b": -0.4
+        },
+        {
+          "stem": "Labeling one molecule of the tracer needs 2 atoms of the isotope. If the technician has 6 atoms of isotope and unlimited target molecules, how many labeled molecules can be made, and what runs out first?",
+          "choices": ["6 molecules, with isotope limiting", "3 molecules, with the target limiting", "3 molecules, with isotope limiting", "12 molecules, with neither limiting"],
+          "answer": 2,
+          "explain": "Each product needs 2 isotope atoms, so 6 atoms make 3 labeled molecules and the isotope is the limiting reactant.",
+          "concept": "4E",
+          "cover_story": "a hospital radiotracer",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Buffers and titration",
+      "paragraphs": [
+        "A student prepares buffers and runs titrations. One buffer is made from a weak acid with a pKa of 4.7 and its conjugate base. The student measures pH and watches how it responds to small additions of acid or base.",
+        "In a titration, a weak acid in the flask is neutralized by a strong base added from a burette. The student also studies a sparingly soluble salt to see how added ions change its solubility."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 14-15 (Acid-Base Equilibria and Equilibria of Other Reaction Classes)",
+      "questions": [
+        {
+          "stem": "A 0.01 M solution of a strong acid that fully dissociates has a pH of about:",
+          "choices": ["1", "2", "7", "12"],
+          "answer": 1,
+          "explain": "A strong acid gives a hydrogen ion concentration of 0.01 = 10 to the minus 2 M, so pH = 2.",
+          "concept": "5A",
+          "cover_story": "the buffer bench",
+          "b": -0.8
+        },
+        {
+          "stem": "In the buffer, when the concentrations of weak acid and conjugate base are equal, the pH equals:",
+          "choices": ["0", "4.7", "7.0", "9.3"],
+          "answer": 1,
+          "explain": "By Henderson-Hasselbalch, pH = pKa plus log(base over acid), and when the two are equal the log term is zero, so pH = pKa = 4.7.",
+          "concept": "5A",
+          "cover_story": "the buffer bench",
+          "b": -0.5
+        },
+        {
+          "stem": "To hold the buffer's pH above its pKa, the ratio of conjugate base to weak acid must be:",
+          "choices": ["Greater than 1", "Exactly 1", "Less than 1", "Zero"],
+          "answer": 0,
+          "explain": "pH exceeds pKa only when log(base over acid) is positive, which means more conjugate base than acid.",
+          "concept": "5A",
+          "cover_story": "the buffer bench",
+          "b": 0.5
+        },
+        {
+          "stem": "Adding a small amount of strong acid to the buffer barely changes its pH because the added protons are mostly:",
+          "choices": ["Ignored by the solution", "Converted to water with no reaction", "Consumed by the conjugate base", "Released as a gas"],
+          "answer": 2,
+          "explain": "The conjugate base reacts with the added hydrogen ions, soaking up most of the protons so the pH shifts only slightly.",
+          "concept": "5A",
+          "cover_story": "the buffer bench",
+          "b": 0.1
+        },
+        {
+          "stem": "At the equivalence point of a weak acid titrated with a strong base, the pH is:",
+          "choices": ["Exactly 7", "Less than 7", "Exactly equal to the pKa", "Greater than 7"],
+          "answer": 3,
+          "explain": "At equivalence only the conjugate base remains, and it makes the solution basic, so the pH is above 7.",
+          "concept": "5A",
+          "cover_story": "the buffer bench",
+          "b": 0.8
+        },
+        {
+          "stem": "A sparingly soluble salt MX sits in water. Adding more X-minus ions from a separate soluble salt will make the solubility of MX:",
+          "choices": ["Increase", "Decrease", "Stay exactly the same", "Become infinite"],
+          "answer": 1,
+          "explain": "By the common-ion effect, extra X-minus pushes the dissolution equilibrium back toward solid, lowering solubility.",
+          "concept": "5A",
+          "cover_story": "the buffer bench",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Building a drug molecule",
+      "paragraphs": [
+        "A chemist studies a small drug molecule. She examines its Lewis structure, the shape around each central atom, whether the molecule is polar, and how its molecules attract one another. These features shape how the drug dissolves and how easily it evaporates.",
+        "One carbon in the molecule is bonded to four different groups. She also compares two similar molecules, one that can form hydrogen bonds and one that cannot."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 7-10 and 20 (Chemical Bonding, Molecular Geometry, Intermolecular Forces, and Organic Chemistry)",
+      "questions": [
+        {
+          "stem": "A carbon atom bonded to four other atoms with no lone pairs has what shape around it?",
+          "choices": ["Linear", "Trigonal planar", "Tetrahedral", "Bent"],
+          "answer": 2,
+          "explain": "Four bonding groups and no lone pairs point to the corners of a tetrahedron, with angles near 109.5 degrees.",
+          "concept": "5B",
+          "cover_story": "designing a drug molecule",
+          "b": -0.7
+        },
+        {
+          "stem": "A molecule has polar bonds but is so symmetric that the bond dipoles cancel. The molecule as a whole is:",
+          "choices": ["Nonpolar", "Polar", "Ionic", "Positively charged"],
+          "answer": 0,
+          "explain": "When symmetry makes the bond dipoles cancel, there is no net dipole and the molecule is nonpolar, as in carbon dioxide.",
+          "concept": "5B",
+          "cover_story": "designing a drug molecule",
+          "b": 0.2
+        },
+        {
+          "stem": "Two Lewis structures for the molecule differ only in where a double bond and a lone pair sit, not in where the atoms are. These are best described as:",
+          "choices": ["Different molecules", "Isotopes of each other", "Structural isomers", "Resonance structures of one molecule"],
+          "answer": 3,
+          "explain": "Structures that differ only by the placement of electrons, not atoms, are resonance forms of the same molecule.",
+          "concept": "5B",
+          "cover_story": "designing a drug molecule",
+          "b": 0.0
+        },
+        {
+          "stem": "A carbon in a carbon-carbon double bond that is bonded to three groups total is best described as:",
+          "choices": ["sp", "sp2", "sp3", "sp3d"],
+          "answer": 1,
+          "explain": "Three regions of electron density (the double bond counts as one region plus two single bonds) means sp2 hybridization and trigonal planar geometry.",
+          "concept": "5B",
+          "cover_story": "designing a drug molecule",
+          "b": -0.4
+        },
+        {
+          "stem": "Two molecules are similar in size, but one can form hydrogen bonds and the other cannot. The hydrogen-bonding molecule will most likely have a:",
+          "choices": ["Lower boiling point", "The same boiling point", "Higher boiling point", "No boiling point at all"],
+          "answer": 2,
+          "explain": "Hydrogen bonding is a strong intermolecular attraction, so more energy is needed to separate the molecules, which raises the boiling point.",
+          "concept": "5B",
+          "cover_story": "designing a drug molecule",
+          "b": -0.6
+        },
+        {
+          "stem": "The carbon bonded to four different groups makes the molecule:",
+          "choices": ["Achiral", "A resonance form", "A structural isomer", "Chiral, with a nonsuperimposable mirror image"],
+          "answer": 3,
+          "explain": "A carbon with four different groups is a chirality center, so the molecule has a nonsuperimposable mirror image, an enantiomer.",
+          "concept": "5B",
+          "cover_story": "designing a drug molecule",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Purifying a plant compound",
+      "paragraphs": [
+        "A lab isolates a compound from a plant. The team uses liquid-liquid extraction, distillation, thin-layer chromatography, and gel electrophoresis of the sample's proteins. Each method sorts molecules by a different physical property.",
+        "The target is a weak carboxylic acid. The team shakes the mixture with water and an immiscible organic solvent, then adjusts the pH to move the compound from one layer to the other."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 10-11 and 14 (Liquids and Solids, Solutions and Colloids, and Acid-Base Equilibria)",
+      "questions": [
+        {
+          "stem": "Simple distillation separates two liquids mainly by differences in their:",
+          "choices": ["Boiling point", "Color", "Density", "Molar mass only"],
+          "answer": 0,
+          "explain": "Distillation exploits boiling point differences, so the more volatile component with the lower boiling point vaporizes first.",
+          "concept": "5C",
+          "cover_story": "purifying a plant extract",
+          "b": -0.7
+        },
+        {
+          "stem": "In the extraction, a nonpolar target compound will tend to collect in:",
+          "choices": ["The polar water layer", "The solid residue", "The nonpolar organic layer", "The gas phase"],
+          "answer": 2,
+          "explain": "Like dissolves like, so a nonpolar compound favors the nonpolar organic layer over water.",
+          "concept": "5C",
+          "cover_story": "purifying a plant extract",
+          "b": -0.5
+        },
+        {
+          "stem": "The target is a weak carboxylic acid. Adding base to the aqueous layer converts it to its charged carboxylate form, which will:",
+          "choices": ["Move into the organic layer", "Precipitate out at once", "Evaporate as a gas", "Move into the water layer"],
+          "answer": 3,
+          "explain": "Deprotonating the acid makes a charged, water-soluble carboxylate, so it shifts into the aqueous layer.",
+          "concept": "5C",
+          "cover_story": "purifying a plant extract",
+          "b": 0.7
+        },
+        {
+          "stem": "On normal-phase thin-layer chromatography with a polar plate and a nonpolar solvent, a very polar compound will:",
+          "choices": ["Barely move from the baseline", "Travel far up the plate", "Evaporate off the plate", "Move faster than nonpolar compounds"],
+          "answer": 0,
+          "explain": "A polar compound binds tightly to the polar plate, so it moves only a little and has a low Rf.",
+          "concept": "5C",
+          "cover_story": "purifying a plant extract",
+          "b": 0.6
+        },
+        {
+          "stem": "In gel electrophoresis, charged molecules migrate through the gel toward the opposite charge. Compared with large molecules, small ones generally:",
+          "choices": ["Move less far through the gel", "Not move at all", "Move farther through the gel", "Move toward the same-sign electrode"],
+          "answer": 2,
+          "explain": "Smaller molecules slip through the gel mesh more easily, so they travel farther in a given time.",
+          "concept": "5C",
+          "cover_story": "purifying a plant extract",
+          "b": 0.0
+        },
+        {
+          "stem": "Column chromatography separates molecules based mainly on how strongly each one:",
+          "choices": ["Glows under ultraviolet light", "Conducts electricity", "Reflects heat", "Sticks to the stationary phase versus the moving solvent"],
+          "answer": 3,
+          "explain": "Separation comes from the balance between each compound's attraction to the stationary phase and its tendency to travel with the mobile solvent.",
+          "concept": "5C",
+          "cover_story": "purifying a plant extract",
+          "b": -0.2
+        }
+      ]
+    },
+    {
+      "label": "Functional groups of a metabolite",
+      "paragraphs": [
+        "A biochemist studies a small metabolite that carries several functional groups: a hydroxyl group, a carbonyl group, and a carboxylic acid group. She looks at how each group reacts.",
+        "She compares the acidity of the groups, carefully oxidizes an alcohol, and links the acid to an alcohol to form a new bond. She also reviews the building blocks of common biomolecules."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 20 (Organic Chemistry)",
+      "questions": [
+        {
+          "stem": "A carbon that is double-bonded to one oxygen and also bonded to an OH group is which functional group?",
+          "choices": ["Alcohol", "Carboxylic acid", "Ketone", "Aldehyde"],
+          "answer": 1,
+          "explain": "A carbonyl carbon that also carries an OH is a carboxylic acid group.",
+          "concept": "5D",
+          "cover_story": "reactions of a metabolite",
+          "b": -0.6
+        },
+        {
+          "stem": "Which group in the metabolite is the most acidic, meaning it gives up a proton most readily?",
+          "choices": ["The carboxylic acid", "The hydroxyl (alcohol)", "The carbon-carbon bonds", "The C-H bonds"],
+          "answer": 0,
+          "explain": "The carboxylic acid is far more acidic than an alcohol because its conjugate base, the carboxylate, is stabilized by resonance.",
+          "concept": "5D",
+          "cover_story": "reactions of a metabolite",
+          "b": 0.2
+        },
+        {
+          "stem": "Careful, controlled oxidation of a primary alcohol first gives which product?",
+          "choices": ["A ketone", "An ester", "An aldehyde", "An alkane"],
+          "answer": 2,
+          "explain": "A primary alcohol oxidizes first to an aldehyde and can go further to a carboxylic acid, whereas a secondary alcohol would give a ketone.",
+          "concept": "5D",
+          "cover_story": "reactions of a metabolite",
+          "b": 0.5
+        },
+        {
+          "stem": "Reacting the carboxylic acid with an alcohol under acid catalysis forms an ester and releases a molecule of:",
+          "choices": ["Carbon dioxide", "Hydrogen gas", "Ammonia", "Water"],
+          "answer": 3,
+          "explain": "Ester formation from an acid and an alcohol is a condensation that splits out a molecule of water.",
+          "concept": "5D",
+          "cover_story": "reactions of a metabolite",
+          "b": 0.1
+        },
+        {
+          "stem": "Unlike an aldehyde, a ketone resists mild oxidation because its carbonyl carbon:",
+          "choices": ["Has no hydrogen attached to the carbonyl carbon", "Carries a full negative charge", "Is aromatic", "Is an ion"],
+          "answer": 0,
+          "explain": "An aldehyde's carbonyl carbon bears a hydrogen that is removed during oxidation, but a ketone's carbonyl carbon is bonded to two carbons and has no such hydrogen, so it resists mild oxidation.",
+          "concept": "5D",
+          "cover_story": "reactions of a metabolite",
+          "b": 1.0
+        },
+        {
+          "stem": "Every amino acid contains an amine group and which other functional group on its central carbon?",
+          "choices": ["A ketone", "An ether", "A carboxylic acid", "A nitro group"],
+          "answer": 2,
+          "explain": "Each amino acid has both an amino group and a carboxylic acid group on the same central carbon.",
+          "concept": "5D",
+          "cover_story": "reactions of a metabolite",
+          "b": -0.6
+        }
+      ]
+    },
+    {
+      "label": "Reaction energetics and a cell",
+      "paragraphs": [
+        "A chemist studies a reaction's energy and speed. She measures the enthalpy and entropy changes, tests how a catalyst changes the rate, and uses Le Chatelier's principle to predict shifts in equilibrium.",
+        "She also builds a simple galvanic cell from two metals in their salt solutions and traces the path of the electrons it produces."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 12-17 (Kinetics, Equilibrium, Thermodynamics, and Electrochemistry)",
+      "questions": [
+        {
+          "stem": "A reaction has a negative enthalpy change and a positive entropy change. This reaction is:",
+          "choices": ["Nonspontaneous at all temperatures", "Spontaneous only at high temperature", "Spontaneous only at low temperature", "Spontaneous at all temperatures"],
+          "answer": 3,
+          "explain": "With enthalpy change negative and entropy change positive, the Gibbs free energy change (enthalpy minus temperature times entropy) is negative at every temperature, so the reaction is always spontaneous.",
+          "concept": "5E",
+          "cover_story": "reaction energetics and a cell",
+          "b": 0.6
+        },
+        {
+          "stem": "A reaction converts 2 moles of gas into 1 mole of gas. The entropy change of the system is most likely:",
+          "choices": ["Negative", "Positive", "Zero", "Infinite"],
+          "answer": 0,
+          "explain": "Fewer gas molecules means fewer ways to spread energy and position, so the system's entropy decreases.",
+          "concept": "5E",
+          "cover_story": "reaction energetics and a cell",
+          "b": 0.2
+        },
+        {
+          "stem": "For a reaction with the rate law rate = k[A], doubling the concentration of A changes the rate by a factor of:",
+          "choices": ["stays the same", "quadruples", "doubles", "increases eightfold"],
+          "answer": 2,
+          "explain": "The reaction is first order in A, so doubling the concentration of A doubles the rate.",
+          "concept": "5E",
+          "cover_story": "reaction energetics and a cell",
+          "b": -0.3
+        },
+        {
+          "stem": "A catalyst, such as an enzyme, speeds up a reaction mainly by:",
+          "choices": ["Lowering the activation energy", "Increasing the temperature", "Making the products more stable", "Raising the activation energy"],
+          "answer": 0,
+          "explain": "A catalyst provides a path with a lower activation energy so more collisions succeed, and it does not change the energy of the reactants or products.",
+          "concept": "5E",
+          "cover_story": "reaction energetics and a cell",
+          "b": -0.6
+        },
+        {
+          "stem": "For the equilibrium N2 + 3 H2 gives 2 NH3, adding more N2 shifts the equilibrium:",
+          "choices": ["Toward the reactants (less NH3)", "No shift at all", "Toward the products (more NH3)", "It stops the reaction"],
+          "answer": 2,
+          "explain": "Adding a reactant pushes the equilibrium toward the products to partly offset the change, making more ammonia.",
+          "concept": "5E",
+          "cover_story": "reaction energetics and a cell",
+          "b": -0.1
+        },
+        {
+          "stem": "In her galvanic cell, oxidation happens at the anode and reduction at the cathode. Through the external wire, electrons flow:",
+          "choices": ["From the anode to the cathode", "From the cathode to the anode", "From the cathode to the salt bridge only", "They do not flow at all"],
+          "answer": 0,
+          "explain": "Electrons are released by oxidation at the anode and travel through the external wire to the cathode, where reduction occurs.",
+          "concept": "4C",
+          "cover_story": "reaction energetics and a cell",
+          "b": 0.0
+        }
+      ]
+    },
+    {
+      "label": "The bicarbonate buffer in blood",
+      "paragraphs": [
+        "Blood holds a nearly constant pH using the bicarbonate buffer system. Dissolved carbon dioxide reacts with water to form carbonic acid, which splits into hydrogen ions and bicarbonate: CO2 + H2O gives H+ + HCO3-. The enzyme carbonic anhydrase speeds the first step.",
+        "During hard exercise, muscles add more carbon dioxide and acid to the blood, and the lungs and kidneys respond to keep the pH near 7.4. Treat the dissolved gases as ideal and the reactions as reversible."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 9, 12, and 14 (Gases, Kinetics, and Acid-Base Equilibria)",
+      "questions": [
+        {
+          "stem": "During intense exercise, extra carbon dioxide dissolves in the blood. By the equilibrium shown, this tends to make the blood:",
+          "choices": ["More basic (higher pH)", "Exactly neutral", "Unable to change its pH", "More acidic (lower pH)"],
+          "answer": 3,
+          "explain": "More carbon dioxide pushes the equilibrium to the right, releasing more hydrogen ions, which lowers the pH toward acidosis.",
+          "concept": "5A",
+          "cover_story": "blood as a buffer",
+          "b": 0.2
+        },
+        {
+          "stem": "When the lungs exhale faster and remove carbon dioxide from the blood, the equilibrium CO2 + H2O gives H+ + HCO3- shifts:",
+          "choices": ["To the left, consuming H+ and raising pH", "To the right, releasing more H+", "Not at all", "Toward making more carbon dioxide"],
+          "answer": 0,
+          "explain": "Removing carbon dioxide pulls the equilibrium to the left, using up hydrogen ions and raising the pH, which is how faster breathing counters acidosis.",
+          "concept": "5E",
+          "cover_story": "blood as a buffer",
+          "b": 0.6
+        },
+        {
+          "stem": "In the lungs, gas exchange depends on partial pressures. In a mixture of gases, the partial pressure of carbon dioxide equals:",
+          "choices": ["The total pressure times its mole fraction", "Always equal to the total pressure", "Independent of how much carbon dioxide is present", "Zero unless carbon dioxide is the only gas"],
+          "answer": 0,
+          "explain": "By Dalton's law, each gas's partial pressure is the total pressure times that gas's mole fraction.",
+          "concept": "4B",
+          "cover_story": "blood as a buffer",
+          "b": 0.1
+        },
+        {
+          "stem": "Carbonic anhydrase speeds the conversion of carbon dioxide and water to carbonic acid. As a catalyst, it changes the reaction's:",
+          "choices": ["Rate but not the final equilibrium position", "Final equilibrium position but not the rate", "Overall enthalpy change", "Products into different molecules"],
+          "answer": 0,
+          "explain": "A catalyst lowers the activation energy and speeds the forward and reverse steps equally, so it changes the rate but not where the equilibrium settles.",
+          "concept": "5E",
+          "cover_story": "blood as a buffer",
+          "b": 0.3
+        },
+        {
+          "stem": "Each carbon dioxide that reacts can release one hydrogen ion and one bicarbonate ion. If 4 millimoles of carbon dioxide react this way, how many millimoles of bicarbonate form?",
+          "choices": ["1 millimole", "2 millimoles", "4 millimoles", "8 millimoles"],
+          "answer": 2,
+          "explain": "The stoichiometry is one to one, so 4 millimoles of reacting carbon dioxide yields 4 millimoles of bicarbonate.",
+          "concept": "4E",
+          "cover_story": "blood as a buffer",
+          "b": -0.5
+        },
+        {
+          "stem": "The bicarbonate buffer holds pH near 7.4 best when the ratio of bicarbonate to dissolved carbon dioxide is kept roughly:",
+          "choices": ["At exactly 1 to 1", "As large as possible", "Constant, since pH depends on the base-to-acid ratio", "As small as possible"],
+          "answer": 2,
+          "explain": "Henderson-Hasselbalch says pH tracks the ratio of conjugate base (bicarbonate) to acid (dissolved carbon dioxide), so holding that ratio steady holds the pH steady.",
+          "concept": "5A",
+          "cover_story": "blood as a buffer",
+          "b": 0.9
+        }
+      ]
+    }
+  ]
+}

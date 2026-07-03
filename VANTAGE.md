@@ -81,10 +81,11 @@ Download `AnkiDroid-play-universal-debug.apk` from the [latest Android release](
 - `pylib/anki/vantage/` : scoring (memory / performance / readiness), coverage map, give-up rule, tests
 - `vantage_addon/` : the desktop dashboard (opens from the Tools menu or the "Vantage" toolbar link)
 - `vantage_tools/ai/` : AI card-generation safety layer (source traceability, grounding checker, held-out eval, injection canary) - see [AI_NOTE.md](AI_NOTE.md)
+- `vantage_addon/web/reasoning_bank.*.json` : the reasoning/application question bank (264 items across all four sections), each science item tagged to its AAMC concept and cited to an OpenStax source; loaded identically on desktop and mobile
 
 ## Backlog (planned, post-Wednesday)
 
 - **CARS section, done honestly.** Add short CARS practice passages with questions, scored on real performance, never derived from flashcards. This is the missing "application item" layer, so it also lifts Performance and Readiness out of abstention and lets Readiness become a full 4-section 472 to 528 projection instead of a 3-section partial. Rationale: CARS is Anki's real blind spot (reasoning, not recall), so this is the highest-value differentiator.
 - **Restyle the flashcard reviewer.** Theme Anki's FSRS review screen (card template CSS and an accent) so studying feels like part of Vantage. Cosmetic only: keep the real Again/Hard/Good/Easy FSRS grading and the shared engine.
 
-Built on Anki; licensed AGPL-3.0-or-later as upstream. Credit to Ankitects and the AnkiDroid team.
+Built on Anki; licensed AGPL-3.0-or-later as upstream. Credit to Ankitects and the AnkiDroid team. Reasoning-question facts are grounded in OpenStax (CC BY 4.0); the questions themselves are original.

@@ -278,6 +278,34 @@ def _data_script(data: dict | None, error: str | None = None, live: bool = False
     return " ".join(parts)
 
 
+# Reasoning question bank: authored per-section JSON files (reasoning_bank.<section>.json)
+# loaded at build time so desktop and mobile serve the identical bank (parity).
+# practice.js reads the injected window.__VANTAGE_REASONING_BANK__ global; if the files
+# are absent it falls back to its small built-in item set.
+_REASONING_SECTIONS = ("cars", "chem_phys", "bio_biochem", "psych_soc")
+
+
+def _reasoning_bank_script() -> str:
+    bank: dict = {}
+    for sec in _REASONING_SECTIONS:
+        path = _WEB / f"reasoning_bank.{sec}.json"
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        passages = data.get("passages") or []
+        if passages:
+            bank[sec] = {"title": data.get("title"), "passages": passages}
+    if not bank:
+        return ""
+    return (
+        "<script>window.__VANTAGE_REASONING_BANK__ = "
+        f"{json.dumps(bank, ensure_ascii=False)};</script>"
+    )
+
+
 def build_body(data: dict | None, error: str | None = None, live: bool = False) -> str:
     css = (_WEB / "dashboard.css").read_text(encoding="utf-8")
     review_css = (_WEB / "reviewer.css").read_text(encoding="utf-8")
@@ -292,6 +320,7 @@ def build_body(data: dict | None, error: str | None = None, live: bool = False) 
         f"<script>{data_js}</script>"
         f"<script>{js}</script>"
         f"<script>{review_js}</script>"
+        f"{_reasoning_bank_script()}"
         f"<script>{practice_js}</script>"
     )
 
@@ -597,7 +626,7 @@ def build_practice_page() -> str:
     css = (_WEB / "practice.css").read_text(encoding="utf-8")
     js = (_WEB / "practice.js").read_text(encoding="utf-8")
     body = (
-        f"<style>{css}</style><div id='app'></div><script>{js}</script>"
+        f"<style>{css}</style><div id='app'></div>{_reasoning_bank_script()}<script>{js}</script>"
         "<script>window.addEventListener('load',function(){vpractice.open();});</script>"
     )
     return (
@@ -629,6 +658,7 @@ def build_mobile_page(data: dict | None, error: str | None = None) -> str:
         f"<script>{scoring}</script>"
         f"<script>{data_js}</script>"
         f"<script>{js}</script>"
+        f"{_reasoning_bank_script()}"
         f"<script>{practice_js}</script>"
     )
     return (

@@ -402,6 +402,12 @@
     ],
   };
 
+  // Authored bank injected by the host (render.py reads reasoning_bank.<section>.json).
+  // When present it REPLACES the small built-in banks above; when absent we fall back
+  // to them so practice still works. One source, identical on desktop and mobile.
+  const INJECTED = (typeof window !== 'undefined' && window.__VANTAGE_REASONING_BANK__) || null;
+  const hasInjected = (key) => !!(INJECTED && INJECTED[key] && Array.isArray(INJECTED[key].passages) && INJECTED[key].passages.length);
+
   const KEYS = ['A', 'B', 'C', 'D'];
   const CONF = [['guess', 'Guessing'], ['unsure', 'Unsure'], ['sure', 'Sure']];
   const REASONS = [
@@ -429,6 +435,12 @@
   };
   // Every passage available for a section: the bank's own passage plus any extras.
   function sectionPassages(key) {
+    if (hasInjected(key)) {
+      return INJECTED[key].passages.map((p) => ({
+        passage: { label: p.label, paragraphs: p.paragraphs, source_ref: p.source_ref },
+        questions: p.questions,
+      }));
+    }
     const src = BANKS[key] || BANKS.cars;
     return [{ passage: src.passage, questions: src.questions }].concat(EXTRA_PASSAGES[key] || []);
   }
@@ -507,6 +519,7 @@
       <section class="passage">
         <div class="passage__label">${esc(p.passage.label)}</div>
         <div class="passage__body">${p.passage.paragraphs.map((x) => `<p>${esc(x)}</p>`).join('')}</div>
+        ${p.passage.source_ref ? `<div class="passage__src">Source: ${esc(p.passage.source_ref)}</div>` : ''}
       </section>
       <section class="qcard">
         <div class="qcard__stem">${esc(q.stem)}</div>
@@ -557,9 +570,10 @@
 
   window.vpractice = {
     open(section) {
-      const key = section && BANKS[section] ? section : 'cars';
+      const key = section && (hasInjected(section) || BANKS[section]) ? section : 'cars';
       state.section = key;
-      state.title = (BANKS[key] || BANKS.cars).title;
+      const inj = INJECTED && INJECTED[key];
+      state.title = (inj && inj.title) || (BANKS[key] || BANKS.cars).title;
       // Build the shuffled passage rotation (source stays pristine inside buildRounds).
       state.rounds = buildRounds(key);
       state.pi = 0; state.qi = 0;
@@ -595,6 +609,7 @@
         stem: q.stem,
         answer: q.choices[q.answer],
         explain: q.explain,
+        concept: q.concept || null,
       };
       state.results.push(rec);
       answeredThisLoad += 1;  // feeds the "__ of __ today" reasoning goal
