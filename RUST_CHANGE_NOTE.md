@@ -211,6 +211,48 @@ asserts the interleaved order is the test `filtered_reschedule_deck_interleaves_
 (interleave.rs): it pulls two topics into a rescheduling filtered deck and asserts the built
 queue interleaves them (`cargo test -p anki interleave` = 15 passed).
 
+## Scope: within-section tag granularity (all three scored sections)
+
+Interleaving buckets a card by its full note tag under the prefix (`topic_key_for_tags`
+returns the sorted-first `mcat::…` tag), so genuine _within-section_ mixing of confusable
+topics only happens when a section's cards actually carry distinct
+`mcat::<section>::<topic>` tags. As of the content re-bucketing below, **all three scored
+sections now do — not just psych_soc**:
+
+- **psych_soc** — `mcat::psych_soc::6A … 10A`, the 12 AAMC content-category codes (from the
+  Pankow import). Granular from the start.
+- **bio_biochem** — `mcat::bio_biochem::1A … 3B`, all 9 AAMC categories.
+- **chem_phys** — `mcat::chem_phys::4A … 5E`, all 10 AAMC categories.
+
+Previously bio_biochem and chem_phys carried only a generic `mcat::<section>::miledown`
+placeholder — a single bucket per section — so those two sections could interleave only
+_across_ sections; real confusable-topic mixing _within_ a section was true for psych_soc
+alone. That gap is now closed: the MileDown science notes were re-bucketed into real AAMC
+content-category tags using the **same `outline.match_tag` attribution the coverage scan
+already relies on** (direct category match plus the topic→category rollup), so a card's
+interleave bucket and its coverage concept agree. 1935 of 2062 science notes (94%) mapped.
+
+**Confirmed on the real collection (not the ablation's synthetic deck).** Within-section
+same-bucket adjacency of the `Mixed` queue — the fraction of adjacent same-section cards
+that were _not_ separated — collapsed once the real tags existed:
+
+| section     | before (`::miledown` placeholder) | after (AAMC categories) | buckets |
+| ----------- | --------------------------------- | ----------------------- | ------- |
+| bio_biochem | 1.000                             | 0.065                   | 1 → 9   |
+| chem_phys   | 0.985                             | 0.010                   | 1 → 11  |
+
+Before, one bucket per section forced adjacency to 1.000 — within-section mixing was
+mathematically impossible. After, consecutive same-section reviews round-robin across AAMC
+categories (measured bio order: `1A, 2B, 1C, 2A, 2C, 1D, 3B, 3A, 1B, …`), with the arm
+ordering holding as expected (`Mixed` ≪ `Off` < `Blocked`).
+
+**Honest residual (not 100%).** 127 chem_phys notes do not map to a single AAMC content
+category — test-taking math and skills cards (`Physics::Research`, `Physics::Mathematics`
+such as SOHCAHTOA/logarithms, `Nomenclature`, `Constants`) — and are kept in one labeled
+`mcat::chem_phys::miledown` residual bucket rather than force-fit to a category. They still
+interleave as one additional bucket. bio_biochem has no residual (all notes mapped). This
+is a real, disclosed ~6% remainder, not full category coverage.
+
 ## Vendored scoring core (Python duplication)
 
 `vantage_addon/vantage_core/` is a byte-for-byte vendored copy of `pylib/anki/vantage/`

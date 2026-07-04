@@ -35,23 +35,27 @@ def _pct_score(s) -> dict:
 
 
 def _readiness(s) -> dict:
+    # Read the flags the scoring core actually set. Only the IRT path models CARS,
+    # and only once CARS has enough real practice; the classic path and any
+    # abstained result leave `extra` without the key, so default to False. Never
+    # hardcode the CARS state here: the numbers are real, so the label must match.
+    extra = s.extra or {}
     out = {
         "abstained": s.abstained,
         "how_sure": s.how_sure,
         "n": s.n,
         "reasons": list(s.reasons),
-        "cars_modeled": False,
+        "cars_modeled": bool(extra.get("cars_modeled", False)),
         "sections": {},
     }
     if s.band:
         out.update(point=s.band.point, low=s.band.low, high=s.band.high)
-    for key, band in (s.extra.get("sections") or {}).items():
+    for key, band in (extra.get("sections") or {}).items():
         out["sections"][key] = {"point": band.point, "low": band.low, "high": band.high}
     # Additive pass-through of the readiness extra: the partial-composite framing
     # and, when the latent-ability path is active, its per-section posterior. The
     # web UI uses these to describe "how sure" from the estimate; it never shows
     # the raw model internals to the student.
-    extra = s.extra or {}
     if extra.get("modeled_sections") is not None:
         out["modeled_sections"] = list(extra.get("modeled_sections") or [])
     if extra.get("scale_note"):
@@ -257,15 +261,25 @@ def dashboard_dict(col) -> dict:
 LOAD_ERROR_MESSAGE = "Something went wrong computing your scores. Tap Refresh to try again."
 
 
-def _data_script(data: dict | None, error: str | None = None, live: bool = False) -> str:
+def _data_script(
+    data: dict | None,
+    error: str | None = None,
+    live: bool = False,
+    initial_tab: str = "dashboard",
+) -> str:
     """Seed the window globals the web UI reads.
 
     `live` marks a real add-on render (not the offline preview): the UI then
     refuses to fall back to its built-in demo numbers and shows an honest error
     if data is missing. On failure we expose only a short, student-facing
     message; the raw error goes to the console for debugging, never the screen.
+
+    `initial_tab` tells the page which tab to open after this (re)render. It is
+    how returning from a study session lands the student back on Practice, the
+    tab they launched from, instead of resetting to Dashboard. The web side
+    validates it against its known tabs and defaults to Dashboard.
     """
-    parts = []
+    parts = [f"window.__VANTAGE_INITIAL_TAB__ = {json.dumps(initial_tab)};"]
     if live:
         parts.append("window.__VANTAGE_LIVE__ = true;")
     if data is not None:
@@ -306,14 +320,19 @@ def _reasoning_bank_script() -> str:
     )
 
 
-def build_body(data: dict | None, error: str | None = None, live: bool = False) -> str:
+def build_body(
+    data: dict | None,
+    error: str | None = None,
+    live: bool = False,
+    initial_tab: str = "dashboard",
+) -> str:
     css = (_WEB / "dashboard.css").read_text(encoding="utf-8")
     review_css = (_WEB / "reviewer.css").read_text(encoding="utf-8")
     practice_css = (_WEB / "practice.css").read_text(encoding="utf-8")
     js = (_WEB / "dashboard.js").read_text(encoding="utf-8")
     review_js = (_WEB / "reviewer.js").read_text(encoding="utf-8")
     practice_js = (_WEB / "practice.js").read_text(encoding="utf-8")
-    data_js = _data_script(data, error, live)
+    data_js = _data_script(data, error, live, initial_tab)
     return (
         f"<style>{css}{review_css}{practice_css}</style>"
         f'<div class="app" id="app"></div>'
@@ -406,6 +425,11 @@ def summary_cache(data: dict) -> dict:
         "high": _round_or_none(r.get("high")),
         "how_sure": r.get("how_sure", "insufficient"),
         "n_sections": len(r.get("sections") or {}),
+        # whether CARS is actually in the composite, copied from the readiness
+        # score as-is so the home card frames the scale honestly (a full 4-section
+        # projection vs the 3-section partial). Absent on older caches -> False.
+        "cars_modeled": bool(r.get("cars_modeled", False)),
+        "scale_note": r.get("scale_note"),
         # progress + thresholds, so the abstain card can say what is still missing
         "coverage": data.get("coverage", 0.0),
         "n_reviews": data.get("n_reviews", 0),
@@ -579,11 +603,17 @@ def build_summary(cache: dict | None, now_ts: float | None = None) -> str:
         )
         return _summary_shell(inner)
 
-    # State 3: an honest projected range. Always framed as the partial composite
-    # it is (three sections, CARS not scored), never a fake full-scale number.
+    # State 3: an honest projected range. Framed as exactly what it covers: the
+    # full four-section projection once CARS has real practice, otherwise the
+    # three-section partial. Driven by the real cars_modeled flag, never assumed.
     low = cache.get("low")
     high = cache.get("high")
     how = cache.get("how_sure") or "medium"
+    scale_line = (
+        "Covers all 4 sections"
+        if cache.get("cars_modeled")
+        else "Covers 3 of 4 sections, CARS not included yet"
+    )
     meta = (
         '<div class="vtg-meta">'
         f'<span>{_summary_pct(cache.get("coverage"))} <span class="vtg-k">of the exam covered</span></span>'
@@ -594,6 +624,7 @@ def build_summary(cache: dict | None, now_ts: float | None = None) -> str:
         f"{eyebrow}"
         '<div class="vtg-label">Projected score range</div>'
         f'<div class="vtg-range">{low} to {high}</div>'
+        f'<div class="vtg-lead">{scale_line}</div>'
         f"{meta}{best}{_summary_footer(cache, now)}"
     )
     return _summary_shell(inner)

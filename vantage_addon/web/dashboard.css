@@ -31,6 +31,9 @@ html, body {
   font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: 'ss01';
+  /* Stops the phone WebView's stretch overscroll (Android 12+) from elongating
+     the page as you scroll past the top or bottom. No effect on desktop. */
+  overscroll-behavior: none;
 }
 
 .app { padding-bottom: 4rem; }
@@ -238,6 +241,8 @@ html, body {
 .srow__actions { display: flex; gap: 0.5rem; flex: none; flex-wrap: wrap; justify-content: flex-end; }
 .btn--study { background: var(--primary); color: #fff; }
 .btn--study:hover { background: var(--primary-600); }
+.btn--mix { background: var(--primary-50); color: var(--primary-600); }
+.btn--mix:hover { background: #dbeafe; }
 .btn--reason { background: #7c3aed; color: #fff; }
 .btn--reason:hover { background: #6d28d9; }
 .srow .btn { height: 2.55rem; }
@@ -276,6 +281,13 @@ html, body {
 .trajstat__num { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .trajstat__lbl { font-size: 0.78rem; color: var(--gray-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 .targetin { font-family: inherit; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.4rem 0.6rem; width: 6rem; color: var(--fg); }
+/* qualitative pace status (replaces the raw points-per-week rate) */
+.pacestatus { display: flex; align-items: baseline; gap: 0.6rem; margin-top: 1.1rem; flex-wrap: wrap; }
+.pacestatus__badge { font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 9999px; padding: 0.28rem 0.7rem; white-space: nowrap; }
+.pacestatus--behind .pacestatus__badge { color: var(--accent-600); background: var(--accent-50); }
+.pacestatus--on .pacestatus__badge { color: var(--secondary-600); background: var(--secondary-50); }
+.pacestatus--ahead .pacestatus__badge { color: var(--primary-600); background: var(--primary-50); }
+.pacestatus__hint { font-size: 0.92rem; color: var(--gray-500); font-weight: 500; line-height: 1.45; }
 
 /* ---------- learn first vs ready to practice ---------- */
 .plansplit { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -340,6 +352,11 @@ html, body {
 @media (min-width: 960px) {
   .outlook { grid-template-columns: 1.4fr 1fr; }
   .insightgrid--3 { grid-template-columns: repeat(3, 1fr); }
+  /* once the three Knowledge-check cards sit in one row, their bodies fill the
+     row's height so the grey boxes end level, matching the Test-day pair */
+  .insightgrid--3 { align-items: stretch; }
+  .insightgrid--3 .section { display: flex; flex-direction: column; }
+  .insightgrid--3 .coverblock { flex: 1 1 auto; }
 }
 
 .footmeta { margin: 1.25rem 2.5rem 0; color: var(--gray-500); font-size: 0.82rem; font-weight: 500; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
@@ -368,3 +385,29 @@ html, body {
   .plan__grid { grid-template-columns: 1fr; }
   .footmeta { margin-left: 1.25rem; margin-right: 1.25rem; }
 }
+
+/* ---- Tabs: Dashboard / Practice / Progress (in the dark masthead) ---- */
+.tabs { display: flex; gap: 0.4rem; margin-top: 1.4rem; flex-wrap: wrap; }
+.tab {
+  font-family: inherit; font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.72); background: rgba(255, 255, 255, 0.10);
+  border: 0; border-radius: 9999px; padding: 0.5rem 1.3rem; cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.tab:hover { background: rgba(255, 255, 255, 0.18); color: #fff; }
+.tab--on { background: #fff; color: var(--gray-900); }
+.tab:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.tabpane[hidden] { display: none; }
+
+/* Sync button busy state */
+.btn--busy { opacity: 0.7; cursor: default; }
+
+/* Bottom-center transient message (sync errors, etc.) */
+.vmsg {
+  position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 10px);
+  z-index: 2147483647; background: rgba(17, 24, 39, 0.94); color: #f9fafb;
+  font-weight: 600; font-size: 0.9rem; letter-spacing: -0.01em;
+  padding: 0.7rem 1.15rem; border-radius: 9999px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease; pointer-events: none;
+}
+.vmsg--show { opacity: 1; transform: translate(-50%, 0); }

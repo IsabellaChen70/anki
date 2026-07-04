@@ -19,6 +19,8 @@ const ICON = {
   bolt: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
   play: '<polygon points="6 3 20 12 6 21 6 3"/>',
   book: '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+  cloud: '<path d="M12 13v8"/><path d="m8 17 4 4 4-4"/><path d="M4.5 15.5A5 5 0 0 1 7 6a6 6 0 0 1 11.3 2A4.5 4.5 0 0 1 18 17"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
 };
 
 function svg(name) {
@@ -46,7 +48,7 @@ function pctCard(kind, iconName, title, sub, s, reason, abstainLine) {
   const head = `<div class="card__top"><div class="iconwrap i-${s.abstained ? 'abstain' : cls}">${svg(iconName)}</div>
       <div><div class="card__label">${esc(title)}</div><div class="card__sub">${esc(sub)}</div></div></div>`;
   if (s.abstained) {
-    const cta = kind === 'perf' ? '<button class="card__cta" onclick="vpractice.open()">Start practice</button>' : '';
+    const cta = kind === 'perf' ? '<button class="card__cta" onclick="vtab(\'practice\')">Start practice</button>' : '';
     return `<div class="card card--abstain">${head}
       <div class="abstain__title">Not enough data yet</div>
       ${bullets([abstainLine])}${cta}</div>`;
@@ -74,6 +76,17 @@ function readinessReason(s, d) {
   return `based on ${d.n_reviews} reviews`;
 }
 
+// Honest scale label for the readiness card. The projection is a labeled partial
+// (three of the four sections) until CARS has real practice, then a full
+// four-section projection. Reads the cars_modeled flag the scoring core set,
+// falling back to whether a CARS section is present, so it never assumes either.
+function readinessScale(s) {
+  const carsModeled = s.cars_modeled || !!(s.sections && s.sections.cars);
+  return carsModeled
+    ? 'Covers all 4 sections'
+    : 'Covers 3 of 4 sections, CARS not included yet';
+}
+
 function readinessCard(s, labels, d) {
   const head = `<div class="card__top"><div class="iconwrap i-${s.abstained ? 'abstain' : 'ready'}">${svg('gauge')}</div>
       <div><div class="card__label">Readiness</div><div class="card__sub">your projected section scores</div></div></div>`;
@@ -91,7 +104,7 @@ function readinessCard(s, labels, d) {
     return `<div class="card card--abstain">${head}
       <div class="abstain__title">No score yet</div>
       <p class="abstain__lead">You need:</p>${bullets(items)}
-      <button class="card__cta" onclick="vpractice.open()">Start practice</button></div>`;
+      <button class="card__cta" onclick="vtab('practice')">Start practice</button></div>`;
   }
   const subs = Object.entries(s.sections || {}).map(([k, b]) => {
     return `<div class="subrow"><div class="subrow__label">${esc(labels[k] || (k === 'cars' ? 'CARS' : k))}</div>
@@ -100,6 +113,7 @@ function readinessCard(s, labels, d) {
   const reason = readinessReason(s, d);
   return `<div class="card card--ready">${head}
     <div class="subsections">${subs}</div>
+    <div class="card__sub card__sub--scale">${readinessScale(s)}</div>
     ${meta(s.how_sure, reason)}</div>`;
 }
 
@@ -133,7 +147,7 @@ function coverageBlock(d) {
 function studyRow(key, label, sub, opts) {
   const acts = [];
   if (opts.flashcards) acts.push(`<button class="btn btn--study" onclick="vpy('study:${key}')">${svg('play')} Flashcards</button>`);
-  if (opts.cram) acts.push(`<button class="btn btn--ghost" onclick="vpy('cram:${key}')">Study all</button>`);
+  if (opts.mix) acts.push(`<button class="btn btn--mix" onclick="vpy('study:mix:${key}')">${svg('layers')} Mix topics</button>`);
   if (opts.reason) acts.push(`<button class="btn btn--reason" onclick="vpractice.open('${key}')">${svg('book')} Reasoning</button>`);
   const subHtml = sub ? `<div class="srow__sub">${esc(sub)}</div>` : '';
   return `<div class="srow srow--${key}">
@@ -143,6 +157,8 @@ function studyRow(key, label, sub, opts) {
 
 // The place to click into studying: flashcards for the 3 science sections,
 // reasoning for all 4 (CARS included), and one interleaved-everything option.
+// Mounted on the Practice tab (practice.js renderSetup calls this); the Dashboard
+// tab is purely informational and carries no study-action buttons.
 function studyBlock(d) {
   const labels = d.section_labels || {};
   const rows = [];
@@ -150,7 +166,7 @@ function studyBlock(d) {
     <div class="srow__meta"><div class="srow__name">Interleaved review</div></div>
     <div class="srow__actions"><button class="btn btn--study" onclick="vpy('study:interleave')">${svg('layers')} Start mixed review</button></div></div>`);
   Object.keys(labels).forEach((k) => {
-    rows.push(studyRow(k, labels[k], '', { flashcards: true, cram: true, reason: true }));
+    rows.push(studyRow(k, labels[k], '', { flashcards: true, mix: true, reason: true }));
   });
   rows.push(studyRow('cars', 'CARS', '', { flashcards: false, reason: true }));
   return `<section class="section">
@@ -620,13 +636,41 @@ function trajectoryPanel(d) {
   }
   const secName = t.weakest_section === 'cars' ? 'CARS' : ((d.section_labels && d.section_labels[t.weakest_section]) || t.weakest_section || '');
   const verdict = t.on_pace ? 'On pace to hit your target.' : `Behind your target${secName ? ', focus on ' + esc(secName) : ''}.`;
-  const wk = (t.per_week > 0 ? '+' : '') + t.per_week;
+  // Qualitative pace from the SAME projected-vs-target the trajectory already
+  // computed (no new metric); replaces the raw points-per-week rate. A one-point
+  // band around the target reads as "on pace" rather than exact-tie only.
+  const proj = typeof t.projected === 'number' ? t.projected : null;
+  const tgt = typeof t.target === 'number' ? t.target : null;
+  let pace = t.on_pace ? 'on' : 'behind';
+  if (proj !== null && tgt !== null) pace = proj < tgt ? 'behind' : proj > tgt + 1 ? 'ahead' : 'on';
+  const paceLabel = pace === 'behind' ? 'Behind pace' : pace === 'ahead' ? 'Ahead of pace' : 'On pace';
+  // Actionable pointer: reuse the weakest section and the daily reasoning target
+  // already shown under Exam countdown. Never a new points-to-effort conversion.
+  const sp = d.study_pace;
+  const rday = sp && typeof sp.reasoning_per_day === 'number' && sp.reasoning_per_day > 0 ? sp.reasoning_per_day : 0;
+  const qWord = rday === 1 ? 'question' : 'questions';
+  let hint;
+  if (pace === 'behind') {
+    if (secName && rday) hint = `Aim today's ${rday} reasoning ${qWord} at ${secName}, your weakest section.`;
+    else if (secName) hint = `Put your reasoning practice into ${secName}, your weakest section.`;
+    else if (rday) hint = `Get through today's ${rday} reasoning ${qWord} to catch up.`;
+    else hint = 'Keep up your daily reasoning and flashcards to catch up.';
+  } else if (pace === 'ahead') {
+    hint = 'Nice work. Keep your daily practice steady.';
+  } else {
+    hint = rday
+      ? `Right on track. Keep today's ${rday} reasoning ${qWord} and your due flashcards going.`
+      : 'Right on track. Keep your daily practice steady.';
+  }
   return `<section class="section"><div class="coverblock">${eyebrow}
     <div class="calibsummary calibverdict--${t.on_pace ? 'ok' : 'off'}"><b>${verdict}</b></div>
     <div class="trajstats">
       <div class="trajstat"><span class="trajstat__num">${t.projected}</span><span class="trajstat__lbl">projected by exam day</span></div>
       <div class="trajstat"><span class="trajstat__num">${t.target}</span><span class="trajstat__lbl">your target</span></div>
-      <div class="trajstat"><span class="trajstat__num">${wk}</span><span class="trajstat__lbl">points per week</span></div>
+    </div>
+    <div class="pacestatus pacestatus--${pace}">
+      <span class="pacestatus__badge">${paceLabel}</span>
+      <span class="pacestatus__hint">${esc(hint)}</span>
     </div>
     <div class="cover" style="margin-top:0.85rem">Change target (${lo}\u2013${hi}): ${input}</div>
   </div></section>`;
@@ -675,6 +719,7 @@ function render() {
     <div class="masthead__row">
       <div><div class="brand__mark">Vantage<span class="dot">.</span></div></div>
       <div class="toolbar">
+        <button class="btn btn--ghost" id="vsyncbtn" onclick="vsync()">${svg('cloud')} <span id="vsynclbl">Sync</span></button>
         <button class="btn btn--ghost" onclick="vpy('refresh')">${svg('refresh')} Refresh</button>
         <button class="btn btn--ghost" onclick="vpy('back')">${svg('back')} Back to Anki</button>
       </div>
@@ -683,54 +728,128 @@ function render() {
       <span class="chip">${svg('grid')} ${pct(d.topic_coverage)} of the exam covered</span>
       <span class="chip">${svg('bolt')} ${d.n_reviews} reviews</span>
     </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab tab--on" data-tab="dashboard" role="tab" onclick="vtab('dashboard')">Dashboard</button>
+      <button class="tab" data-tab="practice" role="tab" onclick="vtab('practice')">Practice</button>
+      <button class="tab" data-tab="progress" role="tab" onclick="vtab('progress')">Progress</button>
+    </nav>
   </header>
 
   <div class="app__body">
-  <div class="outlook">
-    ${planBlock(d)}
-    ${trajectoryPanel(d)}
+  <div class="tabpane tabpane--on" id="pane-dashboard" role="tabpanel">
+    <div class="outlook">
+      ${planBlock(d)}
+      ${trajectoryPanel(d)}
+    </div>
+
+    <section class="section">
+      <div class="scores">
+        ${pctCard('memory', 'brain', 'Memory', 'how well you remember your cards', d.memory, memReason, memAbstain)}
+        ${pctCard('perf', 'target', 'Performance', 'how well you apply it to new questions', d.performance, perfReason, perfAbstain)}
+        ${readinessCard(d.readiness, d.section_labels, d)}
+      </div>
+    </section>
   </div>
 
-  <section class="section">
-    <div class="scores">
-      ${pctCard('memory', 'brain', 'Memory', 'how well you remember your cards', d.memory, memReason, memAbstain)}
-      ${pctCard('perf', 'target', 'Performance', 'how well you apply it to new questions', d.performance, perfReason, perfAbstain)}
-      ${readinessCard(d.readiness, d.section_labels, d)}
-    </div>
-  </section>
+  <div class="tabpane" id="pane-practice" role="tabpanel" hidden></div>
 
-  ${studyBlock(d)}
+  <div class="tabpane" id="pane-progress" role="tabpanel" hidden>
+    ${planPanel(d)}
 
-  ${planPanel(d)}
+    <section class="section">
+      <div class="section__head"><div class="section__title section__title--group">Exam coverage</div></div>
+      <div class="coverage">${coverageBlock(d)}${nextBlock(d)}</div>
+    </section>
 
-  <section class="section">
-    <div class="section__head"><div class="section__title section__title--group">Exam coverage</div></div>
-    <div class="coverage">${coverageBlock(d)}${nextBlock(d)}</div>
-  </section>
+    <section class="section">
+      <div class="section__head"><div class="section__title section__title--group">Knowledge check</div></div>
+      <div class="insightgrid insightgrid--3">
+        ${calibrationBlock(d)}
+        ${fluencyPanel(d)}
+        ${confidencePanel(d)}
+      </div>
+    </section>
 
-  <section class="section">
-    <div class="section__head"><div class="section__title section__title--group">Knowledge check</div></div>
-    <div class="insightgrid insightgrid--3">
-      ${calibrationBlock(d)}
-      ${fluencyPanel(d)}
-      ${confidencePanel(d)}
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section__head"><div class="section__title section__title--group">Test-day readiness</div></div>
-    <div class="insightgrid insightgrid--2">
-      ${mistakesPanel(d)}
-      ${pacingPanel(d)}
-    </div>
-  </section>
+    <section class="section">
+      <div class="section__head"><div class="section__title section__title--group">Test-day readiness</div></div>
+      <div class="insightgrid insightgrid--2">
+        ${mistakesPanel(d)}
+        ${pacingPanel(d)}
+      </div>
+    </section>
+  </div>
 
   <div class="footmeta"><span>Scores updated ${esc(d.updated)}</span></div>
   </div>`;
+  // Which tab to open after this (re)render. The host can bake in a tab via
+  // window.__VANTAGE_INITIAL_TAB__ so returning from a study session lands you
+  // back on Practice, the tab you launched it from, instead of resetting to
+  // Dashboard (the full-page reload discards the in-page tab state). Anything
+  // missing or unrecognized keeps the Dashboard default, so a plain re-render
+  // (e.g. the mobile host injecting data) behaves exactly as before.
+  window.__vtab = 'dashboard';
+  const wantTab = window.__VANTAGE_INITIAL_TAB__;
+  if ((wantTab === 'practice' || wantTab === 'progress') && typeof window.vtab === 'function') window.vtab(wantTab);
 }
 
 // Bridge to the app (desktop add-on or the AnkiDroid WebView). No-op in preview.
 window.vpy = function (cmd) { try { pycmd('vantage:' + cmd); } catch (e) { console.log('vpy', cmd); } };
+
+// ---- Tabs: Dashboard / Practice / Progress (client-side, no reload) ----
+window.__vtab = 'dashboard';
+window.vtab = function (name) {
+  window.__vtab = name;
+  document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('tab--on', t.dataset.tab === name));
+  document.querySelectorAll('.tabpane').forEach((p) => {
+    const on = p.id === 'pane-' + name;
+    p.hidden = !on;
+    p.classList.toggle('tabpane--on', on);
+  });
+  // Opening Practice mounts its setup screen (unless a session is already running).
+  if (name === 'practice' && window.vpractice && window.vpractice.mount) window.vpractice.mount();
+  try { window.scrollTo(0, 0); } catch (e) { /* preview */ }
+};
+
+// ---- Sync button: additive to auto-sync. Fires the host's real sync, shows a
+// brief "Syncing..." state, then the host either reloads (success) or calls
+// vantageSyncDone(false) so we show a plain-language error. ----
+window.vsync = function () {
+  const btn = document.getElementById('vsyncbtn');
+  const lbl = document.getElementById('vsynclbl');
+  if (btn && btn.dataset.busy === '1') return;
+  if (btn) { btn.dataset.busy = '1'; btn.classList.add('btn--busy'); }
+  if (lbl) lbl.textContent = 'Syncing...';
+  clearTimeout(window.__vsyncTimer);
+  // Safety net: if the host never reports back, stop spinning and say so.
+  window.__vsyncTimer = setTimeout(function () { window.vantageSyncDone(false); }, 45000);
+  vpy('sync:trigger');
+};
+window.vantageSyncDone = function (ok) {
+  clearTimeout(window.__vsyncTimer);
+  if (ok) { vpy('refresh'); return; } // success: reload with fresh scores (resets the button)
+  const btn = document.getElementById('vsyncbtn');
+  const lbl = document.getElementById('vsynclbl');
+  if (btn) { btn.dataset.busy = ''; btn.classList.remove('btn--busy'); }
+  if (lbl) lbl.textContent = 'Sync';
+  vmsg("Couldn't sync, check your connection");
+};
+
+// Small bottom-center message (sync errors, etc.). Self-contained, no stylesheet
+// dependency beyond .vmsg in dashboard.css.
+function vmsg(text) {
+  let el = document.getElementById('vmsg');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'vmsg';
+    el.className = 'vmsg';
+    (document.body || document.documentElement).appendChild(el);
+  }
+  el.textContent = text;
+  el.classList.add('vmsg--show');
+  clearTimeout(window.__vmsgTimer);
+  window.__vmsgTimer = setTimeout(function () { el.classList.remove('vmsg--show'); }, 3400);
+}
+window.vmsg = vmsg;
 
 const MOCK = {
   coverage: 1.0, coverage_by_section: { chem_phys: 1.0, bio_biochem: 1.0, psych_soc: 1.0 },

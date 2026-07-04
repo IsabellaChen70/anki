@@ -5,439 +5,87 @@
     {
       "label": "Passage",
       "paragraphs": [
-        "We are told that to forget is to betray, that memory is the guardian of justice, and that a society which lets its wounds scar over has already begun to repeat them. There is something bracing in this creed, and something suspect. It assumes that remembrance is a single, uniform good, as if every act of holding the past in mind served the same purpose and carried the same weight. Yet the person who cannot stop rehearsing an old injury is not obviously more just than the one who has learned to set it down; more often he is simply more captive. To insist that we owe the past an unbroken vigil is to mistake the accumulation of grievance for the practice of conscience.",
-        "What the moralists of memory overlook is that forgetting, done deliberately and well, is itself a discipline. The debt forgiven, the enemy no longer counted as one, the daily slights allowed to dissolve: these are not failures of attention but achievements of it, the fruit of deciding what deserves to be carried forward and what may at last be released. A community incapable of such release does not become more faithful to justice; it becomes a museum of its own resentments, curating each old harm until the curating is all that remains. The question, then, is not whether to remember but what remembering is for, and whether a memory that has forgotten its purpose still deserves the name."
+        "There is a seductive simplicity in the idea that an action is right if it produces the most good and wrong if it does not. On this accounting the moral life becomes a kind of arithmetic: tally the pleasure and the suffering that an act sets loose in the world, subtract the second from the first, and let the remainder decide. Much of the appeal lies in its refusal of favoritism, for the calculation counts each person's welfare as one and none as more than one. Yet the same impartiality that makes the view attractive is what unsettles us when we follow it to its edges. If only the sum of outcomes matters, then a lie, a betrayal, even the sacrifice of an innocent, could be not merely excused but required, provided the ledger came out ahead. The arithmetic promises to free us from prejudice, and threatens, in the same motion, to free us from every restraint we thought morality existed to impose.",
+        "Against this stands an older intuition, that certain things are owed regardless of what they yield. To treat a person as a mere means to someone else's benefit, on this view, is to violate something in them that no favorable total can repay, because their worth is not a quantity to be weighed but a status to be honored. The strength of the position is that it names what the arithmetic leaves out, the sense that we are answerable to persons and not only to sums. Its weakness is the mirror image of that strength, for a duty held absolutely can bind us to disaster, forbidding the lie that would turn away a murderer at the door. Perhaps neither picture is meant to be inhabited alone. What each exposes is the poverty of the other, and the honest moralist may be the one who refuses to silence either voice, enduring the tension rather than resolving it too cheaply."
       ],
-      "source_ref": "",
+      "source_ref": "OpenStax Introduction to Philosophy, Ch. 9 (Normative Moral Theory)",
       "questions": [
         {
-          "stem": "The author's central claim is that",
+          "stem": "The central claim of the passage is that",
           "choices": [
-            "memory has no role to play in the pursuit of justice",
-            "deliberate forgetting can serve moral purposes that unbroken remembrance does not",
-            "societies that forget their wounds are certain to repeat them",
-            "grief is a private matter that communities should not regulate"
+            "moral rightness is best settled by calculating which action produces the most overall good",
+            "both the outcome-based and the duty-based views capture something the other omits, and the tension between them may be irreducible",
+            "certain actions are forbidden absolutely, whatever consequences follow from refusing them",
+            "morality is ultimately a matter of personal preference rather than reasoned principle"
           ],
           "answer": 1,
-          "explain": "The author asks 'not whether to remember but what remembering is for' and defends forgetting 'done deliberately and well' as a discipline.",
-          "cover_story": "forgetting and memory",
+          "explain": "The author says 'neither picture is meant to be inhabited alone' and praises the moralist who refuses 'to silence either voice.'",
+          "cover_story": "outcomes and duty",
           "b": -1.4
         },
         {
-          "stem": "The author's attitude toward the moralists of memory is best described as",
+          "stem": "The reference to the lie that would 'turn away a murderer at the door' serves primarily to",
           "choices": [
-            "contemptuous and dismissive of everything they claim",
-            "admiring and largely persuaded by them",
-            "skeptical of their assumptions while acknowledging their appeal",
-            "indifferent and merely descriptive"
-          ],
-          "answer": 2,
-          "explain": "The author calls the creed 'something bracing' yet also 'something suspect,' signaling appeal mixed with doubt.",
-          "cover_story": "forgetting and memory",
-          "b": -0.2
-        },
-        {
-          "stem": "The phrase 'a museum of its own resentments' functions primarily to",
-          "choices": [
-            "illustrate how relentless remembrance can preserve grievance for its own sake",
-            "praise institutions that carefully preserve historical records",
-            "suggest that communities should build memorials to past harms",
-            "argue that resentment is a natural response to injustice"
-          ],
-          "answer": 0,
-          "explain": "The image names a community that keeps 'curating each old harm until the curating is all that remains.'",
-          "cover_story": "forgetting and memory",
-          "b": 0.9
-        },
-        {
-          "stem": "As used in the passage, 'vigil' most nearly means",
-          "choices": [
-            "a public ceremony of mourning",
-            "a binding legal obligation",
-            "a period of religious fasting",
-            "a sustained, watchful attentiveness"
-          ],
-          "answer": 3,
-          "explain": "An 'unbroken vigil' here means keeping constant watch over the past, not a ceremony or a fast.",
-          "cover_story": "forgetting and memory",
-          "b": 0.1
-        },
-        {
-          "stem": "It can be inferred that the author would most likely agree that",
-          "choices": [
-            "all grievances should eventually be abandoned",
-            "forgiveness requires forgetting that an offense ever occurred",
-            "the value of a memory depends on the purpose it serves",
-            "a just community must preserve every record of past harm"
-          ],
-          "answer": 2,
-          "explain": "The closing question asks whether 'a memory that has forgotten its purpose still deserves the name,' tying value to purpose.",
-          "cover_story": "forgetting and memory",
-          "b": 0.7
-        },
-        {
-          "stem": "Which situation best exemplifies the kind of forgetting the author endorses?",
-          "choices": [
-            "a government that destroys documents to conceal its past crimes",
-            "a person who chooses to stop tallying a friend's minor offenses so the friendship can continue",
-            "a witness who genuinely cannot recall the details of an event",
-            "a student who forgets material because he did not study"
+            "show that lying is always morally permissible",
+            "illustrate how an absolute duty can lead to disastrous results",
+            "prove that consequences are the only thing that matters",
+            "demonstrate that most people are dishonest under pressure"
           ],
           "answer": 1,
-          "explain": "The author praises deliberate, purposeful release, like letting 'daily slights' dissolve, not concealment or mere failure to recall.",
-          "cover_story": "forgetting and memory",
-          "b": 1.4
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "A familiar complaint against a certain kind of art is that it is difficult, as though difficulty were a discourtesy the artist owes it to us to avoid. The complaint has a democratic ring, and this is what makes it hard to answer honestly. Who would defend obscurity for its own sake, the deliberate withholding of meaning as a species of vanity? Yet the demand that art make itself immediately available confuses two very different things: the difficulty that hides an emptiness, and the difficulty that guards a genuine complexity. The first is a fraud and deserves the contempt it usually escapes. The second asks something of us, and it is precisely in the asking that its value lies.",
-        "An art that can be exhausted at a glance has, in a sense, nothing left to give once the glance is over. The work that resists us, by contrast, keeps a reserve; it rewards the second reading and the tenth, disclosing on each return what the previous approach had missed. To call such work elitist is to assume that effort is an insult to the audience rather than a form of respect for it. The truly condescending art is not the demanding kind but its opposite, the kind that has decided in advance how little we are capable of and has tailored itself to that low estimate. Difficulty, at its best, is a wager on the intelligence of the person it addresses."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The passage's central argument is that",
-          "choices": [
-            "all difficult art is superior to accessible art",
-            "art should make itself immediately available to everyone",
-            "obscurity is always a form of the artist's vanity",
-            "some artistic difficulty is valuable because it respects and rewards the audience's effort"
-          ],
-          "answer": 3,
-          "explain": "The author defends the difficulty that 'guards a genuine complexity' as 'a wager on the intelligence' of the audience.",
-          "cover_story": "difficulty in art",
-          "b": -1.4
-        },
-        {
-          "stem": "The author distinguishes between two kinds of difficulty primarily in order to",
-          "choices": [
-            "concede that some difficulty is worthless while defending the kind that guards real complexity",
-            "prove that most difficult art is fraudulent",
-            "show that accessibility and difficulty are ultimately the same",
-            "argue that critics cannot tell good art from bad"
-          ],
-          "answer": 0,
-          "explain": "The author separates 'the difficulty that hides an emptiness' from 'the difficulty that guards a genuine complexity,' condemning the first and defending the second.",
-          "cover_story": "difficulty in art",
+          "explain": "The example is offered to show a 'duty held absolutely can bind us to disaster,' the weakness that mirrors the view's strength.",
+          "cover_story": "outcomes and duty",
           "b": 0.8
         },
         {
-          "stem": "The author's attitude toward the demand that art be accessible is",
+          "stem": "The author's attitude toward the view that morality is 'a kind of arithmetic' is best described as",
           "choices": [
-            "hostile toward anyone who enjoys popular art",
-            "critical, seeing it as a misunderstanding despite its appeal",
-            "sympathetic and fully in agreement",
-            "neutral and undecided"
+            "wholly persuaded by its impartiality",
+            "contemptuous of anyone who holds it",
+            "appreciative of its appeal yet wary of where it leads",
+            "indifferent to its merits and flaws"
           ],
-          "answer": 1,
-          "explain": "The demand's 'democratic ring' is acknowledged even as the author says it 'confuses two very different things.'",
-          "cover_story": "difficulty in art",
+          "answer": 2,
+          "explain": "The author grants the view's 'seductive simplicity' and impartial appeal while warning that it 'threatens ... to free us from every restraint.'",
+          "cover_story": "outcomes and duty",
           "b": -0.1
         },
         {
-          "stem": "As used in the passage, 'reserve' most nearly means",
+          "stem": "As used in the passage, 'status' most nearly means",
           "choices": [
-            "a feeling of shyness or reticence",
-            "a sum set aside for emergencies",
-            "an undisclosed depth held back for later discovery",
-            "a protected area of land"
+            "a person's rank in society",
+            "a temporary legal classification",
+            "a standing or worth that does not vary with circumstance",
+            "a passing condition or mood"
           ],
           "answer": 2,
-          "explain": "The work 'keeps a reserve' that it 'discloses on each return,' meaning hidden depth, not shyness or savings.",
-          "cover_story": "difficulty in art",
-          "b": 0.2
-        },
-        {
-          "stem": "The author suggests that art tailored to a low estimate of its audience is condescending because it",
-          "choices": [
-            "is usually more difficult than it appears",
-            "refuses to entertain the audience at all",
-            "is produced only for financial gain",
-            "presumes in advance that the audience is incapable of more"
-          ],
-          "answer": 3,
-          "explain": "Such art 'has decided in advance how little we are capable of and has tailored itself to that low estimate.'",
-          "cover_story": "difficulty in art",
-          "b": 0.6
-        },
-        {
-          "stem": "Which scenario would most strengthen the author's argument?",
-          "choices": [
-            "a novel that puzzles readers at first but reveals new meaning on repeated readings",
-            "a film that is confusing on first viewing and remains meaningless on every later one",
-            "a painting that is admired instantly and never thought of again",
-            "a poem that sells poorly despite being simple"
-          ],
-          "answer": 0,
-          "explain": "Valuable difficulty 'rewards the second reading and the tenth,' which the novel exemplifies while the empty film does not.",
-          "cover_story": "difficulty in art",
-          "b": 1.2
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "Every age seems to discover that it has arrived too late. The golden age lies always just behind us, in the generation of our parents or the century of our grandparents, when work was honest, neighbors were known, and the world had not yet been coarsened by whatever the writer happens to dislike. This conviction is so widespread and so durable that we might treat it less as a description of history than as a permanent feature of the human imagination, a lens that darkens whatever it turns toward the present and gilds whatever it turns toward the past. That the same lament recurs in every century, each time locating the fall a generation earlier, should make us cautious about trusting it in our own.",
-        "This is not to say that nothing is ever lost. Particular goods do vanish, and to notice their passing is an act of honesty, not sentiment. The error lies in the leap from particular losses to a general verdict, the assumption that because some things have decayed the whole must be in decline. The narrative of decline is seductive precisely because it flatters the one who tells it, casting him as the clear-eyed witness of a corruption that others are too comfortable to see. But the historian's task is harder than lament. It is to weigh what has been lost against what has been gained, and to resist the pleasure of a story whose ending is decided before the evidence is in."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The central thesis of the passage is that",
-          "choices": [
-            "nothing valuable is ever lost over the course of history",
-            "the present is genuinely worse than the past in most respects",
-            "the belief that the present is a decline from a better past is a recurring bias to be treated with caution",
-            "historians should never write about loss"
-          ],
-          "answer": 2,
-          "explain": "The author treats the recurring lament 'less as a description of history than as a permanent feature of the human imagination.'",
-          "cover_story": "the myth of decline",
-          "b": -1.5
-        },
-        {
-          "stem": "The observation that the same lament recurs in every century serves to",
-          "choices": [
-            "prove that every past age was in fact superior to the present",
-            "demonstrate that historians rarely agree with one another",
-            "explain why writers dislike their own era",
-            "cast doubt on the reliability of any single generation's sense of decline"
-          ],
-          "answer": 3,
-          "explain": "Because the lament repeats endlessly, the author says we should 'be cautious about trusting it in our own' century.",
-          "cover_story": "the myth of decline",
-          "b": 0.7
-        },
-        {
-          "stem": "The author's attitude toward the narrative of decline is best described as",
-          "choices": [
-            "wary, treating it as seductive but unreliable",
-            "enraged by those who tell it",
-            "persuaded by its clear-eyed honesty",
-            "wholly indifferent"
-          ],
-          "answer": 0,
-          "explain": "The narrative is called 'seductive precisely because it flatters the one who tells it,' a warning rather than an endorsement.",
-          "cover_story": "the myth of decline",
-          "b": 0.0
-        },
-        {
-          "stem": "As used in the passage, 'gilds' most nearly means",
-          "choices": [
-            "covers an object in actual gold",
-            "makes something appear more attractive than it is",
-            "records events for posterity",
-            "burdens with guilt"
-          ],
-          "answer": 1,
-          "explain": "The lens 'gilds whatever it turns toward the past,' making it look better than it was, the opposite of the way it 'darkens' the present.",
-          "cover_story": "the myth of decline",
+          "explain": "The 'status to be honored' is contrasted with 'a quantity to be weighed,' meaning an inherent worth rather than a social rank.",
+          "cover_story": "outcomes and duty",
           "b": 0.1
         },
         {
-          "stem": "The author implies that the appeal of the decline narrative lies partly in how it",
+          "stem": "It can be inferred that the author regards a purely duty-based ethics as",
           "choices": [
-            "provides accurate predictions about the future",
-            "requires careful weighing of evidence",
-            "flatters the teller as uniquely perceptive",
-            "discourages people from noticing loss"
+            "flawless in its treatment of moral conflicts",
+            "valuable for naming what the arithmetic omits, yet dangerous when held without exception",
+            "identical in practice to the outcome-based view",
+            "concerned only with the consequences of actions"
           ],
-          "answer": 2,
-          "explain": "The story casts its teller 'as the clear-eyed witness of a corruption that others are too comfortable to see.'",
-          "cover_story": "the myth of decline",
+          "answer": 1,
+          "explain": "The duty view's 'strength is that it names what the arithmetic leaves out,' but an absolute duty 'can bind us to disaster.'",
+          "cover_story": "outcomes and duty",
           "b": 0.6
         },
         {
-          "stem": "Which of the following best fits the author's idea of the historian's task?",
+          "stem": "Which situation best captures the conflict the author leaves unresolved?",
           "choices": [
-            "documenting each vanished custom as evidence of general decay",
-            "defending the present against every criticism",
-            "predicting when the next golden age will arrive",
-            "comparing what an era lost with what it gained before reaching any verdict"
-          ],
-          "answer": 3,
-          "explain": "The historian's task is 'to weigh what has been lost against what has been gained' and resist a predetermined ending.",
-          "cover_story": "the myth of decline",
-          "b": 1.1
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "The word genius flatters us even as it seems to humble us. When we ascribe a great work to genius, we appear to be praising its maker beyond measure, yet we are also quietly excusing ourselves. If the achievement sprang from a gift the rest of us simply lack, then there is nothing to learn from it and nothing we might have done to approach it; admiration becomes a way of keeping our distance. The Romantic picture of the solitary genius, visited by inspiration as by lightning, is comforting precisely because it removes creation from the ordinary world of effort, revision, and borrowing, and places it in a realm we could never have entered anyway.",
-        "But look closely at any celebrated work and the lightning dissolves into a long accumulation of labor. There are the discarded drafts, the debts to predecessors that the finished masterpiece conceals, the collaborators whose names history mislays, the accidents of timing that let this attempt succeed where an earlier one, no less brilliant, was ignored. None of this diminishes the achievement; it only relocates it, from a miracle to be worshipped into a human effort that might, in part, be understood and even emulated. To call someone a genius, in the end, may be less a tribute than a refusal, a way of declining to ask how the work was actually done."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The passage chiefly argues that",
-          "choices": [
-            "the idea of solitary genius obscures the labor, borrowing, and luck behind great work",
-            "great works are not actually impressive achievements",
-            "creation is best explained as sudden inspiration",
-            "most celebrated works were produced by teams rather than individuals"
+            "a doctor who saves five patients by quietly letting one healthy visitor die for their organs, producing the greater total good at the cost of using a person as a means",
+            "a shopper choosing between two brands of equal price and quality",
+            "a student deciding how many hours to study for an exam",
+            "a citizen voting for the candidate she personally prefers"
           ],
           "answer": 0,
-          "explain": "The author says close inspection reveals 'a long accumulation of labor,' debts, collaborators, and 'accidents of timing.'",
-          "cover_story": "the myth of genius",
-          "b": -1.3
-        },
-        {
-          "stem": "The author suggests that calling a work genius lets us 'excuse ourselves' because the label",
-          "choices": [
-            "is always insincere praise",
-            "means the artist is rarely appreciated in time",
-            "conveniently relieves us of having to learn from the achievement",
-            "proves that talent does not exist"
-          ],
-          "answer": 2,
-          "explain": "If the work sprang from 'a gift the rest of us simply lack,' then 'there is nothing to learn from it,' so admiration 'becomes a way of keeping our distance.'",
-          "cover_story": "the myth of genius",
-          "b": 0.9
-        },
-        {
-          "stem": "The author's attitude toward the Romantic picture of the solitary genius is",
-          "choices": [
-            "reverent and awestruck",
-            "skeptical, viewing it as comforting but misleading",
-            "persuaded of its basic accuracy",
-            "hostile toward the artists it describes"
-          ],
-          "answer": 1,
-          "explain": "The picture is 'comforting precisely because it removes creation from the ordinary world of effort,' a comfort the author distrusts.",
-          "cover_story": "the myth of genius",
-          "b": -0.1
-        },
-        {
-          "stem": "As used in the passage, 'relocates' most nearly means",
-          "choices": [
-            "physically moves to another place",
-            "discards as unimportant",
-            "hides from public view",
-            "reassigns to a different category of explanation"
-          ],
-          "answer": 3,
-          "explain": "The achievement is moved 'from a miracle to be worshipped into a human effort,' a shift of category, and the author stresses this 'diminishes' nothing.",
-          "cover_story": "the myth of genius",
-          "b": 0.3
-        },
-        {
-          "stem": "The author implies that the lightning metaphor is misleading because creation actually involves",
-          "choices": [
-            "sustained effort, revision, and reliance on others",
-            "a gift that cannot be analyzed",
-            "luck alone, with no skill involved",
-            "collaboration that always credits everyone fairly"
-          ],
-          "answer": 0,
-          "explain": "The 'lightning dissolves' into 'discarded drafts,' 'debts to predecessors,' and 'collaborators whose names history mislays.'",
-          "cover_story": "the myth of genius",
-          "b": 0.6
-        },
-        {
-          "stem": "Which discovery would most strengthen the author's argument?",
-          "choices": [
-            "a survey finding that audiences admire famous artists",
-            "records showing that a work long attributed to lone inspiration went through years of drafts and uncredited help",
-            "evidence that one artist worked in complete isolation and revised nothing",
-            "proof that inspiration strikes some people more than others"
-          ],
-          "answer": 1,
-          "explain": "Drafts and uncredited help are exactly the 'accumulation of labor' the author says the myth conceals.",
-          "cover_story": "the myth of genius",
-          "b": 1.2
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "Nothing sells quite so well now as the promise of the unsold. The handmade, the artisanal, the small batch and the locally sourced arrive wrapped in the suggestion that they stand outside the very market that delivers them to our door. We are invited to buy our way out of commerce, to purchase objects whose chief attraction is that they seem not to have been manufactured for purchase at all. There is a neat paradox here, and the industries built on it depend on our not looking at it too closely. The rougher the burlap and the more deliberate the imperfection, the more carefully the price has usually been calculated.",
-        "It would be too easy, though, to end in mere debunking, as if exposing the marketing dissolved the longing it exploits. The longing is real. People genuinely want their possessions to mean something, to connect them to a maker, a place, a time not wholly governed by the logic of the transaction. The trouble is that this desire, once named, becomes the most reliable thing in the world to sell, and the authentic turns into simply another style, reproducible on demand and shipped in unmarked boxes. What began as a wish to escape the market ends as one of its most profitable departments, and the escape and the capture become impossible to tell apart."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The passage's main point is that",
-          "choices": [
-            "no product can ever be genuinely handmade",
-            "the desire for authenticity, though genuine, has itself become a marketable commodity",
-            "consumers should feel guilty for wanting meaningful objects",
-            "marketing is the only reason people value craftsmanship"
-          ],
-          "answer": 1,
-          "explain": "The author affirms that 'the longing is real,' yet notes 'the authentic turns into simply another style' and one of the market's 'most profitable departments.'",
-          "cover_story": "authenticity as commodity",
-          "b": -1.2
-        },
-        {
-          "stem": "The author's attitude toward the longing for authenticity is",
-          "choices": [
-            "mocking and dismissive of anyone who feels it",
-            "enthusiastic and celebratory",
-            "entirely detached and clinical",
-            "sympathetic even while criticizing how it is exploited"
-          ],
-          "answer": 3,
-          "explain": "The author insists 'the longing is real' and that people 'genuinely want' meaning, refusing 'mere debunking.'",
-          "cover_story": "authenticity as commodity",
-          "b": -0.2
-        },
-        {
-          "stem": "The sentence about rough burlap and calculated price primarily serves to",
-          "choices": [
-            "expose the calculation hidden behind signals of authenticity",
-            "argue that rough materials are of lower quality",
-            "recommend that shoppers seek out imperfect goods",
-            "explain how prices are set in general"
-          ],
-          "answer": 0,
-          "explain": "That 'the more deliberate the imperfection, the more carefully the price has usually been calculated' reveals deliberate design behind an unstudied look.",
-          "cover_story": "authenticity as commodity",
-          "b": 0.7
-        },
-        {
-          "stem": "As used in the passage, 'debunking' most nearly means",
-          "choices": [
-            "removing an object from a shelf",
-            "praising a product's real value",
-            "exposing something as less genuine than it claims",
-            "manufacturing goods cheaply"
-          ],
-          "answer": 2,
-          "explain": "'Mere debunking' is glossed as 'exposing the marketing,' showing the authentic claim to be less real than it appears.",
-          "cover_story": "authenticity as commodity",
-          "b": 0.1
-        },
-        {
-          "stem": "The author implies that naming the desire for authenticity is significant because",
-          "choices": [
-            "naming it makes the desire disappear",
-            "it proves the desire was never sincere",
-            "it allows consumers to resist marketing",
-            "once named, the desire can be reliably packaged and sold"
-          ],
-          "answer": 3,
-          "explain": "The author writes that 'this desire, once named, becomes the most reliable thing in the world to sell.'",
-          "cover_story": "authenticity as commodity",
-          "b": 0.8
-        },
-        {
-          "stem": "Which situation best illustrates the paradox the author describes?",
-          "choices": [
-            "a hobbyist giving away pottery she made for her own enjoyment",
-            "a factory openly advertising its low prices and efficiency",
-            "a corporation launching a line of mass-produced goods advertised as rebellious and independent",
-            "a shopper who refuses to buy anything marketed as handmade"
-          ],
-          "answer": 2,
-          "explain": "Selling mass output under the banner of standing 'outside the very market' is precisely the paradox the author names.",
-          "cover_story": "authenticity as commodity",
+          "explain": "The transplant case pits the greatest total good against the refusal to treat a person 'as a mere means,' the very tension the author declines to resolve.",
+          "cover_story": "outcomes and duty",
           "b": 1.3
         }
       ]
@@ -445,528 +93,1320 @@
     {
       "label": "Passage",
       "paragraphs": [
-        "We praise tolerance as though its meaning were settled, but the word conceals a difficulty that its admirers rarely confront. To tolerate something is not to approve of it; on the contrary, tolerance only begins where approval ends. I do not tolerate the music I love or the friends I cherish, for there is nothing to endure in them. Tolerance is what I extend to what I find mistaken, distasteful, or wrong, and choose nonetheless to permit. This means that the tolerant person must first be a person of judgment, someone who has views strong enough to be offended and yet restrains the impulse to suppress what offends. Strip away the disapproval and you have not a purer tolerance but no tolerance at all, only indifference wearing its costume.",
-        "This distinction matters because a society that mistakes indifference for tolerance will misunderstand what it is asking of its members. It will imagine that the tolerant citizen is one who has no strong convictions, when in fact he is one who holds them and still makes room for their denial. The genuinely difficult cases are never the ones we do not care about. They are the ones we care about intensely and permit anyway, out of a recognition that the power to silence is a power we would not wish turned against ourselves. Tolerance so understood is not a warm feeling but a hard discipline, and a culture that cannot tell it apart from mere unconcern has already begun to lose the thing it thinks it prizes."
+        "It is tempting to hold that we know something only when we could not possibly be wrong about it, and the temptation has a long and honorable history. If a belief might be mistaken, the reasoning goes, then it is not yet knowledge but merely opinion dressed in confidence, and the philosopher's task is to strip away everything that doubt can touch until only the indubitable remains. The trouble is that almost nothing survives this test. The senses deceive us, memory falters, and even the reasoning we trust to catch these errors is itself a faculty we cannot step outside to check. Pushed to its conclusion, the demand for certainty does not purify our knowledge; it abolishes it, leaving us unable to claim that we know the sun will rise or that the floor will hold. A standard so severe that nothing can meet it tells us less about knowledge than about the standard.",
+        "A more modest proposal is that knowing does not require the impossibility of error, only its responsible exclusion. On this view I can know that the floor will hold even while granting that, in some far-fetched sense, it might not, because knowledge is not a fortress immune to every conceivable assault but a claim held on good grounds and open to revision. This is harder to accept than it sounds, for it asks us to live with a permanent gap between being justified and being guaranteed. Yet the alternative, waiting for a certainty that never comes, is not caution but paralysis. The fallibilist does not abandon the pursuit of truth; he abandons only the fantasy that truth must announce itself with a seal no doubt can break. To know, on this account, is to have earned a belief, not to have escaped forever the possibility of being wrong."
       ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The central claim of the passage is that",
-          "choices": [
-            "people should never permit what they find wrong",
-            "the most tolerant person is one who holds no strong convictions",
-            "genuine tolerance requires disapproval and is distinct from indifference",
-            "approval and tolerance are the same attitude"
-          ],
-          "answer": 2,
-          "explain": "'Tolerance only begins where approval ends,' and stripped of disapproval it becomes 'only indifference wearing its costume.'",
-          "cover_story": "tolerance and disapproval",
-          "b": -1.3
-        },
-        {
-          "stem": "The author's remark that he does not tolerate the music he loves serves to",
-          "choices": [
-            "show that tolerance applies only to what one does not approve of",
-            "illustrate the author's personal taste in art",
-            "argue that love and tolerance are equally valuable",
-            "suggest that we should tolerate only what we enjoy"
-          ],
-          "answer": 0,
-          "explain": "'I do not tolerate the music I love ... for there is nothing to endure in them,' showing tolerance targets only the disliked.",
-          "cover_story": "tolerance and disapproval",
-          "b": 0.6
-        },
-        {
-          "stem": "The author's attitude toward a society that mistakes indifference for tolerance is",
-          "choices": [
-            "contemptuous of its citizens as fools",
-            "concerned that it misunderstands what tolerance demands",
-            "confident that such confusion is harmless",
-            "amused and lightly ironic"
-          ],
-          "answer": 1,
-          "explain": "Such a society 'will misunderstand what it is asking of its members' and 'begin to lose the thing it thinks it prizes.'",
-          "cover_story": "tolerance and disapproval",
-          "b": -0.1
-        },
-        {
-          "stem": "As used in the passage, 'endure' most nearly means",
-          "choices": [
-            "survive a physical hardship",
-            "last for a long time",
-            "enjoy without reservation",
-            "put up with something one finds objectionable"
-          ],
-          "answer": 3,
-          "explain": "'Nothing to endure' in what one loves means nothing to put up with, since endurance applies to the objectionable.",
-          "cover_story": "tolerance and disapproval",
-          "b": 0.0
-        },
-        {
-          "stem": "It can be inferred that the author considers the genuinely difficult cases of tolerance to be those in which a person",
-          "choices": [
-            "permits what he strongly opposes",
-            "is indifferent to the outcome",
-            "approves of what others reject",
-            "lacks any firm convictions"
-          ],
-          "answer": 0,
-          "explain": "The hard cases 'are the ones we care about intensely and permit anyway.'",
-          "cover_story": "tolerance and disapproval",
-          "b": 0.5
-        },
-        {
-          "stem": "Which of the following would most weaken the author's account of tolerance?",
-          "choices": [
-            "a case of someone permitting a view he finds deeply wrong",
-            "a society that suppresses ideas it dislikes",
-            "evidence that the people most willing to permit offensive views are those who care least about the issues involved",
-            "a person who tolerates only the ideas he already agrees with"
-          ],
-          "answer": 2,
-          "explain": "The author ties real tolerance to strong conviction; if the most permissive people are the most indifferent, that undercuts the claim.",
-          "cover_story": "tolerance and disapproval",
-          "b": 1.5
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "A confident strain of modern taste holds that the beautiful and the useful are one, that an object achieves its highest elegance precisely when nothing about it is superfluous. On this view ornament is a kind of lie, a distraction from the honest expression of function, and the well-made thing wears its purpose plainly, like a tool. There is a genuine austerity in this creed, and for a time it produced work of great power. But it rests on an assumption worth questioning: that usefulness is the only honest reason for a thing to exist, and that whatever exceeds use must be justified at the bar of function or else confess itself a fraud.",
-        "Consider how much of what we value refuses this accounting. The carved detail that no one needs, the flourish at the end of a letter, the song that does no work at all: these are not failures of discipline but expressions of a surplus that is among the better things about being human. To insist that everything earn its keep by usefulness is to apply to the whole of life a logic borrowed from the workshop, and to forget that the workshop itself exists so that, somewhere beyond it, there may be leisure, play, and the frankly unnecessary. The useless is not the enemy of the meaningful. Very often it is where meaning, freed at last from the demand that it pay for itself, is finally at liberty to appear."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The passage chiefly argues that",
-          "choices": [
-            "useful objects can never be beautiful",
-            "ornament is a dishonest distraction from function",
-            "modern design has produced no work of value",
-            "the useless and ornamental have genuine value that pure functionalism overlooks"
-          ],
-          "answer": 3,
-          "explain": "The author holds that 'the useless is not the enemy of the meaningful' but often 'where meaning ... is finally at liberty to appear.'",
-          "cover_story": "ornament and use",
-          "b": -1.4
-        },
-        {
-          "stem": "The author's attitude toward the confident strain of modern taste is",
-          "choices": [
-            "scornful of everything it has produced",
-            "respectful of its power but critical of its underlying assumption",
-            "fully convinced by its austerity",
-            "bored and dismissive"
-          ],
-          "answer": 1,
-          "explain": "The creed 'produced work of great power,' yet 'rests on an assumption worth questioning.'",
-          "cover_story": "ornament and use",
-          "b": -0.2
-        },
-        {
-          "stem": "The examples of the carved detail, the flourish, and the song serve primarily to",
-          "choices": [
-            "prove that ornament is more important than function",
-            "show that art is superior to craft",
-            "illustrate valued things that cannot be justified by usefulness",
-            "demonstrate that useful objects are always plain"
-          ],
-          "answer": 2,
-          "explain": "They are offered as prized things that are 'frankly unnecessary,' a surplus beyond use.",
-          "cover_story": "ornament and use",
-          "b": 0.5
-        },
-        {
-          "stem": "As used in the passage, 'surplus' most nearly means",
-          "choices": [
-            "an excess beyond what necessity requires",
-            "a financial profit",
-            "a shortage of resources",
-            "a stockpile of emergency goods"
-          ],
-          "answer": 0,
-          "explain": "The 'surplus' names what 'exceeds use,' called 'among the better things about being human,' not a profit or store.",
-          "cover_story": "ornament and use",
-          "b": 0.0
-        },
-        {
-          "stem": "The phrase 'justified at the bar of function' implies that the functionalist view",
-          "choices": [
-            "considers all objects equally beautiful",
-            "rejects the idea that objects have any purpose",
-            "values ornament over utility",
-            "treats usefulness as a standard that objects must satisfy to be legitimate"
-          ],
-          "answer": 3,
-          "explain": "The image pictures usefulness as a tribunal before which a thing must 'confess itself a fraud' or else pass.",
-          "cover_story": "ornament and use",
-          "b": 1.0
-        },
-        {
-          "stem": "Which statement, if true, would most strengthen the author's position?",
-          "choices": [
-            "the most popular consumer products are those with the most features",
-            "people report that experiences with no practical payoff, such as idle music-making, are among the most meaningful in their lives",
-            "ornamented buildings are more expensive to maintain than plain ones",
-            "tools designed purely for function tend to last longer"
-          ],
-          "answer": 1,
-          "explain": "If purposeless experiences are the most meaningful, that supports the claim that the useless is where meaning appears.",
-          "cover_story": "ornament and use",
-          "b": 1.2
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "Two drivers are equally careless, each glancing away from the road for the same reckless instant. One arrives home with nothing worse than a fright; the other, through no greater fault, strikes a child who had stepped from the curb at exactly the wrong moment. We do not hesitate to judge them differently. The second is a killer, hunted by guilt and by the law, while the first is merely someone who was lucky. Yet if we ask what the two did differently, the honest answer is nothing. The gap between them was opened not by their wills but by the world, by a coincidence of timing over which neither had the smallest control.",
-        "This is uncomfortable because our whole vocabulary of blame assumes that people are answerable only for what lies within their power. We tell ourselves that luck should make no moral difference, that a person deserves praise or blame strictly for the choices that were his to make. And then we go on judging as if the opposite were true, holding the unlucky driver responsible for an outcome that luck alone distinguished from the lucky one's. Perhaps the lesson is not that we should stop judging, which we plainly cannot do, but that we should judge with a humility our confident condemnations rarely show, remembering how much of anyone's record is a gift, or a curse, of circumstance."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The passage is primarily concerned with",
-          "choices": [
-            "the unsettling role that luck plays in our moral judgments of people",
-            "proving that no one is ever responsible for anything",
-            "showing that luck has no bearing on morality",
-            "arguing that careless drivers should be punished more harshly"
-          ],
-          "answer": 0,
-          "explain": "The two drivers 'did nothing differently,' yet are judged differently, exposing luck's grip on blame.",
-          "cover_story": "moral luck",
-          "b": -1.2
-        },
-        {
-          "stem": "The example of the two drivers functions primarily to",
-          "choices": [
-            "argue that traffic laws are unjust",
-            "expose a tension between what people did and how differently they are judged",
-            "prove that carelessness is always immoral",
-            "show that accidents are usually unavoidable"
-          ],
-          "answer": 1,
-          "explain": "Both were 'equally careless,' but only one 'strikes a child,' and 'we do not hesitate to judge them differently.'",
-          "cover_story": "moral luck",
-          "b": 0.6
-        },
-        {
-          "stem": "The author's attitude in the passage is best described as",
-          "choices": [
-            "outraged at the injustice of the legal system",
-            "confident that the puzzle has a simple solution",
-            "troubled by an inconsistency he does not fully resolve",
-            "lighthearted and unconcerned"
-          ],
-          "answer": 2,
-          "explain": "The author calls the situation 'uncomfortable' and offers only 'perhaps' a lesson, not a resolution.",
-          "cover_story": "moral luck",
-          "b": 0.2
-        },
-        {
-          "stem": "As used in the passage, 'answerable' most nearly means",
-          "choices": [
-            "capable of being solved",
-            "willing to reply",
-            "easy to predict",
-            "accountable or responsible"
-          ],
-          "answer": 3,
-          "explain": "To be 'answerable ... for what lies within their power' is to be held responsible for it.",
-          "cover_story": "moral luck",
-          "b": -0.1
-        },
-        {
-          "stem": "The author suggests that our practice of blame is inconsistent because we",
-          "choices": [
-            "claim luck should not matter yet judge people by luck-determined outcomes",
-            "refuse to hold anyone responsible for their choices",
-            "blame people only for what they intended",
-            "treat the two drivers as morally identical"
-          ],
-          "answer": 0,
-          "explain": "'We tell ourselves that luck should make no moral difference ... And then we go on judging as if the opposite were true.'",
-          "cover_story": "moral luck",
-          "b": 0.8
-        },
-        {
-          "stem": "Which conclusion does the author actually reach?",
-          "choices": [
-            "we should abandon moral judgment altogether",
-            "we should punish the lucky and the unlucky identically in every case",
-            "we should continue to judge but do so with greater humility",
-            "we should treat outcomes as the only measure of blame"
-          ],
-          "answer": 2,
-          "explain": "The lesson is 'not that we should stop judging ... but that we should judge with a humility our confident condemnations rarely show.'",
-          "cover_story": "moral luck",
-          "b": 0.9
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "We speak of privacy as if it were a natural possession, something every person holds by birthright and that intrusive powers can only take away. But the historical record suggests almost the reverse. For most of human history the very idea of a private life, a sphere of the self shielded from the eyes of the household and the village, would have seemed not sacred but strange. People slept many to a room, conducted their affairs in the open, and were known to their neighbors with a thoroughness we would now find suffocating. What we treat as a fundamental right is in large part a recent construction, assembled out of particular arrangements of walls, wealth, and law that did not always exist and need not always persist.",
-        "To notice this is not to belittle privacy but to understand it better. A thing that was made can be unmade, and a right that depends on contingent conditions is more fragile than one written into nature. If privacy is not a gift of the human condition but an achievement of specific societies, then its survival is not guaranteed by any law of the universe; it must be defended by the same effort that first brought it into being. Those who assume that privacy is safe because it is natural have mistaken a hard-won and reversible accomplishment for a permanent feature of the landscape, and in that complacency lies precisely the danger."
-      ],
-      "source_ref": "",
+      "source_ref": "OpenStax Introduction to Philosophy (Epistemology)",
       "questions": [
         {
           "stem": "The passage's central argument is that",
           "choices": [
-            "privacy has no value and should be abandoned",
-            "privacy is a historical construction rather than a natural given, and is therefore more fragile than assumed",
-            "privacy is a permanent and inevitable feature of human life",
-            "people in the past enjoyed more privacy than we do"
+            "genuine knowledge requires the complete impossibility of error",
+            "we can never know anything at all",
+            "knowledge can rest on good grounds without ruling out every conceivable error",
+            "the senses are a reliable source of absolute certainty"
           ],
-          "answer": 1,
-          "explain": "Privacy is called 'in large part a recent construction' whose 'survival is not guaranteed by any law of the universe.'",
-          "cover_story": "privacy as invention",
+          "answer": 2,
+          "explain": "The author endorses the 'modest proposal' that knowing 'does not require the impossibility of error, only its responsible exclusion.'",
+          "cover_story": "knowledge and doubt",
           "b": -1.3
         },
         {
-          "stem": "The author's purpose in noting that privacy was made is best described as",
+          "stem": "The statement that a standard 'so severe that nothing can meet it tells us less about knowledge than about the standard' serves to",
           "choices": [
-            "dismissive of the value of privacy",
-            "reassuring that privacy is secure",
-            "nostalgic for a time before privacy existed",
-            "cautionary, warning that what was constructed can be lost"
+            "reject the demand for certainty by turning its own failure back on itself",
+            "prove that the senses never deceive us",
+            "defend the view that knowledge is impossible",
+            "argue that all standards of knowledge are equally useful"
           ],
-          "answer": 3,
-          "explain": "'A thing that was made can be unmade,' and complacency about privacy's naturalness is 'precisely the danger.'",
-          "cover_story": "privacy as invention",
+          "answer": 0,
+          "explain": "The line uses the standard's own failure, that 'nothing can meet it,' as grounds for doubting the standard rather than knowledge.",
+          "cover_story": "knowledge and doubt",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward the demand for absolute certainty is",
+          "choices": [
+            "reverent, treating it as the only path to truth",
+            "critical, regarding it as self-defeating",
+            "playful and unserious",
+            "entirely neutral and undecided"
+          ],
+          "answer": 1,
+          "explain": "The author says the demand 'does not purify our knowledge; it abolishes it,' a self-defeating result.",
+          "cover_story": "knowledge and doubt",
           "b": 0.0
         },
         {
-          "stem": "The description of people who slept many to a room serves primarily to",
+          "stem": "As used in the passage, 'indubitable' most nearly means",
           "choices": [
-            "provide historical evidence that privacy has not always been valued or available",
-            "argue that crowded living is healthier than solitude",
-            "show that the past was poorer than the present",
-            "prove that privacy is a universal human need"
-          ],
-          "answer": 0,
-          "explain": "People who lived 'in the open' and were closely known show that a private sphere 'did not always exist.'",
-          "cover_story": "privacy as invention",
-          "b": 0.5
-        },
-        {
-          "stem": "As used in the passage, 'contingent' most nearly means",
-          "choices": [
-            "urgent and pressing",
-            "shared among many people",
-            "dependent on particular conditions that could have been otherwise",
-            "morally required"
+            "difficult to understand",
+            "widely believed by everyone",
+            "impossible to doubt",
+            "only recently discovered"
           ],
           "answer": 2,
-          "explain": "'Contingent conditions' are set against what is 'written into nature,' meaning they might not have obtained.",
-          "cover_story": "privacy as invention",
+          "explain": "The philosopher strips away 'everything that doubt can touch until only the indubitable remains,' meaning what cannot be doubted.",
+          "cover_story": "knowledge and doubt",
           "b": 0.2
         },
         {
-          "stem": "The author would most likely agree that a right grounded in nature would be",
+          "stem": "It can be inferred that the author would regard the belief that the sun will rise as",
           "choices": [
-            "equally fragile as any other right",
-            "more secure than one grounded in contingent social arrangements",
-            "impossible to defend in practice",
-            "less valuable than a constructed right"
+            "mere opinion with no claim to be knowledge",
+            "something we can know despite its bare possibility of being false",
+            "certain beyond any conceivable doubt",
+            "impossible to hold responsibly"
           ],
           "answer": 1,
-          "explain": "'A right that depends on contingent conditions is more fragile than one written into nature,' so a natural right would be more secure.",
-          "cover_story": "privacy as invention",
-          "b": 0.9
+          "explain": "The fallibilist can 'know that the floor will hold even while granting that ... it might not,' and the sun is treated the same way.",
+          "cover_story": "knowledge and doubt",
+          "b": 0.6
         },
         {
-          "stem": "Which finding would most weaken the author's thesis?",
+          "stem": "Which of the following, if true, would most undermine the fallibilist position the author defends?",
           "choices": [
-            "evidence that modern privacy law is complex and varies by country",
-            "evidence that wealthy people have always had more private space than the poor",
-            "evidence that surveillance technology is advancing rapidly",
-            "evidence that every known human society, however arranged, has carved out some protected sphere of private life"
+            "that people sometimes revise beliefs they once held with confidence",
+            "that no belief can count as knowledge unless error in it is strictly impossible",
+            "that the senses occasionally mislead us",
+            "that some claims are held on better grounds than others"
           ],
-          "answer": 3,
-          "explain": "Universality across all societies would suggest privacy is natural rather than a contingent invention, undercutting the thesis.",
-          "cover_story": "privacy as invention",
-          "b": 1.4
+          "answer": 1,
+          "explain": "Fallibilism depends on denying that knowledge requires the impossibility of error; if that requirement held, the position would collapse.",
+          "cover_story": "knowledge and doubt",
+          "b": 1.2
         }
       ]
     },
     {
       "label": "Passage",
       "paragraphs": [
-        "To attend to something is to grant it a portion of a resource we possess in strictly limited supply. We may have a whole lifetime, but only ever a moment at a time, and each moment given to one object is withheld from every other. This is why attention has always had a moral dimension that its recent framing as a mere commodity, harvested and sold, tends to obscure. When I attend to you, I am not simply processing information about you; I am giving you something I cannot give to everyone at once, and in the giving I acknowledge that you are worth it. The opposite of attention is not distraction but a subtle form of contempt, the refusal to grant that anything before me deserves the whole of my regard.",
-        "The machinery of distraction, then, does more than fragment our concentration. It quietly trains us in a habit of withholding, teaching us to skim where we might have dwelt and to sample where we might have stayed. We come to treat every object, and eventually every person, as one more item in an endless feed, worth a glance and no more. What is lost is not merely productivity but a certain capacity for reverence, the willingness to let something matter enough to command us fully. To learn again how to attend would be to relearn a kind of courtesy toward the world, and perhaps toward one another, that the age has made quietly difficult."
+        "The shift from foraging to farming is usually told as an ascent, the moment our ancestors stopped wandering after their food and learned at last to command it. Fields replaced the hunt, granaries replaced the chase, and on the surplus so gathered rose everything we call civilization: cities, writing, priesthoods, kings. It is a satisfying story, and parts of it are true. But the bones tell a more ambiguous tale. The first farmers were often shorter, sicker, and more worn by labor than the foragers they succeeded, their teeth marked by a narrower diet, their bodies by the new diseases that crowding and cattle brought. A people who had once drawn on the whole variety of a landscape now staked their survival on a few domesticated grains, and when those grains failed, there was no wilderness left to fall back upon.",
+        "Why, then, did farming spread, if it cost so much? Part of the answer is that its costs were invisible to those who paid them, accruing slowly across generations that had no memory of another way to live. Part is that farming, for all its burdens, could feed more mouths from the same ground, and a crowded village, however unhealthy, could outlast and overrun a thinner band of hunters. What triumphed, in other words, was not the happier life but the more numerous one, and the two are easily confused. To read the rise of agriculture as simple progress is to assume that whatever wins must have been better, when the record suggests only that it was better at multiplying. The lesson is less comforting than the usual story, and harder to unlearn: a way of life can conquer the world without ever having made its people well."
       ],
-      "source_ref": "",
+      "source_ref": "OpenStax World History Volume 1: to 1500 (the Neolithic Revolution and early agricultural societies)",
       "questions": [
         {
-          "stem": "The passage principally argues that",
+          "stem": "The central point of the passage is that",
           "choices": [
-            "attention is a limited resource with a moral dimension that a culture of distraction erodes",
-            "technology should be banned to protect concentration",
-            "attention is merely a commodity to be bought and sold",
-            "distraction is harmful mainly because it reduces workplace productivity"
-          ],
-          "answer": 0,
-          "explain": "Attention is 'a resource we possess in strictly limited supply' with a 'moral dimension,' and distraction trains 'a habit of withholding.'",
-          "cover_story": "attention and reverence",
-          "b": -1.2
-        },
-        {
-          "stem": "The claim that the opposite of attention is 'a subtle form of contempt' primarily serves to",
-          "choices": [
-            "argue that distracted people are deliberately cruel",
-            "define the term distraction more precisely",
-            "reframe inattention as a moral failing rather than a mere lapse of focus",
-            "claim that contempt is the most common human emotion"
+            "the shift to agriculture was an unambiguous improvement in human life",
+            "farming spread because it made human life healthier and easier",
+            "agriculture prevailed by supporting larger populations, not by making people better off",
+            "foraging societies were incapable of producing any surplus"
           ],
           "answer": 2,
-          "explain": "Calling inattention 'contempt' recasts it as a refusal of regard, not just lost focus.",
-          "cover_story": "attention and reverence",
-          "b": 0.8
-        },
-        {
-          "stem": "The author's attitude toward the machinery of distraction is",
-          "choices": [
-            "panicked and despairing",
-            "critical, viewing it as corrosive to something valuable",
-            "approving of its efficiency",
-            "neutral and merely descriptive"
-          ],
-          "answer": 1,
-          "explain": "It is said to erode 'a certain capacity for reverence,' a loss the author laments.",
-          "cover_story": "attention and reverence",
-          "b": -0.1
-        },
-        {
-          "stem": "As used in the passage, 'reverence' most nearly means",
-          "choices": [
-            "religious worship of a deity",
-            "fearful obedience to authority",
-            "polite formality",
-            "deep regard that lets something fully matter"
-          ],
-          "answer": 3,
-          "explain": "'Reverence' is glossed as 'the willingness to let something matter enough to command us fully.'",
-          "cover_story": "attention and reverence",
-          "b": 0.1
-        },
-        {
-          "stem": "It can be inferred that the author regards the endless feed as harmful mainly because it",
-          "choices": [
-            "trains us to give everything only a fleeting glance",
-            "contains inaccurate information",
-            "is designed to make money from its users",
-            "is too difficult for most people to understand"
-          ],
-          "answer": 0,
-          "explain": "The feed leads us to treat every object 'as one more item ... worth a glance and no more.'",
-          "cover_story": "attention and reverence",
-          "b": 0.7
-        },
-        {
-          "stem": "Which behavior best exemplifies the courtesy toward the world the author hopes to recover?",
-          "choices": [
-            "memorizing as much information as possible in a short time",
-            "responding instantly to every message as it arrives",
-            "reading a single poem slowly and returning to it, rather than scrolling past dozens of them",
-            "avoiding all forms of technology on principle"
-          ],
-          "answer": 2,
-          "explain": "The recovered courtesy means to 'dwell' rather than 'skim,' letting one thing 'command us fully.'",
-          "cover_story": "attention and reverence",
-          "b": 1.1
-        }
-      ]
-    },
-    {
-      "label": "Passage",
-      "paragraphs": [
-        "We tend to rank the finished composition above the improvised performance, as though spontaneity were a rougher draft of what deliberation would eventually perfect. The composer, we assume, has the advantage of time; he can revise, discard, and return, so that what reaches us has been purified of every accident. The improviser, by contrast, must accept his mistakes as part of the record, unable to unsay a phrase once it has left him. Judged by the standard of polish, improvisation can only ever lose. But polish is not the only value, and the very feature that seems to be improvisation's weakness may be the source of its peculiar power.",
-        "What we hear in a genuine improvisation is not merely a sequence of notes but a mind deciding in real time, exposed to a risk the composer has carefully removed. Every phrase is chosen once and cannot be taken back, and this irreversibility lends the performance a quality that no amount of editing can supply: the sense that we are present at something happening rather than something prepared. The polished work invites admiration; the improvised one invites a stranger and more immediate response, closer to the way we watch someone cross a narrow bridge without a rope. To prefer the finished object in every case is to value the result while forgetting that, in art as in life, part of what can move us is the visible fact of the chance being taken."
-      ],
-      "source_ref": "",
-      "questions": [
-        {
-          "stem": "The central thesis of the passage is that",
-          "choices": [
-            "improvised music is always better than composed music",
-            "composition is superior because it removes all mistakes",
-            "composers happen to have more working time than improvisers",
-            "improvisation possesses a value, tied to risk and immediacy, that polished composition lacks"
-          ],
-          "answer": 3,
-          "explain": "The author says 'the very feature that seems to be improvisation's weakness may be the source of its peculiar power.'",
-          "cover_story": "improvisation and risk",
+          "explain": "The author concludes that 'what triumphed ... was not the happier life but the more numerous one,' distinguishing success from improvement.",
+          "cover_story": "the farming bargain",
           "b": -1.4
         },
         {
-          "stem": "The comparison to someone crossing a narrow bridge without a rope primarily serves to",
+          "stem": "The description of the first farmers as 'shorter, sicker, and more worn by labor' functions primarily to",
           "choices": [
-            "convey the sense of risk that makes improvisation compelling",
-            "suggest that improvisation is physically dangerous",
-            "argue that improvisers are more skilled than composers",
-            "illustrate how difficult composition can be"
+            "complicate the familiar story of agriculture as pure progress",
+            "prove that foragers never suffered from any disease",
+            "argue that farming produced no surplus at all",
+            "show that modern diets are healthier than ancient ones"
           ],
           "answer": 0,
-          "explain": "The image figures the exposed risk of a choice that 'cannot be taken back.'",
-          "cover_story": "improvisation and risk",
+          "explain": "The bodily evidence is offered as 'a more ambiguous tale' against the story of farming as an unqualified 'ascent.'",
+          "cover_story": "the farming bargain",
           "b": 0.7
         },
         {
-          "stem": "Toward the common tendency to rank the finished composition above the improvised performance, the author is",
+          "stem": "The author's attitude toward the familiar story of farming as an 'ascent' is",
           "choices": [
-            "outraged at its unfairness",
-            "skeptical, treating it as an incomplete standard of value",
-            "firmly in agreement",
-            "wholly uninterested"
+            "wholly accepting of it",
+            "skeptical, granting its partial truth while resisting its conclusion",
+            "outraged at those who tell it",
+            "wholly indifferent to it"
           ],
           "answer": 1,
-          "explain": "The author grants that 'judged by the standard of polish, improvisation can only ever lose,' then insists 'polish is not the only value.'",
-          "cover_story": "improvisation and risk",
+          "explain": "The author calls the story 'satisfying' and admits 'parts of it are true,' yet insists 'the bones tell a more ambiguous tale.'",
+          "cover_story": "the farming bargain",
           "b": -0.1
         },
         {
-          "stem": "As used in the passage, 'polish' most nearly means",
+          "stem": "As used in the passage, 'accruing' most nearly means",
           "choices": [
-            "a coating applied to produce shine",
-            "elegance of social manners",
-            "refinement achieved through revision",
-            "speed of execution"
+            "disappearing over time",
+            "accumulating gradually",
+            "being paid off in full",
+            "becoming visible all at once"
           ],
-          "answer": 2,
-          "explain": "'Polish' names what revision yields, work 'purified of every accident,' not a coating or manners.",
-          "cover_story": "improvisation and risk",
+          "answer": 1,
+          "explain": "The costs were 'invisible' because they were 'accruing slowly across generations,' meaning building up little by little.",
+          "cover_story": "the farming bargain",
           "b": 0.1
         },
         {
-          "stem": "The author implies that the irreversibility of improvisation is valuable because it",
+          "stem": "It can be inferred that the author considers the spread of farming to be evidence that",
           "choices": [
-            "guarantees that no mistakes will occur",
-            "allows the performer to revise in real time",
-            "makes improvisation easier than composition",
-            "makes the audience feel present at something happening rather than prepared"
+            "the way of life that prevails is not necessarily the one that serves people best",
+            "human beings always choose whatever improves their health",
+            "population size has no effect on which societies endure",
+            "foraging was doomed by its own inefficiency"
           ],
-          "answer": 3,
-          "explain": "Irreversibility supplies 'the sense that we are present at something happening rather than something prepared.'",
-          "cover_story": "improvisation and risk",
+          "answer": 0,
+          "explain": "The author warns against assuming 'that whatever wins must have been better,' since farming was merely 'better at multiplying.'",
+          "cover_story": "the farming bargain",
+          "b": 0.6
+        },
+        {
+          "stem": "Which modern situation is most analogous to the pattern the author identifies?",
+          "choices": [
+            "a technology that spreads widely because it lets more people be supported, even though it lowers the quality of their daily lives",
+            "a craft that dies out because no one is willing to practice it",
+            "a diet adopted because rigorous studies prove it extends lifespan",
+            "a custom preserved purely for its beauty despite serving no function"
+          ],
+          "answer": 0,
+          "explain": "The pattern is a way of life prevailing by 'multiplying' rather than by improving lives, which the spreading technology mirrors.",
+          "cover_story": "the farming bargain",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "When two worlds that had developed in isolation were joined after 1492, the traffic between them was not only in ships and soldiers but in seeds, animals, and unseen microbes, and it is this quieter cargo that reshaped the planet most profoundly. Maize and the potato crossed one way and would eventually feed populations from Ireland to China; horses, wheat, and sugarcane crossed the other and remade the diets and landscapes of two continents. To narrate the encounter only as a story of conquest and gold is to miss the deeper rearrangement, in which the very biology of the world was shuffled and dealt out again. Whole cuisines we now think of as ancient and national, the tomato in Italy, the chili in India, are the recent offspring of this collision, so thoroughly naturalized that their foreign birth has been forgotten.",
+        "Yet the same exchange that enriched the world's tables also emptied its villages. The microbes that traveled with the newcomers found populations with no inherited defense against them, and across the Americas disease did what no army could have, killing on a scale that beggars the vocabulary of war. To celebrate the new abundance without reckoning this loss would be a kind of accounting fraud, crediting the ledger while hiding the debit. What the period demands of us is a double vision, the capacity to see that the same event was, at once, one of the great enrichments and one of the great catastrophes of human history, and that these are not two stories to be told in turn but one story that refuses to resolve into either. The exchange gave and it took, and it did not consult the people whose worlds it remade."
+      ],
+      "source_ref": "OpenStax World History Volume 2: from 1400 (the Columbian Exchange and early modern global connections)",
+      "questions": [
+        {
+          "stem": "The passage is chiefly concerned with arguing that",
+          "choices": [
+            "the joining of the two worlds was primarily a story of conquest and gold",
+            "the exchange after 1492 was at once a great enrichment and a great catastrophe that cannot be separated",
+            "the movement of crops mattered far more than the movement of people",
+            "the new diseases were a minor footnote to an era of abundance"
+          ],
+          "answer": 1,
+          "explain": "The author calls for 'a double vision' seeing 'one of the great enrichments and one of the great catastrophes' as 'one story that refuses to resolve into either.'",
+          "cover_story": "the great exchange",
+          "b": -1.3
+        },
+        {
+          "stem": "The mention of the tomato in Italy and the chili in India serves primarily to",
+          "choices": [
+            "show how thoroughly the exchange reshaped even cuisines now thought ancient and native",
+            "prove that Italian and Indian cooking are superior to others",
+            "argue that the exchange had no lasting effects",
+            "suggest that these foods were always present in those places"
+          ],
+          "answer": 0,
+          "explain": "These dishes are 'the recent offspring of this collision, so thoroughly naturalized that their foreign birth has been forgotten.'",
+          "cover_story": "the great exchange",
+          "b": 0.6
+        },
+        {
+          "stem": "The author regards celebrating the new abundance without acknowledging the loss as",
+          "choices": [
+            "a reasonable emphasis on the exchange's benefits",
+            "a form of dishonest accounting",
+            "the only responsible way to tell the story",
+            "a harmless simplification"
+          ],
+          "answer": 1,
+          "explain": "To celebrate abundance without the loss 'would be a kind of accounting fraud, crediting the ledger while hiding the debit.'",
+          "cover_story": "the great exchange",
+          "b": 0.1
+        },
+        {
+          "stem": "As used in the passage, 'naturalized' most nearly means",
+          "choices": [
+            "returned to a wild state",
+            "granted legal citizenship",
+            "so absorbed into a place that it seems native",
+            "studied by natural scientists"
+          ],
+          "answer": 2,
+          "explain": "The foods are 'so thoroughly naturalized that their foreign birth has been forgotten,' meaning they now seem native.",
+          "cover_story": "the great exchange",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author considers the 'quieter cargo' of seeds and microbes to have been",
+          "choices": [
+            "less important than the movement of soldiers and gold",
+            "more transformative of the world than the conquest itself",
+            "beneficial in every one of its effects",
+            "unrelated to the demographic collapse in the Americas"
+          ],
+          "answer": 1,
+          "explain": "The author says 'it is this quieter cargo that reshaped the planet most profoundly,' beyond the story 'of conquest and gold.'",
+          "cover_story": "the great exchange",
+          "b": 0.7
+        },
+        {
+          "stem": "Which of the following, if true, would most support the author's call for a 'double vision' of the exchange?",
+          "choices": [
+            "a region whose population was devastated by imported disease in the same decades that its farmland grew far more productive from imported crops",
+            "a region that received new crops but was never touched by any new disease",
+            "a war whose casualties were caused entirely by soldiers rather than illness",
+            "a cuisine that developed in complete isolation from foreign ingredients"
+          ],
+          "answer": 0,
+          "explain": "A single region enriched and devastated at once embodies the claim that gain and loss were 'one story that refuses to resolve into either.'",
+          "cover_story": "the great exchange",
+          "b": 1.3
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "For a brief span after the war, the country attempted something it had never seriously tried before: to remake a society founded on bondage into one founded on equal citizenship, and to do so by law, in a single generation. Amendments were written into the Constitution that abolished slavery, promised equal protection, and forbade the denial of the vote on account of race. Men who had been counted as property a decade earlier now sat in legislatures and sent representatives to the capital. Read forward from its beginning, the period can look like the opening of a door long held shut. But history is not read forward by those who live it, and the same door, we know, would be forced closed again within a dozen years, its promises left standing on the page while the world beneath them was quietly rearranged to defeat them.",
+        "What defeated Reconstruction was not the repeal of its guarantees, for they were never repealed; it was the discovery that a right written down is not yet a right secured. A vote that cannot be safely cast is a vote in name only, and an equality announced by the state but unenforced by it becomes a kind of official fiction, more useful to the comfortable than to those it was meant to protect. The lesson later generations drew from the period was accordingly double-edged. It showed how much could be achieved by law, and how little, when law is severed from the power and the will to make it real. To honor Reconstruction as a triumph or dismiss it as a failure is equally to miss its instruction, which is that the two can inhabit the same events, and that a promise and its betrayal are sometimes written in the same hand."
+      ],
+      "source_ref": "OpenStax U.S. History (Reconstruction, 1865 to 1877)",
+      "questions": [
+        {
+          "stem": "The central claim of the passage is that Reconstruction",
+          "choices": [
+            "succeeded completely in remaking Southern society",
+            "collapsed because its constitutional amendments were formally repealed",
+            "showed both how much law can achieve and how little it achieves when unenforced",
+            "proved that written guarantees are always sufficient to secure rights"
+          ],
+          "answer": 2,
+          "explain": "The period 'showed how much could be achieved by law, and how little, when law is severed from the power and the will to make it real.'",
+          "cover_story": "reconstruction's promise",
+          "b": -1.4
+        },
+        {
+          "stem": "The image of a 'door long held shut' that 'would be forced closed again' primarily serves to",
+          "choices": [
+            "capture both the opening of new possibilities and their subsequent defeat",
+            "argue that no progress of any kind was made during the period",
+            "suggest that the amendments were never actually written",
+            "prove that doors are a common feature of legislatures"
+          ],
+          "answer": 0,
+          "explain": "The door 'long held shut' that is then 'forced closed again' figures both the promise and its reversal.",
+          "cover_story": "reconstruction's promise",
           "b": 0.8
         },
         {
-          "stem": "Which situation is most analogous to the value the author finds in improvisation?",
+          "stem": "The author regards the labels 'triumph' and 'failure' as applied to Reconstruction as",
           "choices": [
-            "watching a live debate in which speakers must respond on the spot, without prepared scripts",
-            "reading a carefully edited transcript of a speech",
-            "viewing a film that required many retakes to perfect",
-            "studying a painting the artist reworked over many years"
+            "equally mistaken because both miss the period's real lesson",
+            "accurate depending only on one's political views",
+            "useful shorthand that captures the period well",
+            "irrelevant to any serious study of history"
           ],
           "answer": 0,
-          "explain": "The live, unscripted, unrepeatable response mirrors 'a mind deciding in real time, exposed to a risk the composer has ... removed.'",
-          "cover_story": "improvisation and risk",
+          "explain": "To 'honor Reconstruction as a triumph or dismiss it as a failure is equally to miss its instruction.'",
+          "cover_story": "reconstruction's promise",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'severed' most nearly means",
+          "choices": [
+            "cut off or separated",
+            "sharply criticized",
+            "formally approved",
+            "briefly interrupted"
+          ],
+          "answer": 0,
+          "explain": "Law 'severed from the power and the will to make it real' means law cut off from enforcement.",
+          "cover_story": "reconstruction's promise",
+          "b": 0.1
+        },
+        {
+          "stem": "The author would most likely agree that a legal right is genuinely secured only when",
+          "choices": [
+            "it has been written into a constitution",
+            "it is backed by the power and will to enforce it",
+            "it is popular with the comfortable majority",
+            "it has never been challenged in a court"
+          ],
+          "answer": 1,
+          "explain": "'A right written down is not yet a right secured'; what was missing was 'the power and the will to make it real.'",
+          "cover_story": "reconstruction's promise",
+          "b": 0.6
+        },
+        {
+          "stem": "Which contemporary situation best illustrates the lesson the author draws from Reconstruction?",
+          "choices": [
+            "a law guaranteeing a benefit that goes unclaimed because the state provides no means to enforce it",
+            "a law that is formally repealed by a later legislature",
+            "a right that is both written down and vigorously protected in practice",
+            "a custom that persists even though no law requires it"
+          ],
+          "answer": 0,
+          "explain": "The lesson is that 'a right written down is not yet a right secured'; an unenforced guarantee is a right 'in name only.'",
+          "cover_story": "reconstruction's promise",
           "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "Before the factory and the canal, most people worked to a rhythm set by the sun and the season, and the line between labor and life was blurred by a hundred small liberties: the errand run midmorning, the task set down when a neighbor called, the long idleness of winter. The transformations of the early nineteenth century did not merely move this work from farm to workshop; they rebuilt its very measure. Where a task had once been finished when it was done, it was now timed, and the clock on the wall became a quiet sovereign, dividing the day into units that could be bought. To sell one's labor by the hour is to accept that the hour belongs, for its duration, to another, and this was a stranger bargain than it now appears to a people who had rarely thought of their time as a thing that could be owned at all.",
+        "It would be sentimental to mourn the older way without remembering its poverty, for the same market that disciplined the worker also filled the shops with goods that no previous generation could have dreamed of owning, and offered, to some, an escape from the narrow fate of birth. The honest reckoning is not a lament but a balance. Something was gained in abundance and mobility, and something was lost in autonomy and rhythm, and the gain and the loss fell, as they usually do, on different people and in different measure. What makes the period worth studying is precisely that it will not sit still as either a rise or a fall. It was the hinge on which a whole way of living turned, and those who lived through it felt, often at once, the promise of the new order and the quiet expropriation of a freedom they had not known they possessed until it was gone."
+      ],
+      "source_ref": "OpenStax U.S. History (the market revolution and the transformation of Northern labor)",
+      "questions": [
+        {
+          "stem": "The passage principally argues that the changes it describes",
+          "choices": [
+            "improved daily life in every important respect",
+            "simply relocated existing work without altering its nature",
+            "brought both new abundance and a loss of autonomy that fell unevenly on different people",
+            "were mourned by everyone who lived through them"
+          ],
+          "answer": 2,
+          "explain": "The author calls for 'a balance': 'something was gained in abundance and mobility, and something was lost in autonomy and rhythm.'",
+          "cover_story": "the market revolution",
+          "b": -1.3
+        },
+        {
+          "stem": "The description of the clock as 'a quiet sovereign' primarily serves to",
+          "choices": [
+            "convey how thoroughly measured time came to govern the working day",
+            "praise the punctuality of nineteenth-century workers",
+            "argue that clocks were a brand-new invention of the period",
+            "suggest that workers came to admire their employers"
+          ],
+          "answer": 0,
+          "explain": "The clock 'divid[es] the day into units that could be bought,' ruling the day as a 'sovereign' would.",
+          "cover_story": "the market revolution",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward mourning the older rhythm of work is",
+          "choices": [
+            "wholehearted, treating the change as pure loss",
+            "guarded, warning that such mourning forgets the older way's poverty",
+            "dismissive of the idea that anything was lost",
+            "indifferent to the question entirely"
+          ],
+          "answer": 1,
+          "explain": "The author calls it 'sentimental to mourn the older way without remembering its poverty' and insists on 'a balance.'",
+          "cover_story": "the market revolution",
+          "b": -0.1
+        },
+        {
+          "stem": "As used in the passage, 'expropriation' most nearly means",
+          "choices": [
+            "a fair exchange of goods",
+            "a taking away of something once possessed",
+            "a sudden increase in wealth",
+            "a public celebration"
+          ],
+          "answer": 1,
+          "explain": "The 'expropriation of a freedom' names a freedom that was lost, taken from those who 'had not known they possessed' it.",
+          "cover_story": "the market revolution",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that, before the changes described, most people generally",
+          "choices": [
+            "thought of their time as something that could be bought and sold",
+            "did not conceive of their time as a possession that could be owned",
+            "worked longer and more tightly regulated hours than afterward",
+            "enjoyed a greater abundance of manufactured goods than afterward"
+          ],
+          "answer": 1,
+          "explain": "The bargain seemed strange 'to a people who had rarely thought of their time as a thing that could be owned at all.'",
+          "cover_story": "the market revolution",
+          "b": 0.6
+        },
+        {
+          "stem": "Which of the following, if true, would most weaken the author's characterization of the change in work?",
+          "choices": [
+            "evidence that farm labor before the period was already governed by strict, externally imposed schedules just as rigid as the factory's",
+            "evidence that factories filled shops with new kinds of goods",
+            "evidence that some workers escaped the fate of their birth",
+            "evidence that winters were often idle on many farms"
+          ],
+          "answer": 0,
+          "explain": "The author's contrast depends on older work being loosely timed; if it was already rigidly scheduled, the claimed transformation dissolves.",
+          "cover_story": "the market revolution",
+          "b": 1.3
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "There is a reflex, older than any argument, by which we take the customs of our own people as the plain shape of the human and treat every departure from them as a deviation to be explained. The food others eat is strange, their manners are wrong, their gods are false, and the measure by which all this is judged is simply the way things are done at home, mistaken for the way things are. Sociologists have a name for this reflex and for the discipline meant to correct it. To see one's own culture as the natural center of the world is ethnocentrism; to suspend that judgment and try to understand a practice within the web of meaning that gives it sense is the harder work of cultural relativism. The first comes to us for free. The second must be learned, and is never learned completely.",
+        "Yet relativism, pressed too far, dissolves into a paralysis of its own. If every practice can be judged only from inside its own culture, then no practice can ever be criticized from without, and the cruelties that some societies have visited on the weak acquire an immunity merely by being customary. The observer who set out to cure arrogance arrives, by an unwanted road, at an inability to object to anything at all. The way through is not to abandon understanding but to distinguish it from endorsement. To grasp why a practice makes sense to those who follow it is one act; to decide whether it should continue is another, and the first does not settle the second. Relativism at its best is a method of seeing, not a verdict of approval, and the confusion of the two has done as much harm to the idea as any of its enemies."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e (Culture)",
+      "questions": [
+        {
+          "stem": "The passage's central argument is that cultural relativism",
+          "choices": [
+            "requires approving of every practice one studies",
+            "is a method for understanding practices, not a verdict approving them",
+            "is simply another name for ethnocentrism",
+            "should be abandoned in favor of judging all cultures by one's own"
+          ],
+          "answer": 1,
+          "explain": "The author holds that 'relativism at its best is a method of seeing, not a verdict of approval.'",
+          "cover_story": "judging other cultures",
+          "b": -1.3
+        },
+        {
+          "stem": "The observation that some cruelties can 'acquire an immunity merely by being customary' serves to",
+          "choices": [
+            "show the danger of pressing relativism too far",
+            "prove that all cultures are equally cruel",
+            "defend ethnocentrism as the safer attitude",
+            "argue that customs can never be criticized on any grounds"
+          ],
+          "answer": 0,
+          "explain": "The line exposes how relativism 'pressed too far' leaves one with 'an inability to object to anything at all.'",
+          "cover_story": "judging other cultures",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward the ethnocentric reflex is",
+          "choices": [
+            "approving, since it places one's own culture at the natural center",
+            "critical, treating it as an error that discipline must correct",
+            "neutral and merely descriptive",
+            "admiring of its honesty"
+          ],
+          "answer": 1,
+          "explain": "Ethnocentrism is the 'reflex' that relativism, 'the harder work,' is 'meant to correct.'",
+          "cover_story": "judging other cultures",
+          "b": -0.1
+        },
+        {
+          "stem": "As used in the passage, 'reflex' most nearly means",
+          "choices": [
+            "a careful and deliberate decision",
+            "an automatic, unexamined response",
+            "a reflected mirror image",
+            "a physical injury"
+          ],
+          "answer": 1,
+          "explain": "The 'reflex' is a response that 'comes to us for free,' unlike the relativism that 'must be learned.'",
+          "cover_story": "judging other cultures",
+          "b": 0.1
+        },
+        {
+          "stem": "It can be inferred that the author sees understanding a practice and endorsing it as",
+          "choices": [
+            "two distinct acts, the first of which does not determine the second",
+            "one and the same act",
+            "equally impossible to achieve",
+            "steps that must always occur in reverse order"
+          ],
+          "answer": 0,
+          "explain": "'To grasp why a practice makes sense ... is one act; to decide whether it should continue is another, and the first does not settle the second.'",
+          "cover_story": "judging other cultures",
+          "b": 0.6
+        },
+        {
+          "stem": "Which response to an unfamiliar custom best reflects relativism as the author defines it?",
+          "choices": [
+            "studying the custom to understand its meaning to insiders, while reserving judgment about whether it is right",
+            "condemning the custom immediately because it differs from one's own",
+            "praising the custom simply because it belongs to another culture",
+            "refusing to learn anything about the custom at all"
+          ],
+          "answer": 0,
+          "explain": "Relativism as 'a method of seeing' means understanding a practice from inside while keeping that 'distinct' from approval.",
+          "cover_story": "judging other cultures",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "We like to believe that the self is the one thing we bring into the world already ours, a core of pure individuality that society then either nurtures or represses. The study of socialization suggests something less flattering and more interesting: that the self is not the raw material of social life but one of its products. The child does not arrive with a finished identity awaiting expression; she assembles one, gradually, out of the responses of others, learning who she is by watching who they take her to be. We come to see ourselves, in a sense, reflected in the faces around us, and the image we call our personality is in part a portrait painted by other hands. To say this is not to deny that we are individuals. It is to notice that individuality itself is something we are taught.",
+        "This has a consequence we are reluctant to accept, which is that the line between the self and society, so firm in our everyday speech, does not survive close inspection. The values we call our own were once instructions we absorbed before we could weigh them; the desires we experience as most intimately ours were shaped by a world that was choosing them for us long before we imagined we were choosing. None of this makes freedom an illusion, but it does relocate it. Freedom is not the possession of a self that stands outside society, for there is no such self to possess it. It is, more modestly, the capacity to examine what we have been made into and to revise it, a work that uses the very tools society gave us. We are its creatures, and our only route to self-authorship runs through, not around, that fact."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e (Socialization)",
+      "questions": [
+        {
+          "stem": "The central claim of the passage is that",
+          "choices": [
+            "the self exists fully formed before any social influence",
+            "the self is largely a product of socialization rather than a pre-social core",
+            "society has no real influence on individual identity",
+            "human freedom is entirely an illusion"
+          ],
+          "answer": 1,
+          "explain": "The author holds 'the self is not the raw material of social life but one of its products,' assembled 'out of the responses of others.'",
+          "cover_story": "the social self",
+          "b": -1.4
+        },
+        {
+          "stem": "The image of 'a portrait painted by other hands' primarily serves to",
+          "choices": [
+            "convey that our sense of self is shaped by how others regard us",
+            "argue that people cannot recognize their own faces",
+            "prove that painting is more truthful than other arts",
+            "suggest that personality is entirely inherited at birth"
+          ],
+          "answer": 0,
+          "explain": "We 'see ourselves ... reflected in the faces around us,' so identity is 'in part a portrait painted by other hands.'",
+          "cover_story": "the social self",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward the belief in a self that exists before society is",
+          "choices": [
+            "accepting, treating it as obviously correct",
+            "skeptical, regarding it as flattering but unsupported by close inspection",
+            "hostile toward anyone who questions it",
+            "wholly indifferent"
+          ],
+          "answer": 1,
+          "explain": "The belief is 'flattering,' but the author says the self and society line 'does not survive close inspection.'",
+          "cover_story": "the social self",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'creatures' most nearly means",
+          "choices": [
+            "wild animals",
+            "beings shaped and produced by something else",
+            "imaginary monsters",
+            "wholly independent inventors"
+          ],
+          "answer": 1,
+          "explain": "To be society's 'creatures' is to be its products, beings it 'made,' consistent with the self as something assembled by others.",
+          "cover_story": "the social self",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author locates human freedom in",
+          "choices": [
+            "a self that stands entirely outside society",
+            "the capacity to examine and revise what socialization has made of us",
+            "the complete rejection of every value one was taught",
+            "the impossibility of ever changing one's identity"
+          ],
+          "answer": 1,
+          "explain": "Freedom is 'the capacity to examine what we have been made into and to revise it,' using 'the very tools society gave us.'",
+          "cover_story": "the social self",
+          "b": 0.7
+        },
+        {
+          "stem": "Which finding, if true, would most challenge the author's account of the self?",
+          "choices": [
+            "evidence that core features of a person's identity are fixed at birth and remain unchanged regardless of how others treat them",
+            "evidence that children imitate the adults around them",
+            "evidence that people absorb values before they can evaluate them",
+            "evidence that individuals can later reflect on their upbringing"
+          ],
+          "answer": 0,
+          "explain": "The author claims the self is shaped by others' responses; an identity fixed at birth and immune to them would undermine that claim.",
+          "cover_story": "the social self",
+          "b": 1.3
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "To the untrained eye, kinship looks like biology wearing a few local costumes. Everywhere there are mothers and fathers, everywhere children, and the anthropologist who catalogues the world's family systems can seem to be merely recording the same natural facts in a hundred dialects. But the closer one looks, the more the biology recedes and the costume turns out to be the substance. In many societies the man a child calls father is not the one who begot him but his mother's brother, or a line of ancestors, or whoever occupies a certain social role; the word we translate as mother may extend to a whole class of women. What counts as a relative, and what that relation demands, is decided not by blood but by rules that vary from people to people, rules that blood by itself could never dictate.",
+        "This is why the anthropologist resists the easy assumption that our own arrangement, the small household bound by shared genes, is the natural form from which others deviate. It is one form among many, no more written into nature than the rest, and it answers needs that other systems answer differently. Kinship, properly understood, is less a map of who is related to whom than a scheme for assigning duties, inheritance, loyalty, and care, a way of organizing the cooperation without which no human group survives. Blood may furnish the raw metaphor, but it is the culture that decides what the metaphor will mean, drawing the circle of obligation now wide, now narrow, and filling it with persons that no genealogist would recognize as kin. To study kinship is thus to study not nature's dictates but one of the oldest and most inventive of human institutions."
+      ],
+      "source_ref": "OpenStax Introduction to Anthropology (kinship and descent)",
+      "questions": [
+        {
+          "stem": "The passage chiefly argues that kinship is",
+          "choices": [
+            "simply a record of biological relationships common to all of humanity",
+            "a cultural institution that assigns obligations rather than a mere map of blood ties",
+            "identical in structure across every human society",
+            "an arrangement with no connection to cooperation or survival"
+          ],
+          "answer": 1,
+          "explain": "Kinship is 'less a map of who is related to whom than a scheme for assigning duties,' one of 'the oldest ... human institutions.'",
+          "cover_story": "kinship and belonging",
+          "b": -1.3
+        },
+        {
+          "stem": "The examples of a child's 'father' being the mother's brother, or 'mother' extending to many women, serve primarily to",
+          "choices": [
+            "show that kinship categories are set by cultural rules rather than by blood",
+            "prove that people in other societies are confused about biology",
+            "argue that everyone in the world has the same family structure",
+            "demonstrate that language has no effect on kinship"
+          ],
+          "answer": 0,
+          "explain": "These cases show that 'what counts as a relative ... is decided not by blood but by rules that vary from people to people.'",
+          "cover_story": "kinship and belonging",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward treating the small household bound by shared genes as the natural family form is",
+          "choices": [
+            "accepting, since it is written into nature",
+            "resistant, viewing it as merely one form among many",
+            "hostile toward those who live in such households",
+            "uninterested in the question"
+          ],
+          "answer": 1,
+          "explain": "The anthropologist 'resists the easy assumption' that this arrangement is 'the natural form,' calling it 'one form among many.'",
+          "cover_story": "kinship and belonging",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'furnish' most nearly means",
+          "choices": [
+            "to decorate with objects",
+            "to provide or supply",
+            "to conceal from view",
+            "to pay for in advance"
+          ],
+          "answer": 1,
+          "explain": "'Blood may furnish the raw metaphor' means blood supplies it, while culture decides its meaning.",
+          "cover_story": "kinship and belonging",
+          "b": 0.1
+        },
+        {
+          "stem": "It can be inferred that the author regards the relationship between blood and kinship as one in which",
+          "choices": [
+            "blood determines exactly who counts as kin",
+            "culture decides what a biological connection is taken to mean",
+            "biology and culture play no role at all",
+            "kinship terms perfectly track genetic relatedness everywhere"
+          ],
+          "answer": 1,
+          "explain": "'Blood may furnish the raw metaphor, but it is the culture that decides what the metaphor will mean.'",
+          "cover_story": "kinship and belonging",
+          "b": 0.6
+        },
+        {
+          "stem": "Which practice best supports the author's view of kinship?",
+          "choices": [
+            "a society in which adopted outsiders take on the full duties and inheritance rights of blood relatives",
+            "a society in which family membership is determined solely by genetic testing",
+            "a community that keeps no record of ancestry at all",
+            "a group in which no one owes anything to relatives"
+          ],
+          "answer": 0,
+          "explain": "Adopted members gaining full kin duties shows kinship as 'a scheme for assigning duties' filled with 'persons that no genealogist would recognize.'",
+          "cover_story": "kinship and belonging",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "In the marketplace a transaction is designed to end. I pay, you deliver, and the moment the exchange is balanced our obligation to each other is discharged; we may walk away as strangers, owing nothing. The gift works by the opposite principle. To give is not to settle an account but to open one, to place the receiver under a debt that a return, when it comes, will not so much cancel as continue. Anthropologists who studied the exchange of gifts in many societies noticed that its purpose was rarely the efficient movement of goods, which markets accomplish better, but the weaving of a bond. What travels in the gift is not only the object but a piece of the relationship, and to refuse to give, to receive, or in time to give back is to decline the relationship itself.",
+        "It is tempting to read this as a charming inefficiency, a primitive stage that the invention of money and price at last cleared away. But the temptation should be resisted, for the logic of the gift has not vanished; it has only retreated into the regions of life we most care about. We still give at birthdays and weddings, still bristle at the friend who tries to repay a dinner in exact cash, still sense that to reduce certain exchanges to their market value is to insult them. What the anthropology of the gift reveals is not a curiosity of distant peoples but a grammar we ourselves still speak, one in which the deliberate refusal to balance the books is the very thing that turns a transaction into a tie. The market ends relationships on purpose. The gift, on purpose, refuses to let them end."
+      ],
+      "source_ref": "OpenStax Introduction to Anthropology (economic anthropology: exchange and reciprocity)",
+      "questions": [
+        {
+          "stem": "The central contrast the passage draws is between",
+          "choices": [
+            "gifts, which build lasting bonds, and market transactions, which are designed to conclude",
+            "ancient economies, which were efficient, and modern ones, which are wasteful",
+            "generous people and selfish people",
+            "goods that are useful and goods that are merely decorative"
+          ],
+          "answer": 0,
+          "explain": "A market transaction 'is designed to end,' whereas 'to give ... is to open' an account and weave 'a bond.'",
+          "cover_story": "the logic of gifts",
+          "b": -1.3
+        },
+        {
+          "stem": "The example of the friend who 'tries to repay a dinner in exact cash' serves primarily to",
+          "choices": [
+            "show that the logic of the gift still operates in modern life",
+            "argue that people should never spend money on their friends",
+            "prove that cash is the most polite form of thanks",
+            "illustrate the efficiency of the modern market"
+          ],
+          "answer": 0,
+          "explain": "That we 'bristle' at exact repayment shows 'the logic of the gift has not vanished' but persists among us.",
+          "cover_story": "the logic of gifts",
+          "b": 0.8
+        },
+        {
+          "stem": "The author regards the view that the gift is a 'primitive stage' cleared away by money as",
+          "choices": [
+            "convincing and well supported",
+            "a temptation that should be resisted",
+            "the main thesis of the passage",
+            "irrelevant to modern life"
+          ],
+          "answer": 1,
+          "explain": "The author writes 'the temptation should be resisted, for the logic of the gift has not vanished.'",
+          "cover_story": "the logic of gifts",
+          "b": -0.1
+        },
+        {
+          "stem": "As used in the passage, 'discharged' most nearly means",
+          "choices": [
+            "dismissed from a job",
+            "released or fulfilled so that nothing remains owed",
+            "increased in size",
+            "recorded for later collection"
+          ],
+          "answer": 1,
+          "explain": "When 'the exchange is balanced our obligation ... is discharged,' meaning it is settled and nothing is owed.",
+          "cover_story": "the logic of gifts",
+          "b": 0.1
+        },
+        {
+          "stem": "It can be inferred that the author considers the 'inefficiency' of gift exchange to be",
+          "choices": [
+            "a flaw that money rightly corrected",
+            "the very feature that allows it to create lasting ties",
+            "proof that gift-giving societies were poorer",
+            "unrelated to the building of relationships"
+          ],
+          "answer": 1,
+          "explain": "'The deliberate refusal to balance the books is the very thing that turns a transaction into a tie.'",
+          "cover_story": "the logic of gifts",
+          "b": 0.7
+        },
+        {
+          "stem": "Which observation, if true, would most strengthen the author's claim that the logic of the gift persists in modern life?",
+          "choices": [
+            "that people in wealthy market societies feel offended when an intimate favor is met with an exact cash payment",
+            "that modern shoppers reliably prefer the lowest available price",
+            "that gift exchange has disappeared entirely from industrial societies",
+            "that ancient peoples used money for some of their purchases"
+          ],
+          "answer": 0,
+          "explain": "Offense at repaying an intimate favor in cash is exactly the persistence of gift logic the author describes.",
+          "cover_story": "the logic of gifts",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "Power, in its rawest form, is only the ability to make others do what they would not otherwise choose, and a state that possessed nothing more than this would be indistinguishable from a well-armed robber. What separates the two is not the amount of force at their disposal but a quality harder to see, which political thinkers call legitimacy: the widespread belief that a power has the right to command and that its commands ought to be obeyed. A government rules far less by the soldiers it can deploy than by the conviction, carried quietly in the minds of the governed, that its rule is proper. When that conviction is present, laws are mostly kept without the need to enforce them; when it drains away, no quantity of police can supply its absence, and a regime that must compel every act of obedience has already begun to fall.",
+        "This exposes a paradox at the heart of political order. The state appears to be the strongest thing in society, and in a sense it is; yet its strength rests on something it cannot simply manufacture, a belief in its right to rule that must be granted by the very people it governs. Legitimacy cannot be seized the way a palace can. It is earned, or inherited, or slowly squandered, and a ruler who forgets this, mistaking the machinery of coercion for the source of his authority, saws at the branch that holds him. The most durable power is thus the power least often used, the authority so accepted that it seldom needs to show its hand. What looks like weakness, the dependence of the mighty on the opinion of the governed, turns out to be the hidden condition of every stable rule, and the tyrant's error is to believe he has escaped it."
+      ],
+      "source_ref": "OpenStax Introduction to Political Science (power, authority, and legitimacy)",
+      "questions": [
+        {
+          "stem": "The passage's central claim is that a stable government depends less on force than on",
+          "choices": [
+            "the size of its army and police",
+            "the governed's belief that its rule is rightful",
+            "the personal wealth of its rulers",
+            "the complete absence of any laws"
+          ],
+          "answer": 1,
+          "explain": "A government 'rules far less by the soldiers it can deploy than by the conviction ... that its rule is proper.'",
+          "cover_story": "power and legitimacy",
+          "b": -1.4
+        },
+        {
+          "stem": "The comparison of a merely powerful state to 'a well-armed robber' serves primarily to",
+          "choices": [
+            "distinguish naked power from legitimate authority",
+            "argue that all governments are essentially criminal",
+            "prove that robbers are as effective as governments",
+            "praise states for their superior weaponry"
+          ],
+          "answer": 0,
+          "explain": "The robber has force but lacks 'legitimacy,' the quality that 'separates the two.'",
+          "cover_story": "power and legitimacy",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward a ruler who trusts coercion as the source of his authority is",
+          "choices": [
+            "approving of his realism",
+            "critical, seeing him as undermining his own rule",
+            "indifferent to his fate",
+            "envious of his power"
+          ],
+          "answer": 1,
+          "explain": "Such a ruler 'saws at the branch that holds him,' mistaking 'the machinery of coercion for the source of his authority.'",
+          "cover_story": "power and legitimacy",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'squandered' most nearly means",
+          "choices": [
+            "carefully saved",
+            "wastefully lost",
+            "forcibly seized",
+            "legally transferred"
+          ],
+          "answer": 1,
+          "explain": "Legitimacy is 'earned, or inherited, or slowly squandered,' set against being gained, so squandered means wastefully lost.",
+          "cover_story": "power and legitimacy",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author regards a regime that 'must compel every act of obedience' as",
+          "choices": [
+            "at the very height of its strength",
+            "already in the process of losing its authority",
+            "more legitimate than one that is freely obeyed",
+            "wholly unaffected by the opinion of the governed"
+          ],
+          "answer": 1,
+          "explain": "Such a regime 'has already begun to fall,' because coercion 'cannot supply' the missing conviction.",
+          "cover_story": "power and legitimacy",
+          "b": 0.7
+        },
+        {
+          "stem": "Which situation best illustrates the author's account of legitimacy?",
+          "choices": [
+            "a long-standing government whose laws are widely obeyed even where enforcement is thin",
+            "an occupying force that controls territory only where its troops are physically present",
+            "a wealthy ruler admired chiefly for his personal fortune",
+            "a leader who stays in power purely by paying his soldiers well"
+          ],
+          "answer": 0,
+          "explain": "Laws 'kept without the need to enforce them' exemplify authority resting on 'the conviction ... that its rule is proper.'",
+          "cover_story": "power and legitimacy",
+          "b": 1.3
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "No one ever signed the social contract, and this is the first objection every student raises against it. There was no gathering of free individuals in a state of nature who, weary of mutual fear, agreed to trade a portion of their liberty for the protection of a common power. The scene is a fiction, and its authors mostly knew it. But to dismiss the idea on these grounds is to misunderstand what kind of claim it makes. The contract was never offered as a historical event to be dated and verified; it is a device for asking a question that history cannot answer, namely what arrangements free and equal people could accept as binding on themselves. Its truth, if it has one, is not in the past but in the present, in whether the order we actually live under could have been agreed to by those it governs.",
+        "Read this way, the contract becomes less a story about how states began than a standard by which they may be judged. A government that could not have won the consent of reasonable people, that rests on the plain subjection of some to the advantage of others, fails a test the metaphor quietly sets, whatever its origins in conquest or inheritance. This is why the fiction has outlived every attempt to refute it on factual grounds. It was doing something other than reporting facts. It was giving political obligation a foundation in agreement rather than in mere force or custom, and thereby handing the governed a question they could put to any power above them: not merely can you compel me, but could I have consented to this? A regime that cannot bear the question has told us something about itself, and the imaginary contract has done its wholly real work."
+      ],
+      "source_ref": "OpenStax Introduction to Political Science (the social contract tradition)",
+      "questions": [
+        {
+          "stem": "The central argument of the passage is that the social contract",
+          "choices": [
+            "should be rejected because no such agreement ever historically occurred",
+            "is best understood as a standard for judging governments, not a historical event",
+            "describes a real meeting of people in a state of nature",
+            "proves that all existing governments are legitimate"
+          ],
+          "answer": 1,
+          "explain": "The contract 'becomes less a story about how states began than a standard by which they may be judged.'",
+          "cover_story": "the social contract",
+          "b": -1.4
+        },
+        {
+          "stem": "The author raises the objection that 'no one ever signed the social contract' primarily in order to",
+          "choices": [
+            "set up a misunderstanding that he then corrects",
+            "concede that the idea is worthless",
+            "prove that governments arise only by force",
+            "show that students rarely study political theory"
+          ],
+          "answer": 0,
+          "explain": "The objection 'misunderstand[s] what kind of claim' the contract makes, which the author goes on to clarify.",
+          "cover_story": "the social contract",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward the social contract is best described as",
+          "choices": [
+            "dismissive of it as an exploded fiction",
+            "defensive of its value once its purpose is properly understood",
+            "indifferent to whether it is true or useful",
+            "convinced that it records real historical events"
+          ],
+          "answer": 1,
+          "explain": "The author says 'the fiction has outlived every attempt to refute it' because it does 'wholly real work' as a standard.",
+          "cover_story": "the social contract",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'device' most nearly means",
+          "choices": [
+            "a mechanical instrument",
+            "a means for accomplishing a purpose",
+            "a decorative emblem",
+            "a clever deception"
+          ],
+          "answer": 1,
+          "explain": "The contract is 'a device for asking a question,' meaning a tool or means, not a machine or a trick.",
+          "cover_story": "the social contract",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author would judge a government illegitimate if",
+          "choices": [
+            "it could not have won the consent of reasonable people",
+            "it did not originate in a signed written agreement",
+            "it was founded by conquest but now rules by consent",
+            "it asks its citizens difficult questions"
+          ],
+          "answer": 0,
+          "explain": "A government 'that could not have won the consent of reasonable people ... fails a test the metaphor quietly sets.'",
+          "cover_story": "the social contract",
+          "b": 0.7
+        },
+        {
+          "stem": "Which of the following, if established, would most weaken the author's defense of the social contract?",
+          "choices": [
+            "that judging governments by hypothetical consent yields no clearer verdict than judging them by force or custom does",
+            "that no historical assembly ever met to sign a contract",
+            "that some governments arose through conquest",
+            "that students often object to the idea when they first meet it"
+          ],
+          "answer": 0,
+          "explain": "The defense rests on the contract providing a usable standard of legitimacy; if it yields no clearer verdict, that defense fails.",
+          "cover_story": "the social contract",
+          "b": 1.3
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "The most disenchanting idea in economics is also its most honest: that we cannot have everything, and that every choice is therefore a small act of loss. Because our time, money, and attention are finite while our wants are not, to spend a resource on one thing is necessarily to withhold it from another, and the true cost of anything is not the price on its tag but the best alternative we gave up to obtain it. Economists call this the opportunity cost, and it is easy to say and hard to feel. The hour spent on one task is not merely an hour; it is every other task that hour might have held. Seen clearly, no choice is free, not because someone charges for it, but because the world will not let us do two things with the same resource at the same time.",
+        "There is a temptation to find this bleak, as though economics had come to announce that life is a ledger of sacrifices. But the same principle that names the cost also clarifies the value. If choosing one thing means forgoing another, then to choose well is to know what we are willing to give up, and a person who refuses ever to accept a cost is not richer in possibilities but poorer in direction, forever unwilling to trade any option for any outcome. The discipline of opportunity cost is thus not a counsel of gloom but of seriousness. It asks us to price our choices in the only currency that finally matters, the other lives we might have led, and to decide, knowing the exchange rate, which of them we are prepared to let go. To grasp scarcity is not to mourn abundance but to take one's freedom seriously enough to spend it."
+      ],
+      "source_ref": "OpenStax Principles of Economics 3e (scarcity, choice, and opportunity cost)",
+      "questions": [
+        {
+          "stem": "The passage principally argues that the idea of opportunity cost",
+          "choices": [
+            "proves that economic life is nothing but a series of losses",
+            "shows that careful choice requires knowing what one is willing to give up",
+            "demonstrates that resources are effectively unlimited",
+            "means that the true cost of a thing is simply its price"
+          ],
+          "answer": 1,
+          "explain": "The author reframes opportunity cost as 'a counsel ... of seriousness,' asking us to know 'what we are willing to give up.'",
+          "cover_story": "scarcity and choice",
+          "b": -1.3
+        },
+        {
+          "stem": "The statement that an hour spent on one task 'is every other task that hour might have held' serves primarily to",
+          "choices": [
+            "make vivid the idea that the cost of a choice is the alternative forgone",
+            "argue that people should work fewer hours",
+            "prove that time can be created whenever it is needed",
+            "show that all tasks are equally valuable"
+          ],
+          "answer": 0,
+          "explain": "It illustrates opportunity cost: the hour's 'true cost' is 'the best alternative we gave up.'",
+          "cover_story": "scarcity and choice",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward the view that opportunity cost makes life 'a ledger of sacrifices' is",
+          "choices": [
+            "full agreement with its gloom",
+            "resistant, reframing the idea as one of seriousness rather than gloom",
+            "indifferent to how the idea is felt",
+            "convinced that the idea is simply false"
+          ],
+          "answer": 1,
+          "explain": "The author calls the discipline 'not a counsel of gloom but of seriousness,' resisting the bleak reading.",
+          "cover_story": "scarcity and choice",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'forgoing' most nearly means",
+          "choices": [
+            "giving up or doing without",
+            "paying a fee for",
+            "looking forward to",
+            "completing well in advance"
+          ],
+          "answer": 0,
+          "explain": "'Choosing one thing means forgoing another,' that is, giving up the alternative.",
+          "cover_story": "scarcity and choice",
+          "b": 0.1
+        },
+        {
+          "stem": "It can be inferred that the author regards a person who 'refuses ever to accept a cost' as",
+          "choices": [
+            "wisely preserving every possible option",
+            "lacking direction rather than gaining freedom",
+            "the model of good economic reasoning",
+            "immune to the demands of scarcity"
+          ],
+          "answer": 1,
+          "explain": "Such a person is 'not richer in possibilities but poorer in direction, forever unwilling to trade any option for any outcome.'",
+          "cover_story": "scarcity and choice",
+          "b": 0.6
+        },
+        {
+          "stem": "Which decision best reflects the 'seriousness' the author recommends?",
+          "choices": [
+            "turning down an appealing job after recognizing it would cost time one values more elsewhere",
+            "accepting every opportunity offered so as to keep all options open",
+            "choosing an option solely because it carries the lowest price tag",
+            "refusing to decide until every possible cost has been eliminated"
+          ],
+          "answer": 0,
+          "explain": "Weighing the job against 'the other lives we might have led' and knowingly letting one go is exactly the 'seriousness' the author urges.",
+          "cover_story": "scarcity and choice",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "The oldest lesson in economics is that a task broken into parts and shared among specialists is done far more abundantly than by each worker laboring alone. One person drawing the wire, another straightening it, a third cutting, a fourth pointing, and a pin factory produces in a day what a single artisan could scarcely make in a year. From this simple observation an enormous prosperity has been argued into being, and the argument is sound: specialization multiplies output, lowers cost, and has lifted more people from want than any decree of charity ever could. The wealth of modern societies is in large part the compounded yield of this one principle, applied and reapplied until the making of almost anything is divided among hands that never meet and often do not know what the others are for.",
+        "And yet the same division that enriches the society can diminish the worker within it. The man who spends his life performing a single motion, one operation of the dozens a finished object requires, gains dexterity at that motion and loses, slowly, the fuller competence of the artisan who once saw a thing through from raw stuff to finished form. He grows rich in output and narrow in scope, a specialist who may no longer understand the whole to which he contributes. To notice this is not to wish the division of labor away, for its fruits are too real and too widely shared to renounce. It is to insist that the ledger has a second column, that the productivity we celebrate is purchased in part with a certain fragmentation of the person, and that a society honest about its wealth will count that cost even as it keeps the gains."
+      ],
+      "source_ref": "OpenStax Principles of Economics 3e (the division of labor and gains from specialization)",
+      "questions": [
+        {
+          "stem": "The passage's central claim is that the division of labor",
+          "choices": [
+            "should be abolished because it harms workers",
+            "produces great abundance while also narrowing the individual worker",
+            "has no real effect on the wealth of societies",
+            "makes every worker into a complete artisan"
+          ],
+          "answer": 1,
+          "explain": "The author affirms specialization's 'enormous prosperity' yet insists 'the ledger has a second column,' a 'fragmentation of the person.'",
+          "cover_story": "the divided worker",
+          "b": -1.4
+        },
+        {
+          "stem": "The description of the pin factory serves primarily to",
+          "choices": [
+            "illustrate how dividing a task among specialists multiplies output",
+            "argue that pins are an especially important product",
+            "prove that a lone artisan works faster than a factory",
+            "show that specialization lowers the quality of goods"
+          ],
+          "answer": 0,
+          "explain": "The factory 'produces in a day what a single artisan could scarcely make in a year,' showing that 'specialization multiplies output.'",
+          "cover_story": "the divided worker",
+          "b": 0.6
+        },
+        {
+          "stem": "The author's overall attitude toward the division of labor is",
+          "choices": [
+            "wholly celebratory, denying that it has any costs",
+            "appreciative of its gains while insisting on counting its costs",
+            "hostile, urging its abolition",
+            "indifferent to both its benefits and its harms"
+          ],
+          "answer": 1,
+          "explain": "The author calls its 'fruits ... too real ... to renounce' yet asks that a society 'count that cost even as it keeps the gains.'",
+          "cover_story": "the divided worker",
+          "b": -0.1
+        },
+        {
+          "stem": "As used in the passage, 'dexterity' most nearly means",
+          "choices": [
+            "skill at a physical task",
+            "financial wealth",
+            "moral goodness",
+            "breadth of general knowledge"
+          ],
+          "answer": 0,
+          "explain": "The worker 'gains dexterity at that motion,' meaning skill at the repeated operation, even as his scope narrows.",
+          "cover_story": "the divided worker",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author sees the specialized worker's loss chiefly as a loss of",
+          "choices": [
+            "physical skill at his particular task",
+            "the broad competence to make something from start to finish",
+            "any share in the society's growing wealth",
+            "the desire to work at all"
+          ],
+          "answer": 1,
+          "explain": "He 'loses ... the fuller competence of the artisan who once saw a thing through from raw stuff to finished form.'",
+          "cover_story": "the divided worker",
+          "b": 0.7
+        },
+        {
+          "stem": "Which of the following, if true, would most weaken the author's claim about the cost of specialization?",
+          "choices": [
+            "evidence that highly specialized workers typically retain or develop a broad, integrated understanding of the whole production process",
+            "evidence that specialization increases total output",
+            "evidence that factory goods are cheaper than handmade ones",
+            "evidence that few independent artisans remain in modern economies"
+          ],
+          "answer": 0,
+          "explain": "The author's cost is that specialization narrows the worker; if specialists keep a broad grasp of the whole, that cost disappears.",
+          "cover_story": "the divided worker",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "Students are taught to think of revision as the stage where a writer fixes mistakes, tidying commas and repairing spelling once the real work of writing is done. This picture is not merely incomplete; it inverts the truth. The corrections we call editing are the least of what revision means, and to stop there is to polish the surface of a house whose walls are in the wrong place. Real revision is not correction but re-vision, a literal seeing again, in which the writer returns to the draft as a stranger might and asks not whether the sentences are clean but whether the thing is doing what it set out to do. Often the answer is no, and the honest reviser must be willing to move a paragraph that took an hour to write, or to cut it, or to discover that the argument he meant to make is not the one that actually arrived on the page.",
+        "This is why revision is harder than drafting, and why so many avoid it. To draft is to bring something into being, which is exhilarating; to revise is to judge what one has made, which requires a colder eye turned on one's own warm labor. The attachment we feel to our sentences, especially the clever ones, is precisely the obstacle, for the phrase we are proudest of is often the one doing the least work, kept not because the writing needs it but because we do. The reviser's discipline is to serve the reader rather than the ego, to ask of every passage what it gives to the person who will read it and to remove whatever survives only because its author loves it. Writing, on this understanding, is not a single act of expression but a long argument between the writer and the draft, and it is in that argument, not the first burst of composition, that most of the meaning is made."
+      ],
+      "source_ref": "OpenStax Writing Guide with Handbook (the writing process: revising and editing)",
+      "questions": [
+        {
+          "stem": "The central claim of the passage is that revision",
+          "choices": [
+            "is mainly a matter of correcting grammar and spelling",
+            "is a process of re-seeing a draft to judge whether it does what it should",
+            "is less important than the first act of drafting",
+            "should preserve every sentence the writer is proud of"
+          ],
+          "answer": 1,
+          "explain": "'Real revision is not correction but re-vision, a literal seeing again,' asking 'whether the thing is doing what it set out to do.'",
+          "cover_story": "the work of revision",
+          "b": -1.4
+        },
+        {
+          "stem": "The image of polishing 'the surface of a house whose walls are in the wrong place' serves primarily to",
+          "choices": [
+            "show the inadequacy of treating revision as mere correction",
+            "argue that writers ought to study architecture",
+            "prove that surface errors do not matter at all",
+            "suggest that drafting is a waste of time"
+          ],
+          "answer": 0,
+          "explain": "Tidying the surface while the structure is wrong illustrates why 'to stop there' at editing misses what revision means.",
+          "cover_story": "the work of revision",
+          "b": 0.7
+        },
+        {
+          "stem": "The author regards a writer's attachment to his cleverest sentences as",
+          "choices": [
+            "a virtue that should be encouraged",
+            "an obstacle that revision must overcome",
+            "irrelevant to the quality of the writing",
+            "proof of genuine talent"
+          ],
+          "answer": 1,
+          "explain": "'The attachment we feel to our sentences ... is precisely the obstacle,' since the proudest phrase 'is often the one doing the least work.'",
+          "cover_story": "the work of revision",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'inverts' most nearly means",
+          "choices": [
+            "slightly improves",
+            "turns into its opposite",
+            "carefully explains",
+            "repeats exactly"
+          ],
+          "answer": 1,
+          "explain": "The common picture 'inverts the truth,' getting it backwards, since editing 'is the least of what revision means.'",
+          "cover_story": "the work of revision",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author considers the hardest part of revision to be",
+          "choices": [
+            "correcting punctuation and spelling",
+            "judging one's own work coldly enough to cut what one loves",
+            "producing the first draft quickly",
+            "praising the reader's intelligence"
+          ],
+          "answer": 1,
+          "explain": "Revision 'requires a colder eye turned on one's own warm labor,' removing 'whatever survives only because its author loves it.'",
+          "cover_story": "the work of revision",
+          "b": 0.7
+        },
+        {
+          "stem": "Which action best exemplifies revision as the author defines it?",
+          "choices": [
+            "cutting a well-written paragraph after realizing it does not serve the essay's actual argument",
+            "running a spell-check over an otherwise finished draft",
+            "keeping a favorite sentence because the writer is proud of it",
+            "adding decorative phrases to make the prose sound more impressive"
+          ],
+          "answer": 0,
+          "explain": "Cutting good writing that fails the argument is exactly serving 'the reader rather than the ego,' the reviser's discipline.",
+          "cover_story": "the work of revision",
+          "b": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Passage",
+      "paragraphs": [
+        "We speak of good writing as though it were a property of the words themselves, a quality that a sentence either has or lacks the way a stone has weight. But no sentence is good in the abstract; it is good for someone, in some situation, toward some end. The plain instruction that saves a life in an emergency would be a failure as a poem, and the poem that moves us to tears would be a catastrophe printed on the side of a medicine bottle. What we are really judging when we praise writing is the fit between a text and its occasion, the match between what was said and the reader, purpose, and moment it was meant to serve. Rhetoric gives this cluster a name, the rhetorical situation, and its first lesson is that there is no writing so excellent that it cannot be made wrong by being addressed to the wrong audience at the wrong time.",
+        "This unsettles a flattering belief, that the writer is a solitary craftsman answerable only to his art. In truth the reader is a silent collaborator in every sentence, and to write well is to hold that other person constantly in mind, to anticipate what she knows, fears, doubts, and needs, and to shape the words to meet her. This is not a betrayal of honesty for the sake of persuasion; it is the condition of being understood at all. A truth flung at a reader who is not ready to receive it does not become more true for being ignored. The writer who refuses to consider his audience, priding himself on indifference to their responses, has not risen above rhetoric but merely practiced it badly, addressing no one and reaching them. To take the audience seriously is not to flatter them but to grant that communication, unlike private self-expression, is something that must be completed by another."
+      ],
+      "source_ref": "OpenStax Writing Guide with Handbook (the rhetorical situation: audience, purpose, and context)",
+      "questions": [
+        {
+          "stem": "The passage principally argues that the quality of writing",
+          "choices": [
+            "is a property of the words themselves, independent of any reader",
+            "depends on the fit between a text and its audience, purpose, and occasion",
+            "matters only in emergencies and in poetry",
+            "cannot be judged at all"
+          ],
+          "answer": 1,
+          "explain": "What we judge 'is the fit between a text and its occasion,' since 'no sentence is good in the abstract.'",
+          "cover_story": "writing and audience",
+          "b": -1.3
+        },
+        {
+          "stem": "The contrast between an emergency instruction and a poem serves primarily to",
+          "choices": [
+            "show that the same text can succeed or fail depending on its occasion",
+            "argue that poems are less useful than instructions",
+            "prove that good writing is the same in every context",
+            "suggest that emergencies are the best subject for writing"
+          ],
+          "answer": 0,
+          "explain": "The life-saving instruction 'would be a failure as a poem,' and the poem 'a catastrophe' on a medicine bottle, showing quality depends on 'fit.'",
+          "cover_story": "writing and audience",
+          "b": 0.7
+        },
+        {
+          "stem": "The author's attitude toward the belief that the writer is a 'solitary craftsman answerable only to his art' is",
+          "choices": [
+            "endorsing, treating it as the mark of integrity",
+            "critical, viewing it as flattering but false",
+            "neutral, neither agreeing nor disagreeing",
+            "admiring of the writers who hold it"
+          ],
+          "answer": 1,
+          "explain": "The author calls it 'a flattering belief' and argues 'the reader is a silent collaborator in every sentence.'",
+          "cover_story": "writing and audience",
+          "b": 0.0
+        },
+        {
+          "stem": "As used in the passage, 'anticipate' most nearly means",
+          "choices": [
+            "to look forward to with pleasure",
+            "to foresee and prepare for in advance",
+            "to argue against",
+            "to remember afterward"
+          ],
+          "answer": 1,
+          "explain": "To 'anticipate what she knows, fears, doubts, and needs' is to foresee the reader's state and shape the words for it.",
+          "cover_story": "writing and audience",
+          "b": 0.2
+        },
+        {
+          "stem": "It can be inferred that the author regards considering one's audience as",
+          "choices": [
+            "a dishonest compromise of the truth for the sake of persuasion",
+            "a necessary condition of being understood",
+            "an optional refinement for skilled writers only",
+            "a distraction from the real work of self-expression"
+          ],
+          "answer": 1,
+          "explain": "Holding the reader in mind 'is not a betrayal of honesty' but 'the condition of being understood at all.'",
+          "cover_story": "writing and audience",
+          "b": 0.7
+        },
+        {
+          "stem": "Which of the following, if true, would most strengthen the author's view that writing must be completed by its audience?",
+          "choices": [
+            "a clearly true and well-crafted message that fails entirely because its intended readers lack the background to understand it",
+            "a poem admired by critics purely for its technical skill",
+            "an instruction manual written without regard for its users that they nonetheless follow easily",
+            "a writer who becomes famous for openly ignoring his readers"
+          ],
+          "answer": 0,
+          "explain": "A true, skilled message that fails for lack of a ready audience shows communication 'must be completed by another,' as the author claims.",
+          "cover_story": "writing and audience",
+          "b": 1.3
         }
       ]
     }

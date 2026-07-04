@@ -420,7 +420,13 @@
   // Practice runs continuously: a section is a rotation of passages (each with its
   // questions), served one after another; when the rotation is exhausted we reshuffle
   // and keep going, so you can practice as far past the daily goal as you like.
-  const state = { section: 'cars', title: BANKS.cars.title, rounds: [], pi: 0, qi: 0, selected: null, confidence: 'unsure', checked: false, results: [], reported: 0, t0: 0 };
+  const state = {
+    section: 'cars', title: BANKS.cars.title, rounds: [], pi: 0, qi: 0,
+    selected: null, confidence: 'unsure', checked: false, results: [], reported: 0, t0: 0,
+    // Practice (default) vs Test mode. phase: 'setup' | 'running' | 'summary'.
+    mode: 'practice', phase: 'setup', test: null, testCount: 10, testMin: 15,
+  };
+  const SECTION_LABELS = { cars: 'CARS', chem_phys: 'Chem/Phys', bio_biochem: 'Bio/Biochem', psych_soc: 'Psych/Soc' };
   const curPassage = () => state.rounds[state.pi];
   const curQuestion = () => state.rounds[state.pi].questions[state.qi];
   // Every item checked in THIS webview load -- survives moving between passages and
@@ -451,7 +457,197 @@
     return shuffle(sectionPassages(key)).map((r) => ({ passage: r.passage, questions: adaptiveOrder(r.questions, key) }));
   }
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-  const app = () => document.getElementById('app');
+  // In the tabbed dashboard, practice lives in its own pane; the standalone
+  // preview page has no pane, so fall back to #app there.
+  const pane = () => document.getElementById('pane-practice') || document.getElementById('app');
+
+  // Dashboard data for the shared study launcher. studyBlock lives in dashboard.js,
+  // which is loaded before this file in the tabbed page, so it (and MOCK) are in
+  // scope here. Live collection data when present, else the offline-preview MOCK;
+  // null on a live page with no data yet, or on the standalone practice preview
+  // where dashboard.js is not loaded at all (the studyBlock guard handles that).
+  function dashData() {
+    if (typeof window === 'undefined') return null;
+    if (window.__VANTAGE__) return window.__VANTAGE__;
+    if (window.__VANTAGE_LIVE__) return null;
+    return (typeof MOCK !== 'undefined') ? MOCK : null;
+  }
+  const fmtTime = (ms) => {
+    const s = Math.max(0, Math.round(ms / 1000));
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  };
+
+  // Make the Practice tab the active one (used when a Reasoning button on another
+  // tab opens practice). Mirrors dashboard.js vtab's DOM work.
+  function activate() {
+    if (typeof document === 'undefined') return;
+    window.__vtab = 'practice';
+    document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('tab--on', t.dataset.tab === 'practice'));
+    document.querySelectorAll('.tabpane').forEach((p) => {
+      const on = p.id === 'pane-practice';
+      p.hidden = !on;
+      p.classList.toggle('tabpane--on', on);
+    });
+  }
+
+  // ---- Setup screen: timed-test setup (section, question count, and timer) ----
+  function renderSetup() {
+    state.phase = 'setup';
+    stopTimer();
+    // The setup card builds a timed test, so force test mode. This keeps start()
+    // launching a timed session even when the last thing the student did was an
+    // untimed Reasoning session, which leaves state.mode = 'practice'.
+    state.mode = 'test';
+    const secOpts = ['cars', 'chem_phys', 'bio_biochem', 'psych_soc']
+      .map((k) => `<option value="${k}"${k === state.section ? ' selected' : ''}>${esc(SECTION_LABELS[k])}</option>`)
+      .join('');
+    const cfg = `<label class="psetup__row"><span>Questions</span><input class="psetup__num" type="number" min="1" max="59" value="${state.testCount}" onchange="vpractice.setCount(this.value)"></label>
+         <label class="psetup__row"><span>Time (minutes)</span><input class="psetup__num" type="number" min="1" max="180" value="${state.testMin}" onchange="vpractice.setMin(this.value)"></label>
+         <div class="psetup__presets">
+           <button class="pchip" onclick="vpractice.preset(10,15)">10 questions, 15 min</button>
+           <button class="pchip" onclick="vpractice.preset(20,30)">20 questions, 30 min</button>
+         </div>`;
+    // Study launcher lives here on Practice (interleaved CTA at the top, then
+    // Flashcards + Reasoning together per section). Reuses the dashboard's shared
+    // studyBlock renderer and its existing handlers, unchanged; the card below it
+    // builds a timed reasoning test.
+    const d = dashData();
+    const study = (d && typeof studyBlock === 'function') ? studyBlock(d) : '';
+    // .psplit lays the two panels out: Study & practice (primary, wider) beside the
+    // Timed test setup (secondary, narrower) on wide viewports, and stacked on narrow
+    // ones (see practice.css). Layout only, no behavior change to either block.
+    pane().innerHTML = `<div class="psplit">${study}<div class="wrap psetup">
+      <div class="psplit__spacer" aria-hidden="true"><div class="section__title section__title--group">&nbsp;</div></div>
+      <div class="psetup__card">
+        <div class="psetup__title">Timed test</div>
+        <label class="psetup__row"><span>Section</span><select class="psetup__sec" onchange="vpractice.setSection(this.value)">${secOpts}</select></label>
+        ${cfg}
+        <button class="pbtn pbtn--start" onclick="vpractice.start()">Start test</button>
+      </div></div></div>`;
+  }
+
+  function beginSession(section, isTest) {
+    const key = section && (hasInjected(section) || BANKS[section]) ? section : 'cars';
+    state.section = key;
+    const inj = INJECTED && INJECTED[key];
+    state.title = (inj && inj.title) || (BANKS[key] || BANKS.cars).title;
+    state.rounds = buildRounds(key);
+    state.pi = 0; state.qi = 0;
+    state.selected = null; state.confidence = 'unsure'; state.checked = false;
+    state.results = []; state.reported = 0;
+    state.mode = isTest ? 'test' : 'practice';
+    state.phase = 'running';
+    if (isTest) {
+      const totalMs = Math.max(1, state.testMin) * 60000;
+      state.test = { count: Math.max(1, state.testCount), totalMs, endTs: Date.now() + totalMs, answered: 0, correct: 0, timerId: null };
+      startTimer();
+    } else {
+      state.test = null;
+    }
+    render();
+  }
+
+  // ---- Test countdown ----
+  function startTimer() {
+    stopTimer();
+    if (!state.test) return;
+    state.test.timerId = setInterval(() => {
+      if (!state.test) return;
+      const left = state.test.endTs - Date.now();
+      const el = document.getElementById('ptimer');
+      if (el) el.textContent = fmtTime(left);
+      if (left <= 0) endTest();
+    }, 1000);
+  }
+  function stopTimer() {
+    if (state.test && state.test.timerId) { clearInterval(state.test.timerId); state.test.timerId = null; }
+  }
+
+  // Draw the current phase. Called on every advance and when the Practice tab is
+  // re-opened (so a running session survives tab switches).
+  function render() {
+    if (state.phase === 'setup') return renderSetup();
+    if (state.phase === 'summary') return renderSummary();
+    if (state.mode === 'test') return renderTest();
+    return renderPractice();
+  }
+
+  // Test mode: exam conditions -- a countdown, a progress count, and no feedback
+  // until the summary. Selecting an answer just enables Next.
+  function renderTest() {
+    const p = curPassage();
+    const q = curQuestion();
+    const t = state.test;
+    const last = t.answered + 1 >= t.count;
+    pane().innerHTML = `<div class="wrap">
+    <div class="top">
+      <div class="top__title">${esc(state.title)} <span class="ptestbadge">Test</span></div>
+      <div class="top__right">
+        <span class="ptimer" id="ptimer">${fmtTime(t.endTs - Date.now())}</span>
+        <span class="progress">${t.answered + 1} of ${t.count}</span>
+        <button class="linkbtn" onclick="vpractice.endTest()">End test</button>
+      </div>
+    </div>
+    <div class="grid">
+      <section class="passage">
+        <div class="passage__label">${esc(p.passage.label)}</div>
+        <div class="passage__body">${p.passage.paragraphs.map((x) => `<p>${esc(x)}</p>`).join('')}</div>
+        ${p.passage.source_ref ? `<div class="passage__src">Source: ${esc(p.passage.source_ref)}</div>` : ''}
+      </section>
+      <section class="qcard">
+        <div class="qcard__stem">${esc(q.stem)}</div>
+        <div class="choices">${q.choices.map((c, idx) => choiceHtml(c, idx)).join('')}</div>
+        <div class="actions"><button class="pbtn" id="act" disabled onclick="vpractice.nextTest()">${last ? 'Finish test' : 'Next'}</button></div>
+      </section>
+    </div></div>`;
+    state.t0 = Date.now();
+  }
+
+  function endTest() {
+    stopTimer();
+    flush();
+    state.phase = 'summary';
+    renderSummary();
+  }
+
+  // End-of-test summary: raw tally (a count of THIS test, not a modeled score),
+  // time used, and the missed questions with their answers. The dashboard's
+  // Performance/Readiness scores update from these answers and keep their own
+  // give-up rules, so we never present a modeled score here.
+  function renderSummary() {
+    const t = state.test || { count: 0, answered: 0, correct: 0, totalMs: 0, endTs: Date.now() };
+    const answered = t.answered;
+    const correct = t.correct;
+    const usedMs = Math.max(0, t.totalMs - Math.max(0, t.endTs - Date.now()));
+    const pctv = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+    const misses = state.results.filter((r) => !r.correct);
+    const scoreLine = answered > 0
+      ? `<div class="psum__score"><span class="psum__num">${correct} of ${answered}</span><span class="psum__pct">${pctv}% correct</span></div>`
+      : `<div class="psum__score"><span class="psum__num">No answers</span><span class="psum__pct">You ended before answering anything</span></div>`;
+    const missList = misses.length
+      ? `<div class="psum__misses"><div class="psum__mh">Review your misses</div>${misses.map((m) => `<div class="psum__miss">
+          <div class="psum__mstem">${esc(m.stem)}</div>
+          <div class="psum__ma">Answer: ${esc(m.answer)}</div>
+          ${m.explain ? `<div class="psum__mx">${esc(m.explain)}</div>` : ''}</div>`).join('')}</div>`
+      : (answered > 0 ? '<div class="psum__allright">You did not miss any. Nice work.</div>' : '');
+    pane().innerHTML = `<div class="wrap psum">
+    <div class="top">
+      <div class="top__title">Test complete</div>
+      <div class="top__right"><button class="linkbtn" onclick="vpractice.finish()">Back to dashboard</button></div>
+    </div>
+    <div class="psum__body">
+      ${scoreLine}
+      <div class="psum__meta"><span>${answered} of ${t.count} answered</span><span>Time used ${fmtTime(usedMs)}</span></div>
+      <div class="psum__note">These answers feed your Performance score. Open the Dashboard tab to see it update.</div>
+      ${missList}
+      <div class="psum__actions">
+        <button class="pbtn pbtn--start" onclick="vpractice.newTest()">New test</button>
+        <button class="linkbtn" onclick="vpractice.finish()">Back to dashboard</button>
+      </div>
+    </div></div>`;
+  }
 
   // "__ of __ today": progress toward the day's reasoning goal. X = answered so far
   // today (the count persisted at the last dashboard load, plus everything answered
@@ -504,10 +700,10 @@
     return `<div class="confrow"><span class="confrow__label">How sure are you?</span><div class="confchips">${chips}</div></div>`;
   }
 
-  function render() {
+  function renderPractice() {
     const p = curPassage();
     const q = curQuestion();
-    app().innerHTML = `<div class="wrap">
+    pane().innerHTML = `<div class="wrap">
     <div class="top">
       <div class="top__title">${esc(state.title)}</div>
       <div class="top__right">
@@ -546,7 +742,9 @@
     if (!items.length) return;
     state.reported = state.results.length;
     try {
-      pycmd('vantage:practice2:' + encodeURIComponent(JSON.stringify({ section: state.section, items })));
+      // Same performance pipeline as practice; `mode` tags test answers so they
+      // are distinguishable in reporting without forking a separate scoring path.
+      pycmd('vantage:practice2:' + encodeURIComponent(JSON.stringify({ section: state.section, mode: state.mode, items })));
     } catch (e) {
       console.log('practice2', items);
     }
@@ -569,16 +767,39 @@
   }
 
   window.vpractice = {
-    open(section) {
-      const key = section && (hasInjected(section) || BANKS[section]) ? section : 'cars';
-      state.section = key;
-      const inj = INJECTED && INJECTED[key];
-      state.title = (inj && inj.title) || (BANKS[key] || BANKS.cars).title;
-      // Build the shuffled passage rotation (source stays pristine inside buildRounds).
-      state.rounds = buildRounds(key);
-      state.pi = 0; state.qi = 0;
-      state.selected = null; state.confidence = 'unsure'; state.checked = false;
-      state.results = []; state.reported = 0;
+    // Open practice for a section directly (Reasoning buttons + "Start practice"
+    // CTAs). Jumps to the Practice tab and skips the setup screen.
+    open(section) { activate(); beginSession(section, false); },
+    // Practice tab opened via the tab bar: keep a running session, else show setup.
+    mount() { activate(); if (state.phase === 'running') render(); else renderSetup(); },
+    setSection(k) { if (hasInjected(k) || BANKS[k]) state.section = k; },
+    setCount(v) { const n = parseInt(v, 10); state.testCount = isNaN(n) ? 10 : Math.max(1, Math.min(59, n)); },
+    setMin(v) { const n = parseInt(v, 10); state.testMin = isNaN(n) ? 15 : Math.max(1, Math.min(180, n)); },
+    preset(c, m) { state.mode = 'test'; state.testCount = c; state.testMin = m; renderSetup(); },
+    start() { beginSession(state.section, state.mode === 'test'); },
+    newTest() { state.phase = 'setup'; renderSetup(); },
+    endTest() { endTest(); },
+    // Test mode: record the answer silently (no feedback), then advance; end when
+    // the question count is reached. Persist per passage so nothing is lost midway.
+    nextTest() {
+      if (state.selected == null || !state.test) return;
+      const q = curQuestion();
+      const correct = state.selected === q.answer;
+      state.results.push({
+        correct, confidence: null, ms: Date.now() - (state.t0 || Date.now()),
+        stem: q.stem, answer: q.choices[q.answer], explain: q.explain, concept: q.concept || null,
+      });
+      answeredThisLoad += 1;
+      state.test.answered += 1;
+      if (correct) state.test.correct += 1;
+      if (state.test.answered >= state.test.count) { endTest(); return; }
+      state.selected = null;
+      state.qi += 1;
+      if (state.qi >= curPassage().questions.length) {
+        flush();
+        state.qi = 0; state.pi += 1;
+        if (state.pi >= state.rounds.length) { state.rounds = buildRounds(state.section); state.pi = 0; }
+      }
       render();
     },
     setConf(v) {
@@ -644,7 +865,7 @@
     next() { advance(); },
     // Leave practice: persist anything not yet reported, then return to the dashboard
     // (which recomputes so the extra practice shows in the scores and today's count).
-    finish() { flush(); vpy('refresh'); },
+    finish() { stopTimer(); flush(); vpy('refresh'); },
   };
 
   window.vpy = window.vpy || function (cmd) { try { pycmd('vantage:' + cmd); } catch (e) { console.log('vpy', cmd); } };

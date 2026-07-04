@@ -12,7 +12,12 @@
       "questions": [
         {
           "stem": "The cart is released from rest and slides 1.0 m down the incline. Using energy conservation, what is its speed at the bottom?",
-          "choices": ["2.2 m/s", "3.2 m/s", "4.5 m/s", "5.0 m/s"],
+          "choices": [
+            "2.2 m/s",
+            "3.2 m/s",
+            "4.5 m/s",
+            "5.0 m/s"
+          ],
           "answer": 1,
           "explain": "Only the vertical drop counts: h = 1.0 sin 30 = 0.5 m, so v = sqrt(2gh) = sqrt(10) which is about 3.2 m/s. Using the full 1.0 m as the height gives the too large 4.5 m/s.",
           "concept": "4A",
@@ -21,7 +26,12 @@
         },
         {
           "stem": "While the cart slides down the frictionless incline, how does the normal force from the track compare with the cart's weight?",
-          "choices": ["Greater than the weight", "Equal to the weight", "Zero", "Less than the weight"],
+          "choices": [
+            "Greater than the weight",
+            "Equal to the weight",
+            "Zero",
+            "Less than the weight"
+          ],
           "answer": 3,
           "explain": "On an incline the normal force is mg cos 30, which is smaller than mg because cos 30 is less than 1. It equals the weight only on level ground.",
           "concept": "4A",
@@ -30,7 +40,12 @@
         },
         {
           "stem": "What is the magnitude of the cart's acceleration down the frictionless incline?",
-          "choices": ["2.5 m/s^2", "5.0 m/s^2", "8.7 m/s^2", "10 m/s^2"],
+          "choices": [
+            "2.5 m/s^2",
+            "5.0 m/s^2",
+            "8.7 m/s^2",
+            "10 m/s^2"
+          ],
           "answer": 1,
           "explain": "On a frictionless incline a = g sin(theta) = 10 times 0.5 = 5 m/s^2. The value 8.7 comes from wrongly using cos 30.",
           "concept": "4A",
@@ -39,7 +54,12 @@
         },
         {
           "stem": "How much work does gravity do on the 2.0 kg cart as it slides the 1.0 m down to the bottom?",
-          "choices": ["5 J", "10 J", "17 J", "20 J"],
+          "choices": [
+            "5 J",
+            "10 J",
+            "17 J",
+            "20 J"
+          ],
           "answer": 1,
           "explain": "Work by gravity is mgh with h = 0.5 m, so 2 times 10 times 0.5 = 10 J. Using the 1.0 m path length as the height double counts and gives 20 J.",
           "concept": "4A",
@@ -48,7 +68,12 @@
         },
         {
           "stem": "The cart reaches the spring and compresses it until it stops for an instant. If a stiffer spring (larger force constant k) is used for the same incoming speed, the maximum compression of the spring will be:",
-          "choices": ["Smaller", "Larger", "Unchanged", "Zero"],
+          "choices": [
+            "Smaller",
+            "Larger",
+            "Unchanged",
+            "Zero"
+          ],
           "answer": 0,
           "explain": "The kinetic energy delivered is fixed, and it all becomes spring energy one half k x squared, so a larger k forces a smaller maximum compression x.",
           "concept": "4A",
@@ -57,7 +82,12 @@
         },
         {
           "stem": "In a later run the cart takes 2.0 s to reach the bottom, and the drop releases 10 J of gravitational potential energy. What is the average power delivered by gravity during the slide?",
-          "choices": ["2.5 W", "5 W", "10 W", "20 W"],
+          "choices": [
+            "2.5 W",
+            "5 W",
+            "10 W",
+            "20 W"
+          ],
           "answer": 1,
           "explain": "Average power is work over time, 10 J divided by 2.0 s = 5 W.",
           "concept": "4A",
@@ -76,7 +106,12 @@
       "questions": [
         {
           "stem": "Raising the saline bag higher above the arm increases the flow into the vein mainly by increasing the:",
-          "choices": ["density of the saline", "viscosity of the saline", "surface tension of the saline", "hydrostatic pressure driving the flow"],
+          "choices": [
+            "density of the saline",
+            "viscosity of the saline",
+            "surface tension of the saline",
+            "hydrostatic pressure driving the flow"
+          ],
           "answer": 3,
           "explain": "The driving pressure is the hydrostatic head rho g h, so a greater height h means more pressure pushing fluid into the vein.",
           "concept": "4B",
@@ -85,7 +120,12 @@
         },
         {
           "stem": "If the bag hangs 1.0 m above the needle, about how much pressure does that height add at the needle?",
-          "choices": ["100 Pa", "1,000 Pa", "10,000 Pa", "100,000 Pa"],
+          "choices": [
+            "100 Pa",
+            "1,000 Pa",
+            "10,000 Pa",
+            "100,000 Pa"
+          ],
           "answer": 2,
           "explain": "Hydrostatic pressure is rho g h = 1000 times 10 times 1.0 = 10,000 Pa.",
           "concept": "4B",
@@ -94,7 +134,12 @@
         },
         {
           "stem": "In the narrowed artery model the radius drops to half. By the continuity equation, the fluid speed in the narrow segment becomes about:",
-          "choices": ["half the wide-segment speed", "twice the wide-segment speed", "four times the wide-segment speed", "eight times the wide-segment speed"],
+          "choices": [
+            "half the wide-segment speed",
+            "twice the wide-segment speed",
+            "four times the wide-segment speed",
+            "eight times the wide-segment speed"
+          ],
           "answer": 2,
           "explain": "Continuity keeps area times speed constant. Halving the radius cuts the area to one quarter, so the speed must rise fourfold.",
           "concept": "4B",
@@ -103,7 +148,12 @@
         },
         {
           "stem": "Compared with the wide segment, the fluid pressure in the fast, narrow segment is best predicted by Bernoulli's principle to be:",
-          "choices": ["Lower than in the wide segment", "Higher than in the wide segment", "The same as in the wide segment", "Zero"],
+          "choices": [
+            "Lower than in the wide segment",
+            "Higher than in the wide segment",
+            "The same as in the wide segment",
+            "Zero"
+          ],
           "answer": 0,
           "explain": "For an ideal fluid, faster flow goes with lower pressure, so the narrow, high-speed region has lower pressure than the wide region.",
           "concept": "4B",
@@ -112,7 +162,12 @@
         },
         {
           "stem": "Blood is actually viscous. If a vessel keeps the same pressure difference but its radius falls to half, Poiseuille's law predicts the volume flow rate falls to about:",
-          "choices": ["one half", "one quarter", "one eighth", "one sixteenth"],
+          "choices": [
+            "one half",
+            "one quarter",
+            "one eighth",
+            "one sixteenth"
+          ],
           "answer": 3,
           "explain": "Poiseuille flow scales with the radius to the fourth power, so halving the radius gives (1/2) to the fourth = 1/16 of the flow.",
           "concept": "4B",
@@ -121,7 +176,12 @@
         },
         {
           "stem": "A sealed drug capsule with a density less than saline is dropped into the bag and floats. The buoyant force on the floating capsule is:",
-          "choices": ["Greater than the capsule's weight", "Equal to the capsule's weight", "Less than the capsule's weight", "Zero"],
+          "choices": [
+            "Greater than the capsule's weight",
+            "Equal to the capsule's weight",
+            "Less than the capsule's weight",
+            "Zero"
+          ],
           "answer": 1,
           "explain": "A floating object is in equilibrium, so the buoyant force exactly balances its weight.",
           "concept": "4B",
@@ -140,7 +200,12 @@
       "questions": [
         {
           "stem": "The student doubles the distance between two fixed point charges. The electric force between them becomes:",
-          "choices": ["twice as large", "half as large", "one quarter as large", "four times as large"],
+          "choices": [
+            "twice as large",
+            "half as large",
+            "one quarter as large",
+            "four times as large"
+          ],
           "answer": 2,
           "explain": "Coulomb's law makes the force scale as 1 over distance squared, so doubling the distance cuts the force to one quarter.",
           "concept": "4C",
@@ -149,7 +214,12 @@
         },
         {
           "stem": "With the 100 ohm and 200 ohm resistors in series across the 9 V battery, what current flows from the battery?",
-          "choices": ["0.01 A", "0.03 A", "0.09 A", "0.30 A"],
+          "choices": [
+            "0.01 A",
+            "0.03 A",
+            "0.09 A",
+            "0.30 A"
+          ],
           "answer": 1,
           "explain": "Series resistances add to 300 ohm, so I = V over R = 9 divided by 300 = 0.03 A.",
           "concept": "4C",
@@ -158,7 +228,12 @@
         },
         {
           "stem": "If instead the two resistors are wired in parallel, the total resistance is:",
-          "choices": ["less than 100 ohm", "exactly 150 ohm", "exactly 300 ohm", "more than 300 ohm"],
+          "choices": [
+            "less than 100 ohm",
+            "exactly 150 ohm",
+            "exactly 300 ohm",
+            "more than 300 ohm"
+          ],
           "answer": 0,
           "explain": "Resistors in parallel always give a total smaller than the smallest branch, so less than 100 ohm (about 67 ohm here).",
           "concept": "4C",
@@ -167,7 +242,12 @@
         },
         {
           "stem": "One 100 ohm resistor carries a current of 0.03 A. About how much power does it dissipate as heat?",
-          "choices": ["0.03 W", "0.09 W", "0.3 W", "9 W"],
+          "choices": [
+            "0.03 W",
+            "0.09 W",
+            "0.3 W",
+            "9 W"
+          ],
           "answer": 1,
           "explain": "Power is I squared times R = (0.03) squared times 100 = 0.09 W.",
           "concept": "4C",
@@ -176,7 +256,12 @@
         },
         {
           "stem": "The 2 microfarad capacitor sits across the full 9 V. How much charge does it store?",
-          "choices": ["about 4.5 microcoulombs", "about 11 microcoulombs", "about 18 microcoulombs", "about 36 microcoulombs"],
+          "choices": [
+            "about 4.5 microcoulombs",
+            "about 11 microcoulombs",
+            "about 18 microcoulombs",
+            "about 36 microcoulombs"
+          ],
           "answer": 2,
           "explain": "Stored charge is Q = C times V = 2 microfarad times 9 V = 18 microcoulombs.",
           "concept": "4C",
@@ -185,7 +270,12 @@
         },
         {
           "stem": "The positive ion moves to the right while the magnetic field points out of the page. The magnetic force on the ion points:",
-          "choices": ["toward the top of the page", "in the same direction it is moving", "opposite to its motion", "toward the bottom of the page"],
+          "choices": [
+            "toward the top of the page",
+            "in the same direction it is moving",
+            "opposite to its motion",
+            "toward the bottom of the page"
+          ],
           "answer": 3,
           "explain": "Using F = q v cross B with velocity to the right and field out of the page, the right-hand rule gives a force toward the bottom of the page. The magnetic force is always perpendicular to the velocity, so it cannot point along the motion.",
           "concept": "4C",
@@ -204,7 +294,12 @@
       "questions": [
         {
           "stem": "Light passes from glass into tissue, where it travels faster. As it crosses the boundary, the light bends:",
-          "choices": ["toward the normal", "away from the normal", "straight back the way it came", "not at all"],
+          "choices": [
+            "toward the normal",
+            "away from the normal",
+            "straight back the way it came",
+            "not at all"
+          ],
           "answer": 1,
           "explain": "Moving into a medium with a lower index, light speeds up and bends away from the normal, as Snell's law requires.",
           "concept": "4D",
@@ -213,7 +308,12 @@
         },
         {
           "stem": "Light stays trapped inside the glass fiber because, when it strikes the fiber wall at a shallow angle, it undergoes:",
-          "choices": ["Complete absorption", "Refraction out of the fiber", "Total internal reflection", "A Doppler shift"],
+          "choices": [
+            "Complete absorption",
+            "Refraction out of the fiber",
+            "Total internal reflection",
+            "A Doppler shift"
+          ],
           "answer": 2,
           "explain": "Beyond the critical angle, light in the denser glass is totally internally reflected, so it stays inside the fiber.",
           "concept": "4D",
@@ -222,7 +322,12 @@
         },
         {
           "stem": "For the 2 cm focal length lens with the object 6 cm away, the image distance (using 1/f = 1/do + 1/di) is:",
-          "choices": ["1.5 cm", "3 cm", "6 cm", "12 cm"],
+          "choices": [
+            "1.5 cm",
+            "3 cm",
+            "6 cm",
+            "12 cm"
+          ],
           "answer": 1,
           "explain": "1/di = 1/f - 1/do = 1/2 - 1/6 = 1/3, so di = 3 cm.",
           "concept": "4D",
@@ -231,7 +336,12 @@
         },
         {
           "stem": "That image, formed by a converging lens with the object outside the focal length, is:",
-          "choices": ["Virtual and upright", "Virtual and inverted", "Real and inverted", "Real and upright"],
+          "choices": [
+            "Virtual and upright",
+            "Virtual and inverted",
+            "Real and inverted",
+            "Real and upright"
+          ],
           "answer": 2,
           "explain": "For a converging lens with the object beyond the focal length, the image is real and inverted.",
           "concept": "4D",
@@ -240,7 +350,12 @@
         },
         {
           "stem": "The doctor compares blue light and red light. Because blue light has a higher frequency, each blue photon carries:",
-          "choices": ["Less energy than a red photon", "The same energy as a red photon", "No energy", "More energy than a red photon"],
+          "choices": [
+            "Less energy than a red photon",
+            "The same energy as a red photon",
+            "No energy",
+            "More energy than a red photon"
+          ],
           "answer": 3,
           "explain": "Photon energy E = h times f rises with frequency, so higher-frequency blue photons carry more energy than red ones.",
           "concept": "4D",
@@ -249,7 +364,12 @@
         },
         {
           "stem": "In the double-slit alignment check, if the two slits are moved closer together, the bright fringes on the screen will be:",
-          "choices": ["Spaced farther apart", "Spaced closer together", "Unchanged", "Removed entirely"],
+          "choices": [
+            "Spaced farther apart",
+            "Spaced closer together",
+            "Unchanged",
+            "Removed entirely"
+          ],
           "answer": 0,
           "explain": "Fringe spacing is inversely proportional to slit separation, so bringing the slits closer spreads the fringes farther apart.",
           "concept": "4D",
@@ -268,7 +388,12 @@
       "questions": [
         {
           "stem": "A sample of the tracer starts with 80 mg. After 12 hours (two half-lives of 6 hours each), how much remains?",
-          "choices": ["40 mg", "20 mg", "10 mg", "0 mg"],
+          "choices": [
+            "40 mg",
+            "20 mg",
+            "10 mg",
+            "0 mg"
+          ],
           "answer": 1,
           "explain": "Each 6-hour half-life halves the amount: 80 to 40 after 6 hours, then 40 to 20 after 12 hours.",
           "concept": "4E",
@@ -277,7 +402,12 @@
         },
         {
           "stem": "An isotope decays by converting a neutron into a proton and emitting a light negative particle. This is:",
-          "choices": ["Alpha decay", "Gamma decay", "Electron capture", "Beta-minus decay"],
+          "choices": [
+            "Alpha decay",
+            "Gamma decay",
+            "Electron capture",
+            "Beta-minus decay"
+          ],
           "answer": 3,
           "explain": "Turning a neutron into a proton while emitting an electron (a beta particle) is beta-minus decay, and it raises the atomic number by one.",
           "concept": "4E",
@@ -286,7 +416,12 @@
         },
         {
           "stem": "When a different nucleus emits an alpha particle, its mass number changes by:",
-          "choices": ["unchanged", "increases by 2", "decreases by 2", "decreases by 4"],
+          "choices": [
+            "unchanged",
+            "increases by 2",
+            "decreases by 2",
+            "decreases by 4"
+          ],
           "answer": 3,
           "explain": "An alpha particle carries away 2 protons and 2 neutrons, so the mass number drops by 4 (and the atomic number by 2).",
           "concept": "4E",
@@ -295,7 +430,12 @@
         },
         {
           "stem": "Moving from left to right across a period of the periodic table, atomic radius generally:",
-          "choices": ["Decreases", "Increases", "Stays the same", "Doubles"],
+          "choices": [
+            "Decreases",
+            "Increases",
+            "Stays the same",
+            "Doubles"
+          ],
           "answer": 0,
           "explain": "Across a period the nuclear charge felt by the outer electrons rises while they stay in the same shell, pulling them inward, so the radius shrinks.",
           "concept": "4E",
@@ -304,7 +444,12 @@
         },
         {
           "stem": "An element in group 16, such as oxygen or sulfur, typically gains how many electrons to reach a noble-gas configuration?",
-          "choices": ["1", "2", "3", "6"],
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "6"
+          ],
           "answer": 1,
           "explain": "Group 16 atoms have six valence electrons and gain two to complete an octet.",
           "concept": "4E",
@@ -313,7 +458,12 @@
         },
         {
           "stem": "Labeling one molecule of the tracer needs 2 atoms of the isotope. If the technician has 6 atoms of isotope and unlimited target molecules, how many labeled molecules can be made, and what runs out first?",
-          "choices": ["6 molecules, with isotope limiting", "3 molecules, with the target limiting", "3 molecules, with isotope limiting", "12 molecules, with neither limiting"],
+          "choices": [
+            "6 molecules, with isotope limiting",
+            "3 molecules, with the target limiting",
+            "3 molecules, with isotope limiting",
+            "12 molecules, with neither limiting"
+          ],
           "answer": 2,
           "explain": "Each product needs 2 isotope atoms, so 6 atoms make 3 labeled molecules and the isotope is the limiting reactant.",
           "concept": "4E",
@@ -332,7 +482,12 @@
       "questions": [
         {
           "stem": "A 0.01 M solution of a strong acid that fully dissociates has a pH of about:",
-          "choices": ["1", "2", "7", "12"],
+          "choices": [
+            "1",
+            "2",
+            "7",
+            "12"
+          ],
           "answer": 1,
           "explain": "A strong acid gives a hydrogen ion concentration of 0.01 = 10 to the minus 2 M, so pH = 2.",
           "concept": "5A",
@@ -341,7 +496,12 @@
         },
         {
           "stem": "In the buffer, when the concentrations of weak acid and conjugate base are equal, the pH equals:",
-          "choices": ["0", "4.7", "7.0", "9.3"],
+          "choices": [
+            "0",
+            "4.7",
+            "7.0",
+            "9.3"
+          ],
           "answer": 1,
           "explain": "By Henderson-Hasselbalch, pH = pKa plus log(base over acid), and when the two are equal the log term is zero, so pH = pKa = 4.7.",
           "concept": "5A",
@@ -350,7 +510,12 @@
         },
         {
           "stem": "To hold the buffer's pH above its pKa, the ratio of conjugate base to weak acid must be:",
-          "choices": ["Greater than 1", "Exactly 1", "Less than 1", "Zero"],
+          "choices": [
+            "Greater than 1",
+            "Exactly 1",
+            "Less than 1",
+            "Zero"
+          ],
           "answer": 0,
           "explain": "pH exceeds pKa only when log(base over acid) is positive, which means more conjugate base than acid.",
           "concept": "5A",
@@ -359,7 +524,12 @@
         },
         {
           "stem": "Adding a small amount of strong acid to the buffer barely changes its pH because the added protons are mostly:",
-          "choices": ["Ignored by the solution", "Converted to water with no reaction", "Consumed by the conjugate base", "Released as a gas"],
+          "choices": [
+            "Ignored by the solution",
+            "Converted to water with no reaction",
+            "Consumed by the conjugate base",
+            "Released as a gas"
+          ],
           "answer": 2,
           "explain": "The conjugate base reacts with the added hydrogen ions, soaking up most of the protons so the pH shifts only slightly.",
           "concept": "5A",
@@ -368,7 +538,12 @@
         },
         {
           "stem": "At the equivalence point of a weak acid titrated with a strong base, the pH is:",
-          "choices": ["Exactly 7", "Less than 7", "Exactly equal to the pKa", "Greater than 7"],
+          "choices": [
+            "Exactly 7",
+            "Less than 7",
+            "Exactly equal to the pKa",
+            "Greater than 7"
+          ],
           "answer": 3,
           "explain": "At equivalence only the conjugate base remains, and it makes the solution basic, so the pH is above 7.",
           "concept": "5A",
@@ -377,7 +552,12 @@
         },
         {
           "stem": "A sparingly soluble salt MX sits in water. Adding more X-minus ions from a separate soluble salt will make the solubility of MX:",
-          "choices": ["Increase", "Decrease", "Stay exactly the same", "Become infinite"],
+          "choices": [
+            "Increase",
+            "Decrease",
+            "Stay exactly the same",
+            "Become infinite"
+          ],
           "answer": 1,
           "explain": "By the common-ion effect, extra X-minus pushes the dissolution equilibrium back toward solid, lowering solubility.",
           "concept": "5A",
@@ -396,7 +576,12 @@
       "questions": [
         {
           "stem": "A carbon atom bonded to four other atoms with no lone pairs has what shape around it?",
-          "choices": ["Linear", "Trigonal planar", "Tetrahedral", "Bent"],
+          "choices": [
+            "Linear",
+            "Trigonal planar",
+            "Tetrahedral",
+            "Bent"
+          ],
           "answer": 2,
           "explain": "Four bonding groups and no lone pairs point to the corners of a tetrahedron, with angles near 109.5 degrees.",
           "concept": "5B",
@@ -405,7 +590,12 @@
         },
         {
           "stem": "A molecule has polar bonds but is so symmetric that the bond dipoles cancel. The molecule as a whole is:",
-          "choices": ["Nonpolar", "Polar", "Ionic", "Positively charged"],
+          "choices": [
+            "Nonpolar",
+            "Polar",
+            "Ionic",
+            "Positively charged"
+          ],
           "answer": 0,
           "explain": "When symmetry makes the bond dipoles cancel, there is no net dipole and the molecule is nonpolar, as in carbon dioxide.",
           "concept": "5B",
@@ -414,7 +604,12 @@
         },
         {
           "stem": "Two Lewis structures for the molecule differ only in where a double bond and a lone pair sit, not in where the atoms are. These are best described as:",
-          "choices": ["Different molecules", "Isotopes of each other", "Structural isomers", "Resonance structures of one molecule"],
+          "choices": [
+            "Different molecules",
+            "Isotopes of each other",
+            "Structural isomers",
+            "Resonance structures of one molecule"
+          ],
           "answer": 3,
           "explain": "Structures that differ only by the placement of electrons, not atoms, are resonance forms of the same molecule.",
           "concept": "5B",
@@ -423,7 +618,12 @@
         },
         {
           "stem": "A carbon in a carbon-carbon double bond that is bonded to three groups total is best described as:",
-          "choices": ["sp", "sp2", "sp3", "sp3d"],
+          "choices": [
+            "sp",
+            "sp2",
+            "sp3",
+            "sp3d"
+          ],
           "answer": 1,
           "explain": "Three regions of electron density (the double bond counts as one region plus two single bonds) means sp2 hybridization and trigonal planar geometry.",
           "concept": "5B",
@@ -432,7 +632,12 @@
         },
         {
           "stem": "Two molecules are similar in size, but one can form hydrogen bonds and the other cannot. The hydrogen-bonding molecule will most likely have a:",
-          "choices": ["Lower boiling point", "The same boiling point", "Higher boiling point", "No boiling point at all"],
+          "choices": [
+            "Lower boiling point",
+            "The same boiling point",
+            "Higher boiling point",
+            "No boiling point at all"
+          ],
           "answer": 2,
           "explain": "Hydrogen bonding is a strong intermolecular attraction, so more energy is needed to separate the molecules, which raises the boiling point.",
           "concept": "5B",
@@ -441,7 +646,12 @@
         },
         {
           "stem": "The carbon bonded to four different groups makes the molecule:",
-          "choices": ["Achiral", "A resonance form", "A structural isomer", "Chiral, with a nonsuperimposable mirror image"],
+          "choices": [
+            "Achiral",
+            "A resonance form",
+            "A structural isomer",
+            "Chiral, with a nonsuperimposable mirror image"
+          ],
           "answer": 3,
           "explain": "A carbon with four different groups is a chirality center, so the molecule has a nonsuperimposable mirror image, an enantiomer.",
           "concept": "5B",
@@ -460,7 +670,12 @@
       "questions": [
         {
           "stem": "Simple distillation separates two liquids mainly by differences in their:",
-          "choices": ["Boiling point", "Color", "Density", "Molar mass only"],
+          "choices": [
+            "Boiling point",
+            "Color",
+            "Density",
+            "Molar mass only"
+          ],
           "answer": 0,
           "explain": "Distillation exploits boiling point differences, so the more volatile component with the lower boiling point vaporizes first.",
           "concept": "5C",
@@ -469,7 +684,12 @@
         },
         {
           "stem": "In the extraction, a nonpolar target compound will tend to collect in:",
-          "choices": ["The polar water layer", "The solid residue", "The nonpolar organic layer", "The gas phase"],
+          "choices": [
+            "The polar water layer",
+            "The solid residue",
+            "The nonpolar organic layer",
+            "The gas phase"
+          ],
           "answer": 2,
           "explain": "Like dissolves like, so a nonpolar compound favors the nonpolar organic layer over water.",
           "concept": "5C",
@@ -478,7 +698,12 @@
         },
         {
           "stem": "The target is a weak carboxylic acid. Adding base to the aqueous layer converts it to its charged carboxylate form, which will:",
-          "choices": ["Move into the organic layer", "Precipitate out at once", "Evaporate as a gas", "Move into the water layer"],
+          "choices": [
+            "Move into the organic layer",
+            "Precipitate out at once",
+            "Evaporate as a gas",
+            "Move into the water layer"
+          ],
           "answer": 3,
           "explain": "Deprotonating the acid makes a charged, water-soluble carboxylate, so it shifts into the aqueous layer.",
           "concept": "5C",
@@ -487,7 +712,12 @@
         },
         {
           "stem": "On normal-phase thin-layer chromatography with a polar plate and a nonpolar solvent, a very polar compound will:",
-          "choices": ["Barely move from the baseline", "Travel far up the plate", "Evaporate off the plate", "Move faster than nonpolar compounds"],
+          "choices": [
+            "Barely move from the baseline",
+            "Travel far up the plate",
+            "Evaporate off the plate",
+            "Move faster than nonpolar compounds"
+          ],
           "answer": 0,
           "explain": "A polar compound binds tightly to the polar plate, so it moves only a little and has a low Rf.",
           "concept": "5C",
@@ -496,7 +726,12 @@
         },
         {
           "stem": "In gel electrophoresis, charged molecules migrate through the gel toward the opposite charge. Compared with large molecules, small ones generally:",
-          "choices": ["Move less far through the gel", "Not move at all", "Move farther through the gel", "Move toward the same-sign electrode"],
+          "choices": [
+            "Move less far through the gel",
+            "Not move at all",
+            "Move farther through the gel",
+            "Move toward the same-sign electrode"
+          ],
           "answer": 2,
           "explain": "Smaller molecules slip through the gel mesh more easily, so they travel farther in a given time.",
           "concept": "5C",
@@ -505,7 +740,12 @@
         },
         {
           "stem": "Column chromatography separates molecules based mainly on how strongly each one:",
-          "choices": ["Glows under ultraviolet light", "Conducts electricity", "Reflects heat", "Sticks to the stationary phase versus the moving solvent"],
+          "choices": [
+            "Glows under ultraviolet light",
+            "Conducts electricity",
+            "Reflects heat",
+            "Sticks to the stationary phase versus the moving solvent"
+          ],
           "answer": 3,
           "explain": "Separation comes from the balance between each compound's attraction to the stationary phase and its tendency to travel with the mobile solvent.",
           "concept": "5C",
@@ -524,7 +764,12 @@
       "questions": [
         {
           "stem": "A carbon that is double-bonded to one oxygen and also bonded to an OH group is which functional group?",
-          "choices": ["Alcohol", "Carboxylic acid", "Ketone", "Aldehyde"],
+          "choices": [
+            "Alcohol",
+            "Carboxylic acid",
+            "Ketone",
+            "Aldehyde"
+          ],
           "answer": 1,
           "explain": "A carbonyl carbon that also carries an OH is a carboxylic acid group.",
           "concept": "5D",
@@ -533,7 +778,12 @@
         },
         {
           "stem": "Which group in the metabolite is the most acidic, meaning it gives up a proton most readily?",
-          "choices": ["The carboxylic acid", "The hydroxyl (alcohol)", "The carbon-carbon bonds", "The C-H bonds"],
+          "choices": [
+            "The carboxylic acid",
+            "The hydroxyl (alcohol)",
+            "The carbon-carbon bonds",
+            "The C-H bonds"
+          ],
           "answer": 0,
           "explain": "The carboxylic acid is far more acidic than an alcohol because its conjugate base, the carboxylate, is stabilized by resonance.",
           "concept": "5D",
@@ -542,7 +792,12 @@
         },
         {
           "stem": "Careful, controlled oxidation of a primary alcohol first gives which product?",
-          "choices": ["A ketone", "An ester", "An aldehyde", "An alkane"],
+          "choices": [
+            "A ketone",
+            "An ester",
+            "An aldehyde",
+            "An alkane"
+          ],
           "answer": 2,
           "explain": "A primary alcohol oxidizes first to an aldehyde and can go further to a carboxylic acid, whereas a secondary alcohol would give a ketone.",
           "concept": "5D",
@@ -551,7 +806,12 @@
         },
         {
           "stem": "Reacting the carboxylic acid with an alcohol under acid catalysis forms an ester and releases a molecule of:",
-          "choices": ["Carbon dioxide", "Hydrogen gas", "Ammonia", "Water"],
+          "choices": [
+            "Carbon dioxide",
+            "Hydrogen gas",
+            "Ammonia",
+            "Water"
+          ],
           "answer": 3,
           "explain": "Ester formation from an acid and an alcohol is a condensation that splits out a molecule of water.",
           "concept": "5D",
@@ -560,7 +820,12 @@
         },
         {
           "stem": "Unlike an aldehyde, a ketone resists mild oxidation because its carbonyl carbon:",
-          "choices": ["Has no hydrogen attached to the carbonyl carbon", "Carries a full negative charge", "Is aromatic", "Is an ion"],
+          "choices": [
+            "Has no hydrogen attached to the carbonyl carbon",
+            "Carries a full negative charge",
+            "Is aromatic",
+            "Is an ion"
+          ],
           "answer": 0,
           "explain": "An aldehyde's carbonyl carbon bears a hydrogen that is removed during oxidation, but a ketone's carbonyl carbon is bonded to two carbons and has no such hydrogen, so it resists mild oxidation.",
           "concept": "5D",
@@ -569,7 +834,12 @@
         },
         {
           "stem": "Every amino acid contains an amine group and which other functional group on its central carbon?",
-          "choices": ["A ketone", "An ether", "A carboxylic acid", "A nitro group"],
+          "choices": [
+            "A ketone",
+            "An ether",
+            "A carboxylic acid",
+            "A nitro group"
+          ],
           "answer": 2,
           "explain": "Each amino acid has both an amino group and a carboxylic acid group on the same central carbon.",
           "concept": "5D",
@@ -588,7 +858,12 @@
       "questions": [
         {
           "stem": "A reaction has a negative enthalpy change and a positive entropy change. This reaction is:",
-          "choices": ["Nonspontaneous at all temperatures", "Spontaneous only at high temperature", "Spontaneous only at low temperature", "Spontaneous at all temperatures"],
+          "choices": [
+            "Nonspontaneous at all temperatures",
+            "Spontaneous only at high temperature",
+            "Spontaneous only at low temperature",
+            "Spontaneous at all temperatures"
+          ],
           "answer": 3,
           "explain": "With enthalpy change negative and entropy change positive, the Gibbs free energy change (enthalpy minus temperature times entropy) is negative at every temperature, so the reaction is always spontaneous.",
           "concept": "5E",
@@ -597,7 +872,12 @@
         },
         {
           "stem": "A reaction converts 2 moles of gas into 1 mole of gas. The entropy change of the system is most likely:",
-          "choices": ["Negative", "Positive", "Zero", "Infinite"],
+          "choices": [
+            "Negative",
+            "Positive",
+            "Zero",
+            "Infinite"
+          ],
           "answer": 0,
           "explain": "Fewer gas molecules means fewer ways to spread energy and position, so the system's entropy decreases.",
           "concept": "5E",
@@ -606,7 +886,12 @@
         },
         {
           "stem": "For a reaction with the rate law rate = k[A], doubling the concentration of A changes the rate by a factor of:",
-          "choices": ["stays the same", "quadruples", "doubles", "increases eightfold"],
+          "choices": [
+            "stays the same",
+            "quadruples",
+            "doubles",
+            "increases eightfold"
+          ],
           "answer": 2,
           "explain": "The reaction is first order in A, so doubling the concentration of A doubles the rate.",
           "concept": "5E",
@@ -615,7 +900,12 @@
         },
         {
           "stem": "A catalyst, such as an enzyme, speeds up a reaction mainly by:",
-          "choices": ["Lowering the activation energy", "Increasing the temperature", "Making the products more stable", "Raising the activation energy"],
+          "choices": [
+            "Lowering the activation energy",
+            "Increasing the temperature",
+            "Making the products more stable",
+            "Raising the activation energy"
+          ],
           "answer": 0,
           "explain": "A catalyst provides a path with a lower activation energy so more collisions succeed, and it does not change the energy of the reactants or products.",
           "concept": "5E",
@@ -624,7 +914,12 @@
         },
         {
           "stem": "For the equilibrium N2 + 3 H2 gives 2 NH3, adding more N2 shifts the equilibrium:",
-          "choices": ["Toward the reactants (less NH3)", "No shift at all", "Toward the products (more NH3)", "It stops the reaction"],
+          "choices": [
+            "Toward the reactants (less NH3)",
+            "No shift at all",
+            "Toward the products (more NH3)",
+            "It stops the reaction"
+          ],
           "answer": 2,
           "explain": "Adding a reactant pushes the equilibrium toward the products to partly offset the change, making more ammonia.",
           "concept": "5E",
@@ -633,7 +928,12 @@
         },
         {
           "stem": "In her galvanic cell, oxidation happens at the anode and reduction at the cathode. Through the external wire, electrons flow:",
-          "choices": ["From the anode to the cathode", "From the cathode to the anode", "From the cathode to the salt bridge only", "They do not flow at all"],
+          "choices": [
+            "From the anode to the cathode",
+            "From the cathode to the anode",
+            "From the cathode to the salt bridge only",
+            "They do not flow at all"
+          ],
           "answer": 0,
           "explain": "Electrons are released by oxidation at the anode and travel through the external wire to the cathode, where reduction occurs.",
           "concept": "4C",
@@ -652,7 +952,12 @@
       "questions": [
         {
           "stem": "During intense exercise, extra carbon dioxide dissolves in the blood. By the equilibrium shown, this tends to make the blood:",
-          "choices": ["More basic (higher pH)", "Exactly neutral", "Unable to change its pH", "More acidic (lower pH)"],
+          "choices": [
+            "More basic (higher pH)",
+            "Exactly neutral",
+            "Unable to change its pH",
+            "More acidic (lower pH)"
+          ],
           "answer": 3,
           "explain": "More carbon dioxide pushes the equilibrium to the right, releasing more hydrogen ions, which lowers the pH toward acidosis.",
           "concept": "5A",
@@ -661,7 +966,12 @@
         },
         {
           "stem": "When the lungs exhale faster and remove carbon dioxide from the blood, the equilibrium CO2 + H2O gives H+ + HCO3- shifts:",
-          "choices": ["To the left, consuming H+ and raising pH", "To the right, releasing more H+", "Not at all", "Toward making more carbon dioxide"],
+          "choices": [
+            "To the left, consuming H+ and raising pH",
+            "To the right, releasing more H+",
+            "Not at all",
+            "Toward making more carbon dioxide"
+          ],
           "answer": 0,
           "explain": "Removing carbon dioxide pulls the equilibrium to the left, using up hydrogen ions and raising the pH, which is how faster breathing counters acidosis.",
           "concept": "5E",
@@ -670,7 +980,12 @@
         },
         {
           "stem": "In the lungs, gas exchange depends on partial pressures. In a mixture of gases, the partial pressure of carbon dioxide equals:",
-          "choices": ["The total pressure times its mole fraction", "Always equal to the total pressure", "Independent of how much carbon dioxide is present", "Zero unless carbon dioxide is the only gas"],
+          "choices": [
+            "The total pressure times its mole fraction",
+            "Always equal to the total pressure",
+            "Independent of how much carbon dioxide is present",
+            "Zero unless carbon dioxide is the only gas"
+          ],
           "answer": 0,
           "explain": "By Dalton's law, each gas's partial pressure is the total pressure times that gas's mole fraction.",
           "concept": "4B",
@@ -679,7 +994,12 @@
         },
         {
           "stem": "Carbonic anhydrase speeds the conversion of carbon dioxide and water to carbonic acid. As a catalyst, it changes the reaction's:",
-          "choices": ["Rate but not the final equilibrium position", "Final equilibrium position but not the rate", "Overall enthalpy change", "Products into different molecules"],
+          "choices": [
+            "Rate but not the final equilibrium position",
+            "Final equilibrium position but not the rate",
+            "Overall enthalpy change",
+            "Products into different molecules"
+          ],
           "answer": 0,
           "explain": "A catalyst lowers the activation energy and speeds the forward and reverse steps equally, so it changes the rate but not where the equilibrium settles.",
           "concept": "5E",
@@ -688,7 +1008,12 @@
         },
         {
           "stem": "Each carbon dioxide that reacts can release one hydrogen ion and one bicarbonate ion. If 4 millimoles of carbon dioxide react this way, how many millimoles of bicarbonate form?",
-          "choices": ["1 millimole", "2 millimoles", "4 millimoles", "8 millimoles"],
+          "choices": [
+            "1 millimole",
+            "2 millimoles",
+            "4 millimoles",
+            "8 millimoles"
+          ],
           "answer": 2,
           "explain": "The stoichiometry is one to one, so 4 millimoles of reacting carbon dioxide yields 4 millimoles of bicarbonate.",
           "concept": "4E",
@@ -697,12 +1022,1145 @@
         },
         {
           "stem": "The bicarbonate buffer holds pH near 7.4 best when the ratio of bicarbonate to dissolved carbon dioxide is kept roughly:",
-          "choices": ["At exactly 1 to 1", "As large as possible", "Constant, since pH depends on the base-to-acid ratio", "As small as possible"],
+          "choices": [
+            "At exactly 1 to 1",
+            "As large as possible",
+            "Constant, since pH depends on the base-to-acid ratio",
+            "As small as possible"
+          ],
           "answer": 2,
           "explain": "Henderson-Hasselbalch says pH tracks the ratio of conjugate base (bicarbonate) to acid (dissolved carbon dioxide), so holding that ratio steady holds the pH steady.",
           "concept": "5A",
           "cover_story": "blood as a buffer",
           "b": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Crash test collisions",
+      "paragraphs": [
+        "An automotive safety lab studies collisions using an instrumented test car with a total mass of 1000 kg. The car rolls along a level, nearly frictionless track toward a rigid barrier while high-speed cameras and force sensors record the impact. Engineers use g = 10 m/s^2 and ignore air resistance during the short approach. In one baseline trial the car reaches the barrier moving at 20 m/s and is brought fully to rest by its crushing front end. The team then repeats the trial after adding an airbag and a padded barrier, so they can compare how the average stopping force depends on how quickly the car is halted and how that protects the dummy inside.",
+        "In a second experiment two carts collide on the same level track. A 2.0 kg cart moving at 3.0 m/s strikes a stationary 1.0 kg cart. In some runs a bit of clay makes the carts stick together and move off as one after impact, while in other runs a spring bumper lets them bounce apart. The team measures the total momentum and the total kinetic energy just before and just after each collision to classify it as elastic or inelastic. They treat the two carts as an isolated system, so the total momentum immediately before the collision should equal the total momentum immediately after, no matter what happens to the kinetic energy."
+      ],
+      "source_ref": "OpenStax University Physics Vol 1, Ch. 9 (Linear Momentum and Collisions)",
+      "questions": [
+        {
+          "stem": "The test car has a mass of 1000 kg and reaches the barrier at 20 m/s. What is the magnitude of its momentum?",
+          "choices": [
+            "20,000 kg m/s",
+            "10,000 kg m/s",
+            "200,000 kg m/s",
+            "400,000 kg m/s"
+          ],
+          "answer": 0,
+          "explain": "Momentum is mass times velocity, 1000 times 20 = 20,000 kg m/s. The value 200,000 is the kinetic energy in joules, not the momentum.",
+          "concept": "4A",
+          "cover_story": "a crash test lab",
+          "b": -0.8
+        },
+        {
+          "stem": "Using the same 1000 kg mass and 20 m/s speed, what is the car's kinetic energy just before impact?",
+          "choices": [
+            "400,000 J",
+            "100,000 J",
+            "200,000 J",
+            "20,000 J"
+          ],
+          "answer": 2,
+          "explain": "Kinetic energy is one half m v squared = 0.5 times 1000 times 20 squared = 200,000 J. Forgetting the factor of one half gives the too large 400,000 J.",
+          "concept": "4A",
+          "cover_story": "a crash test lab",
+          "b": 0.1
+        },
+        {
+          "stem": "The barrier brings the car from 20 m/s to rest. What is the magnitude of the impulse the barrier delivers to the car?",
+          "choices": [
+            "20,000 N s",
+            "2,000 N s",
+            "10,000 N s",
+            "200,000 N s"
+          ],
+          "answer": 0,
+          "explain": "Impulse equals the change in momentum, from 20,000 kg m/s down to zero, so 20,000 N s. The 200,000 figure again confuses energy with momentum.",
+          "concept": "4A",
+          "cover_story": "a crash test lab",
+          "b": 0.3
+        },
+        {
+          "stem": "If the crushing front end stops the car in 0.10 s, what average force does the barrier exert on it?",
+          "choices": [
+            "2,000 N",
+            "20,000 N",
+            "2,000,000 N",
+            "200,000 N"
+          ],
+          "answer": 3,
+          "explain": "Average force is impulse over time, 20,000 N s divided by 0.10 s = 200,000 N. Dividing by 0.01 s by mistake gives the too large 2,000,000 N.",
+          "concept": "4A",
+          "cover_story": "a crash test lab",
+          "b": 0.6
+        },
+        {
+          "stem": "Adding an airbag and padded barrier lengthens the time over which the car stops. For the same change in momentum, the average force on the car is:",
+          "choices": [
+            "Larger, because the padding adds force",
+            "Unchanged, because the mass is the same",
+            "Smaller, because the same impulse is spread over a longer time",
+            "Zero, because the airbag absorbs all the momentum"
+          ],
+          "answer": 2,
+          "explain": "The impulse (change in momentum) is fixed, and force is impulse over time, so a longer stopping time means a smaller average force. That is why airbags reduce injury.",
+          "concept": "4A",
+          "cover_story": "a crash test lab",
+          "b": 0.5
+        },
+        {
+          "stem": "In the run where the carts stick together, a 2.0 kg cart at 3.0 m/s strikes a stationary 1.0 kg cart. Their common speed just after impact is:",
+          "choices": [
+            "5.0 m/s",
+            "2.0 m/s",
+            "3.0 m/s",
+            "1.0 m/s"
+          ],
+          "answer": 1,
+          "explain": "Momentum is conserved: 2.0 times 3.0 = 6.0 kg m/s is shared by the combined 3.0 kg, giving 2.0 m/s. Assuming the speed is unchanged at 3.0 m/s ignores the added mass.",
+          "concept": "4A",
+          "cover_story": "a crash test lab",
+          "b": 0.7
+        }
+      ]
+    },
+    {
+      "label": "Scuba diver at depth",
+      "paragraphs": [
+        "A diving instructor explains how pressure changes underwater. Seawater has a density close to 1000 kg/m^3, and the diver uses g = 10 m/s^2. At the surface the air presses down with an atmospheric pressure of about 100,000 Pa, which is taken as 1 atm. As the diver descends, the weight of the water above adds to this atmospheric pressure, so the total pressure on the diver's body grows with depth. The instructor notes that this pressure acts equally in all directions at a given depth and depends on how deep the diver is, not on the size or shape of the body of water. Students calculate the pressure at several depths and check how it compares with the pressure at the surface.",
+        "The instructor also explains buoyancy. A buoyancy control device lets the diver hover at one depth by balancing forces: the upward buoyant force from the displaced water is set equal to the diver's weight, so the diver neither rises nor sinks. By Archimedes' principle, that buoyant force equals the weight of the water the diver and gear push aside. The class also notes that pressure in the water is transmitted throughout and acts on every surface, and that at a given depth the pressure is the same in every direction. Because the pressure grows steadily with depth, the diver feels it most strongly on the deepest parts of the body."
+      ],
+      "source_ref": "OpenStax University Physics Vol 1, Ch. 14 (Fluid Mechanics)",
+      "questions": [
+        {
+          "stem": "Seawater has a density of about 1000 kg/m^3. How much pressure does a 10 m column of it add at the diver's depth (use g = 10 m/s^2)?",
+          "choices": [
+            "10,000 Pa",
+            "50,000 Pa",
+            "100,000 Pa",
+            "1,000,000 Pa"
+          ],
+          "answer": 2,
+          "explain": "Hydrostatic pressure is rho g h = 1000 times 10 times 10 = 100,000 Pa. Using only 1000 times 10 leaves out the depth and gives 10,000 Pa.",
+          "concept": "4B",
+          "cover_story": "a scuba dive",
+          "b": -1.1
+        },
+        {
+          "stem": "Including the atmosphere pressing on the surface, the absolute pressure on the diver at 10 m is about:",
+          "choices": [
+            "2 atm",
+            "1 atm",
+            "5 atm",
+            "10 atm"
+          ],
+          "answer": 0,
+          "explain": "The 10 m of water adds about 1 atm on top of the 1 atm of air above, for roughly 2 atm total. Counting only the water and ignoring the atmosphere gives just 1 atm.",
+          "concept": "4B",
+          "cover_story": "a scuba dive",
+          "b": -0.2
+        },
+        {
+          "stem": "The diver uses a buoyancy device to hover at a fixed depth, neither rising nor sinking. At that moment the buoyant force on the diver is:",
+          "choices": [
+            "Zero",
+            "Less than the diver's weight",
+            "Equal to the diver's weight",
+            "Greater than the diver's weight"
+          ],
+          "answer": 2,
+          "explain": "Hovering is equilibrium, so the upward buoyant force exactly balances the diver's weight. A larger buoyant force would push the diver upward instead.",
+          "concept": "4B",
+          "cover_story": "a scuba dive",
+          "b": -0.6
+        },
+        {
+          "stem": "Two divers rest at the same 10 m depth, one in a narrow cove and one in the open ocean. The water pressure on them is:",
+          "choices": [
+            "The same, because pressure depends on depth, not the amount of water",
+            "Greater in the open ocean, which holds more water",
+            "Greater in the narrow cove",
+            "Impossible to compare without the water volumes"
+          ],
+          "answer": 0,
+          "explain": "Static fluid pressure depends only on depth and density, not on the shape or total volume of the water, so both divers feel the same pressure. The larger ocean adds nothing extra at equal depth.",
+          "concept": "4B",
+          "cover_story": "a scuba dive",
+          "b": 0.3
+        },
+        {
+          "stem": "If a diver plus gear weighs more than the buoyant force acting on them, the diver will:",
+          "choices": [
+            "Float upward",
+            "Sink",
+            "Hover in place",
+            "Feel no net force"
+          ],
+          "answer": 1,
+          "explain": "When weight exceeds the buoyant force the net force points down, so the diver sinks. Hovering would require the two forces to be equal.",
+          "concept": "4B",
+          "cover_story": "a scuba dive",
+          "b": -0.4
+        },
+        {
+          "stem": "A diver and gear together displace 0.080 m^3 of seawater. The buoyant force on them is about:",
+          "choices": [
+            "800 N",
+            "80 N",
+            "8,000 N",
+            "80,000 N"
+          ],
+          "answer": 0,
+          "explain": "By Archimedes' principle the buoyant force is the weight of displaced water, rho V g = 1000 times 0.080 times 10 = 800 N. Using 0.80 m^3 by mistake gives ten times too much.",
+          "concept": "4B",
+          "cover_story": "a scuba dive",
+          "b": 0.8
+        }
+      ]
+    },
+    {
+      "label": "Electroplating a spoon",
+      "paragraphs": [
+        "A metals lab silver-plates a steel spoon using an electrolytic cell. The spoon and a bar of pure silver are dipped into a solution of silver ions and connected to a direct-current power supply. When the supply is switched on, silver ions in the solution gain electrons and deposit as solid metal on the spoon, while the silver bar slowly dissolves to replenish the ions. Because the reaction is driven by the external power supply rather than happening on its own, the cell needs a steady input of electrical energy. The technician can change how fast the coating builds up by adjusting the current, and monitors the voltage across the cell and the resistance of the connecting wires.",
+        "The silver ion carries a single positive charge, so each ion needs one electron to become a silver atom. The class relates the current to the flow of charge: current is the amount of charge passing a point each second, and running twice the current for the same time moves twice as much charge. They also review Ohm's law for the wiring, noting that for a fixed resistance a higher applied voltage drives a proportionally higher current, and that the electrical power delivered is the product of voltage and current. Finally they contrast this driven cell with a battery, which instead releases energy from a reaction that proceeds on its own."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 17 (Electrochemistry), and OpenStax University Physics Vol 2, Ch. 9-10 (Current, Resistance, and DC Circuits)",
+      "questions": [
+        {
+          "stem": "Silver ions gain electrons and deposit as metal on the spoon. In this cell the spoon therefore acts as the:",
+          "choices": [
+            "Anode, where oxidation occurs",
+            "Salt bridge",
+            "Insulator",
+            "Cathode, where reduction occurs"
+          ],
+          "answer": 3,
+          "explain": "Gaining electrons is reduction, which by definition happens at the cathode. The silver bar that dissolves by losing electrons is the anode.",
+          "concept": "4C",
+          "cover_story": "electroplating a spoon",
+          "b": -0.4
+        },
+        {
+          "stem": "If the technician doubles the current while plating for the same length of time, the mass of silver deposited will:",
+          "choices": [
+            "Stay the same",
+            "Double",
+            "Be cut in half",
+            "Quadruple"
+          ],
+          "answer": 1,
+          "explain": "Charge delivered is current times time, so doubling the current doubles the charge and thus the amount of silver reduced onto the spoon.",
+          "concept": "4C",
+          "cover_story": "electroplating a spoon",
+          "b": -0.7
+        },
+        {
+          "stem": "Each silver ion (Ag+) needs one electron to become a silver atom. How many moles of electrons are needed to deposit 2.0 mol of silver?",
+          "choices": [
+            "0.5 mol",
+            "1.0 mol",
+            "2.0 mol",
+            "4.0 mol"
+          ],
+          "answer": 2,
+          "explain": "The half-reaction Ag+ plus one electron gives Ag is one to one, so 2.0 mol of silver requires 2.0 mol of electrons. A 2+ ion would instead need twice as many.",
+          "concept": "4C",
+          "cover_story": "electroplating a spoon",
+          "b": 0.3
+        },
+        {
+          "stem": "For the connecting wire of fixed resistance, doubling the voltage across it changes the current to:",
+          "choices": [
+            "One half",
+            "The same",
+            "Double",
+            "Four times"
+          ],
+          "answer": 2,
+          "explain": "Ohm's law gives current = voltage over resistance, so at fixed resistance the current is proportional to voltage and doubles.",
+          "concept": "4C",
+          "cover_story": "electroplating a spoon",
+          "b": -0.3
+        },
+        {
+          "stem": "The supply drives 2.0 A through the cell at 5.0 V. The electrical power delivered is:",
+          "choices": [
+            "2.5 W",
+            "7.0 W",
+            "10 W",
+            "20 W"
+          ],
+          "answer": 2,
+          "explain": "Electrical power is current times voltage, 2.0 times 5.0 = 10 W. Dividing instead of multiplying gives the wrong 2.5 W.",
+          "concept": "4C",
+          "cover_story": "electroplating a spoon",
+          "b": 0.2
+        },
+        {
+          "stem": "Unlike a battery, this plating cell needs an external power supply because its overall reaction is:",
+          "choices": [
+            "Spontaneous and releases energy",
+            "Nonspontaneous and needs an energy input",
+            "Impossible",
+            "Independent of energy"
+          ],
+          "answer": 1,
+          "explain": "Electrolysis drives a nonspontaneous reaction using external electrical energy, whereas a battery runs a spontaneous reaction that releases energy on its own.",
+          "concept": "4C",
+          "cover_story": "electroplating a spoon",
+          "b": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Ultrasound scan",
+      "paragraphs": [
+        "A sonographer uses an ultrasound probe that sends short pulses of high-frequency sound into the body and listens for the echoes. Sound is a mechanical wave: it travels as a pattern of compressions and rarefactions and needs a material medium to move through, so it cannot travel across a vacuum. In soft tissue the pulses travel at about 1500 m/s. The machine forms an image by timing how long each echo takes to return from a boundary between tissues and by measuring how strong the returning echo is. A layer of gel is spread on the skin so the sound passes into the body instead of reflecting off a thin layer of air.",
+        "The department also has a Doppler unit that measures blood flow. When sound reflects off blood cells moving toward the probe, the echo returns at a higher frequency than it was sent, and cells moving away return a lower frequency. The sonographer can also choose the probe's frequency. A higher-frequency probe has a shorter wavelength and can resolve finer detail, but it does not penetrate as deeply into the body. For the basic wave relationships the technician treats the speed of sound in tissue as fixed at 1500 m/s, so the wavelength and frequency of a pulse are tied together through the wave speed, and changing one immediately changes the other."
+      ],
+      "source_ref": "OpenStax University Physics Vol 1, Ch. 17 (Sound)",
+      "questions": [
+        {
+          "stem": "Which statement about the ultrasound pulses is correct?",
+          "choices": [
+            "They need a material medium to travel",
+            "They are electromagnetic waves",
+            "They can travel through a vacuum",
+            "They travel at the speed of light"
+          ],
+          "answer": 0,
+          "explain": "Sound is a mechanical wave, so it needs a medium and cannot cross a vacuum. Unlike light, it is not electromagnetic and travels far slower.",
+          "concept": "4D",
+          "cover_story": "an ultrasound scan",
+          "b": -1.3
+        },
+        {
+          "stem": "A probe emits 3.0 MHz sound where the speed in tissue is 1500 m/s. The wavelength is about:",
+          "choices": [
+            "2 mm",
+            "0.5 mm",
+            "5 mm",
+            "2 m"
+          ],
+          "answer": 1,
+          "explain": "Wavelength is speed over frequency, 1500 divided by 3,000,000 = 0.0005 m, or 0.5 mm.",
+          "concept": "4D",
+          "cover_story": "an ultrasound scan",
+          "b": 0.3
+        },
+        {
+          "stem": "In the Doppler unit, blood cells moving toward the probe reflect sound that returns at a frequency that is:",
+          "choices": [
+            "Higher than the emitted frequency",
+            "Lower than the emitted frequency",
+            "Equal to the emitted frequency",
+            "Zero"
+          ],
+          "answer": 0,
+          "explain": "Motion toward the probe compresses the reflected waves, raising the detected frequency in the Doppler effect. Motion away would lower it.",
+          "concept": "4D",
+          "cover_story": "an ultrasound scan",
+          "b": -0.2
+        },
+        {
+          "stem": "An echo returns 40 microseconds after a pulse is sent, with sound at 1500 m/s. How deep is the reflecting boundary?",
+          "choices": [
+            "1.5 cm",
+            "6 cm",
+            "3 cm",
+            "12 cm"
+          ],
+          "answer": 2,
+          "explain": "The pulse makes a round trip, so depth is v t over 2 = 1500 times 0.000040 divided by 2 = 0.03 m, or 3 cm. Forgetting to halve the distance gives 6 cm.",
+          "concept": "4D",
+          "cover_story": "an ultrasound scan",
+          "b": 0.8
+        },
+        {
+          "stem": "Choosing a higher-frequency probe improves resolution because, at fixed speed, higher frequency means:",
+          "choices": [
+            "A longer wavelength",
+            "A shorter wavelength",
+            "A faster wave",
+            "A slower wave"
+          ],
+          "answer": 1,
+          "explain": "With speed fixed, wavelength is inversely proportional to frequency, so higher frequency gives a shorter wavelength that resolves finer detail. The trade-off is less penetration depth.",
+          "concept": "4D",
+          "cover_story": "an ultrasound scan",
+          "b": 0.5
+        },
+        {
+          "stem": "If the probe's frequency is doubled while the speed of sound in tissue stays the same, the wavelength becomes:",
+          "choices": [
+            "Doubled",
+            "Unchanged",
+            "Quadrupled",
+            "Halved"
+          ],
+          "answer": 3,
+          "explain": "Since speed equals frequency times wavelength and the speed is fixed, doubling the frequency halves the wavelength.",
+          "concept": "4D",
+          "cover_story": "an ultrasound scan",
+          "b": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Flame test and atomic spectra",
+      "paragraphs": [
+        "In a general chemistry lab, students heat metal salts in a flame and see distinct colors: sodium glows yellow, and copper glows blue-green. A teacher explains that heat lifts electrons to higher energy levels, and when an electron falls back to a lower level the atom emits a photon of light. The energy of that photon equals the gap between the two levels, and photon energy is proportional to the light's frequency. Because each element has its own fixed pattern of energy levels, it emits its own set of colors, giving every element a unique line spectrum. The students then view the emitted light through a diffraction grating, which spreads it into separate bright lines rather than a continuous rainbow.",
+        "The class then reviews how electrons fill an atom's orbitals in order of increasing energy, starting from the lowest level. They write the ground-state arrangement for several neutral atoms and count the outer, valence electrons that control bonding. They also discuss ionization energy, the energy needed to pull an electron away from an atom, and note that electrons held more tightly by the nucleus are harder to remove. Finally, the teacher points out that an atom absorbs light at the very same wavelengths it emits, because absorption lifts an electron across exactly the same energy gaps that emission releases. These ideas connect the colors seen in the flame to the structure of the atom itself."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 6 (Electronic Structure and Periodic Properties of Elements)",
+      "questions": [
+        {
+          "stem": "The colored light appears when an electron in the atom:",
+          "choices": [
+            "Drops from a higher to a lower energy level, emitting a photon",
+            "Is removed from the atom entirely",
+            "Absorbs a photon and jumps higher",
+            "Merges with the nucleus"
+          ],
+          "answer": 0,
+          "explain": "Emission happens when an electron falls to a lower level and releases a photon equal to the energy gap. Absorbing a photon would instead lift the electron higher.",
+          "concept": "4E",
+          "cover_story": "a flame test",
+          "b": -0.7
+        },
+        {
+          "stem": "A transition that releases more energy per photon produces light of:",
+          "choices": [
+            "Lower frequency and longer wavelength",
+            "Higher frequency and shorter wavelength",
+            "Lower frequency and shorter wavelength",
+            "The same frequency as every other transition"
+          ],
+          "answer": 1,
+          "explain": "Photon energy is proportional to frequency, and higher frequency means shorter wavelength, so a bigger energy gap gives bluer light.",
+          "concept": "4E",
+          "cover_story": "a flame test",
+          "b": 0.4
+        },
+        {
+          "stem": "Each element shows its own distinct set of spectral lines because each element has a unique:",
+          "choices": [
+            "Number of neutrons",
+            "Boiling point",
+            "Flame temperature",
+            "Set of electron energy levels"
+          ],
+          "answer": 3,
+          "explain": "The spacing of an element's energy levels is unique, so its emission lines act like a fingerprint. Neutron count and boiling point do not set the emitted colors.",
+          "concept": "4E",
+          "cover_story": "a flame test",
+          "b": 0.2
+        },
+        {
+          "stem": "A neutral atom has the ground-state configuration 1s2 2s2 2p6 3s2 3p4. How many valence electrons does it have?",
+          "choices": [
+            "2",
+            "4",
+            "6",
+            "16"
+          ],
+          "answer": 2,
+          "explain": "Valence electrons are those in the outermost shell, here n = 3: 3s2 3p4 gives 6. The value 16 counts all the electrons, not just the valence ones.",
+          "concept": "4E",
+          "cover_story": "a flame test",
+          "b": 0.3
+        },
+        {
+          "stem": "Ionization energy is the energy needed to remove an electron. An electron the nucleus holds more tightly will have a:",
+          "choices": [
+            "Lower ionization energy",
+            "Higher ionization energy",
+            "Zero ionization energy",
+            "Negative ionization energy"
+          ],
+          "answer": 1,
+          "explain": "The more tightly bound the electron, the more energy is required to pull it away, so a higher ionization energy.",
+          "concept": "4E",
+          "cover_story": "a flame test",
+          "b": 0.2
+        },
+        {
+          "stem": "An atom absorbs light most strongly at wavelengths that are:",
+          "choices": [
+            "Completely unrelated to its emission lines",
+            "The same as the wavelengths it emits",
+            "Always longer than its emission lines",
+            "Only in the radio range"
+          ],
+          "answer": 1,
+          "explain": "Absorption lifts an electron across the same energy gaps that emission spans, so an atom absorbs at the very wavelengths it emits.",
+          "concept": "4E",
+          "cover_story": "a flame test",
+          "b": 1.0
+        }
+      ]
+    },
+    {
+      "label": "Salting icy roads",
+      "paragraphs": [
+        "During an icy week, a city spreads salt on the roads and drivers add antifreeze to their engines. A chemistry teacher explains that dissolving a solute in water changes the properties of the liquid. Adding salt lowers the temperature at which water freezes, so a salted road stays liquid below the normal freezing point of pure water. These effects depend on how many solute particles are dissolved, not on what the particles are. Because table salt splits into two ions when it dissolves, one unit of salt lowers the freezing point about twice as much as one molecule of sugar, which stays whole. The class measures concentrations in molarity, the number of moles of solute per liter of solution.",
+        "The teacher also connects these ideas to the body. Cells sit in a watery solution, and water moves across their membranes by osmosis, flowing from the side with more free water toward the side with more dissolved particles. A cell placed in very salty water loses water and shrinks, while a cell in pure water swells. Adding solute also raises the boiling point of water, which is why coolant helps an engine run hotter without boiling over. Throughout, the class treats these freezing-point, boiling-point, and osmotic effects as colligative properties that scale with the count of dissolved particles, so it makes no difference whether the solute is salt or sugar for a given particle count."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 11 (Solutions and Colloids)",
+      "questions": [
+        {
+          "stem": "Spreading salt keeps water liquid at low temperatures because the dissolved salt:",
+          "choices": [
+            "Lowers the freezing point of the water",
+            "Raises the freezing point of the water",
+            "Has no effect on freezing",
+            "Makes the water evaporate"
+          ],
+          "answer": 0,
+          "explain": "Dissolved particles cause freezing-point depression, lowering the temperature at which water freezes so the salted water stays liquid below zero degrees Celsius.",
+          "concept": "5A",
+          "cover_story": "salting icy roads",
+          "b": -1.1
+        },
+        {
+          "stem": "Equal moles of table salt and sugar are each dissolved in identical beakers of water. The salt lowers the freezing point more because it:",
+          "choices": [
+            "Weighs more per mole",
+            "Starts out colder",
+            "Reacts chemically with the water",
+            "Splits into two ions, making more dissolved particles"
+          ],
+          "answer": 3,
+          "explain": "Colligative effects scale with the number of dissolved particles, and salt dissociates into two ions per unit while sugar stays as one molecule, so salt has about twice the effect.",
+          "concept": "5A",
+          "cover_story": "salting icy roads",
+          "b": 0.4
+        },
+        {
+          "stem": "A red blood cell is placed in very salty water. Water will:",
+          "choices": [
+            "Move into the cell, swelling it",
+            "Move out of the cell, shrinking it",
+            "Not move at all",
+            "Turn into salt"
+          ],
+          "answer": 1,
+          "explain": "Osmosis moves water toward the more concentrated side, so water leaves the cell for the saltier surroundings and the cell shrinks.",
+          "concept": "5A",
+          "cover_story": "salting icy roads",
+          "b": 0.3
+        },
+        {
+          "stem": "A solution holds 0.50 mol of solute in 2.0 L. Its molarity is:",
+          "choices": [
+            "0.10 M",
+            "0.25 M",
+            "1.0 M",
+            "2.5 M"
+          ],
+          "answer": 1,
+          "explain": "Molarity is moles divided by liters, 0.50 over 2.0 = 0.25 M.",
+          "concept": "5A",
+          "cover_story": "salting icy roads",
+          "b": -0.3
+        },
+        {
+          "stem": "Adding coolant (a solute) to the water in an engine changes the water's boiling point by:",
+          "choices": [
+            "Raising it",
+            "Lowering it",
+            "Leaving it unchanged",
+            "Removing it entirely"
+          ],
+          "answer": 0,
+          "explain": "Dissolved solute raises the boiling point, letting the water run hotter before boiling. This is the opposite direction from the freezing-point change.",
+          "concept": "5A",
+          "cover_story": "salting icy roads",
+          "b": -0.5
+        },
+        {
+          "stem": "Equal moles of CaCl2 (which releases three ions) and NaCl (which releases two ions) are dissolved in equal volumes of water. Compared with the NaCl solution, the CaCl2 solution lowers the freezing point by a factor of about:",
+          "choices": [
+            "2/3 as much",
+            "the same",
+            "3/2 as much",
+            "3 times as much"
+          ],
+          "answer": 2,
+          "explain": "Freezing-point depression scales with particle count, so three ions versus two gives a ratio of 3 to 2. Answering 3 times ignores that NaCl already makes two particles.",
+          "concept": "5A",
+          "cover_story": "salting icy roads",
+          "b": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Volatile anesthetics",
+      "paragraphs": [
+        "An anesthesiology lab compares several small molecules used as inhaled anesthetics and solvents. The team focuses on the forces between molecules, because those forces set how easily each liquid evaporates. They line up a series of nonpolar molecules that differ mainly in size and molar mass, and they measure each liquid's boiling point and its vapor pressure at room temperature. The chemist reminds the group that in a nonpolar substance the main attraction between molecules is the London dispersion force, a weak pull that arises from momentary shifts in the electron cloud. These fleeting attractions grow stronger as a molecule gets larger and holds more electrons.",
+        "The group also compares two liquids of similar size, one made of polar molecules and one nonpolar. The polar liquid has an extra dipole-dipole attraction on top of dispersion, so its molecules cling together more tightly. Stronger intermolecular forces mean a liquid holds a lower vapor pressure and needs a higher temperature to boil, so it evaporates more slowly. Weaker forces do the reverse, making a liquid more volatile. The chemist adds one caution: while a liquid boils, the added heat goes into pulling molecules apart rather than raising the temperature, so the temperature holds steady until the liquid has all turned to gas, and a more volatile agent leaves the liquid and enters the vapor more readily at body temperature."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 10 (Liquids and Solids)",
+      "questions": [
+        {
+          "stem": "For the series of nonpolar anesthetic molecules, the main attraction between neighboring molecules is:",
+          "choices": [
+            "Ionic bonding",
+            "Hydrogen bonding",
+            "London dispersion forces",
+            "Covalent bonds between molecules"
+          ],
+          "answer": 2,
+          "explain": "Nonpolar molecules attract mainly through London dispersion forces. Hydrogen bonding would require hydrogen bonded to nitrogen, oxygen, or fluorine, which these molecules lack.",
+          "concept": "5B",
+          "cover_story": "volatile anesthetics",
+          "b": -0.4
+        },
+        {
+          "stem": "Within the nonpolar series, the molecule with the largest molar mass will most likely have the:",
+          "choices": [
+            "Lowest boiling point",
+            "Highest boiling point",
+            "Same boiling point as the rest",
+            "No boiling point"
+          ],
+          "answer": 1,
+          "explain": "Larger molecules hold more electrons, giving stronger London dispersion forces and therefore a higher boiling point.",
+          "concept": "5B",
+          "cover_story": "volatile anesthetics",
+          "b": 0.3
+        },
+        {
+          "stem": "A liquid with relatively weak intermolecular forces will tend to have a:",
+          "choices": [
+            "High vapor pressure and evaporate quickly",
+            "Low vapor pressure and evaporate slowly",
+            "Very high boiling point",
+            "Strong hydrogen-bond network"
+          ],
+          "answer": 0,
+          "explain": "Weak intermolecular forces let molecules escape easily, giving a high vapor pressure and fast evaporation. Strong forces would do the reverse.",
+          "concept": "5B",
+          "cover_story": "volatile anesthetics",
+          "b": 0.4
+        },
+        {
+          "stem": "Two liquids have molecules of similar size, but one is polar and one is nonpolar. The polar liquid most likely boils at a higher temperature because it also has:",
+          "choices": [
+            "Fewer electrons",
+            "A lower molar mass",
+            "No intermolecular forces",
+            "Dipole-dipole attractions"
+          ],
+          "answer": 3,
+          "explain": "The polar liquid adds dipole-dipole attraction on top of dispersion, so its molecules are harder to pull apart and it boils higher.",
+          "concept": "5B",
+          "cover_story": "volatile anesthetics",
+          "b": 0.2
+        },
+        {
+          "stem": "While one of these liquids boils at constant pressure, the added heat causes its temperature to:",
+          "choices": [
+            "Rise steadily",
+            "Stay constant until it has all vaporized",
+            "Fall",
+            "Rise and then fall"
+          ],
+          "answer": 1,
+          "explain": "During a phase change the added energy breaks intermolecular attractions rather than speeding the molecules, so the temperature holds constant until all the liquid becomes gas.",
+          "concept": "5B",
+          "cover_story": "volatile anesthetics",
+          "b": 0.8
+        },
+        {
+          "stem": "A liquid described as very volatile is one that:",
+          "choices": [
+            "Evaporates readily and has a high vapor pressure",
+            "Never evaporates",
+            "Has very strong intermolecular forces",
+            "Can exist only as a solid"
+          ],
+          "answer": 0,
+          "explain": "A volatile liquid evaporates easily and has a high vapor pressure, which goes with relatively weak intermolecular forces.",
+          "concept": "5B",
+          "cover_story": "volatile anesthetics",
+          "b": -0.6
+        }
+      ]
+    },
+    {
+      "label": "Spinning down a blood sample",
+      "paragraphs": [
+        "A clinical lab separates the parts of a blood sample and purifies a protein from it. First, a tube of blood is spun in a centrifuge. The rapid spinning creates a strong effective gravity that pulls the denser components toward the bottom of the tube, so the heavy red cells pack at the bottom, a thin layer of white cells sits above them, and the light, watery plasma stays on top. Spinning faster or longer drives this separation further. The technician notes that centrifugation sorts particles mainly by their density and size, with the densest and largest particles sedimenting fastest.",
+        "To purify a protein from the plasma, the team uses two more methods. In dialysis, the plasma is sealed in a membrane bag with tiny pores and placed in pure water; small ions and molecules slip through the pores and diffuse out, while the large protein is too big to pass and stays inside. In size-exclusion chromatography, the mixture flows through a column packed with porous beads: small molecules enter the beads and are delayed, but large proteins cannot fit inside the beads and travel around them, so the largest molecules leave the column first. Finally, a small solid product is purified by recrystallization, dissolving it hot and letting pure crystals reform as the solution cools."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 11 (Solutions and Colloids)",
+      "questions": [
+        {
+          "stem": "After the blood is centrifuged, the red cells collect at the bottom of the tube because they are:",
+          "choices": [
+            "The densest component",
+            "The least dense component",
+            "Electrically charged",
+            "The smallest molecules"
+          ],
+          "answer": 0,
+          "explain": "A centrifuge drives the densest components to the bottom, so the heavy red cells pack below the lighter plasma.",
+          "concept": "5C",
+          "cover_story": "spinning down blood",
+          "b": -0.7
+        },
+        {
+          "stem": "Spinning the sample at a higher speed makes the denser particles settle:",
+          "choices": [
+            "More slowly",
+            "Faster",
+            "Not at all",
+            "Upward, toward the top"
+          ],
+          "answer": 1,
+          "explain": "A higher spin speed raises the effective gravity, so denser particles sediment toward the bottom faster.",
+          "concept": "5C",
+          "cover_story": "spinning down blood",
+          "b": 0.0
+        },
+        {
+          "stem": "During dialysis the large protein stays inside the membrane bag while small ions pass out. The membrane separates molecules by their:",
+          "choices": [
+            "Color",
+            "Size",
+            "Charge only",
+            "Boiling point"
+          ],
+          "answer": 1,
+          "explain": "The membrane's pores let small molecules through but block the large protein, so separation is by size. Charge and color do not decide passage here.",
+          "concept": "5C",
+          "cover_story": "spinning down blood",
+          "b": 0.3
+        },
+        {
+          "stem": "In size-exclusion chromatography, which molecules leave the column first?",
+          "choices": [
+            "The smallest, because they move fastest",
+            "The most brightly colored",
+            "The largest, because they cannot enter the beads and take a shorter path",
+            "The most highly charged"
+          ],
+          "answer": 2,
+          "explain": "Large molecules are shut out of the porous beads and flow around them on a shorter path, so they elute first, while small molecules enter the beads and are delayed.",
+          "concept": "5C",
+          "cover_story": "spinning down blood",
+          "b": 1.2
+        },
+        {
+          "stem": "Recrystallization purifies a solid by exploiting that the compound is:",
+          "choices": [
+            "More soluble hot and less soluble cold",
+            "Equally soluble at every temperature",
+            "A gas at room temperature",
+            "Unable to dissolve at all"
+          ],
+          "answer": 0,
+          "explain": "The solid dissolves in hot solvent and reforms as pure crystals when cooled, while soluble impurities stay behind. A compound with no temperature dependence could not be recrystallized this way.",
+          "concept": "5C",
+          "cover_story": "spinning down blood",
+          "b": 0.2
+        },
+        {
+          "stem": "In the dialysis step, the small ions leave the bag because they:",
+          "choices": [
+            "Are pushed out by the protein",
+            "Are heavier than water",
+            "React with the membrane",
+            "Diffuse down their concentration gradient through the pores into the surrounding water"
+          ],
+          "answer": 3,
+          "explain": "The small ions diffuse from their high concentration inside the bag to the pure water outside, through pores too small for the protein to follow.",
+          "concept": "5C",
+          "cover_story": "spinning down blood",
+          "b": 0.4
+        }
+      ]
+    },
+    {
+      "label": "Enzymes and digestion",
+      "paragraphs": [
+        "A physiology class studies how the body breaks down and builds up biological molecules. Proteins in food are long chains of amino acids joined end to end by peptide bonds, a type of amide linkage. The body assembles these chains by condensation, joining two amino acids and releasing a molecule of water for each new bond. Digestion runs the reaction in reverse: enzymes add water across each peptide bond to split the chain back into amino acids, a process called hydrolysis. The teacher stresses that a protein's function depends on its folded three-dimensional shape, which is held together by many weak interactions among the amino acids.",
+        "Enzymes that carry out digestion are themselves proteins, and each has an active site shaped to fit a specific substrate, so a given enzyme speeds only its own reaction. Heat or a strong change in pH can denature an enzyme, unfolding its shape so it no longer works, even though the peptide bonds of its backbone stay intact. The class also looks at other biomolecules. Dietary fats are triglycerides, built from glycerol and three fatty acids linked by ester bonds, and they store a great deal of energy. Nucleic acids carry information: DNA is a chain of nucleotides whose bases pair across the double helix, adenine with thymine and guanine with cytosine, through hydrogen bonds."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 20 (Organic Chemistry)",
+      "questions": [
+        {
+          "stem": "The bond that links one amino acid to the next in a protein chain is a:",
+          "choices": [
+            "Peptide (amide) bond",
+            "Ester bond",
+            "Ionic bond",
+            "Hydrogen bond"
+          ],
+          "answer": 0,
+          "explain": "Amino acids join through peptide bonds, a type of amide linkage. Ester bonds instead join glycerol and fatty acids in fats.",
+          "concept": "5D",
+          "cover_story": "digestion chemistry",
+          "b": -0.8
+        },
+        {
+          "stem": "When the body links two amino acids into a peptide bond, it also releases:",
+          "choices": [
+            "A molecule of carbon dioxide",
+            "A molecule of water",
+            "A single hydrogen ion",
+            "A molecule of oxygen"
+          ],
+          "answer": 1,
+          "explain": "Peptide-bond formation is a condensation that splits out water. The reverse reaction, hydrolysis, adds water back to break the bond.",
+          "concept": "5D",
+          "cover_story": "digestion chemistry",
+          "b": 0.2
+        },
+        {
+          "stem": "Each digestive enzyme speeds up only one kind of reaction because its active site is:",
+          "choices": [
+            "Made from a different element than other enzymes",
+            "Always positively charged",
+            "Larger than the whole cell",
+            "Shaped to fit only a specific substrate"
+          ],
+          "answer": 3,
+          "explain": "An enzyme's active site is complementary in shape and chemistry to its particular substrate, which gives it specificity. All enzymes are built from the same set of amino acids.",
+          "concept": "5D",
+          "cover_story": "digestion chemistry",
+          "b": 0.3
+        },
+        {
+          "stem": "Heating an enzyme until it stops working denatures it. This means the heat has:",
+          "choices": [
+            "Broken all its peptide bonds into free amino acids",
+            "Unfolded its three-dimensional shape while the peptide bonds stay intact",
+            "Turned it into a fat",
+            "Changed its amino acid sequence"
+          ],
+          "answer": 1,
+          "explain": "Denaturation disrupts the folded shape held by weak interactions, so the enzyme loses function, but the covalent peptide bonds of its sequence remain intact.",
+          "concept": "5D",
+          "cover_story": "digestion chemistry",
+          "b": 0.9
+        },
+        {
+          "stem": "A dietary fat (triglyceride) is built from glycerol joined to three fatty acids through:",
+          "choices": [
+            "Peptide bonds",
+            "Ester bonds",
+            "Hydrogen bonds",
+            "Ionic bonds"
+          ],
+          "answer": 1,
+          "explain": "Fatty acids attach to glycerol by ester bonds. Peptide bonds instead join amino acids in proteins.",
+          "concept": "5D",
+          "cover_story": "digestion chemistry",
+          "b": 0.1
+        },
+        {
+          "stem": "In DNA, adenine on one strand pairs across the helix with:",
+          "choices": [
+            "Guanine",
+            "Cytosine",
+            "Thymine",
+            "Another adenine"
+          ],
+          "answer": 2,
+          "explain": "Adenine pairs with thymine and guanine pairs with cytosine through hydrogen bonds, so adenine's partner is thymine.",
+          "concept": "5D",
+          "cover_story": "digestion chemistry",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Hand warmer and cold pack",
+      "paragraphs": [
+        "A chemistry class tests two commercial products that use reactions to change temperature. A hand warmer contains chemicals that react to release heat, warming a hiker's pocket. An instant cold pack, by contrast, contains a salt that dissolves and draws heat in, cooling an athlete's injury. The teacher frames the two devices in terms of enthalpy: a reaction that releases heat to its surroundings is exothermic and has a negative enthalpy change, while a reaction that absorbs heat from its surroundings is endothermic and has a positive enthalpy change. The students feel the difference by holding each pack and reading a thermometer taped to it.",
+        "To measure heat, the class uses calorimetry, warming water and applying q = m c times the temperature change, where c for water is about 4.2 J per gram per degree Celsius. They also study how temperature affects reaction speed: warming the reactants makes the molecules collide more often and with more energy, so a larger fraction get over the activation energy barrier and the reaction runs faster. On an energy diagram, the activation energy is the hump the reactants must climb, and the difference in height between reactants and products is the overall enthalpy change. Because breaking bonds costs energy and forming bonds releases it, the sign of that overall change depends on which effect wins."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 5 and 12 (Thermochemistry and Kinetics)",
+      "questions": [
+        {
+          "stem": "The hand warmer releases heat to its surroundings. Its reaction is:",
+          "choices": [
+            "Exothermic, with a negative enthalpy change",
+            "Endothermic, with a positive enthalpy change",
+            "Neither, since no heat is involved",
+            "Exothermic, with a positive enthalpy change"
+          ],
+          "answer": 0,
+          "explain": "Releasing heat to the surroundings is exothermic, which corresponds to a negative enthalpy change. A positive change would instead absorb heat.",
+          "concept": "5E",
+          "cover_story": "hot and cold packs",
+          "b": -0.8
+        },
+        {
+          "stem": "The instant cold pack gets cold because the salt dissolving:",
+          "choices": [
+            "Releases heat to the surroundings",
+            "Absorbs heat from the surroundings",
+            "Produces a gas",
+            "Raises the surrounding temperature"
+          ],
+          "answer": 1,
+          "explain": "An endothermic process absorbs heat from the surroundings, cooling the pack and the skin. An exothermic process would warm them instead.",
+          "concept": "5E",
+          "cover_story": "hot and cold packs",
+          "b": -0.5
+        },
+        {
+          "stem": "How much heat is needed to warm 100 g of water by 10 degrees Celsius, using c = 4.2 J per gram per degree?",
+          "choices": [
+            "420 J",
+            "1,000 J",
+            "4,200 J",
+            "42,000 J"
+          ],
+          "answer": 2,
+          "explain": "Heat is q = m c times the temperature change = 100 times 4.2 times 10 = 4,200 J. Dropping a factor of ten gives 420 J.",
+          "concept": "5E",
+          "cover_story": "hot and cold packs",
+          "b": 0.3
+        },
+        {
+          "stem": "Warming the reactants speeds the reaction mainly because more molecules:",
+          "choices": [
+            "Have energy above the activation barrier and collide more often",
+            "Are destroyed by the heat",
+            "Lose their activation energy",
+            "Stop moving"
+          ],
+          "answer": 0,
+          "explain": "Higher temperature raises the fraction of molecules with enough energy to cross the activation barrier and makes collisions more frequent, so the rate increases.",
+          "concept": "5E",
+          "cover_story": "hot and cold packs",
+          "b": -0.2
+        },
+        {
+          "stem": "On the reaction's energy diagram, the overall enthalpy change is given by the:",
+          "choices": [
+            "Height of the activation-energy hump",
+            "Difference in energy between reactants and products",
+            "Speed of the reaction",
+            "Temperature of the room"
+          ],
+          "answer": 1,
+          "explain": "The enthalpy change is the energy difference between reactants and products, while the activation energy is only the height of the barrier between them.",
+          "concept": "5E",
+          "cover_story": "hot and cold packs",
+          "b": 0.7
+        },
+        {
+          "stem": "A reaction is exothermic when the energy released by forming the product bonds is:",
+          "choices": [
+            "Less than the energy needed to break the reactant bonds",
+            "Greater than the energy needed to break the reactant bonds",
+            "Exactly zero",
+            "Equal to the activation energy"
+          ],
+          "answer": 1,
+          "explain": "Breaking bonds costs energy and forming bonds releases it, so the reaction gives off net heat only when bond formation releases more than bond breaking absorbs.",
+          "concept": "5E",
+          "cover_story": "hot and cold packs",
+          "b": 1.3
+        }
+      ]
+    },
+    {
+      "label": "Roller coaster loop",
+      "paragraphs": [
+        "A physics class analyzes a roller coaster car that runs along a track with a vertical circular loop. The car of mass 500 kg coasts down from a high hill and then races around the inside of the loop. The class treats the track as nearly frictionless and uses g = 10 m/s^2, so the car's mechanical energy is nearly constant and only gravity does significant work as the car changes height. They focus on the loop, where the car follows a circular path of radius 10 m, and they track how the car's speed, its acceleration, and the forces on it change from the bottom to the top of the loop.",
+        "Moving in a circle requires a net inward force, called the centripetal force, that always points toward the center of the loop and has size m v squared over r. Even when the car moves around the loop at a steady speed, this inward force means the car is accelerating, because its direction keeps changing. At the very top of the loop the center is directly below the car, so gravity points toward the center and helps supply the needed force. If the car moves too slowly there, gravity alone is more than the required centripetal force and the car would leave the track, so there is a minimum speed at the top of the loop."
+      ],
+      "source_ref": "OpenStax University Physics Vol 1, Ch. 6 and 8 (Centripetal Force and Conservation of Energy)",
+      "questions": [
+        {
+          "stem": "As the car passes the top of the loop, its centripetal acceleration points:",
+          "choices": [
+            "Downward, toward the center",
+            "Upward, away from the center",
+            "Forward, along its motion",
+            "Backward, against its motion"
+          ],
+          "answer": 0,
+          "explain": "Centripetal acceleration always points toward the center of the circle, which at the top of the loop is straight down. It is never along the direction of motion.",
+          "concept": "4A",
+          "cover_story": "a roller coaster loop",
+          "b": -0.3
+        },
+        {
+          "stem": "If the car took the loop at twice the speed, the centripetal force needed to hold it on the circular path would be:",
+          "choices": [
+            "Twice as large",
+            "Half as large",
+            "Four times as large",
+            "Unchanged"
+          ],
+          "answer": 2,
+          "explain": "Centripetal force is m v squared over r, so it grows with the square of the speed. Doubling the speed multiplies the required force by four.",
+          "concept": "4A",
+          "cover_story": "a roller coaster loop",
+          "b": 0.5
+        },
+        {
+          "stem": "While the car moves around the loop at constant speed, the net force on it is:",
+          "choices": [
+            "Nonzero and directed toward the center",
+            "Zero, because the speed is constant",
+            "Nonzero and directed along its motion",
+            "Nonzero and directed outward"
+          ],
+          "answer": 0,
+          "explain": "Constant speed is not constant velocity, since the direction keeps changing, so a nonzero net force points toward the center to supply the centripetal acceleration.",
+          "concept": "4A",
+          "cover_story": "a roller coaster loop",
+          "b": 0.2
+        },
+        {
+          "stem": "For the 10 m radius loop, what is the minimum speed the car can have at the top and still keep contact with the track, using v = sqrt(g r)?",
+          "choices": [
+            "5 m/s",
+            "10 m/s",
+            "20 m/s",
+            "100 m/s"
+          ],
+          "answer": 1,
+          "explain": "At the minimum speed gravity alone supplies the centripetal force, so m g = m v squared over r gives v = sqrt(g r) = sqrt(10 times 10) = 10 m/s.",
+          "concept": "4A",
+          "cover_story": "a roller coaster loop",
+          "b": 1.2
+        },
+        {
+          "stem": "The track pushes inward on the car as it rounds the loop. By Newton's third law, the car pushes on the track with a force that is:",
+          "choices": [
+            "Larger than the track's push",
+            "Smaller than the track's push",
+            "Zero",
+            "Equal in size and opposite in direction"
+          ],
+          "answer": 3,
+          "explain": "Newton's third-law pairs are always equal in magnitude and opposite in direction, so the car pushes on the track exactly as hard as the track pushes on it.",
+          "concept": "4A",
+          "cover_story": "a roller coaster loop",
+          "b": -0.1
+        },
+        {
+          "stem": "Ignoring friction, compared with the bottom of the loop the car at the top of the loop moves:",
+          "choices": [
+            "Faster, because it has gained energy",
+            "At the same speed",
+            "Not at all",
+            "Slower, because kinetic energy became gravitational potential energy"
+          ],
+          "answer": 3,
+          "explain": "With mechanical energy conserved, rising to the top converts kinetic energy into gravitational potential energy, so the car is slower at the top than at the bottom.",
+          "concept": "4A",
+          "cover_story": "a roller coaster loop",
+          "b": 0.4
+        }
+      ]
+    },
+    {
+      "label": "Airbag inflation and gas laws",
+      "paragraphs": [
+        "An engineer studies how a car airbag inflates. On impact, a sensor triggers a fast reaction that produces a burst of nitrogen gas, filling the bag in a small fraction of a second. To model the bag, the team treats nitrogen as an ideal gas and uses the ideal gas law, which ties together the pressure, volume, amount, and temperature of a gas: pressure times volume equals the number of moles times the gas constant times the absolute temperature. Because the reaction makes a fixed number of moles of gas, the engineers can predict the inflated volume. They also review how the pressure, volume, and temperature of a gas trade off when one quantity is held fixed.",
+        "Several familiar rules follow from the ideal gas law. At a fixed temperature, squeezing a gas into a smaller volume raises its pressure, and stretching it into a larger volume lowers the pressure. At a fixed pressure, heating a gas makes it expand. At a fixed amount and temperature, equal volumes of any ideal gas hold the same number of molecules, and one mole of an ideal gas fills about 22.4 liters at standard temperature and pressure. The engineer adds that gas molecules are in constant random motion, that at a given temperature all ideal gases share the same average kinetic energy, and that real gases stray from ideal behavior at very high pressure and very low temperature."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 9 (Gases)",
+      "questions": [
+        {
+          "stem": "At a fixed temperature, if the nitrogen were squeezed into half its volume, its pressure would:",
+          "choices": [
+            "Double",
+            "Fall to half",
+            "Stay the same",
+            "Fall to one quarter"
+          ],
+          "answer": 0,
+          "explain": "At constant temperature pressure and volume are inversely related by Boyle's law, so halving the volume doubles the pressure.",
+          "concept": "4B",
+          "cover_story": "an inflating airbag",
+          "b": -0.4
+        },
+        {
+          "stem": "At constant pressure, heating the nitrogen to a higher absolute temperature makes its volume:",
+          "choices": [
+            "Decrease",
+            "Increase",
+            "Stay the same",
+            "Drop to zero"
+          ],
+          "answer": 1,
+          "explain": "At constant pressure volume is proportional to absolute temperature by Charles's law, so heating the gas expands it.",
+          "concept": "4B",
+          "cover_story": "an inflating airbag",
+          "b": -0.2
+        },
+        {
+          "stem": "How much volume does 2.0 mol of nitrogen occupy at standard temperature and pressure?",
+          "choices": [
+            "11.2 L",
+            "22.4 L",
+            "44.8 L",
+            "89.6 L"
+          ],
+          "answer": 2,
+          "explain": "One mole of an ideal gas fills 22.4 L at standard temperature and pressure, so 2.0 mol fills about 44.8 L.",
+          "concept": "4B",
+          "cover_story": "an inflating airbag",
+          "b": 0.3
+        },
+        {
+          "stem": "At fixed temperature and pressure, if the reaction produced twice as many moles of nitrogen, the inflated volume would be:",
+          "choices": [
+            "Half as large",
+            "The same",
+            "Four times as large",
+            "Twice as large"
+          ],
+          "answer": 3,
+          "explain": "At fixed temperature and pressure, volume is proportional to the number of moles by Avogadro's principle, so twice the moles fills twice the volume.",
+          "concept": "4B",
+          "cover_story": "an inflating airbag",
+          "b": 0.2
+        },
+        {
+          "stem": "At the same temperature, nitrogen molecules and heavier carbon dioxide molecules share the same average kinetic energy. The lighter nitrogen molecules therefore move on average:",
+          "choices": [
+            "Slower",
+            "Faster",
+            "At the same speed",
+            "Not at all"
+          ],
+          "answer": 1,
+          "explain": "Equal average kinetic energy at the same temperature means the lighter molecules must move faster, since kinetic energy is one half m v squared.",
+          "concept": "4B",
+          "cover_story": "an inflating airbag",
+          "b": 1.1
+        },
+        {
+          "stem": "Real nitrogen behaves least like an ideal gas at:",
+          "choices": [
+            "High temperature and low pressure",
+            "Standard temperature and pressure",
+            "Very high pressure and very low temperature",
+            "Every condition equally"
+          ],
+          "answer": 2,
+          "explain": "Real gases deviate most at high pressure and low temperature, where the molecules are close enough that their size and attractions matter. Near standard conditions they behave nearly ideally.",
+          "concept": "4B",
+          "cover_story": "an inflating airbag",
+          "b": 0.4
         }
       ]
     }

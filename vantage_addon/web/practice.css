@@ -25,6 +25,9 @@ html, body {
   background: var(--bg); color: var(--fg);
   font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* Stops the phone WebView's stretch overscroll (Android 12+) from elongating
+     the page as you scroll past the top or bottom. No effect on desktop. */
+  overscroll-behavior: none;
 }
 .wrap { max-width: 72rem; margin: 0 auto; padding: 0 2rem 4rem; }
 
@@ -110,3 +113,53 @@ html, body {
   .grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .qcard { position: static; }
 }
+
+/* ---- Practice tab: timed-test setup ---- */
+.psetup { max-width: 40rem; margin-top: 1.75rem; }
+
+/* Study & practice (primary, wider) and Timed test (secondary, narrower) read as two
+   related panels side by side on wide viewports; on narrow ones (<= 820px, the existing
+   breakpoint) they fall back to the original stacked layout. Layout only. */
+.psplit { display: block; }
+/* Invisible header-height spacer: only used in the wide two-column layout to drop the
+   Timed test card down so its top lines up with the "Interleaved review" row (the first
+   study row) rather than the "Study & practice" heading. Auto-matches the header height. */
+.psplit__spacer { display: none; }
+@media (min-width: 821px) {
+  .psplit { display: flex; align-items: stretch; gap: 1.5rem; }
+  .psplit > .section { flex: 1 1 auto; min-width: 0; }
+  .psplit > .psetup { flex: 0 0 26rem; max-width: 26rem; margin: 2rem 0 0; padding: 0 2.5rem 0 0; display: flex; flex-direction: column; }
+  .psplit__spacer { display: block; margin-bottom: 1.1rem; }
+  /* Match the Timed test card's height to the study column (equal-height panels). */
+  .psplit > .psetup .psetup__card { flex: 1 1 auto; }
+}
+.psetup__card { background: var(--muted); border-radius: var(--radius); padding: 1.6rem; }
+.psetup__title { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+.psetup__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; font-weight: 600; font-size: 0.95rem; }
+.psetup__sec, .psetup__num { font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--fg); background: var(--bg); border: 2px solid var(--gray-200); border-radius: var(--radius); padding: 0.55rem 0.8rem; }
+.psetup__num { width: 6rem; }
+.psetup__sec { min-width: 12rem; }
+.psetup__presets { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.2rem 0 1.3rem; }
+.pchip { font-family: inherit; font-weight: 600; font-size: 0.85rem; color: var(--fg); background: var(--bg); border: 1px solid var(--gray-200); border-radius: 9999px; padding: 0.45rem 0.95rem; cursor: pointer; }
+.pchip:hover { border-color: var(--cars); color: var(--cars-600); }
+.pbtn--start { width: 100%; height: 3rem; margin-top: 0.4rem; }
+
+/* ---- Test mode: countdown + badge ---- */
+.ptimer { font-weight: 800; font-size: 1rem; font-variant-numeric: tabular-nums; color: var(--fg); background: var(--muted); border-radius: 9999px; padding: 0.3rem 0.85rem; }
+.ptestbadge { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.09em; color: var(--cars-600); background: var(--cars-50); border-radius: 9999px; padding: 0.2rem 0.6rem; vertical-align: middle; }
+
+/* ---- Test summary ---- */
+.psum__body { background: var(--muted); border-radius: var(--radius); padding: 2rem; max-width: 46rem; }
+.psum__score { display: flex; align-items: baseline; gap: 0.8rem; }
+.psum__num { font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; }
+.psum__pct { color: var(--gray-500); font-weight: 600; }
+.psum__meta { display: flex; gap: 1.5rem; margin-top: 0.6rem; color: var(--gray-500); font-weight: 600; font-size: 0.9rem; flex-wrap: wrap; }
+.psum__note { margin-top: 1rem; color: var(--gray-600); font-size: 0.9rem; line-height: 1.5; }
+.psum__misses { margin-top: 1.6rem; display: grid; gap: 0.9rem; }
+.psum__mh { font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-400); }
+.psum__miss { background: var(--bg); border: 1px solid var(--gray-200); border-left: 3px solid var(--no); border-radius: var(--radius); padding: 0.9rem 1.1rem; }
+.psum__mstem { font-weight: 700; font-size: 0.98rem; line-height: 1.4; }
+.psum__ma { margin-top: 0.5rem; font-size: 0.92rem; font-weight: 600; color: var(--ok); }
+.psum__mx { margin-top: 0.35rem; font-size: 0.9rem; color: var(--gray-600); line-height: 1.5; }
+.psum__allright { margin-top: 1.4rem; font-weight: 700; color: var(--ok); }
+.psum__actions { margin-top: 1.6rem; display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }

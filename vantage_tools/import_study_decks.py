@@ -83,15 +83,25 @@ def retag_miledown(col: Collection) -> int:
 
 # Appended to each note type's CSS so imported cards render like the app on BOTH
 # desktop native review AND AnkiDroid (which the web reviewer's overrides can't
-# reach). Theme-safe: it does NOT force background/text colors, so AnkiDroid night
-# mode still works; it only kills source-deck backgrounds, normalizes the font and
-# size, caps images, and hides Khan-Academy/YouTube links. Marker keeps it idempotent.
+# reach). The imported community decks hardcode a dark card surface on `.card` AND
+# the more-specific `.mobile .card` (the class AnkiDroid adds), so their dark
+# background/text shows through even with the app's night mode OFF. This forces a
+# clean light surface (white background, near-black text) on BOTH selectors with
+# !important, recolors clozes and neutralizes the decks' light-on-dark emphasis
+# accents so they stay legible on white, kills source-deck background images,
+# normalizes the font and size, caps images, and hides Khan-Academy/YouTube links.
+# Marker keeps it idempotent (restyle_notetypes truncates here and reappends).
 RESTYLE_MARKER = "/* vantage-clean */"
 RESTYLE_CSS = (
     "\n" + RESTYLE_MARKER + "\n"
     ".card{background-image:none!important;"
     "font-family:'Outfit',ui-sans-serif,system-ui,-apple-system,sans-serif!important;"
     "font-size:17px!important;line-height:1.55!important}\n"
+    # Force a clean light surface on BOTH .card and the more-specific .mobile .card:
+    # AnkiDroid adds the .mobile class and the imported decks ship a dark `.mobile
+    # .card`, so overriding .card alone is not enough. !important beats the decks' own
+    # .card/.mobile .card rules regardless of their specificity or source order.
+    ".card,.mobile .card{background-color:#ffffff!important;color:#111827!important}\n"
     ".card *{font-family:inherit!important;background-image:none!important;max-width:100%!important}\n"
     # Equation/prompt images (the card's Text field) stay small; explanation diagrams
     # (MileDown puts them in Extra, wrapped in #extra) get a bigger box so their small
@@ -100,7 +110,14 @@ RESTYLE_CSS = (
     "height:auto!important;width:auto!important}\n"
     ".card #extra img{max-width:min(100%,480px)!important;max-height:460px!important}\n"
     '.card a[href*="khan"],.card a[href*="youtu"]{display:none!important}\n'
-    ".card .cloze{font-weight:700}\n"
+    # The decks color clozes for a dark background (e.g. .cloze{color:#00F6D1!important})
+    # which vanishes on white. A strong blue with higher specificity + !important + later
+    # source order beats it on both surfaces. Emphasis tags (bold/italic/underline) are
+    # light pastels on dark; make them inherit the near-black text so they stay readable.
+    ".card .cloze,.mobile .card .cloze{color:#1d4ed8!important;font-weight:700!important}\n"
+    ".card b,.card strong,.card i,.card em,.card u,"
+    ".mobile .card b,.mobile .card strong,.mobile .card i,.mobile .card em,.mobile .card u"
+    "{color:inherit!important}\n"
 )
 
 

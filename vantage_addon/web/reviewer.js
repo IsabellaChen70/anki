@@ -25,6 +25,10 @@
   };
   let state = 'idle';
   let meta = { deck: 'Studying', counts: { new: 0, lrn: 0, rev: 0 } };
+  // Count answers this session so we can gently mark today's recommended flashcard
+  // goal once, without ending the session (you usually have time for more).
+  let answered = 0;
+  let goalShown = false;
 
   const escHtml = (s) => String(s == null ? '' : s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   const escAttr = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
@@ -81,9 +85,48 @@
     setTimeout(fit, 60);
   }
 
+  // Today's recommended flashcard count, taken from the dashboard's study plan (the
+  // same "X flashcards to study today" number). 0 when there is no plan yet.
+  function dailyGoal() {
+    const v = (typeof window !== 'undefined' && window.__VANTAGE__) || null;
+    const sp = v && v.study_pace;
+    if (!sp) return 0;
+    const n = sp.flashcards_per_day || sp.reviews_due || 0;
+    return n > 0 ? n : 0;
+  }
+  // A quiet, one-time nudge when you reach today's recommended number: happy, but it
+  // does NOT stop the session, so you keep going if you have the time. Lives on the
+  // body (not the review stage) so pushing the next card doesn't wipe it.
+  function goalToast(goal) {
+    let el = document.getElementById('revgoal');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'revgoal';
+      el.className = 'revgoal';
+      document.body.appendChild(el);
+    }
+    el.innerHTML =
+      '<span class="revgoal__dot"></span><span>Nice work, that\u2019s today\u2019s ' +
+      goal + ' flashcard' + (goal === 1 ? '' : 's') + '. Keep going while you have time.</span>';
+    void el.offsetWidth; // reflow so re-adding the class re-animates
+    el.classList.add('revgoal--show');
+    clearTimeout(window.__revgoalT);
+    window.__revgoalT = setTimeout(function () { el.classList.remove('revgoal--show'); }, 5200);
+  }
+  function maybeGoalToast() {
+    if (goalShown) return;
+    const goal = dailyGoal();
+    if (goal > 0 && answered >= goal) {
+      goalShown = true;
+      goalToast(goal);
+    }
+  }
+
   window.vreview = {
     enter() {
       state = 'loading';
+      answered = 0;
+      goalShown = false;
       stage().innerHTML = `<div class="review">${topBar()}
         <div class="review__stage"><p style="color:var(--gray-500);font-weight:600">Loading your next card</p></div></div>`;
     },
@@ -107,18 +150,32 @@
         </div></div>`;
       sizeFrame();
     },
-    done() {
+    // End of the due queue. `p.section` names the section just finished (omitted for
+    // the mixed queue); `p.canContinue` offers more of that pool's non-due cards.
+    done(p) {
+      p = p || {};
       state = 'done';
       meta = { deck: 'Studying', counts: { new: 0, lrn: 0, rev: 0 } };
+      const sec = p.section ? ' for ' + escHtml(p.section) : '';
+      const keep = p.canContinue
+        ? `<button class="showbtn" onclick="vreview._more()">Keep studying${p.section ? ' ' + escHtml(p.section) : ''}</button>`
+        : '';
+      const lead = p.canContinue
+        ? `You finished today's reviews${sec}. Want to keep going with more cards?`
+        : `You finished today's reviews${sec}. Close this to head back to your dashboard.`;
       stage().innerHTML = `<div class="review">${topBar()}
         <div class="review__stage"><div class="review__done">
-          <h2>No cards due right now</h2>
-          <p>Nice work. Close this to head back to your dashboard.</p>
-          <button class="showbtn" onclick="vreview._close()">Back to dashboard</button>
+          <h2>Nice work</h2>
+          <p>${lead}</p>
+          <div class="review__donebtns">
+            ${keep}
+            <button class="showbtn ${p.canContinue ? 'showbtn--ghost' : ''}" onclick="vreview._close()">Back to dashboard</button>
+          </div>
         </div></div></div>`;
     },
     _show() { vpy('review:show'); },
-    _rate(e) { vpy('review:answer:' + e); },
+    _rate(e) { answered += 1; vpy('review:answer:' + e); maybeGoalToast(); },
+    _more() { vpy('review:more'); },
     // Drop the overlay instantly, then ask the host to recompute so the dashboard
     // reflects the cards you just studied (memory score, ranges, counts).
     _close() { close(); vpy('studydone'); },

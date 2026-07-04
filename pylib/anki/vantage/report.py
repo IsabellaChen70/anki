@@ -59,14 +59,30 @@ def _readiness_block(r: ScoreResult) -> list[str]:
             lines.append(f"      · {reason}")
         return lines
     b = r.band
+    # Reflect the real scale the core computed: CARS joins the composite (a full
+    # 4-section total) once it has enough practice; otherwise it is the labeled
+    # partial. Never hardcode "CARS not modeled" -- the numbers are real, so the
+    # label must match. Defaults stay defensive if a path omitted the keys.
+    extra = r.extra or {}
+    cars_modeled = bool(extra.get("cars_modeled", False))
+    modeled = extra.get("modeled_sections") or list((extra.get("sections") or {}).keys())
+    n_sec = len(modeled)
+    header = f"{n_sec}-section composite" if cars_modeled else f"{n_sec}-section partial"
     lines.append(
-        f"    3-section partial: {b.point:.0f}   likely {b.low:.0f}–{b.high:.0f}"
+        f"    {header}: {b.point:.0f}   likely {b.low:.0f}–{b.high:.0f}"
         f"    · how sure: {_how_sure(r.how_sure)}"
     )
-    lines.append("    (of the 472–528 scale; CARS not modeled → no 4-section total)")
-    for s, band in r.extra.get("sections", {}).items():
+    scale_note = extra.get("scale_note")
+    if scale_note:
+        lines.append(f"    ({scale_note})")
+    elif cars_modeled:
+        lines.append("    (of the 472–528 scale; full 4-section total)")
+    else:
+        lines.append("    (of the 472–528 scale; CARS not modeled → no 4-section total)")
+    for s, band in extra.get("sections", {}).items():
+        label = SECTION_LABELS.get(s) or ("CARS" if s == "cars" else s)
         lines.append(
-            f"      {SECTION_LABELS.get(s, s):<12} {band.point:.0f}   "
+            f"      {label:<12} {band.point:.0f}   "
             f"(likely {band.low:.0f}–{band.high:.0f})   [118–132]"
         )
     for reason in r.reasons:

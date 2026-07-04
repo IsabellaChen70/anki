@@ -941,6 +941,1134 @@
           "b": -0.3
         }
       ]
+    },
+    {
+      "label": "Titration",
+      "paragraphs": [
+        "A biochemistry lab titrates a dilute solution of the amino acid glycine, starting at very low pH and slowly adding a strong base while recording pH. At the start both ionizable groups are fully protonated, so the carboxyl group is neutral and the amino group carries a positive charge, giving the molecule a net charge of plus one. As base is added, the carboxyl group gives up its proton first, near a pKa of 2.3, leaving a species with no net charge called a zwitterion. Adding still more base eventually removes the proton from the amino group, near a pKa of 9.6, giving the molecule a net charge of minus one. The lab notes two regions where the pH changes slowly, one around each pKa, where the solution resists change.",
+        "The team repeats the titration with two other amino acids. Aspartate has a second carboxyl group on its side chain, adding a third ionizable group with a low pKa, while lysine has a second amino group on its side chain with a high pKa. For each amino acid they identify the pH at which the average net charge is exactly zero, called the isoelectric point. They observe that the extra acidic group on aspartate pulls its isoelectric point to a low pH, whereas the extra basic group on lysine raises its isoelectric point to a high pH. The class uses these curves to predict the charge each amino acid would carry in solutions of different pH."
+      ],
+      "source_ref": "OpenStax Chemistry 2e (Acid-base chemistry of amino acids)",
+      "questions": [
+        {
+          "stem": "At the very start of the titration, at very low pH, what is the net charge on glycine?",
+          "choices": [
+            "Net positive, plus one, because both the amino and carboxyl groups are protonated",
+            "Zero, because it exists as a neutral zwitterion",
+            "Net negative, minus one, because the carboxyl group has lost its proton",
+            "Net negative, minus two, because both groups are deprotonated"
+          ],
+          "answer": 0,
+          "explain": "At a pH below both pKa values the carboxyl group stays protonated and neutral while the amino group holds its proton and its positive charge, giving a net charge of plus one. The zwitterion answer is wrong because that neutral form appears only at higher pH, once the carboxyl group has lost its proton.",
+          "concept": "1A",
+          "cover_story": "amino acid titration",
+          "b": -1.0
+        },
+        {
+          "stem": "As base is added to the glycine solution, which group gives up its proton first?",
+          "choices": [
+            "The amino group, which has a pKa near 9.6",
+            "The carboxyl group, which has a pKa near 2.3",
+            "The alpha carbon, which has no pKa",
+            "The side chain of glycine, which is a single hydrogen"
+          ],
+          "answer": 1,
+          "explain": "The group with the lower pKa loses its proton first, and the carboxyl group at pKa 2.3 ionizes well before the amino group at pKa 9.6. Glycine's side chain is just a hydrogen, so it has no ionizable group to lose.",
+          "concept": "1A",
+          "cover_story": "amino acid titration",
+          "b": 0.0
+        },
+        {
+          "stem": "The isoelectric point of an amino acid is best defined as which of the following?",
+          "choices": [
+            "The pH at which the molecule is fully protonated",
+            "The pH at which the carboxyl group first begins to ionize",
+            "The pH at which the average net charge is zero",
+            "The pH at which the amino group is fully deprotonated"
+          ],
+          "answer": 2,
+          "explain": "The isoelectric point is defined as the pH at which the molecule carries no average net charge. It is not the pH where a group begins to ionize or where the molecule is fully protonated.",
+          "concept": "1A",
+          "cover_story": "amino acid titration",
+          "b": 0.3
+        },
+        {
+          "stem": "Using its two pKa values of 2.3 and 9.6, the isoelectric point of glycine is approximately...",
+          "choices": [
+            "About 2.3, the lower pKa",
+            "About 6.0, the average of the two pKa values",
+            "About 9.6, the higher pKa",
+            "About 11.9, the sum of the two pKa values"
+          ],
+          "answer": 1,
+          "explain": "For an amino acid whose only charged groups are the alpha carboxyl and alpha amino, the isoelectric point is the average of the two pKa values, so 2.3 plus 9.6 divided by 2 is about 6.0. The individual pKa values themselves are not the point of zero net charge.",
+          "concept": "1A",
+          "cover_story": "amino acid titration",
+          "b": 0.6
+        },
+        {
+          "stem": "Near pH 2.3 the glycine solution resists changes in pH strongly. Why does it buffer well at that pH?",
+          "choices": [
+            "It has no ionizable groups near that pH",
+            "Near that pH about half the carboxyl groups are protonated and half are not, so it resists pH change",
+            "It is fully positive there and cannot accept protons",
+            "Water alone does the buffering, not the amino acid"
+          ],
+          "answer": 1,
+          "explain": "A weak acid buffers best when the pH is near its pKa, where roughly half the groups are protonated and half are not, so added acid or base is absorbed with little change in pH. At that pH the molecule can both donate and accept protons.",
+          "concept": "1A",
+          "cover_story": "amino acid titration",
+          "b": -0.5
+        },
+        {
+          "stem": "Aspartate carries an extra carboxyl group on its side chain compared with glycine. How does this affect its isoelectric point?",
+          "choices": [
+            "Its isoelectric point is lower than glycine's, because the extra acidic group must stay protonated to reach zero net charge",
+            "Its isoelectric point is higher than glycine's, because the extra group is basic",
+            "Its isoelectric point is unchanged, because side chains never ionize",
+            "Aspartate has no isoelectric point at all"
+          ],
+          "answer": 0,
+          "explain": "Aspartate has two acidic carboxyl groups, so reaching zero net charge requires a lower pH where the extra group stays protonated, pulling the isoelectric point below that of glycine. It is not raised, because the added group is acidic rather than basic.",
+          "concept": "1A",
+          "cover_story": "amino acid titration",
+          "b": 1.0
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A microbiology lab investigates how DNA is copied. They grow bacteria for many generations in a medium whose only nitrogen source is a heavy isotope, so every DNA strand becomes dense. They then move the cells to a medium with ordinary light nitrogen and allow exactly one round of division before extracting the DNA and spinning it to separate molecules by density. After this first round every DNA molecule is of a single intermediate density, halfway between fully heavy and fully light. The team lets a second set of cells divide once more and finds that the DNA now separates into two groups, half at intermediate density and half fully light. They use these bands to decide among competing models of replication.",
+        "Next the lab looks closely at a replication fork, the point where the double helix is opened and copied. DNA polymerase can add new nucleotides only to the growing three prime end of a strand, so it builds each new strand in the five prime to three prime direction. Because the two template strands run in opposite directions, one new strand is made continuously toward the moving fork, while the other is made in short pieces that point away from the fork and are joined together later. An enzyme called primase first lays down a short RNA primer to give the polymerase a starting point. The polymerase also checks its work, removing a mismatched nucleotide right after adding it, which keeps copying errors rare."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 14 (DNA Structure and Function)",
+      "questions": [
+        {
+          "stem": "After one round of division in light nitrogen, all the DNA is of a single intermediate density. This result supports which model of replication?",
+          "choices": [
+            "A conservative pattern, with the original duplex left intact",
+            "A semiconservative pattern, with one old and one new strand per duplex",
+            "A dispersive pattern, with strands broken into many pieces",
+            "No copying of the template at all"
+          ],
+          "answer": 1,
+          "explain": "A single intermediate band after one round means each new duplex contains one old heavy strand and one new light strand, which is the semiconservative pattern. A conservative model would leave the original heavy duplex intact and produce a separate fully light duplex, giving two bands rather than one.",
+          "concept": "1B",
+          "cover_story": "DNA replication",
+          "b": 0.2
+        },
+        {
+          "stem": "After a second round of division in light nitrogen, what density pattern is expected?",
+          "choices": [
+            "All heavy DNA",
+            "All intermediate density DNA",
+            "Half intermediate density and half fully light DNA",
+            "Equal amounts of fully heavy and fully light DNA"
+          ],
+          "answer": 2,
+          "explain": "In the second round the original heavy strands pair with new light strands to give intermediate duplexes, while the strands made in the first round pair with new light strands to give fully light duplexes, so half is intermediate and half is light. All intermediate is the one round result, not the two round result.",
+          "concept": "1B",
+          "cover_story": "DNA replication",
+          "b": 0.7
+        },
+        {
+          "stem": "DNA polymerase adds each new nucleotide to which part of the growing strand?",
+          "choices": [
+            "The five prime end of the growing strand",
+            "The three prime end of the growing strand",
+            "The middle of the growing strand",
+            "Either end, chosen at random"
+          ],
+          "answer": 1,
+          "explain": "DNA polymerase builds a strand only in the five prime to three prime direction, adding each new nucleotide to the free three prime end. It cannot add to the five prime end.",
+          "concept": "1B",
+          "cover_story": "DNA replication",
+          "b": -0.5
+        },
+        {
+          "stem": "Because the two template strands are antiparallel, one new strand is built in short pieces pointing away from the fork. These short pieces are characteristic of the...",
+          "choices": [
+            "leading strand, which is made continuously",
+            "lagging strand, which is made in short pieces",
+            "RNA primer, which is made of protein",
+            "parental heavy strand"
+          ],
+          "answer": 1,
+          "explain": "The strand made in short pieces away from the fork is the lagging strand, and those pieces are the Okazaki fragments. The leading strand is instead made continuously toward the fork.",
+          "concept": "1B",
+          "cover_story": "DNA replication",
+          "b": 0.5
+        },
+        {
+          "stem": "What is the role of primase at the start of replication?",
+          "choices": [
+            "It unwinds the double helix ahead of the fork",
+            "It seals the gaps between finished fragments",
+            "It lays down a short RNA primer that gives the polymerase a three prime end to extend",
+            "It proofreads and removes mismatched bases"
+          ],
+          "answer": 2,
+          "explain": "Primase lays down a short RNA primer that provides the three prime end DNA polymerase needs to begin adding nucleotides. Unwinding the helix and sealing gaps are jobs of other enzymes.",
+          "concept": "1B",
+          "cover_story": "DNA replication",
+          "b": 0.0
+        },
+        {
+          "stem": "A variant DNA polymerase lacks the proofreading activity that removes a wrongly paired base right after it is added. This variant would most likely show...",
+          "choices": [
+            "a higher mutation rate in the DNA it copies",
+            "no change in accuracy at all",
+            "a complete inability to add any nucleotides",
+            "faster replication that is still perfectly accurate"
+          ],
+          "answer": 0,
+          "explain": "Proofreading removes a mismatched base immediately, so a polymerase without it leaves more errors in place and raises the mutation rate. It would still add nucleotides, just less accurately.",
+          "concept": "1B",
+          "cover_story": "DNA replication",
+          "b": 1.0
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A cell biology lab studies how a eukaryotic cell controls which of its genes are switched on. Inside the nucleus the long DNA molecule is wound around histone proteins and packed into a fiber called chromatin. Where the fiber is packed tightly, the machinery that reads genes cannot reach the DNA, so those genes stay quiet. Chemical tags can change the packing. Adding acetyl groups to the histones loosens the fiber and opens the DNA, while removing them tightens it again. Starting transcription of a gene also depends on regulatory proteins called transcription factors, which bind specific DNA sequences and help position the enzyme that copies the gene. The team can add drugs that block the tagging enzymes and can mutate the regulatory sequences a gene needs.",
+        "The lab also follows what happens to a gene's RNA after it is copied. The first transcript is processed before it can leave the nucleus. A protective cap is added to one end and a long tail of adenine nucleotides to the other, and stretches called introns that do not code for protein are cut out while the coding exons are joined together. By joining the exons in different combinations, one gene can give rise to more than one related protein. The team labels a transcript before and after this processing, measures how its length changes, and records how stable the finished message is once it reaches the cytoplasm to be translated."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 16 (Gene Expression)",
+      "questions": [
+        {
+          "stem": "Genes in a region of tightly packed chromatin tend to be transcriptionally...",
+          "choices": [
+            "highly active, because tight packing recruits the machinery",
+            "generally silent, because the machinery cannot reach the DNA",
+            "unaffected, because packing does not matter for transcription",
+            "turned directly into protein without transcription"
+          ],
+          "answer": 1,
+          "explain": "When chromatin is packed tightly the transcription machinery cannot reach the DNA, so those genes are generally silent. Packing does not recruit polymerase or turn DNA directly into protein.",
+          "concept": "1B",
+          "cover_story": "eukaryotic gene control",
+          "b": 0.4
+        },
+        {
+          "stem": "Adding acetyl groups to histones loosens the chromatin fiber. What effect does this most likely have on nearby genes?",
+          "choices": [
+            "It decreases their transcription by tightening the fiber",
+            "It has no effect on transcription",
+            "It increases their transcription by opening access to the DNA",
+            "It permanently deletes the genes"
+          ],
+          "answer": 2,
+          "explain": "Histone acetylation loosens the fiber and exposes the DNA, which generally makes nearby genes easier to transcribe. It does not tighten the fiber or delete genes.",
+          "concept": "1B",
+          "cover_story": "eukaryotic gene control",
+          "b": 0.6
+        },
+        {
+          "stem": "Cutting out introns and joining the coding exons of a transcript together is called...",
+          "choices": [
+            "capping",
+            "splicing",
+            "replication",
+            "translation"
+          ],
+          "answer": 1,
+          "explain": "Removing introns and joining the exons is called splicing. Capping instead adds a protective group to one end of the transcript.",
+          "concept": "1B",
+          "cover_story": "eukaryotic gene control",
+          "b": 0.3
+        },
+        {
+          "stem": "By joining the exons of one gene in different combinations, a cell can make several related proteins. This process is called...",
+          "choices": [
+            "alternative splicing",
+            "a point mutation",
+            "semiconservative replication",
+            "independent assortment"
+          ],
+          "answer": 0,
+          "explain": "Joining the exons of one gene in different combinations to yield several proteins is alternative splicing. A point mutation changes a single base and does not by itself generate multiple protein forms from one transcript.",
+          "concept": "1B",
+          "cover_story": "eukaryotic gene control",
+          "b": 0.9
+        },
+        {
+          "stem": "The cap and the adenine tail added during processing mainly help the messenger RNA to...",
+          "choices": [
+            "be destroyed faster once it is made",
+            "be protected and to leave the nucleus and be translated",
+            "have its coding exons removed",
+            "copy the DNA template again"
+          ],
+          "answer": 1,
+          "explain": "The cap and poly-A tail protect the messenger RNA from breakdown and help it leave the nucleus and be translated. They do not speed its destruction or remove exons.",
+          "concept": "1B",
+          "cover_story": "eukaryotic gene control",
+          "b": -0.2
+        },
+        {
+          "stem": "Two cell types in the same organism carry identical DNA yet make different proteins, in part because different transcription factors are active in each. This is best explained by...",
+          "choices": [
+            "each cell type carrying a different genome",
+            "each cell type turning on a different subset of the same genes",
+            "each cell type randomly losing chromosomes",
+            "each cell type having its own unique mutations"
+          ],
+          "answer": 1,
+          "explain": "Cells with identical DNA differ because each turns on a different subset of the shared genes, controlled in part by which transcription factors are active. They do not carry different genomes or delete unused genes.",
+          "concept": "1B",
+          "cover_story": "eukaryotic gene control",
+          "b": 1.1
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A genetics class studies meiosis, the special cell division that makes gametes such as eggs and sperm. A cell that is diploid carries two copies of each chromosome, one from each parent. Before meiosis the cell copies all of its DNA once. It then goes through two rounds of division without copying again, so the four cells produced are haploid and carry a single copy of each chromosome. In the first division the matching pairs of chromosomes, called homologs, line up together and are pulled to opposite ends of the cell. In the second division the two identical halves of each chromosome finally separate. The class watches how alleles from the two parents are shuffled during this process.",
+        "Two features of meiosis create new combinations of alleles. First, when homologs pair in the first division they can swap matching segments, a trade called crossing over that mixes parental alleles on a single chromosome. Second, each pair of homologs lines up independently of the other pairs, so maternal and paternal chromosomes are dealt into gametes in many combinations. The class also studies mistakes. If a pair of homologs or a pair of chromosome halves fails to separate, an event called nondisjunction, some gametes end up with an extra chromosome and others with one too few. When such a gamete joins a normal one at fertilization, the offspring carries an abnormal number of that chromosome."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 11 (Meiosis and Sexual Reproduction)",
+      "questions": [
+        {
+          "stem": "Meiosis reduces the chromosome number from diploid to haploid. Why is this reduction important?",
+          "choices": [
+            "It doubles the chromosome number so gametes are diploid",
+            "It makes gametes haploid so that fertilization can restore the diploid number",
+            "It keeps gametes diploid, which they need to function",
+            "It removes all genetic variation from the gametes"
+          ],
+          "answer": 1,
+          "explain": "Halving the chromosome number in gametes means that when two gametes fuse at fertilization the normal diploid number is restored. Without the reduction, the number would double every generation.",
+          "concept": "1C",
+          "cover_story": "meiosis and variation",
+          "b": -0.8
+        },
+        {
+          "stem": "During which division do homologous chromosomes separate from each other?",
+          "choices": [
+            "Meiosis I",
+            "Meiosis II",
+            "Mitosis",
+            "Fertilization"
+          ],
+          "answer": 0,
+          "explain": "Homologous chromosomes pair and then separate during meiosis I, which is why it is called the reduction division. Sister chromatids stay together until meiosis II.",
+          "concept": "1C",
+          "cover_story": "meiosis and variation",
+          "b": 0.4
+        },
+        {
+          "stem": "How does crossing over between homologous chromosomes increase genetic variation?",
+          "choices": [
+            "By copying whole chromosomes for the gamete",
+            "By exchanging matching segments so chromatids carry new allele combinations",
+            "By removing alleles from the chromosome",
+            "By keeping homologs from ever separating"
+          ],
+          "answer": 1,
+          "explain": "Crossing over physically exchanges matching segments between homologs, producing chromatids with new combinations of alleles. It does not copy whole chromosomes or remove alleles.",
+          "concept": "1C",
+          "cover_story": "meiosis and variation",
+          "b": 0.6
+        },
+        {
+          "stem": "The random way each homolog pair orients at the metaphase plate, independently of the other pairs, is the cellular basis of...",
+          "choices": [
+            "the independent assortment of genes on different chromosomes",
+            "the replication of DNA before division",
+            "nondisjunction of the chromosomes",
+            "the blending of parental traits"
+          ],
+          "answer": 0,
+          "explain": "Each homolog pair orients randomly and independently at the metaphase plate, which is the cellular basis of the independent assortment of genes on different chromosomes. This is separate from nondisjunction, which is a failure of separation.",
+          "concept": "1C",
+          "cover_story": "meiosis and variation",
+          "b": 0.7
+        },
+        {
+          "stem": "Nondisjunction is best defined as...",
+          "choices": [
+            "the normal, orderly separation of chromosomes",
+            "the failure of homologs or sister chromatids to separate properly",
+            "the exchange of segments between homologs",
+            "the fusion of two gametes at fertilization"
+          ],
+          "answer": 1,
+          "explain": "Nondisjunction is the failure of homologs or sister chromatids to separate properly during meiosis. It is not normal separation or the exchange of segments.",
+          "concept": "1C",
+          "cover_story": "meiosis and variation",
+          "b": 0.2
+        },
+        {
+          "stem": "A gamete produced by nondisjunction carries an extra copy of one chromosome. If it is fertilized by a normal gamete, the offspring cell will have...",
+          "choices": [
+            "the normal diploid number for every chromosome",
+            "three copies of that chromosome instead of the usual two",
+            "a single copy of every chromosome",
+            "no copies of that chromosome at all"
+          ],
+          "answer": 1,
+          "explain": "The extra chromosome in the gamete plus the normal copy from the other gamete gives the offspring three copies of that chromosome instead of two. It does not produce a normal set or a missing chromosome in this case.",
+          "concept": "1C",
+          "cover_story": "meiosis and variation",
+          "b": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Field study",
+      "paragraphs": [
+        "Field biologists follow a large population of beetles whose body color is set by a single gene. A dark allele is dominant to a light allele. The beetles rest on dark tree bark, where hunting birds spot light colored beetles more easily and eat them, while dark beetles are better hidden and survive to reproduce more often. Over many seasons the team records the fraction of dark and light beetles and estimates how common each allele is in the population. They confirm that the population is large, that beetles mate without regard to color, and that few beetles enter or leave, so they can focus on how survival differences alone shift the alleles.",
+        "For comparison the team studies a very small population on a nearby island that was started by only a handful of beetles. By chance those few founders happened to carry mostly the light allele, so the island population looks different from the mainland one from the start. The researchers track how allele frequencies drift over the generations in this small group, where chance events have a large effect. They discuss the idealized conditions under which allele frequencies would not change at all, a baseline called Hardy-Weinberg equilibrium, and identify which real forces are pushing each population away from that baseline."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 19 (The Evolution of Populations)",
+      "questions": [
+        {
+          "stem": "Because birds eat light beetles more easily on dark bark, dark beetles leave more offspring. Over many generations the frequency of the dark allele will most likely...",
+          "choices": [
+            "increase over the generations",
+            "decrease over the generations",
+            "stay exactly constant",
+            "disappear completely in a single generation"
+          ],
+          "answer": 0,
+          "explain": "Because dark beetles survive and reproduce more on dark bark, they pass on more dark alleles, so that allele's frequency rises over generations. A dominant allele is not automatically more or less common, so decrease is wrong.",
+          "concept": "1C",
+          "cover_story": "population evolution",
+          "b": -0.2
+        },
+        {
+          "stem": "This change in allele frequency, driven by consistent differences in survival and reproduction, is an example of...",
+          "choices": [
+            "genetic drift",
+            "natural selection",
+            "gene flow from another population",
+            "a directed mutation caused by the birds"
+          ],
+          "answer": 1,
+          "explain": "A frequency change caused by consistent differences in survival and reproduction is natural selection. Genetic drift instead refers to change from random chance, not from a survival advantage.",
+          "concept": "1C",
+          "cover_story": "population evolution",
+          "b": 0.5
+        },
+        {
+          "stem": "In the small island population, allele frequencies shifted largely because a few chance founders were not representative of the source. This is best described as...",
+          "choices": [
+            "natural selection favoring the light allele",
+            "genetic drift, specifically a founder effect",
+            "steady gene flow from the mainland",
+            "Hardy-Weinberg equilibrium"
+          ],
+          "answer": 1,
+          "explain": "Allele frequencies in the small island group shifted because a few unrepresentative founders started it, a form of genetic drift called the founder effect. This is chance, not the selective advantage that defines natural selection.",
+          "concept": "1C",
+          "cover_story": "population evolution",
+          "b": 0.9
+        },
+        {
+          "stem": "Hardy-Weinberg equilibrium describes a population whose allele frequencies do not change. Which set of conditions must hold for it?",
+          "choices": [
+            "Strong natural selection on the trait",
+            "Frequent nonrandom mating",
+            "No selection, drift, migration, or mutation, together with random mating",
+            "A very small population size"
+          ],
+          "answer": 2,
+          "explain": "Hardy-Weinberg equilibrium holds only when there is no selection, no drift, no migration, and no mutation, and mating is random. Strong selection or a small population would push frequencies away from equilibrium.",
+          "concept": "1C",
+          "cover_story": "population evolution",
+          "b": 0.6
+        },
+        {
+          "stem": "In a population at Hardy-Weinberg equilibrium the dark allele frequency is 0.6 and the light allele frequency is 0.4. What fraction of beetles are homozygous for the light allele?",
+          "choices": [
+            "0.16",
+            "0.36",
+            "0.48",
+            "0.60"
+          ],
+          "answer": 0,
+          "explain": "The frequency of the homozygous light genotype is q squared, and with q equal to 0.4 that is 0.16. The value 0.48 would be the heterozygote frequency, 2pq, not the homozygous recessive one.",
+          "concept": "1C",
+          "cover_story": "population evolution",
+          "b": 1.0
+        },
+        {
+          "stem": "Which process ultimately provides the new genetic variation that natural selection then acts on?",
+          "choices": [
+            "Mutation",
+            "Homeostasis",
+            "Reshuffling of existing alleles with no new ones",
+            "The isoelectric point of the allele"
+          ],
+          "answer": 0,
+          "explain": "New alleles ultimately arise from mutation, which supplies the raw variation that selection acts on. Independent assortment and recombination only rearrange alleles that already exist.",
+          "concept": "1C",
+          "cover_story": "population evolution",
+          "b": -0.5
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A biochemistry group measures the energy changes of reactions inside cells. They sort reactions into two kinds. An exergonic reaction releases free energy and has a negative change in Gibbs free energy, so it can move toward products on its own. An endergonic reaction absorbs free energy and has a positive change, so it does not move toward products by itself. The group notes that the breakdown of ATP into ADP and a free phosphate group is strongly exergonic, releasing a useful amount of energy. Cells rely on this reaction again and again as a way to supply energy where it is needed.",
+        "To build large molecules the cell links an uphill endergonic reaction to the downhill breakdown of ATP, so that the two reactions considered together release energy overall and can proceed. The group also points out that being exergonic does not guarantee a fast reaction. Many favorable reactions crawl along because they must first pass over a high energy barrier called the activation energy. Enzymes speed these reactions up by lowering that barrier, which lets far more reactant molecules react each second. Importantly, an enzyme does not change whether a reaction is favorable, only how quickly it reaches its result. The group measures each reaction with and without its enzyme present."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 6 (Metabolism)",
+      "questions": [
+        {
+          "stem": "A reaction that releases free energy and has a negative change in Gibbs free energy is called...",
+          "choices": [
+            "endergonic",
+            "exergonic",
+            "nonspontaneous",
+            "at equilibrium"
+          ],
+          "answer": 1,
+          "explain": "A reaction that releases free energy and has a negative change in Gibbs free energy is exergonic. Endergonic reactions are the opposite, absorbing energy with a positive change.",
+          "concept": "1D",
+          "cover_story": "free energy coupling",
+          "b": -1.0
+        },
+        {
+          "stem": "An endergonic reaction, considered by itself, will...",
+          "choices": [
+            "proceed toward products on its own",
+            "not proceed toward products without an input of energy",
+            "always run extremely fast",
+            "release energy to the surroundings"
+          ],
+          "answer": 1,
+          "explain": "An endergonic reaction has a positive free energy change, so on its own it will not move toward products without an added energy source. It does not release energy or run quickly by itself.",
+          "concept": "1D",
+          "cover_story": "free energy coupling",
+          "b": 0.0
+        },
+        {
+          "stem": "How does the cell drive an endergonic reaction such as building a macromolecule?",
+          "choices": [
+            "By coupling it to the exergonic breakdown of ATP",
+            "By lowering the temperature of the cell",
+            "By removing all enzymes from the cell",
+            "By waiting for it to happen on its own"
+          ],
+          "answer": 0,
+          "explain": "The cell pairs the uphill endergonic reaction with the strongly exergonic breakdown of ATP so the combined process is favorable. Lowering temperature or removing enzymes would not make an endergonic reaction proceed.",
+          "concept": "1D",
+          "cover_story": "free energy coupling",
+          "b": 0.4
+        },
+        {
+          "stem": "Two coupled reactions will proceed only if...",
+          "choices": [
+            "each reaction on its own has a positive free energy change",
+            "the sum of their free energy changes is negative overall",
+            "the activation energy of the pair is raised",
+            "the ATP is changed into a form that cannot be broken down"
+          ],
+          "answer": 1,
+          "explain": "Two coupled reactions will proceed only if the sum of their free energy changes is negative, even if one of them is positive on its own. If each stayed positive, the pair would still not go.",
+          "concept": "1D",
+          "cover_story": "free energy coupling",
+          "b": 0.9
+        },
+        {
+          "stem": "A reaction is strongly exergonic yet proceeds extremely slowly on its own. What is the most likely reason?",
+          "choices": [
+            "It is actually endergonic despite appearances",
+            "It faces a high activation energy barrier",
+            "It releases no free energy",
+            "It is already sitting at equilibrium"
+          ],
+          "answer": 1,
+          "explain": "A favorable reaction can still be very slow if it faces a high activation energy barrier that few molecules can cross each second. Being slow does not make it endergonic or mean it releases no energy.",
+          "concept": "1D",
+          "cover_story": "free energy coupling",
+          "b": 0.5
+        },
+        {
+          "stem": "An enzyme speeds this reaction up by...",
+          "choices": [
+            "making the reaction more exergonic",
+            "lowering the free energy of the products",
+            "lowering the activation energy without changing whether the reaction is favorable",
+            "supplying the free energy the reaction lacks"
+          ],
+          "answer": 2,
+          "explain": "An enzyme speeds a reaction by lowering its activation energy, letting more molecules react each second, without changing whether the reaction is favorable. It does not make the reaction more exergonic or supply energy to it.",
+          "concept": "1D",
+          "cover_story": "free energy coupling",
+          "b": 0.1
+        }
+      ]
+    },
+    {
+      "label": "Case",
+      "paragraphs": [
+        "A metabolism lab tracks how the body fuels itself between meals. Soon after a meal rich in carbohydrate, the level of glucose in the blood is high. Cells take up glucose and burn some of it right away for energy, and the body tucks away the extra. The liver and muscles store surplus glucose by linking the molecules into a branched polymer called glycogen, while fat is stored in adipose tissue. The lab samples blood glucose, measures glycogen stores in liver and muscle, and follows the level of small acidic molecules called ketone bodies, comparing values during feeding and during a long fast.",
+        "As a fast goes on, blood glucose starts to fall, so the liver breaks its stored glycogen back down into glucose and releases it to the blood. When glycogen stores run low after a longer fast, the body leans more on stored fat, sending fatty acids to tissues that oxidize them for energy. The liver turns some of the products of fat breakdown into ketone bodies, a fuel the brain can use when glucose is scarce. The body can even build new glucose from noncarbohydrate sources such as certain amino acids. The lab records which fuel supplies most of the energy at each stage of the fast."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 7 (Cellular Respiration)",
+      "questions": [
+        {
+          "stem": "Right after a carbohydrate meal, excess glucose is stored in the liver and muscle mainly as...",
+          "choices": [
+            "glycogen",
+            "extra protein in the blood",
+            "ketone bodies in the liver",
+            "DNA in the nucleus"
+          ],
+          "answer": 0,
+          "explain": "Surplus glucose after a meal is stored in the liver and muscle as glycogen, a branched polymer of glucose. It is not stored as protein or as ketone bodies.",
+          "concept": "1D",
+          "cover_story": "fuel metabolism",
+          "b": -0.7
+        },
+        {
+          "stem": "During early fasting, blood glucose is kept up mainly by the liver...",
+          "choices": [
+            "making new fat from glucose",
+            "breaking stored glycogen back down into glucose",
+            "storing even more glucose as glycogen",
+            "making ketone bodies out of glucose"
+          ],
+          "answer": 1,
+          "explain": "In early fasting the liver breaks stored glycogen back into glucose and releases it to keep blood glucose up. Storing more glycogen would lower blood glucose, the opposite of what is needed.",
+          "concept": "1D",
+          "cover_story": "fuel metabolism",
+          "b": 0.2
+        },
+        {
+          "stem": "After a longer fast, once glycogen stores are low, which fuel does the body increasingly rely on?",
+          "choices": [
+            "Stored fat, whose fatty acids are oxidized for energy",
+            "A fresh supply of dietary carbohydrate",
+            "Nucleic acids taken from the diet",
+            "Oxygen stored in the muscles"
+          ],
+          "answer": 0,
+          "explain": "Once glycogen runs low, the body increasingly oxidizes fatty acids from stored fat for energy. There is no incoming dietary carbohydrate during a fast, so that option does not apply.",
+          "concept": "1D",
+          "cover_story": "fuel metabolism",
+          "b": 0.6
+        },
+        {
+          "stem": "The liver makes ketone bodies from the products of fat breakdown during a prolonged fast. A key benefit is that ketone bodies...",
+          "choices": [
+            "give the brain a usable fuel when glucose is scarce",
+            "are stored away as glycogen",
+            "take the place of oxygen in respiration",
+            "cannot be used by any tissue"
+          ],
+          "answer": 0,
+          "explain": "Ketone bodies made by the liver from fat breakdown give the brain a usable fuel when glucose is scarce. They are not stored as glycogen and are certainly usable, so those options are wrong.",
+          "concept": "1D",
+          "cover_story": "fuel metabolism",
+          "b": 0.9
+        },
+        {
+          "stem": "During an extended fast the body can make new glucose from noncarbohydrate sources such as certain amino acids. This process is called...",
+          "choices": [
+            "glycolysis",
+            "gluconeogenesis",
+            "fermentation",
+            "glycogen synthesis"
+          ],
+          "answer": 1,
+          "explain": "Making new glucose from noncarbohydrate sources such as amino acids is gluconeogenesis. Glycolysis instead breaks glucose down, and glycogen synthesis stores it.",
+          "concept": "1D",
+          "cover_story": "fuel metabolism",
+          "b": 1.0
+        },
+        {
+          "stem": "Fatty acids, glucose, and amino acids can all be broken down into intermediates that feed the same central pathways. This shows that the body's metabolic pathways are...",
+          "choices": [
+            "completely separate, sharing no steps",
+            "interconnected, feeding into shared pathways such as the citric acid cycle",
+            "unable to use fat as an energy source",
+            "active only right after a meal"
+          ],
+          "answer": 1,
+          "explain": "Carbohydrates, fats, and proteins are broken down into intermediates that feed shared pathways such as the citric acid cycle, showing that metabolism is interconnected. The pathways are not separate, and fat certainly can be used for energy.",
+          "concept": "1D",
+          "cover_story": "fuel metabolism",
+          "b": -0.2
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A signaling lab studies how a water soluble hormone changes a cell without ever entering it. Because the hormone cannot cross the greasy interior of the membrane, it binds to a receptor protein that spans the membrane. When the hormone attaches to the outside part of the receptor, the receptor changes shape on the inside, and this switches on an enzyme at the inner surface. The enzyme makes many copies of a small molecule that spreads through the cytoplasm, known as a second messenger. The second messenger then switches on other enzymes deeper in the cell, so a message received at the surface is passed inward. The lab can measure hormone binding, second messenger levels, and the cell's final response.",
+        "The team notices that a tiny amount of hormone produces a large effect. Each receptor that is switched on can activate many enzyme molecules, and each of those can make many second messenger molecules, so the signal grows at every step in a cascade. This amplification lets a few hormone molecules change the behavior of a whole cell. For contrast, the lab also studies a steroid signal, which is lipid soluble and slips straight through the membrane to bind a receptor inside the cell. That internal receptor often acts on the genes, and the team compares how quickly each pathway acts and how long each effect lasts."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 9 (Cell Communication)",
+      "questions": [
+        {
+          "stem": "A water soluble hormone cannot cross the plasma membrane. To affect the cell it must...",
+          "choices": [
+            "bind a receptor on the outside of the cell surface",
+            "diffuse freely through the lipid interior of the membrane",
+            "be turned into a gas to slip inside",
+            "enter straight through the nucleus"
+          ],
+          "answer": 0,
+          "explain": "A water soluble hormone cannot pass through the lipid interior of the membrane, so it must bind a receptor on the cell surface to act. It cannot diffuse freely through the bilayer the way a lipid soluble signal can.",
+          "concept": "2A",
+          "cover_story": "cell signaling",
+          "b": -0.8
+        },
+        {
+          "stem": "The small molecule made inside the cell that relays the signal from the receptor is called a...",
+          "choices": [
+            "first messenger",
+            "second messenger",
+            "signaling ligand",
+            "substrate that the hormone breaks down"
+          ],
+          "answer": 1,
+          "explain": "The small molecule made inside the cell that relays the signal from the receptor is a second messenger. The hormone itself is the first messenger, not the second.",
+          "concept": "2A",
+          "cover_story": "cell signaling",
+          "b": 0.4
+        },
+        {
+          "stem": "One hormone molecule triggers a very large cellular response. This is best explained by...",
+          "choices": [
+            "amplification through a cascade of activated enzymes",
+            "the hormone being used up very slowly",
+            "the receptor shutting down all downstream steps",
+            "the hormone entering the nucleus to act"
+          ],
+          "answer": 0,
+          "explain": "Because each receptor activates many enzymes and each enzyme makes many second messenger molecules, the signal is amplified into a large response from a small trigger. The response is not caused by the hormone entering the nucleus, which it cannot do.",
+          "concept": "2A",
+          "cover_story": "cell signaling",
+          "b": 0.7
+        },
+        {
+          "stem": "A steroid signal is lipid soluble and crosses the membrane to bind an intracellular receptor that often acts on genes. Compared with the surface receptor pathway, its effects are typically...",
+          "choices": [
+            "faster to appear and shorter lived",
+            "slower to appear but longer lasting",
+            "identical in timing to the surface pathway",
+            "unable to change the cell in any way"
+          ],
+          "answer": 1,
+          "explain": "A lipid soluble steroid enters the cell and often acts on genes, which takes longer to show but produces effects that last. The fast, short lived responses are more typical of the surface receptor and second messenger route.",
+          "concept": "2A",
+          "cover_story": "cell signaling",
+          "b": 0.9
+        },
+        {
+          "stem": "In this pathway, the hormone that binds the receptor is acting as the...",
+          "choices": [
+            "enzyme that makes the second messenger",
+            "signaling ligand that the receptor detects",
+            "second messenger itself",
+            "DNA template inside the nucleus"
+          ],
+          "answer": 1,
+          "explain": "The hormone is the signaling ligand that the receptor detects, not the enzyme or the second messenger it triggers. The enzyme and second messenger act downstream of the hormone.",
+          "concept": "2A",
+          "cover_story": "cell signaling",
+          "b": 0.0
+        },
+        {
+          "stem": "A drug blocks the enzyme that makes the second messenger. In cells treated with the water soluble hormone, the most likely effect is that...",
+          "choices": [
+            "the surface signal is still received but the downstream response is blunted",
+            "the response becomes even larger than before",
+            "the hormone can no longer bind its receptor at all",
+            "only the steroid pathway is affected"
+          ],
+          "answer": 0,
+          "explain": "Blocking the enzyme that makes the second messenger leaves the surface receptor able to bind hormone but cuts off the internal relay, so the downstream response is blunted. It does not stop the hormone from binding its receptor.",
+          "concept": "2A",
+          "cover_story": "cell signaling",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A virology lab studies a retrovirus, a virus whose genome is made of single stranded RNA rather than DNA. When the virus infects a host cell, it brings along its own enzyme, called reverse transcriptase, which copies the RNA genome into a matching strand of DNA. This DNA version of the viral genome then slips into one of the host cell's own chromosomes. Sitting inside the host genome, the viral genes are copied and read by the host's ordinary machinery, which unknowingly makes fresh viral RNA and viral proteins. The virus is enveloped, wrapping itself in a piece of the host's own membrane as it buds off to leave the cell.",
+        "The lab tests several drugs, each aimed at a different step. One blocks reverse transcriptase, one blocks the enzyme that splices the viral DNA into the host chromosome, and one blocks the assembly of new virus particles. The team also finds that reverse transcriptase does not proofread its work, so the virus makes many copying mistakes and its genome changes quickly from one generation to the next. This rapid change helps the virus slip past the immune system and develop resistance to drugs. The team measures viral DNA, the amount of integrated virus, and the release of new particles under each treatment."
+      ],
+      "source_ref": "OpenStax Microbiology (Viruses)",
+      "questions": [
+        {
+          "stem": "A retrovirus stores its genetic information as...",
+          "choices": [
+            "double stranded DNA",
+            "single stranded RNA",
+            "a chain of protein",
+            "a ring of lipid"
+          ],
+          "answer": 1,
+          "explain": "A retrovirus carries its genome as single stranded RNA, which its own enzyme later copies into DNA. It is not stored as DNA or protein in the incoming particle.",
+          "concept": "2B",
+          "cover_story": "retrovirus replication",
+          "b": 0.2
+        },
+        {
+          "stem": "Reverse transcriptase carried by the virus catalyzes which unusual step?",
+          "choices": [
+            "Copying DNA into RNA",
+            "Copying RNA into DNA",
+            "Copying protein into RNA",
+            "Turning glucose into ATP"
+          ],
+          "answer": 1,
+          "explain": "Reverse transcriptase copies the viral RNA genome into DNA, the reverse of the usual DNA to RNA flow. It does not translate RNA into protein.",
+          "concept": "2B",
+          "cover_story": "retrovirus replication",
+          "b": 0.5
+        },
+        {
+          "stem": "After the viral DNA is made, it inserts into the host chromosome. This integrated viral DNA is called a...",
+          "choices": [
+            "provirus",
+            "capsid",
+            "plasmid",
+            "ribosome"
+          ],
+          "answer": 0,
+          "explain": "Viral DNA that has inserted into the host chromosome is called a provirus. A capsid is the protein shell and a plasmid is a bacterial DNA circle, neither of which fits.",
+          "concept": "2B",
+          "cover_story": "retrovirus replication",
+          "b": 0.7
+        },
+        {
+          "stem": "A drug that blocks reverse transcriptase would most directly prevent the virus from...",
+          "choices": [
+            "binding to the surface of the host cell",
+            "budding out through the membrane",
+            "making a DNA copy of its RNA genome",
+            "translating the host cell's own proteins"
+          ],
+          "answer": 2,
+          "explain": "Blocking reverse transcriptase stops the virus from making the DNA copy of its RNA genome, so integration cannot follow. It does not act on binding or budding, which are separate steps.",
+          "concept": "2B",
+          "cover_story": "retrovirus replication",
+          "b": 0.9
+        },
+        {
+          "stem": "Reverse transcriptase lacks proofreading, so the virus mutates rapidly. A direct consequence is that...",
+          "choices": [
+            "it evolves quickly, which helps it escape the immune system and resist drugs",
+            "it becomes unable to change its surface proteins",
+            "it stops replicating altogether",
+            "it makes the host permanently immune"
+          ],
+          "answer": 0,
+          "explain": "Without proofreading the virus accumulates mutations quickly, so it can change its surface and escape the immune system and drug pressure. Rapid mutation is the opposite of being unable to change.",
+          "concept": "2B",
+          "cover_story": "retrovirus replication",
+          "b": 1.1
+        },
+        {
+          "stem": "The virus is described as enveloped, meaning it is surrounded by...",
+          "choices": [
+            "a rigid cell wall the virus builds for itself",
+            "a second nucleus taken from the host",
+            "a membrane taken from the host cell",
+            "a wrapping of host DNA"
+          ],
+          "answer": 2,
+          "explain": "An enveloped virus is wrapped in a membrane it takes from the host cell as it buds out. It does not build a rigid wall of its own or wrap itself in host DNA.",
+          "concept": "2B",
+          "cover_story": "retrovirus replication",
+          "b": -0.3
+        }
+      ]
+    },
+    {
+      "label": "Case",
+      "paragraphs": [
+        "A hematology lab studies where the many kinds of blood cells come from. Deep in the bone marrow sits an unspecialized cell called a hematopoietic stem cell. It has two important abilities. It can divide to make more copies of itself, and it can give rise to cells that mature into the specialized cells of the blood. Its descendants become red blood cells that carry oxygen, several kinds of white blood cells that fight infection, and the cell fragments called platelets that help blood clot. Chemical signals in the marrow steer each young cell down one path or another. The lab traces how a single kind of stem cell can supply this whole range of mature cells.",
+        "The team watches what happens as a young cell commits to one fate. A cell heading toward becoming a red blood cell switches on the genes for hemoglobin and gradually loses the option of becoming any other type, even though it still holds the same complete set of genes as every other body cell. A finished human red blood cell even pushes out its nucleus and can no longer divide. The lab compares the dividing stem cells with the fully specialized cells they produce, recording which genes each one switches on and whether each is still able to divide. By lining these stages up, the team builds a picture of how one cell type becomes many."
+      ],
+      "source_ref": "OpenStax Anatomy and Physiology, Ch. 18 (The Cardiovascular System: Blood)",
+      "questions": [
+        {
+          "stem": "A hematopoietic stem cell is described as unspecialized. Which two abilities define such a stem cell?",
+          "choices": [
+            "It can only divide once and then die",
+            "It can renew itself and also give rise to specialized cell types",
+            "It carries a different genome from other body cells",
+            "It works only as a finished red blood cell"
+          ],
+          "answer": 1,
+          "explain": "A stem cell is defined by being able to renew itself and to give rise to specialized cell types. Carrying a different genome or being a mature red blood cell would contradict what a stem cell is.",
+          "concept": "2C",
+          "cover_story": "blood cell differentiation",
+          "b": -0.4
+        },
+        {
+          "stem": "Red blood cells, white blood cells, and platelets all arise from one kind of stem cell. This shows that a single stem cell type can...",
+          "choices": [
+            "produce only one kind of cell",
+            "give rise to several specialized cell types",
+            "change the genome of each descendant",
+            "avoid dividing altogether"
+          ],
+          "answer": 1,
+          "explain": "That one stem cell type gives rise to red cells, white cells, and platelets shows a single stem cell can produce multiple specialized cell types. It clearly does not make only one kind of cell.",
+          "concept": "2C",
+          "cover_story": "blood cell differentiation",
+          "b": 0.5
+        },
+        {
+          "stem": "As a precursor commits to becoming a red blood cell, it switches on hemoglobin genes and can no longer become a white blood cell. This growing commitment to a specialized fate is called...",
+          "choices": [
+            "replication of the cell's DNA",
+            "fertilization of the cell",
+            "differentiation toward a specialized fate",
+            "diffusion across the membrane"
+          ],
+          "answer": 2,
+          "explain": "The growing commitment of a cell to a particular specialized fate is differentiation. Replication and fertilization are entirely different processes.",
+          "concept": "2C",
+          "cover_story": "blood cell differentiation",
+          "b": 0.6
+        },
+        {
+          "stem": "A red blood cell and a white blood cell from the same person carry the same genome yet look and act very differently. The best explanation is that they...",
+          "choices": [
+            "contain entirely different DNA",
+            "came originally from different people",
+            "each deleted the genes they do not use",
+            "express different subsets of the same shared genes"
+          ],
+          "answer": 3,
+          "explain": "Two cell types with the same genome differ because each expresses a different subset of the shared genes. They do not contain different DNA or come from different people.",
+          "concept": "2C",
+          "cover_story": "blood cell differentiation",
+          "b": 0.8
+        },
+        {
+          "stem": "A mature human red blood cell loses its nucleus and can no longer divide. Compared with the stem cell it came from, the mature cell is...",
+          "choices": [
+            "less specialized and able to divide freely",
+            "more specialized but no longer able to divide",
+            "identical in every way to the stem cell",
+            "able to turn into any other cell type"
+          ],
+          "answer": 1,
+          "explain": "The mature red blood cell is more specialized than its stem cell and, having lost its nucleus, can no longer divide. It is not less specialized or able to become any other cell type.",
+          "concept": "2C",
+          "cover_story": "blood cell differentiation",
+          "b": 0.3
+        },
+        {
+          "stem": "The bone marrow must keep producing blood cells throughout life. This continuous supply depends on the stem cell's ability to...",
+          "choices": [
+            "divide by mitosis to renew itself while also making cells that specialize",
+            "undergo meiosis to produce gametes",
+            "stop dividing permanently once formed",
+            "fuse with mature red blood cells"
+          ],
+          "answer": 0,
+          "explain": "Continuous blood production depends on the stem cell dividing by mitosis to both renew itself and generate cells that specialize. Meiosis makes gametes, not blood cells, so it does not apply here.",
+          "concept": "2C",
+          "cover_story": "blood cell differentiation",
+          "b": 1.0
+        }
+      ]
+    },
+    {
+      "label": "Experiment",
+      "paragraphs": [
+        "A neuroscience lab records how a signal passes from one neuron to the next across a chemical synapse, the narrow gap between them. When an action potential sweeps down the first neuron and reaches the end of its axon, it causes gated channels there to open and let calcium ions flow into the terminal. The rush of calcium makes small sacs called vesicles, which are filled with a chemical messenger, fuse with the membrane and dump that messenger into the gap. The messenger drifts across and binds receptors on the second neuron, where it changes the flow of ions and shifts that neuron's membrane voltage. The lab can measure both the release of messenger and the response it produces.",
+        "To probe the synapse the team runs several tests. They can block the calcium channels at the terminal, add a drug that stops the enzyme that normally clears the messenger from the gap, and apply molecules that force ion channels on the receiving cell to open or close. They find that some messengers push the receiving neuron toward firing by making its inside less negative, while others push it away from firing by making its inside more negative. Each result ties a specific step at the synapse to the response recorded in the second neuron, so the lab can map how a signal is passed on, strengthened, or silenced at the junction between two neurons."
+      ],
+      "source_ref": "OpenStax Anatomy and Physiology, Ch. 12 (The Nervous System and Nervous Tissue)",
+      "questions": [
+        {
+          "stem": "At a chemical synapse, the signal is carried from one neuron to the next across the gap by...",
+          "choices": [
+            "a direct electrical arc across the gap",
+            "neurotransmitter molecules released into the gap",
+            "whole vesicles that cross the gap intact",
+            "the first axon physically touching the second neuron"
+          ],
+          "answer": 1,
+          "explain": "At a chemical synapse the signal crosses the gap as neurotransmitter molecules released by the first neuron. There is no direct electrical arc, and the vesicles stay behind rather than crossing intact.",
+          "concept": "3A",
+          "cover_story": "synaptic transmission",
+          "b": -0.9
+        },
+        {
+          "stem": "When the action potential reaches the axon terminal, the immediate trigger for neurotransmitter release is the influx of...",
+          "choices": [
+            "calcium ions entering through voltage gated channels",
+            "potassium ions leaving the terminal",
+            "glucose molecules entering the terminal",
+            "large proteins crossing the membrane"
+          ],
+          "answer": 0,
+          "explain": "The action potential opens voltage gated calcium channels at the terminal, and the calcium that flows in triggers vesicles to release their neurotransmitter. Potassium leaving the cell does not drive release.",
+          "concept": "3A",
+          "cover_story": "synaptic transmission",
+          "b": 0.5
+        },
+        {
+          "stem": "A drug blocks the enzyme that normally clears the neurotransmitter from the synaptic gap. The most likely effect is that the neurotransmitter...",
+          "choices": [
+            "is cleared from the gap faster than usual",
+            "can no longer bind its receptor",
+            "lingers in the gap and prolongs its effect on the receiving neuron",
+            "is turned into calcium"
+          ],
+          "answer": 2,
+          "explain": "Blocking the enzyme that clears the neurotransmitter lets it stay in the gap longer and keep acting on the receiving neuron, which prolongs rather than shortens its effect.",
+          "concept": "3A",
+          "cover_story": "synaptic transmission",
+          "b": 0.9
+        },
+        {
+          "stem": "A neurotransmitter that depolarizes the receiving neuron makes that neuron...",
+          "choices": [
+            "more likely to reach threshold and fire",
+            "less likely to fire an action potential",
+            "permanently unable to fire again",
+            "locked in a hyperpolarized state"
+          ],
+          "answer": 0,
+          "explain": "A neurotransmitter that depolarizes the receiving neuron brings it closer to threshold, making it more likely to fire. Depolarization is excitatory, not inhibitory.",
+          "concept": "3A",
+          "cover_story": "synaptic transmission",
+          "b": 0.6
+        },
+        {
+          "stem": "Blocking the voltage gated calcium channels at the axon terminal would most directly...",
+          "choices": [
+            "increase neurotransmitter release",
+            "prevent neurotransmitter release",
+            "speed the action potential along the axon",
+            "hyperpolarize the terminal by letting potassium in"
+          ],
+          "answer": 1,
+          "explain": "Since calcium influx triggers vesicle release, blocking the calcium channels prevents the neuron from releasing its neurotransmitter. It would not increase release or speed the axon's own action potential.",
+          "concept": "3A",
+          "cover_story": "synaptic transmission",
+          "b": 0.7
+        },
+        {
+          "stem": "Some neurotransmitters hyperpolarize the receiving cell, making its inside more negative. Their overall effect on that neuron is...",
+          "choices": [
+            "excitatory, pushing the neuron to fire",
+            "inhibitory, lowering the chance the neuron fires",
+            "a guaranteed trigger of an action potential",
+            "a release of calcium into the gap"
+          ],
+          "answer": 1,
+          "explain": "A neurotransmitter that hyperpolarizes the receiving cell moves it further from threshold, reducing the chance it fires, which is an inhibitory effect. That is the opposite of promoting firing.",
+          "concept": "3A",
+          "cover_story": "synaptic transmission",
+          "b": 0.1
+        }
+      ]
+    },
+    {
+      "label": "Case",
+      "paragraphs": [
+        "A renal physiology lab studies how the kidney turns blood into urine. Blood first reaches a tiny ball of capillaries called the glomerulus, where the pressure of the blood pushes fluid through a filter. Water and small dissolved substances such as glucose, salts, and the waste urea pass through into the start of a long tubule, while blood cells and large proteins are held back and stay in the blood. The fluid that enters the tubule is called the filtrate. As the filtrate flows along the tubule, the body reclaims the substances it wants to keep and adds a few extra wastes, shaping the final urine.",
+        "The lab measures how the tubule changes the filtrate. Under normal conditions the tubule reabsorbs essentially all of the filtered glucose back into the blood, so almost no glucose is left in the urine. The team also studies how the body controls water loss. When a person is dehydrated, a hormone is released that makes part of the tubule more permeable to water, so more water is pulled back into the blood and the kidney puts out a smaller volume of more concentrated urine. The lab compares urine volume and content in well hydrated and dehydrated states, and after a substance blocks glucose reabsorption in the tubule."
+      ],
+      "source_ref": "OpenStax Anatomy and Physiology, Ch. 25 (The Urinary System)",
+      "questions": [
+        {
+          "stem": "At the glomerulus, blood cells and large proteins stay in the blood while water and small solutes enter the tubule. This step is best described as...",
+          "choices": [
+            "filtration driven by blood pressure",
+            "active secretion of proteins into the tubule",
+            "reabsorption of blood cells",
+            "synthesis of new blood in the tubule"
+          ],
+          "answer": 0,
+          "explain": "Pushing fluid and small solutes out of the blood at the glomerulus while holding back cells and large proteins is filtration driven by blood pressure. It is not secretion or reabsorption, which happen later along the tubule.",
+          "concept": "3B",
+          "cover_story": "kidney filtration",
+          "b": -0.6
+        },
+        {
+          "stem": "Useful substances in the filtrate, such as glucose and much of the water, are returned to the blood along the tubule. This process is called...",
+          "choices": [
+            "filtration",
+            "reabsorption",
+            "secretion",
+            "excretion of large proteins"
+          ],
+          "answer": 1,
+          "explain": "Returning useful filtered substances such as glucose and water from the tubule back to the blood is reabsorption. Filtration is the earlier step that put them into the tubule.",
+          "concept": "3B",
+          "cover_story": "kidney filtration",
+          "b": 0.3
+        },
+        {
+          "stem": "In a healthy person the tubule reabsorbs essentially all filtered glucose. Therefore normal urine contains...",
+          "choices": [
+            "almost no glucose",
+            "more glucose than the blood holds",
+            "nothing but glucose",
+            "no water at all"
+          ],
+          "answer": 0,
+          "explain": "Because the tubule normally reabsorbs essentially all filtered glucose, healthy urine contains almost none. Urine cannot end up with more glucose than the blood it came from.",
+          "concept": "3B",
+          "cover_story": "kidney filtration",
+          "b": -1.0
+        },
+        {
+          "stem": "In uncontrolled diabetes, blood glucose is so high that the filtered glucose exceeds the tubule's reabsorption capacity. The most likely result is that...",
+          "choices": [
+            "no glucose is filtered in the first place",
+            "glucose spills over and appears in the urine",
+            "the kidney stops making urine entirely",
+            "all of the glucose is still reabsorbed"
+          ],
+          "answer": 1,
+          "explain": "When filtered glucose exceeds the tubule's reabsorption capacity, the excess is left behind and glucose appears in the urine. Glucose is still filtered, and the kidney keeps making urine.",
+          "concept": "3B",
+          "cover_story": "kidney filtration",
+          "b": 0.9
+        },
+        {
+          "stem": "When the body is dehydrated, a hormone makes part of the tubule more permeable to water. The expected result is...",
+          "choices": [
+            "a large volume of dilute urine",
+            "a smaller volume of more concentrated urine",
+            "no change in the urine at all",
+            "the loss of essentially all body water"
+          ],
+          "answer": 1,
+          "explain": "The hormone released in dehydration makes the tubule more permeable to water, so more water is reabsorbed and a smaller volume of concentrated urine forms. A large volume of dilute urine would be the opposite response.",
+          "concept": "3B",
+          "cover_story": "kidney filtration",
+          "b": 0.6
+        },
+        {
+          "stem": "A few wastes are moved from the blood into the tubule to be eliminated, rather than being filtered at the glomerulus. This active movement into the tubule is called...",
+          "choices": [
+            "reabsorption back into the blood",
+            "filtration at the glomerulus",
+            "tubular secretion into the tubule",
+            "simple diffusion into the blood"
+          ],
+          "answer": 2,
+          "explain": "Actively moving wastes from the blood into the tubule for removal is tubular secretion. Reabsorption moves substances the other way, from tubule back to blood.",
+          "concept": "3B",
+          "cover_story": "kidney filtration",
+          "b": 0.4
+        }
+      ]
     }
   ]
 }

@@ -12,7 +12,12 @@
       "questions": [
         {
           "stem": "In the tone task, the softest sound level a volunteer can detect on about half of the trials is best described as which of the following?",
-          "choices": ["The difference threshold", "The absolute threshold", "Weber's fraction", "The just noticeable difference"],
+          "choices": [
+            "The difference threshold",
+            "The absolute threshold",
+            "Weber's fraction",
+            "The just noticeable difference"
+          ],
           "answer": 1,
           "explain": "The absolute threshold is the lowest stimulus intensity a person can detect 50 percent of the time, while the difference threshold and just noticeable difference involve telling two stimuli apart.",
           "concept": "6A",
@@ -21,7 +26,12 @@
         },
         {
           "stem": "Volunteers notice an added weight more easily when the standard object is light than when it is heavy. Which principle best explains this?",
-          "choices": ["The just noticeable difference is a roughly constant proportion of the standard stimulus", "The absolute threshold falls as stimulus intensity rises", "Adaptation erases any constant stimulus within seconds", "Detection depends only on the observer's expectations"],
+          "choices": [
+            "The just noticeable difference is a roughly constant proportion of the standard stimulus",
+            "The absolute threshold falls as stimulus intensity rises",
+            "Adaptation erases any constant stimulus within seconds",
+            "Detection depends only on the observer's expectations"
+          ],
           "answer": 0,
           "explain": "Weber's law holds that the just noticeable difference is a constant fraction of the original stimulus, so a heavier standard needs a larger absolute change before the difference is felt.",
           "concept": "6A",
@@ -30,7 +40,12 @@
         },
         {
           "stem": "Inspectors told that blades are common report more blades even in empty bags. In signal detection terms, this instruction most directly shifts which of the following?",
-          "choices": ["Their absolute sensitivity to the visual stimulus", "Their decision criterion for reporting a blade", "The Weber fraction for their visual system", "The rate of transduction in their retina"],
+          "choices": [
+            "Their absolute sensitivity to the visual stimulus",
+            "Their decision criterion for reporting a blade",
+            "The Weber fraction for their visual system",
+            "The rate of transduction in their retina"
+          ],
           "answer": 1,
           "explain": "Expecting frequent targets lowers the response criterion, increasing both hits and false alarms without changing the underlying ability to see the blade.",
           "concept": "6A",
@@ -39,7 +54,12 @@
         },
         {
           "stem": "The volunteers stop noticing the steady ventilation hum after a few minutes. This change is best described as which of the following?",
-          "choices": ["Sensory adaptation", "Weber's law", "Bottom-up processing", "Perceptual constancy"],
+          "choices": [
+            "Sensory adaptation",
+            "Weber's law",
+            "Bottom-up processing",
+            "Perceptual constancy"
+          ],
           "answer": 0,
           "explain": "Sensory adaptation is the decline in sensitivity to a constant, unchanging stimulus over time.",
           "concept": "6A",
@@ -48,7 +68,12 @@
         },
         {
           "stem": "The tendency for expectation to make inspectors perceive blades that are not present is the clearest example of which of the following?",
-          "choices": ["Bottom-up processing", "Top-down processing", "Sensory transduction", "Sensory adaptation"],
+          "choices": [
+            "Bottom-up processing",
+            "Top-down processing",
+            "Sensory transduction",
+            "Sensory adaptation"
+          ],
           "answer": 1,
           "explain": "Top-down processing uses prior knowledge and expectations to interpret sensory input, which can produce perceptions that do not match the actual stimulus.",
           "concept": "6A",
@@ -57,7 +82,12 @@
         },
         {
           "stem": "When the room is dimmed, colors fade but movement at the edges of vision is still detected. Which explanation fits best?",
-          "choices": ["Cones in the periphery specialize in dim-light motion", "Rods, dense in the periphery, work in dim light but do not code color", "The fovea contains only rods that detect motion", "Rods encode fine color while cones handle dim light"],
+          "choices": [
+            "Cones in the periphery specialize in dim-light motion",
+            "Rods, dense in the periphery, work in dim light but do not code color",
+            "The fovea contains only rods that detect motion",
+            "Rods encode fine color while cones handle dim light"
+          ],
           "answer": 1,
           "explain": "Rods are concentrated in the peripheral retina and are highly sensitive in low light but do not encode color, so peripheral motion is seen while color washes out.",
           "concept": "6A",
@@ -76,7 +106,12 @@
       "questions": [
         {
           "stem": "The group that linked each word to a personal image or story remembered the most. This advantage is best explained by which of the following?",
-          "choices": ["Maintenance rehearsal strengthens the sensory register", "Deeper, elaborative encoding creates more retrieval routes", "Shorter words move faster into long-term memory", "Rote repetition prevents proactive interference"],
+          "choices": [
+            "Maintenance rehearsal strengthens the sensory register",
+            "Deeper, elaborative encoding creates more retrieval routes",
+            "Shorter words move faster into long-term memory",
+            "Rote repetition prevents proactive interference"
+          ],
           "answer": 1,
           "explain": "Elaborative encoding that connects new material to existing knowledge produces more durable memories and more cues for later retrieval than simple repetition.",
           "concept": "6B",
@@ -85,7 +120,12 @@
         },
         {
           "stem": "On the immediate test, students recall the first and last words best. The strong recall of the last few words just presented is best attributed to which of the following?",
-          "choices": ["The primacy effect and long-term storage", "The recency effect and recent items still in working memory", "Proactive interference from earlier items", "Deeper encoding of the final items"],
+          "choices": [
+            "The primacy effect and long-term storage",
+            "The recency effect and recent items still in working memory",
+            "Proactive interference from earlier items",
+            "Deeper encoding of the final items"
+          ],
           "answer": 1,
           "explain": "The recency effect reflects the last items still being available in short-term or working memory, while the primacy effect reflects earlier items reaching long-term storage.",
           "concept": "6B",
@@ -94,7 +134,12 @@
         },
         {
           "stem": "A week later some students confidently recall the word sofa, which was never shown, after learning words like chair, table, and couch. This best illustrates which of the following?",
-          "choices": ["Proactive interference", "A false memory built from related, activated concepts", "State-dependent retrieval", "Anterograde amnesia"],
+          "choices": [
+            "Proactive interference",
+            "A false memory built from related, activated concepts",
+            "State-dependent retrieval",
+            "Anterograde amnesia"
+          ],
           "answer": 1,
           "explain": "Recalling a strongly related but unpresented word reflects a false memory produced when associated concepts are activated during encoding and later mistaken for the original.",
           "concept": "6B",
@@ -103,7 +148,12 @@
         },
         {
           "stem": "Students quizzed during learning later outperform those who only reread. This finding is best labeled as which of the following?",
-          "choices": ["The spacing effect", "The testing, or retrieval practice, effect", "State-dependent memory", "The misinformation effect"],
+          "choices": [
+            "The spacing effect",
+            "The testing, or retrieval practice, effect",
+            "State-dependent memory",
+            "The misinformation effect"
+          ],
           "answer": 1,
           "explain": "The testing effect is the finding that actively retrieving information strengthens later memory more than passive rereading.",
           "concept": "6B",
@@ -112,7 +162,12 @@
         },
         {
           "stem": "One student recalls more words when tested in the same room where she studied than in a new room. This is best explained by which of the following?",
-          "choices": ["Context-dependent retrieval cues", "Increased storage capacity", "Reduced interference from chunking", "Faster transduction of the stimulus"],
+          "choices": [
+            "Context-dependent retrieval cues",
+            "Increased storage capacity",
+            "Reduced interference from chunking",
+            "Faster transduction of the stimulus"
+          ],
           "answer": 0,
           "explain": "Context-dependent memory reflects encoding specificity, where cues present at encoding, such as the room, aid retrieval when they are present again.",
           "concept": "6B",
@@ -121,7 +176,12 @@
         },
         {
           "stem": "To hold a 10-digit number long enough to dial it, a student groups the digits into three clusters. Grouping helps mainly by doing which of the following?",
-          "choices": ["Expanding the absolute capacity of long-term memory", "Reducing the number of items working memory must juggle", "Converting the digits into iconic sensory memory", "Preventing retroactive interference at retrieval"],
+          "choices": [
+            "Expanding the absolute capacity of long-term memory",
+            "Reducing the number of items working memory must juggle",
+            "Converting the digits into iconic sensory memory",
+            "Preventing retroactive interference at retrieval"
+          ],
           "answer": 1,
           "explain": "Chunking reorganizes many items into a few meaningful units, easing the limited capacity of working memory.",
           "concept": "6B",
@@ -140,7 +200,12 @@
       "questions": [
         {
           "stem": "Aroused volunteers feel happy near a cheerful actor but angry near an irritated actor. Which theory best explains this pattern?",
-          "choices": ["James-Lange theory", "Cannon-Bard theory", "Schachter-Singer two-factor theory", "Drive-reduction theory"],
+          "choices": [
+            "James-Lange theory",
+            "Cannon-Bard theory",
+            "Schachter-Singer two-factor theory",
+            "Drive-reduction theory"
+          ],
           "answer": 2,
           "explain": "The two-factor theory holds that emotion arises from physiological arousal plus a cognitive label drawn from the situation, so the same arousal is interpreted differently depending on context.",
           "concept": "6C",
@@ -149,7 +214,12 @@
         },
         {
           "stem": "Volunteers who just exercised rate a stranger as more attractive than resting volunteers do. This is best explained as which of the following?",
-          "choices": ["Misattribution of physiological arousal to the stranger", "A conditioned emotional response to exercise", "The facial feedback hypothesis", "Sensory adaptation to arousal"],
+          "choices": [
+            "Misattribution of physiological arousal to the stranger",
+            "A conditioned emotional response to exercise",
+            "The facial feedback hypothesis",
+            "Sensory adaptation to arousal"
+          ],
           "answer": 0,
           "explain": "Leftover arousal from exercise is misattributed to the stranger, increasing reported attraction, an application of two-factor emotion ideas.",
           "concept": "6C",
@@ -158,7 +228,12 @@
         },
         {
           "stem": "A different theory claims the volunteers first notice their racing heart and sweating and then feel afraid because of those bodily changes. This describes which theory?",
-          "choices": ["Cannon-Bard theory", "James-Lange theory", "Schachter-Singer theory", "The Yerkes-Dodson law"],
+          "choices": [
+            "Cannon-Bard theory",
+            "James-Lange theory",
+            "Schachter-Singer theory",
+            "The Yerkes-Dodson law"
+          ],
           "answer": 1,
           "explain": "The James-Lange theory proposes that a physiological reaction to a stimulus comes first and the felt emotion is our reading of that bodily state.",
           "concept": "6C",
@@ -167,7 +242,12 @@
         },
         {
           "stem": "Suppose data showed that the racing heart and the feeling of fear begin at the same time and independently. This finding would most support which theory?",
-          "choices": ["James-Lange theory", "Cannon-Bard theory", "Two-factor theory", "Drive-reduction theory"],
+          "choices": [
+            "James-Lange theory",
+            "Cannon-Bard theory",
+            "Two-factor theory",
+            "Drive-reduction theory"
+          ],
           "answer": 1,
           "explain": "The Cannon-Bard theory holds that physiological arousal and the subjective emotion occur simultaneously and independently.",
           "concept": "6C",
@@ -176,7 +256,12 @@
         },
         {
           "stem": "The rapid fear response to the frightening film is most associated with activity in which brain structure?",
-          "choices": ["The amygdala", "The cerebellum", "Broca's area", "The medulla"],
+          "choices": [
+            "The amygdala",
+            "The cerebellum",
+            "Broca's area",
+            "The medulla"
+          ],
           "answer": 0,
           "explain": "The amygdala, part of the limbic system, is central to processing fear and other strong emotional responses.",
           "concept": "6C",
@@ -185,7 +270,12 @@
         },
         {
           "stem": "Researchers find that people across very different cultures produce and recognize the same facial expression for disgust. This best supports which idea?",
-          "choices": ["Display rules fully determine facial expressions", "Some basic emotional expressions are universal", "Emotions are learned only through operant conditioning", "Facial expressions have no link to felt emotion"],
+          "choices": [
+            "Display rules fully determine facial expressions",
+            "Some basic emotional expressions are universal",
+            "Emotions are learned only through operant conditioning",
+            "Facial expressions have no link to felt emotion"
+          ],
           "answer": 1,
           "explain": "Cross-cultural recognition of the same expressions supports the view that a set of basic emotions and their expressions are universal, consistent with work by Ekman.",
           "concept": "6C",
@@ -204,7 +294,12 @@
       "questions": [
         {
           "stem": "The client who calls the lost job boring and pours frustration into exercise is using which pair of defense mechanisms?",
-          "choices": ["Projection and regression", "Rationalization and sublimation", "Denial and displacement", "Reaction formation and repression"],
+          "choices": [
+            "Projection and regression",
+            "Rationalization and sublimation",
+            "Denial and displacement",
+            "Reaction formation and repression"
+          ],
           "answer": 1,
           "explain": "Rationalization offers a self-justifying reason (the job was boring), while sublimation channels unacceptable impulses into a socially acceptable outlet like exercise.",
           "concept": "7A",
@@ -213,7 +308,12 @@
         },
         {
           "stem": "The client who believes outcomes come from his own actions rather than luck would be described as having which of the following?",
-          "choices": ["An external locus of control", "An internal locus of control", "Low self-efficacy", "A repressive coping style"],
+          "choices": [
+            "An external locus of control",
+            "An internal locus of control",
+            "Low self-efficacy",
+            "A repressive coping style"
+          ],
           "answer": 1,
           "explain": "An internal locus of control is the belief that one's own actions determine outcomes, in contrast to an external locus that credits luck or powerful others.",
           "concept": "7A",
@@ -222,7 +322,12 @@
         },
         {
           "stem": "According to psychoanalytic theory, the part of personality that would push the passed-over client to lash out immediately, with no concern for consequences, is which of the following?",
-          "choices": ["The ego", "The superego", "The id", "The persona"],
+          "choices": [
+            "The ego",
+            "The superego",
+            "The id",
+            "The persona"
+          ],
           "answer": 2,
           "explain": "The id seeks immediate gratification of impulses without regard for reality or morality, unlike the reality-oriented ego and the moralistic superego.",
           "concept": "7A",
@@ -231,7 +336,12 @@
         },
         {
           "stem": "The therapist's finding that a warm, accepting environment helps clients grow toward their goals fits most closely with which approach?",
-          "choices": ["Trait theory", "Humanistic theory", "Behaviorist theory", "Psychoanalytic theory"],
+          "choices": [
+            "Trait theory",
+            "Humanistic theory",
+            "Behaviorist theory",
+            "Psychoanalytic theory"
+          ],
           "answer": 1,
           "explain": "Humanistic theorists such as Rogers emphasize unconditional positive regard and a supportive environment as conditions for growth and self-actualization.",
           "concept": "7A",
@@ -240,7 +350,12 @@
         },
         {
           "stem": "One client scores very high on a broad trait: she is imaginative, curious, and eager to try new activities. She is highest on which of the Big Five traits?",
-          "choices": ["Conscientiousness", "Openness to experience", "Agreeableness", "Neuroticism"],
+          "choices": [
+            "Conscientiousness",
+            "Openness to experience",
+            "Agreeableness",
+            "Neuroticism"
+          ],
           "answer": 1,
           "explain": "Openness to experience captures imagination, curiosity, and willingness to try new things.",
           "concept": "7A",
@@ -249,7 +364,12 @@
         },
         {
           "stem": "Bandura's social-cognitive view differs from pure trait theory mainly because it emphasizes which of the following?",
-          "choices": ["Fixed traits present from birth", "The ongoing interaction of personal factors, behavior, and environment", "Unconscious conflicts among id, ego, and superego", "A single universal hierarchy of needs"],
+          "choices": [
+            "Fixed traits present from birth",
+            "The ongoing interaction of personal factors, behavior, and environment",
+            "Unconscious conflicts among id, ego, and superego",
+            "A single universal hierarchy of needs"
+          ],
           "answer": 1,
           "explain": "Social-cognitive theory stresses reciprocal determinism, the two-way interaction among personal factors, behavior, and the environment, rather than fixed traits or unconscious drives.",
           "concept": "7A",
@@ -268,7 +388,12 @@
       "questions": [
         {
           "stem": "Experts complete simple tasks faster with an audience, but beginners do worse on hard tasks when watched. This overall pattern is best explained by which of the following?",
-          "choices": ["Social loafing", "Social facilitation, where arousal boosts the dominant response", "Deindividuation", "Groupthink"],
+          "choices": [
+            "Social loafing",
+            "Social facilitation, where arousal boosts the dominant response",
+            "Deindividuation",
+            "Groupthink"
+          ],
           "answer": 1,
           "explain": "Social facilitation predicts that the arousal from an audience strengthens the dominant response, helping performance on easy or well-learned tasks and hurting it on difficult or novel ones.",
           "concept": "7B",
@@ -277,7 +402,12 @@
         },
         {
           "stem": "Individual effort on the rope-pull drops as the group grows larger. This reduction in personal effort is best labeled as which of the following?",
-          "choices": ["Social facilitation", "Social loafing", "The bystander effect", "Group polarization"],
+          "choices": [
+            "Social facilitation",
+            "Social loafing",
+            "The bystander effect",
+            "Group polarization"
+          ],
           "answer": 1,
           "explain": "Social loafing is the tendency to exert less individual effort when working in a group than when working alone.",
           "concept": "7B",
@@ -286,7 +416,12 @@
         },
         {
           "stem": "Help is offered quickly with one bystander but delayed when many are present. The best explanation is which of the following?",
-          "choices": ["Diffusion of responsibility among many bystanders", "Deindividuation in small groups", "Informational conformity to experts", "Social facilitation of helping"],
+          "choices": [
+            "Diffusion of responsibility among many bystanders",
+            "Deindividuation in small groups",
+            "Informational conformity to experts",
+            "Social facilitation of helping"
+          ],
           "answer": 0,
           "explain": "As the number of bystanders rises, responsibility to act is diffused across the group, so any single person feels less compelled to help.",
           "concept": "7B",
@@ -295,7 +430,12 @@
         },
         {
           "stem": "In a follow-up, a student gives an obviously wrong answer to a simple line-length question after hearing several confederates give that same wrong answer. This behavior is best explained by which of the following?",
-          "choices": ["Informational social influence based on genuine confusion", "Normative social influence to fit in with the group", "Obedience to an authority figure", "Diffusion of responsibility"],
+          "choices": [
+            "Informational social influence based on genuine confusion",
+            "Normative social influence to fit in with the group",
+            "Obedience to an authority figure",
+            "Diffusion of responsibility"
+          ],
           "answer": 1,
           "explain": "Conforming to a clearly wrong majority on an easy task reflects normative influence, the desire to be accepted, rather than genuine uncertainty about the answer.",
           "concept": "7B",
@@ -304,7 +444,12 @@
         },
         {
           "stem": "A different study asks participants to follow an experimenter's direct instructions to deliver what they believe are harmful shocks. This situation tests which of the following most directly?",
-          "choices": ["Conformity to peers", "Obedience to authority", "Social loafing", "Group polarization"],
+          "choices": [
+            "Conformity to peers",
+            "Obedience to authority",
+            "Social loafing",
+            "Group polarization"
+          ],
           "answer": 1,
           "explain": "Following the direct commands of an authority figure, even against one's conscience, is obedience, as studied by Milgram, and differs from peer conformity.",
           "concept": "7B",
@@ -313,7 +458,12 @@
         },
         {
           "stem": "The mock juries make riskier decisions than the individual members did beforehand. This shift toward a more extreme group position is best described as which of the following?",
-          "choices": ["Groupthink", "Group polarization", "Deindividuation", "Social loafing"],
+          "choices": [
+            "Groupthink",
+            "Group polarization",
+            "Deindividuation",
+            "Social loafing"
+          ],
           "answer": 1,
           "explain": "Group polarization is the tendency for group discussion to strengthen the members' initial leanings, producing a more extreme collective decision.",
           "concept": "7B",
@@ -332,7 +482,12 @@
       "questions": [
         {
           "stem": "The child grimaces at the chime alone after it repeatedly precedes bitter syrup. In classical conditioning terms, the chime has become which of the following?",
-          "choices": ["An unconditioned stimulus", "A conditioned stimulus", "A conditioned response", "A negative reinforcer"],
+          "choices": [
+            "An unconditioned stimulus",
+            "A conditioned stimulus",
+            "A conditioned response",
+            "A negative reinforcer"
+          ],
           "answer": 1,
           "explain": "Through pairing with the bitter syrup, the unconditioned stimulus, the previously neutral chime becomes a conditioned stimulus that triggers the grimace.",
           "concept": "7C",
@@ -341,7 +496,12 @@
         },
         {
           "stem": "The teacher switches from a sticker for every correct answer to rewarding correct answers only occasionally and unpredictably. This unpredictable schedule tends to produce which outcome?",
-          "choices": ["Rapid extinction once rewards stop", "High, steady responding that resists extinction", "Responding only right after each reward", "No change compared with rewarding every answer"],
+          "choices": [
+            "Rapid extinction once rewards stop",
+            "High, steady responding that resists extinction",
+            "Responding only right after each reward",
+            "No change compared with rewarding every answer"
+          ],
           "answer": 1,
           "explain": "A variable-ratio schedule produces high, steady response rates that are especially resistant to extinction, which is why occasional unpredictable rewards are powerful.",
           "concept": "7C",
@@ -350,7 +510,12 @@
         },
         {
           "stem": "The therapist removes an annoying alarm as soon as the client finishes a task, and task completion rises. Removing the alarm is an example of which of the following?",
-          "choices": ["Positive reinforcement", "Negative reinforcement", "Positive punishment", "Negative punishment"],
+          "choices": [
+            "Positive reinforcement",
+            "Negative reinforcement",
+            "Positive punishment",
+            "Negative punishment"
+          ],
           "answer": 1,
           "explain": "Negative reinforcement increases a behavior by removing an unpleasant stimulus, here the alarm, when the desired behavior occurs.",
           "concept": "7C",
@@ -359,7 +524,12 @@
         },
         {
           "stem": "Praising the client for reducing nail-biting, which then decreases nail-biting further, uses praise as which of the following?",
-          "choices": ["A positive reinforcer for the competing behavior", "A conditioned stimulus", "A negative punisher", "An unconditioned response"],
+          "choices": [
+            "A positive reinforcer for the competing behavior",
+            "A conditioned stimulus",
+            "A negative punisher",
+            "An unconditioned response"
+          ],
           "answer": 0,
           "explain": "Praise here is a positive reinforcer that strengthens the desired behavior by adding a pleasant consequence.",
           "concept": "7C",
@@ -368,7 +538,12 @@
         },
         {
           "stem": "The toddler says please more often after seeing an older sibling rewarded for saying it. This best illustrates which of the following?",
-          "choices": ["Classical conditioning", "Observational learning through vicarious reinforcement", "Habituation", "Negative reinforcement"],
+          "choices": [
+            "Classical conditioning",
+            "Observational learning through vicarious reinforcement",
+            "Habituation",
+            "Negative reinforcement"
+          ],
           "answer": 1,
           "explain": "Learning by watching another person be rewarded is observational learning driven by vicarious reinforcement, as described by Bandura.",
           "concept": "7C",
@@ -377,7 +552,12 @@
         },
         {
           "stem": "A dog that once barked at every passing train gradually stops reacting to the harmless, repeated sound, with no reward involved. This decline in response to a repeated, meaningless stimulus is best called which of the following?",
-          "choices": ["Extinction of a conditioned response", "Habituation", "Stimulus generalization", "Spontaneous recovery"],
+          "choices": [
+            "Extinction of a conditioned response",
+            "Habituation",
+            "Stimulus generalization",
+            "Spontaneous recovery"
+          ],
           "answer": 1,
           "explain": "Habituation is a decrease in responding to a repeated, harmless stimulus and does not require any prior conditioned association, unlike extinction.",
           "concept": "7C",
@@ -396,7 +576,12 @@
       "questions": [
         {
           "stem": "The teenager who tries out many clubs and roles while asking who she is fits which of Erikson's stages?",
-          "choices": ["Trust versus mistrust", "Identity versus role confusion", "Intimacy versus isolation", "Generativity versus stagnation"],
+          "choices": [
+            "Trust versus mistrust",
+            "Identity versus role confusion",
+            "Intimacy versus isolation",
+            "Generativity versus stagnation"
+          ],
           "answer": 1,
           "explain": "Adolescence centers on the identity versus role confusion stage, in which a person explores roles to form a coherent sense of self.",
           "concept": "8A",
@@ -405,7 +590,12 @@
         },
         {
           "stem": "The young child who says stealing is wrong only because you might be punished is reasoning at which level of moral development?",
-          "choices": ["Preconventional", "Conventional", "Postconventional", "Concrete operational"],
+          "choices": [
+            "Preconventional",
+            "Conventional",
+            "Postconventional",
+            "Concrete operational"
+          ],
           "answer": 0,
           "explain": "Preconventional moral reasoning focuses on avoiding punishment and gaining rewards, not on social approval or abstract principles.",
           "concept": "8A",
@@ -414,7 +604,12 @@
         },
         {
           "stem": "The adult who argues that an unjust law can be outweighed by broader ethical principles is reasoning at which level?",
-          "choices": ["Preconventional", "Conventional", "Postconventional", "Formal operational"],
+          "choices": [
+            "Preconventional",
+            "Conventional",
+            "Postconventional",
+            "Formal operational"
+          ],
           "answer": 2,
           "explain": "Postconventional reasoning appeals to abstract principles and universal ethics that can override specific laws.",
           "concept": "8A",
@@ -423,7 +618,12 @@
         },
         {
           "stem": "In Erikson's framework, the toddler who explores confidently only when the caregiver is reliably present is working through which stage?",
-          "choices": ["Autonomy versus shame and doubt", "Trust versus mistrust", "Initiative versus guilt", "Industry versus inferiority"],
+          "choices": [
+            "Autonomy versus shame and doubt",
+            "Trust versus mistrust",
+            "Initiative versus guilt",
+            "Industry versus inferiority"
+          ],
           "answer": 1,
           "explain": "The earliest Eriksonian stage, trust versus mistrust, concerns whether a dependable caregiver leads the infant to view the world as safe.",
           "concept": "8A",
@@ -432,7 +632,12 @@
         },
         {
           "stem": "Researchers note that young children describe themselves mostly by concrete features like hair color, while adolescents describe themselves using abstract traits and beliefs. This shift best reflects which of the following?",
-          "choices": ["A steady decline in self-esteem with age", "The development of a more abstract self-concept", "The onset of identity foreclosure", "An external locus of control"],
+          "choices": [
+            "A steady decline in self-esteem with age",
+            "The development of a more abstract self-concept",
+            "The onset of identity foreclosure",
+            "An external locus of control"
+          ],
           "answer": 1,
           "explain": "As cognition matures, the self-concept moves from concrete physical descriptions toward abstract psychological traits and values.",
           "concept": "8A",
@@ -441,7 +646,12 @@
         },
         {
           "stem": "A participant is very confident she can pass a specific chemistry exam if she studies, though her overall sense of self-worth is only average. Her exam confidence is best described as which of the following?",
-          "choices": ["High global self-esteem", "High self-efficacy for that task", "An external locus of control", "Identity diffusion"],
+          "choices": [
+            "High global self-esteem",
+            "High self-efficacy for that task",
+            "An external locus of control",
+            "Identity diffusion"
+          ],
           "answer": 1,
           "explain": "Self-efficacy is the belief in one's ability to succeed at a specific task, which can be high even when general self-esteem is only moderate.",
           "concept": "8A",
@@ -460,7 +670,12 @@
       "questions": [
         {
           "stem": "Participants call the rude driver a bad person while blaming their own rude driving on being rushed. Their judgment of the other driver reflects which of the following?",
-          "choices": ["The self-serving bias", "The fundamental attribution error", "The just-world hypothesis", "Deindividuation"],
+          "choices": [
+            "The self-serving bias",
+            "The fundamental attribution error",
+            "The just-world hypothesis",
+            "Deindividuation"
+          ],
           "answer": 1,
           "explain": "The fundamental attribution error is the tendency to overweight personal, dispositional causes and underweight situational causes when explaining others' behavior.",
           "concept": "8B",
@@ -469,7 +684,12 @@
         },
         {
           "stem": "The contrast between blaming the other driver's character but blaming the situation for one's own identical behavior is best labeled as which of the following?",
-          "choices": ["Actor-observer bias", "Cognitive dissonance", "Stereotype threat", "Social facilitation"],
+          "choices": [
+            "Actor-observer bias",
+            "Cognitive dissonance",
+            "Stereotype threat",
+            "Social facilitation"
+          ],
           "answer": 0,
           "explain": "The actor-observer bias is the tendency to attribute others' actions to disposition while attributing our own to the situation.",
           "concept": "8B",
@@ -478,7 +698,12 @@
         },
         {
           "stem": "Participants credit their good grades to ability but blame bad grades on unfair tests. This pattern is best described as which of the following?",
-          "choices": ["The fundamental attribution error", "The self-serving bias", "The actor-observer bias", "The halo effect"],
+          "choices": [
+            "The fundamental attribution error",
+            "The self-serving bias",
+            "The actor-observer bias",
+            "The halo effect"
+          ],
           "answer": 1,
           "explain": "The self-serving bias protects self-esteem by attributing successes to internal factors and failures to external ones.",
           "concept": "8B",
@@ -487,7 +712,12 @@
         },
         {
           "stem": "Teachers told that random students are gifted later rate them as higher achievers, and those students improve. This outcome best illustrates which of the following?",
-          "choices": ["Stereotype threat", "A self-fulfilling prophecy", "The just-world hypothesis", "Out-group homogeneity"],
+          "choices": [
+            "Stereotype threat",
+            "A self-fulfilling prophecy",
+            "The just-world hypothesis",
+            "Out-group homogeneity"
+          ],
           "answer": 1,
           "explain": "A self-fulfilling prophecy occurs when an initially false expectation changes behavior in ways that make the expectation come true.",
           "concept": "8B",
@@ -496,7 +726,12 @@
         },
         {
           "stem": "A participant believes an unfamiliar group is lazy, dislikes them, and refuses to hire them. The refusal to hire is best classified as which of the following?",
-          "choices": ["A stereotype", "Prejudice", "Discrimination", "Ethnocentrism"],
+          "choices": [
+            "A stereotype",
+            "Prejudice",
+            "Discrimination",
+            "Ethnocentrism"
+          ],
           "answer": 2,
           "explain": "Discrimination is the behavioral component, unequal treatment based on group membership, distinct from the cognitive stereotype and the affective prejudice.",
           "concept": "8B",
@@ -505,7 +740,12 @@
         },
         {
           "stem": "Reminding students of a negative stereotype about their group right before a test lowers their scores, even though nothing about the test changed. This effect is best described as which of the following?",
-          "choices": ["Stereotype threat", "The self-serving bias", "A self-fulfilling prophecy created by the teacher", "Out-group bias"],
+          "choices": [
+            "Stereotype threat",
+            "The self-serving bias",
+            "A self-fulfilling prophecy created by the teacher",
+            "Out-group bias"
+          ],
           "answer": 0,
           "explain": "Stereotype threat is the drop in performance that arises when people fear confirming a negative stereotype about their own group.",
           "concept": "8B",
@@ -524,7 +764,12 @@
       "questions": [
         {
           "stem": "The resident struggles to satisfy the different demands of being a physician, a student, and a mentor at the same time. This clash between the expectations of her different statuses is best called which of the following?",
-          "choices": ["Role strain", "Role conflict", "Role exit", "Status inconsistency"],
+          "choices": [
+            "Role strain",
+            "Role conflict",
+            "Role exit",
+            "Status inconsistency"
+          ],
           "answer": 1,
           "explain": "Role conflict arises from incompatible demands of two or more different statuses a person holds at once, unlike role strain, which comes from a single role.",
           "concept": "8C",
@@ -533,7 +778,12 @@
         },
         {
           "stem": "Suppose instead the resident feels torn by competing demands within the single role of physician, such as being both efficient and caring. This tension within one role is best labeled as which of the following?",
-          "choices": ["Role conflict", "Role strain", "Role exit", "Master status"],
+          "choices": [
+            "Role conflict",
+            "Role strain",
+            "Role exit",
+            "Master status"
+          ],
           "answer": 1,
           "explain": "Role strain is the tension among the various demands of a single role, whereas role conflict is between separate roles.",
           "concept": "8C",
@@ -542,7 +792,12 @@
         },
         {
           "stem": "Staff act formal and reassuring at the bedside but joke and vent in the break room. In Goffman's dramaturgical approach, the break room functions as which of the following?",
-          "choices": ["The front stage", "The back stage", "A total institution", "A reference group"],
+          "choices": [
+            "The front stage",
+            "The back stage",
+            "A total institution",
+            "A reference group"
+          ],
           "answer": 1,
           "explain": "In dramaturgical analysis, the back stage is where people relax and drop the managed performance they present on the front stage.",
           "concept": "8C",
@@ -551,7 +806,12 @@
         },
         {
           "stem": "The new nurse carefully manages his dress and speech to appear competent to patients and supervisors. This effort is best described as which of the following?",
-          "choices": ["Impression management", "Role exit", "Resocialization", "Deindividuation"],
+          "choices": [
+            "Impression management",
+            "Role exit",
+            "Resocialization",
+            "Deindividuation"
+          ],
           "answer": 0,
           "explain": "Impression management is the process of controlling how one presents oneself in order to shape others' perceptions.",
           "concept": "8C",
@@ -560,7 +820,12 @@
         },
         {
           "stem": "Being born into a wealthy family versus becoming a lead surgeon illustrates the difference between which pair?",
-          "choices": ["Master status and role set", "Ascribed status and achieved status", "Front stage and back stage", "Primary group and secondary group"],
+          "choices": [
+            "Master status and role set",
+            "Ascribed status and achieved status",
+            "Front stage and back stage",
+            "Primary group and secondary group"
+          ],
           "answer": 1,
           "explain": "An ascribed status is assigned without effort, such as by birth, while an achieved status is earned through one's actions.",
           "concept": "8C",
@@ -569,7 +834,12 @@
         },
         {
           "stem": "For one physician, being a famous surgeon overshadows all her other statuses in how others treat her. A status that dominates others in this way is best called which of the following?",
-          "choices": ["An ascribed status", "A master status", "A reference group", "A role set"],
+          "choices": [
+            "An ascribed status",
+            "A master status",
+            "A reference group",
+            "A role set"
+          ],
           "answer": 1,
           "explain": "A master status is the status that dominates how a person is perceived and organizes their social identity above their other statuses.",
           "concept": "8C",
@@ -588,7 +858,12 @@
       "questions": [
         {
           "stem": "The student who says schools exist because they perform useful functions like teaching skills and sorting workers is using which theoretical approach?",
-          "choices": ["Conflict theory", "Structural functionalism", "Symbolic interactionism", "Rational choice theory"],
+          "choices": [
+            "Conflict theory",
+            "Structural functionalism",
+            "Symbolic interactionism",
+            "Rational choice theory"
+          ],
           "answer": 1,
           "explain": "Structural functionalism explains social institutions by the functions they perform to maintain the stability of society as a whole.",
           "concept": "9A",
@@ -597,7 +872,12 @@
         },
         {
           "stem": "The student who argues that schools mainly reproduce the advantages of the wealthy and preserve unequal power is using which approach?",
-          "choices": ["Functionalism", "Conflict theory", "Symbolic interactionism", "Social exchange theory"],
+          "choices": [
+            "Functionalism",
+            "Conflict theory",
+            "Symbolic interactionism",
+            "Social exchange theory"
+          ],
           "answer": 1,
           "explain": "Conflict theory, rooted in Marx, emphasizes how institutions maintain inequality and serve the interests of powerful groups.",
           "concept": "9A",
@@ -606,7 +886,12 @@
         },
         {
           "stem": "The student focused on how a label like troublemaker shapes a student's self-image in everyday classroom interactions is using which approach?",
-          "choices": ["Macrosociology", "Symbolic interactionism", "Functionalism", "Conflict theory"],
+          "choices": [
+            "Macrosociology",
+            "Symbolic interactionism",
+            "Functionalism",
+            "Conflict theory"
+          ],
           "answer": 1,
           "explain": "Symbolic interactionism is a micro-level approach that studies how people create and respond to shared meanings and labels in interaction.",
           "concept": "9A",
@@ -615,7 +900,12 @@
         },
         {
           "stem": "Openly socializing children is a benefit everyone recognizes, while keeping young people out of the job market is a hidden effect. These two are best described as which pair?",
-          "choices": ["Manifest function and latent function", "Function and dysfunction", "Norm and sanction", "Value and belief"],
+          "choices": [
+            "Manifest function and latent function",
+            "Function and dysfunction",
+            "Norm and sanction",
+            "Value and belief"
+          ],
           "answer": 0,
           "explain": "A manifest function is an intended, recognized consequence, while a latent function is an unintended, less obvious one.",
           "concept": "9A",
@@ -624,7 +914,12 @@
         },
         {
           "stem": "Which pair of approaches is best matched to a macro-level, large-scale analysis of schooling rather than a micro-level one?",
-          "choices": ["Symbolic interactionism and dramaturgy", "Functionalism and conflict theory", "Labeling theory and exchange theory", "Ethnomethodology and interactionism"],
+          "choices": [
+            "Symbolic interactionism and dramaturgy",
+            "Functionalism and conflict theory",
+            "Labeling theory and exchange theory",
+            "Ethnomethodology and interactionism"
+          ],
           "answer": 1,
           "explain": "Functionalism and conflict theory are macro-level paradigms that analyze large social structures, while symbolic interactionism is micro-level.",
           "concept": "9A",
@@ -633,7 +928,12 @@
         },
         {
           "stem": "A researcher predicts that unequal school funding will widen the gap between rich and poor neighborhoods over time. This prediction follows most directly from which approach?",
-          "choices": ["Functionalism", "Conflict theory", "Symbolic interactionism", "Rational choice theory"],
+          "choices": [
+            "Functionalism",
+            "Conflict theory",
+            "Symbolic interactionism",
+            "Rational choice theory"
+          ],
           "answer": 1,
           "explain": "Conflict theory predicts that institutional arrangements like unequal funding will reproduce and deepen social inequality.",
           "concept": "9A",
@@ -652,7 +952,12 @@
       "questions": [
         {
           "stem": "Country A's death rate falls sharply while birth rates stay high, causing its population to surge. This pattern is characteristic of which of the following?",
-          "choices": ["The final stage of the demographic transition", "An early stage of the demographic transition", "A post-industrial equilibrium", "Zero population growth"],
+          "choices": [
+            "The final stage of the demographic transition",
+            "An early stage of the demographic transition",
+            "A post-industrial equilibrium",
+            "Zero population growth"
+          ],
           "answer": 1,
           "explain": "In an early transition stage, death rates drop due to improvements like sanitation while birth rates remain high, producing rapid population growth.",
           "concept": "9B",
@@ -661,7 +966,12 @@
         },
         {
           "stem": "Country B has low birth and death rates and a rising share of older adults. A useful tool for displaying this age-and-sex structure is which of the following?",
-          "choices": ["A population pyramid", "A Punnett square", "A dependency contract", "A sociogram"],
+          "choices": [
+            "A population pyramid",
+            "A Punnett square",
+            "A dependency contract",
+            "A sociogram"
+          ],
           "answer": 0,
           "explain": "A population pyramid displays the distribution of a population by age and sex, revealing patterns such as an aging society.",
           "concept": "9B",
@@ -670,7 +980,12 @@
         },
         {
           "stem": "Young workers leave rural Country A because of scarce jobs and move to cities in Country B that offer work. The scarce jobs at home are best described as which of the following?",
-          "choices": ["A pull factor", "A push factor", "Chain migration", "Net migration"],
+          "choices": [
+            "A pull factor",
+            "A push factor",
+            "Chain migration",
+            "Net migration"
+          ],
           "answer": 1,
           "explain": "Push factors drive people away from an origin, such as a lack of jobs, while pull factors attract them to a destination.",
           "concept": "9B",
@@ -679,7 +994,12 @@
         },
         {
           "stem": "The analysts who warn that population may outgrow the food supply are drawing on which perspective?",
-          "choices": ["Malthusian theory", "Demographic transition theory", "The cornucopian view", "World-systems theory"],
+          "choices": [
+            "Malthusian theory",
+            "Demographic transition theory",
+            "The cornucopian view",
+            "World-systems theory"
+          ],
           "answer": 0,
           "explain": "Malthusian theory warns that population, growing geometrically, can outpace food production, which grows more slowly.",
           "concept": "9B",
@@ -688,7 +1008,12 @@
         },
         {
           "stem": "The large-scale movement of people from the countryside into the cities of Country B is best described as which of the following?",
-          "choices": ["Suburbanization", "Urbanization", "Gentrification", "Assimilation"],
+          "choices": [
+            "Suburbanization",
+            "Urbanization",
+            "Gentrification",
+            "Assimilation"
+          ],
           "answer": 1,
           "explain": "Urbanization is the growing concentration of a population in cities, often driven by rural-to-urban migration for work.",
           "concept": "9B",
@@ -697,7 +1022,12 @@
         },
         {
           "stem": "The analysts who respond that new farming technology can keep pace with population growth best represent which view?",
-          "choices": ["Malthusian theory", "The cornucopian view", "The first stage of the demographic transition", "Zero population growth"],
+          "choices": [
+            "Malthusian theory",
+            "The cornucopian view",
+            "The first stage of the demographic transition",
+            "Zero population growth"
+          ],
           "answer": 1,
           "explain": "The cornucopian view holds that human innovation and technology will continue to solve resource limits as population grows.",
           "concept": "9B",
@@ -716,7 +1046,12 @@
       "questions": [
         {
           "stem": "The country where a person's position is fixed at birth and cannot change describes which type of stratification system?",
-          "choices": ["A class system", "A caste system", "A meritocracy", "A contradictory class location"],
+          "choices": [
+            "A class system",
+            "A caste system",
+            "A meritocracy",
+            "A contradictory class location"
+          ],
           "answer": 1,
           "explain": "A caste system fixes status at birth with no legitimate mobility, unlike an open class system where movement is possible.",
           "concept": "10A",
@@ -725,7 +1060,12 @@
         },
         {
           "stem": "Children of college-educated parents grow up with books, museum visits, and ease navigating institutions, which later helps them succeed. These advantages are best described as which of the following?",
-          "choices": ["Economic capital", "Cultural capital", "Structural mobility", "Meritocracy"],
+          "choices": [
+            "Economic capital",
+            "Cultural capital",
+            "Structural mobility",
+            "Meritocracy"
+          ],
           "answer": 1,
           "explain": "Cultural capital refers to non-financial assets such as knowledge, tastes, and skills that help people succeed within social institutions.",
           "concept": "10A",
@@ -734,7 +1074,12 @@
         },
         {
           "stem": "Many people believe anyone who works hard can get ahead, even though family background strongly shapes outcomes. This belief system is best described as which of the following?",
-          "choices": ["The ideology of meritocracy", "Structural mobility", "Social reproduction", "Relative poverty"],
+          "choices": [
+            "The ideology of meritocracy",
+            "Structural mobility",
+            "Social reproduction",
+            "Relative poverty"
+          ],
           "answer": 0,
           "explain": "The ideology of meritocracy holds that rewards flow from individual effort and talent, which can obscure the structural advantages of birth.",
           "concept": "10A",
@@ -743,7 +1088,12 @@
         },
         {
           "stem": "In one family, the children become professionals while their parents worked in manual jobs. This rise in position from parents to children is best described as which of the following?",
-          "choices": ["Intragenerational mobility", "Intergenerational mobility", "Horizontal mobility", "Caste mobility"],
+          "choices": [
+            "Intragenerational mobility",
+            "Intergenerational mobility",
+            "Horizontal mobility",
+            "Caste mobility"
+          ],
           "answer": 1,
           "explain": "Intergenerational mobility is a change in social position from one generation to the next, such as children reaching a higher class than their parents.",
           "concept": "10A",
@@ -752,7 +1102,12 @@
         },
         {
           "stem": "A functionalist argues that societies pay surgeons more than clerks because such important, hard-to-fill jobs must attract talented people. This argument is known as which of the following?",
-          "choices": ["The Davis-Moore thesis", "The conflict theory of stratification", "The culture of poverty thesis", "The Thomas theorem"],
+          "choices": [
+            "The Davis-Moore thesis",
+            "The conflict theory of stratification",
+            "The culture of poverty thesis",
+            "The Thomas theorem"
+          ],
           "answer": 0,
           "explain": "The Davis-Moore thesis is the functionalist claim that stratification is useful because greater rewards motivate the most qualified people to fill the most important positions.",
           "concept": "10A",
@@ -761,12 +1116,1145 @@
         },
         {
           "stem": "During a technology boom, a whole cohort of workers moves into higher-paying jobs as the economy adds many new positions. This upward movement of many people due to changes in the economy is best described as which of the following?",
-          "choices": ["Horizontal mobility", "Structural mobility", "Intragenerational decline", "Relative deprivation"],
+          "choices": [
+            "Horizontal mobility",
+            "Structural mobility",
+            "Intragenerational decline",
+            "Relative deprivation"
+          ],
           "answer": 1,
           "explain": "Structural mobility is movement of many people up or down the ladder caused by changes in the wider economy rather than by individual effort alone.",
           "concept": "10A",
           "cover_story": "mobility study",
           "b": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Perception lab",
+      "paragraphs": [
+        "A perception laboratory tests how people organize what they sense. In a depth task, volunteers first try to thread a needle with one eye covered, then try again with both eyes open. In a grouping task, they glance at patterns of dots and report which shapes seem to pop out as units. In a constancy task, a researcher slowly swings a door open while volunteers judge whether the door itself has changed shape. In a motion task, two small lights placed a short distance apart are flashed in quick alternation. In a balance task, blindfolded volunteers stand on a slowly tilting platform and report the moment they feel themselves leaning, even though they cannot see the room around them.",
+        "The team records several clear patterns. Threading the needle is far easier with both eyes open than with one eye covered. Volunteers group dots that sit close together into rows and treat dots of the same color as a single set. Most report that the swinging door still looks like a solid rectangle, even though the image it casts on the eye flattens into a slanted trapezoid. In the motion task, the two alternating lights are seen as one light leaping back and forth across the gap. On the tilting platform, blindfolded volunteers still sense each change in tilt and shift their weight to stay upright, showing that vision is not the only source of information about the position of the body in space."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 5 (Sensation and Perception)",
+      "questions": [
+        {
+          "stem": "Threading a needle is far easier with both eyes open than with one eye covered. Which kind of depth cue is available with two eyes but not with one?",
+          "choices": [
+            "Monocular cues such as linear perspective",
+            "Binocular cues such as retinal disparity",
+            "Gestalt cues such as closure",
+            "Vestibular cues from the inner ear"
+          ],
+          "answer": 1,
+          "explain": "Binocular depth cues such as retinal disparity require input from both eyes, whereas monocular cues need only one; Gestalt and vestibular cues do not encode stereoscopic depth.",
+          "concept": "6A",
+          "cover_story": "perception lab",
+          "b": -0.3
+        },
+        {
+          "stem": "Volunteers group dots that sit close together into rows. This reflects which Gestalt principle?",
+          "choices": [
+            "Proximity",
+            "Similarity",
+            "Closure",
+            "Continuity"
+          ],
+          "answer": 0,
+          "explain": "The Gestalt principle of proximity states that objects near one another are perceived as a group; similarity instead groups items that share a feature such as color.",
+          "concept": "6A",
+          "cover_story": "perception lab",
+          "b": -0.6
+        },
+        {
+          "stem": "Volunteers treat dots of the same color as belonging to one set. This best illustrates which Gestalt principle?",
+          "choices": [
+            "Proximity",
+            "Similarity",
+            "Figure-ground",
+            "Closure"
+          ],
+          "answer": 1,
+          "explain": "Similarity groups elements that share a feature like color, while proximity groups by distance and figure-ground separates an object from its background.",
+          "concept": "6A",
+          "cover_story": "perception lab",
+          "b": 0.1
+        },
+        {
+          "stem": "The door still looks rectangular even though its image on the eye flattens into a slanted trapezoid as it opens. This is best described as which of the following?",
+          "choices": [
+            "Shape constancy",
+            "Sensory adaptation",
+            "The recency effect",
+            "Bottom-up processing"
+          ],
+          "answer": 0,
+          "explain": "Shape constancy is the tendency to perceive an object as keeping a stable shape despite changes in the retinal image; sensory adaptation instead refers to declining sensitivity to a constant stimulus.",
+          "concept": "6A",
+          "cover_story": "perception lab",
+          "b": 0.5
+        },
+        {
+          "stem": "The two alternating lights are seen as a single light leaping back and forth. This illusion of movement from stationary lights is best called which of the following?",
+          "choices": [
+            "The phi phenomenon, or apparent motion",
+            "Retinal disparity",
+            "Perceptual constancy",
+            "Accommodation"
+          ],
+          "answer": 0,
+          "explain": "The perception of motion from lights flashed in sequence is apparent motion, classically the phi phenomenon; retinal disparity is a static depth cue rather than a motion effect.",
+          "concept": "6A",
+          "cover_story": "perception lab",
+          "b": 0.9
+        },
+        {
+          "stem": "Blindfolded volunteers on the tilting platform still sense their change in position and keep their balance. This information about body tilt and balance comes mainly from which system?",
+          "choices": [
+            "The vestibular system",
+            "The olfactory system",
+            "The gustatory system",
+            "The fovea"
+          ],
+          "answer": 0,
+          "explain": "The vestibular system in the inner ear detects head position and balance, allowing posture control without vision; the olfactory and gustatory systems handle smell and taste.",
+          "concept": "6A",
+          "cover_story": "perception lab",
+          "b": -1.0
+        }
+      ]
+    },
+    {
+      "label": "Reasoning lab",
+      "paragraphs": [
+        "A cognition laboratory studies how people solve problems and make choices. In one task, volunteers must fix a candle to a wall so it can burn without dripping, using only a box of tacks, the candle, and matches; many fail to see that the box itself can serve as a shelf. In a second task, volunteers estimate whether more English words begin with the letter k or instead have k as their third letter. In a third task, volunteers read a short description of a quiet person who loves poetry and then guess whether the person is more likely a farmer or a librarian. Throughout the session, the team records how quickly people decide and which mental shortcuts they rely on.",
+        "The results reveal consistent shortcuts and errors. In the candle task, volunteers who first see the box already emptied of its tacks solve the problem far more often. Most volunteers wrongly guess that more words begin with k, even though far more words carry k in the third position, because examples of the first kind spring to mind so easily. Many judge the poetry lover to be a librarian while ignoring that there are vastly more farmers than librarians in the population. When the same medical option is framed as a ninety percent survival rate, volunteers accept it far more readily than when it is framed as a ten percent death rate, even though the two descriptions are identical."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 7 (Thinking and Intelligence)",
+      "questions": [
+        {
+          "stem": "Many volunteers fail to see that the tack box can be used as a shelf. This difficulty is best explained by which of the following?",
+          "choices": [
+            "Functional fixedness",
+            "The availability heuristic",
+            "Confirmation bias",
+            "The representativeness heuristic"
+          ],
+          "answer": 0,
+          "explain": "Functional fixedness is the tendency to see an object only in its usual role, such as a container, which blocks using the box as a shelf; the availability heuristic instead concerns judging frequency by ease of recall.",
+          "concept": "6B",
+          "cover_story": "reasoning lab",
+          "b": 0.3
+        },
+        {
+          "stem": "Volunteers overestimate how many words begin with k because such examples come to mind so easily. This reflects which of the following?",
+          "choices": [
+            "The representativeness heuristic",
+            "The availability heuristic",
+            "Functional fixedness",
+            "Belief perseverance"
+          ],
+          "answer": 1,
+          "explain": "The availability heuristic judges how common something is by how easily instances are recalled; the representativeness heuristic instead judges by similarity to a prototype.",
+          "concept": "6B",
+          "cover_story": "reasoning lab",
+          "b": 0.0
+        },
+        {
+          "stem": "Volunteers judge the quiet poetry lover to be a librarian while ignoring that farmers are far more numerous. Which pair of errors best describes this judgment?",
+          "choices": [
+            "The representativeness heuristic and neglect of base rates",
+            "The availability heuristic and functional fixedness",
+            "Confirmation bias and the framing effect",
+            "Belief perseverance and the sunk cost fallacy"
+          ],
+          "answer": 0,
+          "explain": "Matching the description to a librarian prototype is the representativeness heuristic, and ignoring how many farmers exist is base rate neglect; availability and functional fixedness do not fit this judgment.",
+          "concept": "6B",
+          "cover_story": "reasoning lab",
+          "b": 1.1
+        },
+        {
+          "stem": "Volunteers accept the treatment more when it is framed as a ninety percent survival rate than as a ten percent death rate. This shift between logically identical descriptions is best described as which of the following?",
+          "choices": [
+            "The framing effect",
+            "The availability heuristic",
+            "Functional fixedness",
+            "The representativeness heuristic"
+          ],
+          "answer": 0,
+          "explain": "The framing effect occurs when logically equivalent descriptions lead to different choices depending on whether they stress gains or losses.",
+          "concept": "6B",
+          "cover_story": "reasoning lab",
+          "b": 0.4
+        },
+        {
+          "stem": "A steady step-by-step procedure that is guaranteed to reach the correct solution, even if it is slow, is best called which of the following?",
+          "choices": [
+            "A heuristic",
+            "An algorithm",
+            "An anchor",
+            "A prototype"
+          ],
+          "answer": 1,
+          "explain": "An algorithm is a systematic procedure that guarantees a correct answer, whereas a heuristic is a faster mental shortcut that does not guarantee accuracy.",
+          "concept": "6B",
+          "cover_story": "reasoning lab",
+          "b": -1.1
+        },
+        {
+          "stem": "After guessing that the poetry lover is a librarian, a volunteer notices only details that fit that guess and overlooks conflicting ones. This tendency is best called which of the following?",
+          "choices": [
+            "Confirmation bias",
+            "The framing effect",
+            "An algorithm",
+            "Divergent thinking"
+          ],
+          "answer": 0,
+          "explain": "Confirmation bias is the tendency to seek and favor information that supports an existing belief while discounting evidence against it.",
+          "concept": "6B",
+          "cover_story": "reasoning lab",
+          "b": -0.4
+        }
+      ]
+    },
+    {
+      "label": "Stress and coping study",
+      "paragraphs": [
+        "A health psychology team studies how people react to prolonged pressure. Volunteers keep daily diaries during a stressful exam period while the team measures heart rate, blood pressure, and levels of the hormone cortisol. When a sudden alarm sounds in the lab, volunteers show an immediate jump in heart rate and a surge of energy that readies them for action. Over the following weeks of steady workload, their bodies settle into a costly holding pattern that keeps arousal elevated. After the exam period ends, several volunteers report deep exhaustion, frequent colds, and trouble sleeping. The team also asks each volunteer to rate how threatening they find the workload and how well they believe they can cope with it.",
+        "Two coping styles stand out in the diaries. Some volunteers tackle the source of stress directly by building study schedules, breaking work into steps, and seeking tutoring. Others focus instead on easing their feelings through exercise, talking with friends, or reframing the situation in a calmer light. In a separate, classic experiment the team reviews, dogs that had earlier received shocks they could not escape later failed even to jump a low barrier to avoid new, escapable shocks. Volunteers who believed they had little control over their workload reported the most distress, while those who felt a strong sense of control and social support reported far less strain, even under the same objective demands."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 14 (Stress, Lifestyle, and Health)",
+      "questions": [
+        {
+          "stem": "The immediate jump in heart rate and surge of energy when the alarm sounds corresponds to which phase of the general adaptation syndrome?",
+          "choices": [
+            "The alarm phase",
+            "The resistance phase",
+            "The exhaustion phase",
+            "The appraisal phase"
+          ],
+          "answer": 0,
+          "explain": "In Selye's general adaptation syndrome, the alarm phase is the body's initial fight-or-flight mobilization; resistance and exhaustion follow with continued stress.",
+          "concept": "6C",
+          "cover_story": "stress study",
+          "b": -0.7
+        },
+        {
+          "stem": "After weeks of steady workload the body holds arousal high at great cost, and afterward some volunteers collapse into exhaustion and illness. These later stages match which sequence?",
+          "choices": [
+            "Resistance followed by exhaustion",
+            "Alarm followed by resistance",
+            "Appraisal followed by alarm",
+            "Exhaustion followed by alarm"
+          ],
+          "answer": 0,
+          "explain": "After the initial alarm, the resistance phase sustains a high-cost defense, and prolonged demand leads to the exhaustion phase, when resources and immune function decline.",
+          "concept": "6C",
+          "cover_story": "stress study",
+          "b": 0.4
+        },
+        {
+          "stem": "Volunteers who build study schedules and seek tutoring to reduce the workload itself are using which coping style?",
+          "choices": [
+            "Problem-focused coping",
+            "Emotion-focused coping",
+            "Avoidant coping",
+            "The relaxation response"
+          ],
+          "answer": 0,
+          "explain": "Problem-focused coping targets the stressor itself, whereas emotion-focused coping aims to manage the emotional response to the stressor.",
+          "concept": "6C",
+          "cover_story": "stress study",
+          "b": -0.3
+        },
+        {
+          "stem": "Volunteers who cope by exercising, venting to friends, and reframing the situation are using which coping style?",
+          "choices": [
+            "Problem-focused coping",
+            "Emotion-focused coping",
+            "Primary appraisal",
+            "The general adaptation syndrome"
+          ],
+          "answer": 1,
+          "explain": "Managing the feelings produced by a stressor, rather than changing the stressor, is emotion-focused coping.",
+          "concept": "6C",
+          "cover_story": "stress study",
+          "b": 0.1
+        },
+        {
+          "stem": "The dogs that earlier could not escape shocks and later failed even to try to avoid escapable shocks best illustrate which of the following?",
+          "choices": [
+            "Learned helplessness",
+            "The resistance phase",
+            "Problem-focused coping",
+            "The Yerkes-Dodson law"
+          ],
+          "answer": 0,
+          "explain": "Learned helplessness is the passive giving up that follows experience with uncontrollable aversive events, as shown by Seligman's dogs.",
+          "concept": "6C",
+          "cover_story": "stress study",
+          "b": 0.7
+        },
+        {
+          "stem": "Volunteers who felt little control reported the most distress under the same objective workload as others. In the appraisal model of stress, this best shows the importance of which of the following?",
+          "choices": [
+            "The person's cognitive appraisal of the stressor",
+            "The absolute intensity of the stressor alone",
+            "Sensory adaptation to the stressor",
+            "The recency effect"
+          ],
+          "answer": 0,
+          "explain": "Lazarus's model holds that stress depends on how a person appraises a demand and their ability to cope, not on the objective stressor alone.",
+          "concept": "6C",
+          "cover_story": "stress study",
+          "b": 1.0
+        }
+      ]
+    },
+    {
+      "label": "Motivation lab",
+      "paragraphs": [
+        "A laboratory studies what drives people to act. In one task, volunteers who have gone hours without water work harder at a puzzle when told that solving it earns a drink, and they stop pressing once they have drunk their fill. In another task, volunteers perform best on a moderately difficult game when they are moderately aroused, yet they do poorly when they are nearly asleep or when they are highly anxious. Researchers also survey what people pursue in daily life, ranging from food and safety to friendship, respect, and personal growth. They note that very few volunteers chase esteem or creative projects during periods when they are hungry or feel physically unsafe.",
+        "A final study looks at how rewards affect interest. Children who already love drawing are split into two groups. One group is promised a prize for drawing, while the other simply draws for fun. Days later, the children who had been paid draw far less on their own than those who were never rewarded at all. In interviews, some adults say they train for marathons purely for the private satisfaction of finishing, while others say they run only to collect cash prizes and trophies. The team records how each kind of motivation predicts whether people keep up an activity long after the rewards have stopped."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 10 (Emotion and Motivation)",
+      "questions": [
+        {
+          "stem": "Thirsty volunteers work to earn a drink and stop once satisfied. This pattern, in which an unmet need creates tension that behavior reduces, best fits which theory?",
+          "choices": [
+            "Drive-reduction theory",
+            "Arousal theory",
+            "Incentive theory",
+            "The James-Lange theory"
+          ],
+          "answer": 0,
+          "explain": "Drive-reduction theory holds that an unmet biological need creates a drive that motivates behavior to restore homeostasis; arousal theory instead concerns seeking an optimal level of activation.",
+          "concept": "7A",
+          "cover_story": "motivation lab",
+          "b": -0.1
+        },
+        {
+          "stem": "Volunteers do best on a moderately hard game at moderate arousal but worse when nearly asleep or highly anxious. This relationship is best captured by which of the following?",
+          "choices": [
+            "The Yerkes-Dodson law",
+            "Drive-reduction theory",
+            "Maslow's hierarchy",
+            "The overjustification effect"
+          ],
+          "answer": 0,
+          "explain": "The Yerkes-Dodson law describes an inverted-U link between arousal and performance, with an intermediate level of arousal being optimal for a moderately difficult task.",
+          "concept": "7A",
+          "cover_story": "motivation lab",
+          "b": 0.6
+        },
+        {
+          "stem": "Few volunteers pursue esteem or creative work while they are hungry or feel unsafe. This ordering of needs is central to which of the following?",
+          "choices": [
+            "Maslow's hierarchy of needs",
+            "The Cannon-Bard theory",
+            "The two-factor theory of emotion",
+            "Drive-reduction theory"
+          ],
+          "answer": 0,
+          "explain": "Maslow's hierarchy proposes that basic physiological and safety needs generally must be met before people pursue higher needs such as esteem and self-actualization.",
+          "concept": "7A",
+          "cover_story": "motivation lab",
+          "b": -0.5
+        },
+        {
+          "stem": "Children who love drawing draw far less on their own after being paid to draw. This decline is best explained by which of the following?",
+          "choices": [
+            "The overjustification effect",
+            "Negative reinforcement",
+            "The arousal theory of motivation",
+            "Learned helplessness"
+          ],
+          "answer": 0,
+          "explain": "The overjustification effect occurs when an external reward undermines pre-existing intrinsic motivation, so the activity is pursued less once the reward is removed.",
+          "concept": "7A",
+          "cover_story": "motivation lab",
+          "b": 1.0
+        },
+        {
+          "stem": "An adult who trains for marathons purely for the private satisfaction of finishing is showing which type of motivation?",
+          "choices": [
+            "Extrinsic motivation",
+            "Intrinsic motivation",
+            "A primary drive",
+            "Negative reinforcement"
+          ],
+          "answer": 1,
+          "explain": "Intrinsic motivation comes from internal satisfaction in the activity itself, whereas extrinsic motivation depends on external rewards such as cash prizes.",
+          "concept": "7A",
+          "cover_story": "motivation lab",
+          "b": -0.8
+        },
+        {
+          "stem": "A runner who trains only to collect cash prizes and trophies is driven mainly by which of the following?",
+          "choices": [
+            "Intrinsic motivation",
+            "Extrinsic motivation",
+            "A physiological drive",
+            "Self-actualization"
+          ],
+          "answer": 1,
+          "explain": "Running for an external payoff like prize money is extrinsic motivation; intrinsic motivation would be running for the inherent enjoyment of the activity.",
+          "concept": "7A",
+          "cover_story": "motivation lab",
+          "b": 0.1
+        }
+      ]
+    },
+    {
+      "label": "Socialization study",
+      "paragraphs": [
+        "A sociologist follows several families to study how people learn the norms of their society. In the earliest years, children learn language, basic manners, and trust mainly from parents and other close relatives at home. As they grow, teachers, classmates, coaches, and television introduce new rules and expectations, some of which clash with what the children first learned at home. The researcher watches a kindergarten where children learn not only letters and numbers but also to line up quietly, wait their turn, and respect the schedule set by adults, lessons that are never written on the board. Parents in the study also treat sons and daughters differently, handing trucks to some children and dolls to others without a second thought.",
+        "The study also follows people well past childhood. A young woman about to start medical school reads about how doctors dress and speak, and she begins acting the part weeks before her first day. A new army recruit enters a training camp where his head is shaved, his old clothes are taken away, and nearly every hour of his day is controlled as he is molded into a soldier. The researcher further notes that television and social media teach the children slang, fashions, and attitudes their parents never taught them directly. Each of these people is still being shaped by the groups and institutions around them, long after their first lessons at home."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 5 (Socialization)",
+      "questions": [
+        {
+          "stem": "Children first learn language, manners, and trust from parents at home. In these earliest years, the family is best described as which of the following?",
+          "choices": [
+            "An agent of primary socialization",
+            "An agent of resocialization",
+            "A total institution",
+            "A reference group"
+          ],
+          "answer": 0,
+          "explain": "The family is the primary agent of socialization in early childhood, teaching the first and most basic norms; resocialization and total institutions instead reshape an already socialized person.",
+          "concept": "7B",
+          "cover_story": "socialization study",
+          "b": -0.7
+        },
+        {
+          "stem": "In the kindergarten, children learn to line up quietly, wait their turn, and respect the adults' schedule, lessons never written on the board. These unspoken lessons are best called which of the following?",
+          "choices": [
+            "The hidden curriculum",
+            "Anticipatory socialization",
+            "A folkway violation",
+            "The looking-glass self"
+          ],
+          "answer": 0,
+          "explain": "The hidden curriculum refers to the unofficial norms and values, such as obedience and order, that schools teach alongside their formal academic content.",
+          "concept": "7B",
+          "cover_story": "socialization study",
+          "b": 0.6
+        },
+        {
+          "stem": "Parents hand trucks to some children and dolls to others based only on whether they are sons or daughters. This is best described as which of the following?",
+          "choices": [
+            "Gender socialization",
+            "Resocialization",
+            "Role conflict",
+            "The generalized other"
+          ],
+          "answer": 0,
+          "explain": "Gender socialization is the process by which children learn behaviors and expectations tied to their sex, here through the toys their parents provide.",
+          "concept": "7B",
+          "cover_story": "socialization study",
+          "b": -0.2
+        },
+        {
+          "stem": "The future medical student reads about how doctors act and begins behaving like one weeks before her first day. This rehearsal of a role she has not yet entered is best called which of the following?",
+          "choices": [
+            "Anticipatory socialization",
+            "Primary socialization",
+            "The hidden curriculum",
+            "Impression management"
+          ],
+          "answer": 0,
+          "explain": "Anticipatory socialization is learning and rehearsing the norms of a role one expects to occupy in the future; primary socialization instead refers to early childhood learning.",
+          "concept": "7B",
+          "cover_story": "socialization study",
+          "b": 0.3
+        },
+        {
+          "stem": "The recruit's head is shaved, his clothes are taken, and his whole day is controlled as he is remade into a soldier. This training camp best fits which concept?",
+          "choices": [
+            "A reference group",
+            "A total institution carrying out resocialization",
+            "A secondary group practicing role strain",
+            "An agent of primary socialization"
+          ],
+          "answer": 1,
+          "explain": "A total institution controls all aspects of daily life to strip away a former identity and instill a new one, the process of resocialization; a reference group is merely a standard for comparison.",
+          "concept": "7B",
+          "cover_story": "socialization study",
+          "b": 1.0
+        },
+        {
+          "stem": "The researcher notes that television teaches children slang and attitudes their parents never taught them directly. In this study, television functions as which of the following?",
+          "choices": [
+            "An agent of socialization",
+            "A total institution",
+            "A reference group for the parents",
+            "A form of resocialization"
+          ],
+          "answer": 0,
+          "explain": "Mass media such as television is a secondary agent of socialization that transmits norms and behaviors beyond those taught by the family; a total institution instead fully controls a resident's daily life.",
+          "concept": "7B",
+          "cover_story": "socialization study",
+          "b": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Persuasion study",
+      "paragraphs": [
+        "A social psychology team studies how attitudes shift and how people are persuaded. In one study, volunteers are paid either one dollar or twenty dollars to tell a waiting person that a genuinely boring task was actually fun. Afterward, those paid only one dollar rate the dull task as more enjoyable than those paid twenty dollars do. In a second study, viewers watch a health message about a new vaccine. Some viewers care deeply about the topic and focus closely on the strength of the evidence and the quality of the arguments, while others barely care and are swayed mainly by how attractive, likable, and confident the speaker appears rather than by any facts.",
+        "The team also tests a series of requests. When a researcher first asks people to sign a small petition and later asks them to place a large sign in their yard, far more agree to the big request than when it is presented on its own. In a different approach, a researcher first makes an outrageous request that is refused, then follows it with a smaller one, which people accept more often than usual. Finally, students who freely choose to write an essay arguing against their own view later report attitudes closer to the essay, while students who are ordered to write the same essay show little change at all."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 12 (Social Psychology)",
+      "questions": [
+        {
+          "stem": "Volunteers paid only one dollar to call a boring task fun later rate it as more enjoyable than those paid twenty dollars. This is best explained by which of the following?",
+          "choices": [
+            "Cognitive dissonance reduction",
+            "Positive reinforcement from the payment",
+            "The mere exposure effect",
+            "Normative social influence"
+          ],
+          "answer": 0,
+          "explain": "With too little external justification, the one-dollar volunteers feel dissonance between their behavior and their belief and reduce it by changing their attitude; the twenty-dollar payment is ample justification, so little attitude change is needed.",
+          "concept": "7C",
+          "cover_story": "persuasion study",
+          "b": 0.7
+        },
+        {
+          "stem": "Viewers who care deeply and scrutinize the strength of the vaccine evidence are being persuaded through which route of the elaboration likelihood model?",
+          "choices": [
+            "The central route",
+            "The peripheral route",
+            "The door-in-the-face route",
+            "The foot-in-the-door route"
+          ],
+          "answer": 0,
+          "explain": "The central route to persuasion involves careful evaluation of the actual arguments and evidence, used when people are both motivated and able to think about the message.",
+          "concept": "7C",
+          "cover_story": "persuasion study",
+          "b": 0.0
+        },
+        {
+          "stem": "Viewers who barely care and are swayed mostly by the speaker's attractiveness and confidence are being persuaded through which route?",
+          "choices": [
+            "The central route",
+            "The peripheral route",
+            "Cognitive dissonance",
+            "Reciprocal determinism"
+          ],
+          "answer": 1,
+          "explain": "The peripheral route relies on surface cues such as a speaker's attractiveness or confidence rather than on the quality of the arguments.",
+          "concept": "7C",
+          "cover_story": "persuasion study",
+          "b": 0.3
+        },
+        {
+          "stem": "People who first sign a small petition later agree more often to place a large yard sign. This technique is best called which of the following?",
+          "choices": [
+            "The foot-in-the-door technique",
+            "The door-in-the-face technique",
+            "Negative reinforcement",
+            "The bystander effect"
+          ],
+          "answer": 0,
+          "explain": "The foot-in-the-door technique gains compliance with a large request by first securing agreement to a small one; the door-in-the-face technique instead starts with an extreme request.",
+          "concept": "7C",
+          "cover_story": "persuasion study",
+          "b": -0.4
+        },
+        {
+          "stem": "A researcher makes an outrageous request that is refused, then follows with a smaller one that people accept. This technique is best called which of the following?",
+          "choices": [
+            "The foot-in-the-door technique",
+            "The door-in-the-face technique",
+            "The central route to persuasion",
+            "The overjustification effect"
+          ],
+          "answer": 1,
+          "explain": "The door-in-the-face technique boosts compliance with a moderate request by first making a larger one that is expected to be refused.",
+          "concept": "7C",
+          "cover_story": "persuasion study",
+          "b": 0.5
+        },
+        {
+          "stem": "Students who freely choose to write an essay against their own view later shift their attitude toward it, while those ordered to write it do not. The shift in the free-choice group is best explained by which of the following?",
+          "choices": [
+            "Cognitive dissonance",
+            "The peripheral route to persuasion",
+            "Observational learning",
+            "The framing effect"
+          ],
+          "answer": 0,
+          "explain": "Freely choosing to argue against one's own belief creates dissonance that is eased by shifting the attitude, whereas coerced behavior supplies an external justification that prevents dissonance.",
+          "concept": "7C",
+          "cover_story": "persuasion study",
+          "b": 1.1
+        }
+      ]
+    },
+    {
+      "label": "Self and identity study",
+      "paragraphs": [
+        "A sociologist studies how a sense of self develops through interaction with others. She observes very young children at play over several years. At first a toddler simply imitates a parent sweeping the floor, copying the motions without grasping what the role means. A few years later, children take on single roles one at a time, pretending to be a doctor treating a patient or a parent scolding a child. By early school age, children can play organized games like baseball, coordinating their own actions with the roles and expectations of every other player at once. The researcher argues that the self is not present at birth but is gradually built through these stages of shared social experience.",
+        "The study also examines how people come to see themselves through the eyes of others. A teenager imagines how her classmates judge a new outfit, decides they find it stylish, and feels a rush of pride as a result. Later she misreads a stranger's frown as disapproval and briefly feels embarrassed, even though the frown had nothing to do with her at all. As children mature, the researcher observes, they begin to measure themselves against the broad expectations of society as a whole rather than any single playmate. Across countless such moments, each person slowly assembles a picture of who they are from the reflected views of the people around them."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 5 (Socialization)",
+      "questions": [
+        {
+          "stem": "The teenager imagines how her classmates judge her outfit, decides they approve, and feels proud. This process of forming a self-image from others' perceived judgments is best called which of the following?",
+          "choices": [
+            "The looking-glass self",
+            "The generalized other",
+            "Impression management",
+            "The self-serving bias"
+          ],
+          "answer": 0,
+          "explain": "Cooley's looking-glass self describes building a self-concept from how we imagine others perceive and judge us; the generalized other is instead the attitudes of society as a whole.",
+          "concept": "8A",
+          "cover_story": "self study",
+          "b": 0.3
+        },
+        {
+          "stem": "In organized games like baseball, children must coordinate their actions with every other player's role at once. Mead placed this ability in which stage?",
+          "choices": [
+            "The imitation stage",
+            "The play stage",
+            "The game stage",
+            "The preoperational stage"
+          ],
+          "answer": 2,
+          "explain": "In Mead's game stage, children can take on the roles of many others simultaneously; the earlier play stage involves acting out one role at a time.",
+          "concept": "8A",
+          "cover_story": "self study",
+          "b": 0.5
+        },
+        {
+          "stem": "The toddler who simply mimics a parent sweeping, without grasping the role, is in which of Mead's stages?",
+          "choices": [
+            "The imitation stage",
+            "The play stage",
+            "The game stage",
+            "The concrete operational stage"
+          ],
+          "answer": 0,
+          "explain": "In Mead's imitation stage, very young children copy others' behavior without understanding the underlying role; role-taking develops later in the play and game stages.",
+          "concept": "8A",
+          "cover_story": "self study",
+          "b": 0.2
+        },
+        {
+          "stem": "When children pretend to be a doctor or a parent, taking on one role at a time, they are in which of Mead's stages?",
+          "choices": [
+            "The imitation stage",
+            "The play stage",
+            "The game stage",
+            "The mirror stage"
+          ],
+          "answer": 1,
+          "explain": "In Mead's play stage, children take on and act out single roles one at a time, a step toward grasping multiple perspectives in the later game stage.",
+          "concept": "8A",
+          "cover_story": "self study",
+          "b": 0.6
+        },
+        {
+          "stem": "As children mature, they internalize the attitudes and expectations of society as a whole, not just those of a single playmate. Mead called this internalized set of expectations which of the following?",
+          "choices": [
+            "The generalized other",
+            "The looking-glass self",
+            "The hidden curriculum",
+            "A reference group"
+          ],
+          "answer": 0,
+          "explain": "Mead's generalized other is the internalized sense of the expectations of the wider group or society, which guides behavior once role-taking is fully developed.",
+          "concept": "8A",
+          "cover_story": "self study",
+          "b": 0.9
+        },
+        {
+          "stem": "The researcher concludes that the self emerges through social experience rather than being present at birth. This conclusion best supports which view?",
+          "choices": [
+            "The self is innate and fixed from birth",
+            "The self is a social product built through interaction",
+            "The self is determined solely by genes",
+            "The self cannot change after early childhood"
+          ],
+          "answer": 1,
+          "explain": "Both Mead and Cooley argued that the self is a social product that arises through interaction with others, not an innate trait present at birth.",
+          "concept": "8A",
+          "cover_story": "self study",
+          "b": -0.7
+        }
+      ]
+    },
+    {
+      "label": "Two communities study",
+      "paragraphs": [
+        "A research team studies attitudes between two neighboring communities, the Reds and the Blues, who rarely mix. Members of each group tend to describe their own group as varied and full of unique individuals, but they describe the other group as all alike. When shown a news story about a single Blue who committed a crime, many Reds quickly conclude that Blues in general are dishonest. Surveys reveal that most Reds hold strongly negative feelings toward Blues even though few of them have ever spoken with a Blue in person. Some Reds go further and say they would refuse to hire a Blue applicant no matter how well qualified that person might be.",
+        "The team also tracks how these attitudes change over time. During an economic downturn, Reds increasingly blame Blues for their lost jobs, even though the layoffs were plainly caused by a distant factory closing. In a separate program, small groups of Reds and Blues are brought together to work as equals toward a shared goal, such as repairing a flooded community park. After weeks of genuine cooperation, the Reds who took part report far warmer views of Blues than Reds who did not participate. The researchers stress that simply placing the two groups in the same room was not enough; only meaningful cooperation toward a common aim reduced the hostility."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 11 (Race and Ethnicity)",
+      "questions": [
+        {
+          "stem": "Members of each group see their own group as full of unique individuals but view the other group as all alike. This tendency is best called which of the following?",
+          "choices": [
+            "The out-group homogeneity effect",
+            "The self-serving bias",
+            "The fundamental attribution error",
+            "Deindividuation"
+          ],
+          "answer": 0,
+          "explain": "The out-group homogeneity effect is the tendency to see members of an out-group as more similar to one another than members of one's own in-group, who appear more varied.",
+          "concept": "8B",
+          "cover_story": "two communities",
+          "b": 0.4
+        },
+        {
+          "stem": "The warm loyalty Reds feel toward fellow Reds, paired with suspicion of Blues, best reflects which of the following?",
+          "choices": [
+            "In-group favoritism",
+            "Role strain",
+            "The looking-glass self",
+            "Altruism"
+          ],
+          "answer": 0,
+          "explain": "In-group favoritism, or in-group bias, is the tendency to favor and trust members of one's own group over those of an out-group.",
+          "concept": "8B",
+          "cover_story": "two communities",
+          "b": -0.4
+        },
+        {
+          "stem": "Seeing one Blue commit a crime and concluding that Blues in general are dishonest is best described as which of the following?",
+          "choices": [
+            "Applying a stereotype",
+            "Discrimination",
+            "Cognitive dissonance",
+            "The contact hypothesis"
+          ],
+          "answer": 0,
+          "explain": "A stereotype is an overgeneralized belief applied to a whole group; discrimination would be an action, such as unequal treatment, rather than a belief.",
+          "concept": "8B",
+          "cover_story": "two communities",
+          "b": -0.6
+        },
+        {
+          "stem": "Some Reds say they would refuse to hire any Blue applicant regardless of qualifications. This refusal is best classified as which of the following?",
+          "choices": [
+            "Prejudice",
+            "Discrimination",
+            "A stereotype",
+            "Out-group homogeneity"
+          ],
+          "answer": 1,
+          "explain": "Discrimination is unequal treatment based on group membership, the behavioral component, distinct from prejudice, which is the negative attitude or feeling.",
+          "concept": "8B",
+          "cover_story": "two communities",
+          "b": 0.2
+        },
+        {
+          "stem": "During the downturn, Reds blame Blues for job losses that were actually caused by a distant factory closing. This displacement of blame onto a vulnerable group best illustrates which of the following?",
+          "choices": [
+            "Scapegoating",
+            "The self-fulfilling prophecy",
+            "The mere exposure effect",
+            "Role conflict"
+          ],
+          "answer": 0,
+          "explain": "Scapegoat theory holds that a frustrated group blames a vulnerable out-group for problems it did not cause, as when Reds fault Blues for layoffs due to a factory closing.",
+          "concept": "8B",
+          "cover_story": "two communities",
+          "b": 0.7
+        },
+        {
+          "stem": "Hostility falls only after Reds and Blues cooperate as equals toward a shared goal, not merely from sharing a room. This finding best supports which of the following?",
+          "choices": [
+            "The contact hypothesis, which stresses cooperative, equal-status contact",
+            "The just-world hypothesis",
+            "Social loafing",
+            "The out-group homogeneity effect"
+          ],
+          "answer": 0,
+          "explain": "The contact hypothesis holds that intergroup prejudice drops when groups meet under conditions of equal status and cooperation toward common goals, not from mere exposure alone.",
+          "concept": "8B",
+          "cover_story": "two communities",
+          "b": 1.0
+        }
+      ]
+    },
+    {
+      "label": "Small town networks",
+      "paragraphs": [
+        "A sociologist maps the social ties of people living in a small town. She notes that each resident keeps a close circle of family and lifelong friends, a circle marked by warmth, deep loyalty, and steady face-to-face care. Each person also belongs to larger, more impersonal circles, such as a workplace or a professional association, where the ties are built around shared tasks rather than affection. The researcher pays special attention to group size, comparing a married couple with a three-person planning committee and with a two-hundred-member club, and she carefully records how the intimacy, stability, and decision making of these groupings differ from one another as members are added.",
+        "The study also looks at how groups shape everyday behavior. A local sports team feels intense pride in its own members and a sharp rivalry toward a neighboring team across the river. Several residents, though far from wealthy, judge their own success by constantly comparing themselves to a circle of famous entrepreneurs they follow online but have never met. The town's main employer is a large agency run by written rules, ranked offices, and formal procedures, where workers are hired and promoted on documented qualifications. One manager there leads by seeking group input and building consensus, while another simply issues orders and expects them to be obeyed."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 6 (Groups and Organization)",
+      "questions": [
+        {
+          "stem": "The close circle of family and lifelong friends, marked by warmth and deep loyalty, is best described as which of the following?",
+          "choices": [
+            "A primary group",
+            "A secondary group",
+            "An out-group",
+            "A formal organization"
+          ],
+          "answer": 0,
+          "explain": "A primary group is small, enduring, and emotionally close, such as family and close friends; secondary groups are larger and more impersonal.",
+          "concept": "8C",
+          "cover_story": "small town networks",
+          "b": -0.7
+        },
+        {
+          "stem": "A workplace or professional association, where ties are built around shared tasks rather than affection, is best described as which of the following?",
+          "choices": [
+            "A primary group",
+            "A secondary group",
+            "A reference group",
+            "A dyad"
+          ],
+          "answer": 1,
+          "explain": "Secondary groups are larger, more impersonal, and organized around specific goals or tasks, in contrast to the intimate bonds of a primary group.",
+          "concept": "8C",
+          "cover_story": "small town networks",
+          "b": -0.3
+        },
+        {
+          "stem": "The researcher finds the two-person couple more intimate but more fragile than the three-person committee. Compared with larger groups, a two-person group, or dyad, is best described as which of the following?",
+          "choices": [
+            "The most stable and least intimate group",
+            "The most intimate but least stable group",
+            "Identical in stability to a triad",
+            "A secondary group by definition"
+          ],
+          "answer": 1,
+          "explain": "As Simmel noted, a dyad is the most intimate grouping but also the least stable, since it collapses if either member leaves; adding a third person increases stability.",
+          "concept": "8C",
+          "cover_story": "small town networks",
+          "b": 1.0
+        },
+        {
+          "stem": "The sports team feels pride in its own members and rivalry toward a neighboring team. From the first team's view, the rival team is best described as which of the following?",
+          "choices": [
+            "An in-group",
+            "An out-group",
+            "A primary group",
+            "A reference group"
+          ],
+          "answer": 1,
+          "explain": "An out-group is a group toward which one feels competition or opposition, whereas the in-group is the group one identifies with and feels loyalty toward.",
+          "concept": "8C",
+          "cover_story": "small town networks",
+          "b": -0.1
+        },
+        {
+          "stem": "Residents judge their own success by comparing themselves to famous entrepreneurs they follow but have never met. These entrepreneurs serve as which of the following?",
+          "choices": [
+            "A reference group",
+            "A primary group",
+            "An in-group",
+            "A dyad"
+          ],
+          "answer": 0,
+          "explain": "A reference group is one people use as a standard for self-evaluation, even when they are not members; primary and in-groups instead involve actual membership or identification.",
+          "concept": "8C",
+          "cover_story": "small town networks",
+          "b": 0.3
+        },
+        {
+          "stem": "The large employer, run by written rules, ranked offices, formal procedures, and hiring based on documented qualifications, best fits which concept?",
+          "choices": [
+            "A bureaucracy",
+            "A primary group",
+            "A total institution",
+            "A dyad"
+          ],
+          "answer": 0,
+          "explain": "A bureaucracy is a formal organization marked by written rules, a clear hierarchy of offices, and impersonal, merit-based procedures, as Weber described.",
+          "concept": "8C",
+          "cover_story": "small town networks",
+          "b": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Two cultures study",
+      "paragraphs": [
+        "A cultural anthropologist compares daily life in two different societies. She carefully catalogs each group's physical objects, such as its tools, clothing, and buildings, and separately records their shared ideas, such as beliefs about honesty, family, and the afterlife. In one society, facing your open palm outward is a warm greeting, while in the other the very same gesture is a grave insult. The researcher notes that a red traffic light means stop in both places only because the people there agree that it does. Throughout her fieldwork she is careful to describe each custom in its own terms rather than measuring it against the standards of her home country.",
+        "The study distinguishes several kinds of social rules. Chewing loudly at dinner draws only mild frowns and quiet disapproval, while stealing from a neighbor brings severe punishment, and harming a child is treated as an unspeakable wrong that people will not even discuss. The anthropologist also finds that technology often races ahead of shared beliefs: one society has acquired powerful new medical machines but has not yet worked out the ethical rules for using them. Within the larger society, a small group of artists shares a distinctive style of dress and slang while still accepting most of the wider culture's basic rules and values."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 3 (Culture)",
+      "questions": [
+        {
+          "stem": "The physical objects a society makes, such as its tools, clothing, and buildings, are best described as which of the following?",
+          "choices": [
+            "Material culture",
+            "Nonmaterial culture",
+            "Mores",
+            "Symbols"
+          ],
+          "answer": 0,
+          "explain": "Material culture consists of the tangible objects a society produces, whereas nonmaterial culture consists of intangible ideas, values, and beliefs.",
+          "concept": "9A",
+          "cover_story": "two cultures",
+          "b": -0.8
+        },
+        {
+          "stem": "A red traffic light means stop in both societies only because the people there agree that it does. An object or gesture that carries such an agreed-upon meaning is best called which of the following?",
+          "choices": [
+            "A symbol",
+            "A value",
+            "A taboo",
+            "A sanction"
+          ],
+          "answer": 0,
+          "explain": "A symbol is anything, such as a gesture or a colored light, that carries a shared, agreed-upon meaning within a culture; values are instead abstract standards of what is good or desirable.",
+          "concept": "9A",
+          "cover_story": "two cultures",
+          "b": -0.2
+        },
+        {
+          "stem": "Chewing loudly draws only mild disapproval, while stealing from a neighbor brings severe punishment. In order, these two kinds of norms are best described as which of the following?",
+          "choices": [
+            "Folkways and mores",
+            "Mores and folkways",
+            "Taboos and folkways",
+            "Values and beliefs"
+          ],
+          "answer": 0,
+          "explain": "Folkways are everyday customs whose violation brings mild disapproval, while mores are norms with strong moral weight whose violation brings serious sanctions.",
+          "concept": "9A",
+          "cover_story": "two cultures",
+          "b": 0.6
+        },
+        {
+          "stem": "Harming a child is treated as an unspeakable wrong that people will not even discuss. Such a norm, whose violation triggers deep revulsion, is best called which of the following?",
+          "choices": [
+            "A folkway",
+            "A taboo",
+            "A value",
+            "A symbol"
+          ],
+          "answer": 1,
+          "explain": "A taboo is the strongest kind of norm, one so deeply held that its violation is met with disgust; folkways are far milder everyday customs.",
+          "concept": "9A",
+          "cover_story": "two cultures",
+          "b": 0.4
+        },
+        {
+          "stem": "One society has advanced medical machines but has not yet developed ethical rules for using them, so its technology has outpaced its beliefs. This gap is best described as which of the following?",
+          "choices": [
+            "Cultural lag",
+            "Culture shock",
+            "Ethnocentrism",
+            "Cultural diffusion"
+          ],
+          "answer": 0,
+          "explain": "Cultural lag is the delay between a change in material culture, such as new technology, and the adjustment of nonmaterial culture, such as norms and ethics.",
+          "concept": "9A",
+          "cover_story": "two cultures",
+          "b": 1.0
+        },
+        {
+          "stem": "The anthropologist describes each custom in its own terms rather than judging it against her home country's standards. This approach is best called which of the following?",
+          "choices": [
+            "Ethnocentrism",
+            "Cultural relativism",
+            "Assimilation",
+            "Xenocentrism"
+          ],
+          "answer": 1,
+          "explain": "Cultural relativism assesses a culture by its own standards rather than those of another culture; ethnocentrism instead judges other cultures by one's own.",
+          "concept": "9A",
+          "cover_story": "two cultures",
+          "b": 0.2
+        }
+      ]
+    },
+    {
+      "label": "Social movements study",
+      "paragraphs": [
+        "A sociologist studies how large groups of people push for social change. In one city, residents who compare their own stagnant wages to the soaring wealth of a nearby district grow deeply angry and begin to organize protests, even though their own incomes have not actually fallen. A well-funded organization then provides meeting space, legal help, and media contacts, and the movement grows quickly as a result. The researcher classifies the various efforts by their aims: some seek only small changes to a single law, while others seek to overturn the entire political and economic order. Still other groups form mainly to block a change that is already underway in the city.",
+        "The study also examines broader, slower shifts. Faster travel, expanding global trade, and instant communication increasingly link the city's fortunes to distant events on the other side of the world. When a rumor spreads online that a local bank is failing, thousands of people rush to withdraw their money within hours, and the panic itself very nearly topples the bank. The researcher observes that newer movements often coordinate through social media, allowing strangers scattered across many countries to organize a single coordinated day of protest. Over decades, all of these forces gradually reshape the city's institutions, its laws, and the shared expectations of its residents."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 21 (Social Movements and Social Change)",
+      "questions": [
+        {
+          "stem": "Residents grow angry after comparing their wages to a wealthier district, even though their own incomes have not fallen. This sense of unfair disadvantage is best described as which of the following?",
+          "choices": [
+            "Relative deprivation",
+            "Absolute poverty",
+            "Social facilitation",
+            "Cultural lag"
+          ],
+          "answer": 0,
+          "explain": "Relative deprivation is the feeling of being unfairly worse off compared with others, which can spark movements even when conditions have not objectively declined; absolute poverty is instead a fixed lack of basic necessities.",
+          "concept": "9B",
+          "cover_story": "social movements study",
+          "b": 0.4
+        },
+        {
+          "stem": "The movement grows quickly once an organization supplies meeting space, legal help, and media contacts. This emphasis on organized assets is central to which perspective?",
+          "choices": [
+            "Resource mobilization theory",
+            "Relative deprivation theory",
+            "Demographic transition theory",
+            "The looking-glass self"
+          ],
+          "answer": 0,
+          "explain": "Resource mobilization theory holds that a movement's success depends on access to resources such as money, organization, and media, not on shared grievances alone.",
+          "concept": "9B",
+          "cover_story": "social movements study",
+          "b": 1.0
+        },
+        {
+          "stem": "A movement that seeks only a small change to a single law, rather than a sweeping overhaul, is best classified as which of the following?",
+          "choices": [
+            "A reform movement",
+            "A revolutionary movement",
+            "A resistance movement",
+            "A countercultural movement"
+          ],
+          "answer": 0,
+          "explain": "Reform movements seek limited change within the existing system, whereas revolutionary movements aim to transform the entire social or political order.",
+          "concept": "9B",
+          "cover_story": "social movements study",
+          "b": 0.0
+        },
+        {
+          "stem": "A movement that seeks to overturn the entire political and economic order is best classified as which of the following?",
+          "choices": [
+            "A reform movement",
+            "A revolutionary movement",
+            "An alternative movement",
+            "A redemptive movement"
+          ],
+          "answer": 1,
+          "explain": "Revolutionary movements aim to replace the whole existing system, a far broader goal than the limited aims of a reform movement.",
+          "concept": "9B",
+          "cover_story": "social movements study",
+          "b": 0.3
+        },
+        {
+          "stem": "Faster travel, global trade, and instant communication increasingly tie the city's fortunes to distant events. This growing interconnection of societies is best described as which of the following?",
+          "choices": [
+            "Globalization",
+            "Urbanization",
+            "Assimilation",
+            "Gentrification"
+          ],
+          "answer": 0,
+          "explain": "Globalization is the increasing economic, political, and cultural interconnection of societies across the world; urbanization instead refers to population growth concentrated in cities.",
+          "concept": "9B",
+          "cover_story": "social movements study",
+          "b": -0.6
+        },
+        {
+          "stem": "A rumor spreads online and thousands rush to withdraw money within hours, and the panic itself nearly topples the bank. This rapid, unplanned group reaction is best described as which of the following?",
+          "choices": [
+            "Collective behavior",
+            "A revolutionary movement",
+            "A bureaucracy",
+            "A total institution"
+          ],
+          "answer": 0,
+          "explain": "Collective behavior is the spontaneous, relatively unstructured response of many people to an ambiguous or threatening situation, such as a bank panic driven by rumor; a social movement is far more organized and sustained.",
+          "concept": "9B",
+          "cover_story": "social movements study",
+          "b": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Global inequality study",
+      "paragraphs": [
+        "An economist compares nations sitting at very different levels of wealth. A small number of rich countries own most of the world's factories, banks, and advanced technology, and they buy cheap raw materials from poorer nations. A middle tier of countries is industrializing rapidly, while the poorest nations mainly export raw materials and depend heavily on the wealthy ones for finished goods. In several of the poorest countries, families struggle to survive on less than what is needed for adequate food, clean water, and shelter. The researcher contrasts them with a wealthy country where even the poorest residents have far more than the global poor, yet still feel deprived compared with their richer neighbors down the street.",
+        "Analysts offer competing explanations for these gaps. Some argue that poor nations stay poor because wealthy nations exploit them, extracting resources and cheap labor while keeping the profits for themselves. Others argue that poor nations simply need to adopt the technology, schooling, and cultural habits that once let rich nations industrialize. The researcher also documents striking health differences: children born in the poorest nations die far younger and suffer more preventable disease than children in the richest ones. Even within a single wealthy city, residents of a neglected and polluted district face far worse health than people living just a few miles away in a cleaner, well-funded neighborhood."
+      ],
+      "source_ref": "OpenStax Introduction to Sociology 3e, Ch. 10 (Global Inequality)",
+      "questions": [
+        {
+          "stem": "The rich countries that own most of the world's factories and banks and buy cheap raw materials from poorer nations occupy which position in world-systems theory?",
+          "choices": [
+            "The core",
+            "The periphery",
+            "The semi-periphery",
+            "The underclass"
+          ],
+          "answer": 0,
+          "explain": "In world-systems theory, core nations dominate the global economy, controlling capital and technology, while peripheral nations supply cheap labor and raw materials.",
+          "concept": "10A",
+          "cover_story": "global inequality study",
+          "b": 0.6
+        },
+        {
+          "stem": "The poorest nations, which mainly export raw materials and depend on wealthy nations for finished goods, occupy which position in world-systems theory?",
+          "choices": [
+            "The core",
+            "The periphery",
+            "The semi-periphery",
+            "The bourgeoisie"
+          ],
+          "answer": 1,
+          "explain": "Peripheral nations are the least developed, exporting raw materials and dependent on core nations; the semi-periphery lies between the two.",
+          "concept": "10A",
+          "cover_story": "global inequality study",
+          "b": 0.5
+        },
+        {
+          "stem": "Families in poor countries who lack enough food, clean water, and shelter to stay healthy are experiencing which of the following?",
+          "choices": [
+            "Absolute poverty",
+            "Relative poverty",
+            "Structural mobility",
+            "Relative deprivation"
+          ],
+          "answer": 0,
+          "explain": "Absolute poverty is the lack of resources needed for basic survival, whereas relative poverty is being poor compared with the standard of one's own society.",
+          "concept": "10A",
+          "cover_story": "global inequality study",
+          "b": -0.5
+        },
+        {
+          "stem": "In the wealthy country, the poorest residents have more than the global poor yet feel deprived next to their richer neighbors. Their condition is best described as which of the following?",
+          "choices": [
+            "Absolute poverty",
+            "Relative poverty",
+            "Global stratification",
+            "The culture of poverty"
+          ],
+          "answer": 1,
+          "explain": "Relative poverty is measured against the living standards of one's own society, so people can be relatively poor even while meeting basic survival needs.",
+          "concept": "10A",
+          "cover_story": "global inequality study",
+          "b": 0.3
+        },
+        {
+          "stem": "The claim that poor nations stay poor because wealthy nations exploit their resources and labor best reflects which perspective?",
+          "choices": [
+            "Dependency theory",
+            "Modernization theory",
+            "The Davis-Moore thesis",
+            "The cornucopian view"
+          ],
+          "answer": 0,
+          "explain": "Dependency theory argues that global poverty results from wealthy nations exploiting poorer ones; modernization theory instead attributes poverty to poor nations' own institutions and culture.",
+          "concept": "10A",
+          "cover_story": "global inequality study",
+          "b": 1.1
+        },
+        {
+          "stem": "Children in the poorest nations die younger and suffer more preventable disease than those in rich nations, and neglected districts within a city fare worse than nearby wealthy ones. These patterns are best described as which of the following?",
+          "choices": [
+            "Health disparities tied to social and spatial inequality",
+            "Random variation unrelated to social class",
+            "The demographic transition",
+            "Absolute mobility"
+          ],
+          "answer": 0,
+          "explain": "Systematic differences in health that track wealth and neighborhood are health disparities produced by social and spatial inequality, not random variation.",
+          "concept": "10A",
+          "cover_story": "global inequality study",
+          "b": 0.0
         }
       ]
     }

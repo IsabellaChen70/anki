@@ -20,6 +20,7 @@ from aqt.utils import showInfo
 from aqt.webview import AnkiWebView
 
 from . import render
+from . import section_mix
 
 # Short, student-facing labels for the three science sections plus CARS.
 SECTION_LABELS = {
@@ -105,6 +106,10 @@ class VantageDashboard(QMainWindow):
         self._review_card = None
         self._review_queue = None  # None = use Anki's own queue (interleaved); list = a section queue
         self._review_label = None
+        self._review_section = None  # section key, "interleave", or None (mixed)
+        self._review_topic_mix = False  # True = single section, topics interleaved
+        self._review_answered: set = set()  # card ids studied this session
+        self._review_continued = False  # True once past today's due into the broader pool
         QShortcut(QKeySequence("Escape"), self, activated=self.close)
         self._render_loading()
         self.reload()
@@ -134,7 +139,7 @@ class VantageDashboard(QMainWindow):
         except Exception:
             traceback.print_exc()
 
-    def reload(self, toast: str | None = None) -> None:
+    def reload(self, toast: str | None = None, initial_tab: str = "dashboard") -> None:
         """Recompute and repaint the dashboard WITHOUT blocking the Qt main thread.
 
         `collect.gather` is an O(cards) scan that can take ~250 ms on a large deck;
@@ -150,13 +155,23 @@ class VantageDashboard(QMainWindow):
 
         `toast`, if given, is shown as an in-webview toast AFTER the swap completes
         (so the page replacement doesn't wipe it).
+
+        `initial_tab` is baked into the rebuilt page so it opens on that tab. The
+        full-page swap discards the in-webview tab state, so returning from a study
+        session (which is always launched from Practice) passes "practice" here to
+        land the student back where they launched it, not on Dashboard.
         """
         self.web.evalWithCallback(
             "window.scrollY || 0",
-            lambda s: self._reload_keeping_scroll(s, toast),
+            lambda s: self._reload_keeping_scroll(s, toast, initial_tab),
         )
 
-    def _reload_keeping_scroll(self, scroll_y: object = 0, toast: str | None = None) -> None:
+    def _reload_keeping_scroll(
+        self,
+        scroll_y: object = 0,
+        toast: str | None = None,
+        initial_tab: str = "dashboard",
+    ) -> None:
         from aqt.operations import QueryOp
 
         try:
@@ -182,7 +197,7 @@ class VantageDashboard(QMainWindow):
                 col.set_config(render.SCORE_CACHE_KEY, render.summary_cache(data))
             except Exception:
                 traceback.print_exc()
-            return render.build_body(data, live=True)
+            return render.build_body(data, live=True, initial_tab=initial_tab)
 
         def success(body: str) -> None:
             self.web.stdHtml(body, head=render.FONT_HEAD, default_css=False, context=self)
@@ -203,21 +218,52 @@ class VantageDashboard(QMainWindow):
 
         QueryOp(parent=self, op=op, success=success).failure(failure).run_in_background()
 
+    def _trigger_sync(self) -> None:
+        """Additive Sync button: run Anki's real sync (the same code path as the
+        toolbar Sync action), then reload the dashboard so the scores reflect
+        anything just pulled. This is on top of the existing auto-sync on open and
+        close, not a replacement. On success the reload resets the button; on
+        failure we tell the webview so it shows a plain-language message (Anki also
+        surfaces its own error dialog)."""
+        try:
+            auth = mw.pm.sync_auth()
+        except Exception:
+            auth = None
+        if not auth:
+            self._web_toast(
+                "Sign in to Anki sync first (Tools > Preferences > Syncing)", kind="warn"
+            )
+            self.web.eval("window.vantageSyncDone && window.vantageSyncDone(false);")
+            return
+
+        def after_sync() -> None:
+            self.reload(toast="Synced")
+
+        try:
+            mw._sync_collection_and_media(after_sync)
+        except Exception:
+            traceback.print_exc()
+            self.web.eval("window.vantageSyncDone && window.vantageSyncDone(false);")
+
     def _on_cmd(self, cmd: str):
         if cmd == "vantage:refresh":
             self.reload(toast="Vantage refreshed")
+        elif cmd == "vantage:sync:trigger":
+            self._trigger_sync()
         elif cmd == "vantage:studydone":
             # Returned from the in-dashboard reviewer: recompute so the scores
             # reflect the just-studied cards. Silent (no tooltip) on every exit.
-            self.reload()
+            # The reviewer is always launched from the Practice tab, so land back
+            # there (the full-page swap would otherwise reset to Dashboard).
+            self.reload(initial_tab="practice")
         elif cmd == "vantage:back":
             self.close()
         elif cmd == "vantage:study":
             self._review_start()
         elif cmd.startswith("vantage:study:"):
             self._review_start(cmd.split(":", 2)[2])
-        elif cmd.startswith("vantage:cram:"):
-            self._review_start(cmd.split(":", 2)[2], cram=True)
+        elif cmd == "vantage:review:more":
+            self._review_more()
         elif cmd == "vantage:review:show":
             self._review_show_answer()
         elif cmd.startswith("vantage:review:answer:"):
@@ -352,6 +398,9 @@ class VantageDashboard(QMainWindow):
         except Exception:
             return
         section = data.get("section", "")
+        # "practice" or "test": tags each answer so Test-mode results are
+        # distinguishable in reporting, while feeding the SAME performance pipeline.
+        mode = data.get("mode")
         items = data.get("items", [])
         if not isinstance(items, list):
             return
@@ -379,7 +428,7 @@ class VantageDashboard(QMainWindow):
                 collect.record_metacognition(
                     mw.col, section, correct,
                     confidence=it.get("confidence"), reason=it.get("reason"),
-                    ms=it.get("ms"), revlog_id=rid, concept=concept,
+                    ms=it.get("ms"), revlog_id=rid, concept=concept, mode=mode,
                 )
             except Exception:
                 traceback.print_exc()  # don't hide a real logging failure
@@ -419,55 +468,55 @@ class VantageDashboard(QMainWindow):
         return True
 
     # ---- in-dashboard reviewer: real cards, Anki's own scheduler ----
-    def _review_start(self, section: str | None = None, cram: bool = False) -> None:
-        """Study inside the dashboard. Cards are scheduled and graded by Anki's
-        own engine (col.sched); only the frame around the card is Vantage's.
+    def _review_start(self, section: str | None = None) -> None:
+        """Study inside the dashboard, DUE cards only. Cards are scheduled and graded
+        by Anki's own engine (col.sched); only the frame around the card is Vantage's.
 
-        section None / "interleave": review through Anki's own queue on the exam
-        deck, where topic-interleaving is on, so the order mixes sections. A
-        science-section key (e.g. "chem_phys") studies just that section's cards,
-        graded the same way (nextIvlStr / answerCard both work per card id).
-
-        cram: "study all" for a section, i.e. every non-suspended card whether or
-        not it is due, for on-demand drilling. Default (cram False) is due-only.
+        section None / "interleave": review through Anki's own queue, where topic
+        interleaving is on, so the order mixes sections. A science-section key studies
+        just that section's due cards. When today's due queue is exhausted the reviewer
+        offers to keep going with the broader non-due pool (see _review_more); grading
+        reschedules every card normally in both phases.
         """
         col = mw.col
         self._review_card = None
+        # A "mix:<section>" key means: study just that section, but round-robin its
+        # topics (the per-section interleaved mode). parse_section_key is the ONE
+        # place that marker is understood: it returns the bare section plus the flag,
+        # so the initial queue, the "keep going" broader pool, and every label all
+        # work off the bare section and a raw "mix:" can never leak downstream.
+        section, topic_mix = section_mix.parse_section_key(section)
+        self._review_topic_mix = topic_mix
+        self._review_section = section
+        self._review_answered = set()
+        self._review_continued = False
         if section and section != "interleave":
-            label = SECTION_LABELS.get(section, section)
-            if cram:
-                # Study all: every non-suspended card in the section, due or not.
-                # Grading still reschedules each card normally; this only decides
-                # which cards are offered, not how they are scored.
-                cids = col.db.list(
-                    "select c.id from cards c join notes n on c.nid = n.id "
-                    "where n.tags like ? and c.queue >= 0 "
-                    "order by (c.queue = 0), c.due",
-                    f"%mcat::{section}::%",
-                )
-                self._review_label = f"{label} flashcards (all)"
+            label = section_mix.section_label(section, SECTION_LABELS)
+            # Only cards actually DUE now: new (queue 0), intraday learning whose
+            # second-timestamp due has arrived (queue 1), or review/day-learning whose
+            # day-number due is today or earlier (queue 2/3). A card just graded
+            # (rescheduled to the future) therefore does not reappear this session.
+            today = col.sched.today
+            now = int(time.time())
+            rows = col.db.all(
+                "select c.id, n.tags from cards c join notes n on c.nid = n.id "
+                "where n.tags like ? and ("
+                "  c.queue = 0"
+                "  or (c.queue = 1 and c.due <= ?)"
+                "  or (c.queue in (2, 3) and c.due <= ?)"
+                ") order by (c.queue = 0), c.due",
+                f"%mcat::{section}::%",
+                now,
+                today,
+            )
+            if topic_mix:
+                # Same DUE cards, reordered so consecutive cards come from
+                # different topics within this one section.
+                self._review_queue = section_mix.interleave_cids_by_topic(rows, "mcat::")
+                self._review_label = f"{label} mixed"
             else:
-                # Only cards actually DUE now: new (queue 0), intraday learning whose
-                # second-timestamp due has arrived (queue 1), or review/day-learning
-                # whose day-number due is today or earlier (queue 2/3). Without this
-                # a card you just graded (rescheduled to the future) reappears every
-                # time the section is reopened, so studying looked like it never
-                # saved. Anki's own scheduler applies the same due logic.
-                today = col.sched.today
-                now = int(time.time())
-                cids = col.db.list(
-                    "select c.id from cards c join notes n on c.nid = n.id "
-                    "where n.tags like ? and ("
-                    "  c.queue = 0"
-                    "  or (c.queue = 1 and c.due <= ?)"
-                    "  or (c.queue in (2, 3) and c.due <= ?)"
-                    ") order by (c.queue = 0), c.due",
-                    f"%mcat::{section}::%",
-                    now,
-                    today,
-                )
+                self._review_queue = [r[0] for r in rows]
                 self._review_label = f"{label} flashcards"
-            self._review_queue = list(cids)
         else:
             self._review_queue = None
             self._review_label = "Interleaved review" if section == "interleave" else None
@@ -511,7 +560,7 @@ class VantageDashboard(QMainWindow):
                 break
             self._review_card = card
             if card is None:
-                self.web.eval("window.vreview && window.vreview.done();")
+                self._review_done()
                 return
             counts = self._queue_counts()
             deck_label = self._review_label or col.decks.name(card.did)
@@ -519,7 +568,7 @@ class VantageDashboard(QMainWindow):
             card = col.sched.getCard()
             self._review_card = card
             if card is None:
-                self.web.eval("window.vreview && window.vreview.done();")
+                self._review_done()
                 return
             c = col.sched.counts()
             counts = {"new": c[0], "lrn": c[1], "rev": c[2]}
@@ -560,10 +609,63 @@ class VantageDashboard(QMainWindow):
             mw.col.sched.answerCard(card, ease)
         except Exception:
             traceback.print_exc()  # don't hide real grading failures
+        try:
+            self._review_answered.add(card.id)  # so the "keep going" pool skips it
+        except Exception:
+            pass
         if self._review_queue:
             answered = self._review_queue.pop(0)
             if ease == 1:  # Again: keep it in this session, at the back
                 self._review_queue.append(answered)
+        self._push_next_card()
+
+    def _broader_pool(self) -> list:
+        """The section's (or, for the mixed queue, the whole exam's) non-suspended
+        cards not yet answered this session. This is exactly the all-non-suspended
+        set the old 'Study all' used, minus what was just studied, so the "keep
+        going" continuation drills the broader non-due pool. Grading still
+        reschedules each card normally; nothing here changes how cards are scored."""
+        col = mw.col
+        section = self._review_section
+        if section and section != "interleave":
+            rows = col.db.all(
+                "select c.id, n.tags from cards c join notes n on c.nid = n.id "
+                "where n.tags like ? and c.queue >= 0 order by (c.queue = 0), c.due",
+                f"%mcat::{section}::%",
+            )
+            if self._review_topic_mix:
+                # Match the initial queue: keep the broader pool topic-interleaved.
+                cids = section_mix.interleave_cids_by_topic(rows, "mcat::")
+            else:
+                cids = [r[0] for r in rows]
+        else:
+            cids = col.db.list(
+                "select c.id from cards c join notes n on c.nid = n.id "
+                "where n.tags like '%mcat::%' and c.queue >= 0"
+            )
+        answered = self._review_answered or set()
+        pool = [c for c in cids if c not in answered]
+        if not (section and section != "interleave"):
+            import random
+
+            random.shuffle(pool)  # keep the mixed queue mixed, not single-section blocked
+        return pool
+
+    def _review_done(self) -> None:
+        """End of the due queue: show the honest 'nice work' state, offering to keep
+        going with the broader non-due pool unless we are already in that phase."""
+        section = self._review_section
+        sec_label = section_mix.section_label(section, SECTION_LABELS)
+        can_continue = (not self._review_continued) and len(self._broader_pool()) > 0
+        payload = {"section": sec_label, "canContinue": can_continue}
+        self.web.eval(f"window.vreview && window.vreview.done({json.dumps(payload)});")
+
+    def _review_more(self) -> None:
+        """Keep studying: load the broader non-due pool and continue. One-way (the
+        pool is finite); once it runs out the done state won't offer more again."""
+        self._review_continued = True
+        self._review_queue = self._broader_pool()
+        self._review_card = None
         self._push_next_card()
 
 

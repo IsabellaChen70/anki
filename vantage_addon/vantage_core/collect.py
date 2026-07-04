@@ -473,6 +473,7 @@ def record_metacognition(
     ms: Optional[float] = None,
     revlog_id: Optional[int] = None,
     concept: Optional[str] = None,
+    mode: Optional[str] = None,
 ) -> str:
     """Append one metacognition record (confidence / miss reason / timing / linked
     concept) to THIS device's OWN per-device config list. Two devices practicing
@@ -492,6 +493,7 @@ def record_metacognition(
             "concept": concept,
             "ms": ms,
             "revlog_id": revlog_id,
+            "mode": mode,
         }
     )
     col.set_config(key, lst)
