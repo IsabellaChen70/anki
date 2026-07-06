@@ -10,7 +10,7 @@ and none of it touches a model (AI-off by construction).
 import time
 
 from anki import cards_pb2
-from anki.consts import CARD_TYPE_REV, QUEUE_TYPE_REV
+from anki.consts import CARD_TYPE_LRN, CARD_TYPE_REV, QUEUE_TYPE_LRN, QUEUE_TYPE_REV
 from anki.vantage import collect
 from anki.vantage.outline import Outline
 from anki.vantage.scoring import ScoringConfig
@@ -798,4 +798,47 @@ def test_set_interleave_confusability_abstains_to_empty_without_creating_config(
     )
     assert collect.set_interleave_confusability(col) == []
     assert col.get_config(collect.INTERLEAVE_CONFIG_KEY, None) is None
+    col.close()
+
+
+# --------------------------------------------------------------------------- #
+# due count: the daily flashcard load is mcat-tag scoped, not whole-collection
+# --------------------------------------------------------------------------- #
+def _add_learning_card(col, tags, front="q"):
+    """A card sitting in the intraday learning queue (queue=1), tagged as given."""
+    note = col.newNote()
+    note["Front"] = front
+    note.tags = list(tags)
+    col.addNote(note)
+    card = note.cards()[0]
+    card.type = CARD_TYPE_LRN
+    card.queue = QUEUE_TYPE_LRN
+    col.update_card(card)
+
+
+def test_reviews_due_counts_only_mcat_tagged_cards():
+    # The banner/plan "cards due" must match the rest of Vantage, which is scoped to
+    # notes tagged mcat::. Cards from other (non-mcat) decks live in the same
+    # collection but must not inflate the daily flashcard load.
+    col = getEmptyCol()
+    # mcat-tagged daily load: 5 review cards due now + 2 intraday learning cards
+    for i in range(5):
+        _add_review_card(col, ["mcat::bio_biochem::1A"], 30.0, 10, f"m{i}")
+    _add_learning_card(col, ["mcat::chem_phys::4E"], "ml0")
+    _add_learning_card(col, ["mcat::psych_soc::6B"], "ml1")
+    # non-mcat cards sharing the collection that must NOT count: 3 due reviews + 1 learning
+    for i in range(3):
+        _add_review_card(col, ["biology::chapter1"], 30.0, 10, f"o{i}")
+    _add_learning_card(col, ["misc"], "ol0")
+
+    # the old, wrong behavior counted the whole collection: 5+3 due + 2+1 lrn = 11
+    whole = int(
+        col.db.scalar(
+            "select count() from cards where queue in (2, 3) and due <= ?",
+            col.sched.today,
+        )
+    ) + int(col.db.scalar("select count() from cards where queue = 1"))
+    assert whole == 11
+    # mcat-scoped: only the 5 mcat reviews + 2 mcat learning cards
+    assert collect._reviews_due(col) == 7
     col.close()

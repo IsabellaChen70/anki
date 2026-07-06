@@ -120,7 +120,8 @@
       "sentences": [
         "The spacing effect is the finding that study distributed over several sessions is retained better than the same amount of study massed into one session.",
         "Distributed practice produces stronger long-term retention than cramming even when the total study time is held constant.",
-        "To show that the benefit comes from spacing rather than the mere passage of time, an experiment should compare massed and spaced groups matched on total study time."
+        "To show that the benefit comes from spacing rather than the mere passage of time, an experiment should compare massed and spaced groups matched on total study time.",
+        "The spacing benefit is largest on a delayed test and can be hidden when retention is measured immediately after study."
       ]
     },
     {
@@ -217,6 +218,23 @@
       ]
     },
     {
+      "source_id": "src_experimental_design",
+      "title": "Controlled experiments: controls, confounds, and random assignment",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "sentences": [
+        "A controlled experiment compares a treatment group with a control group that is treated identically except for the one variable being tested.",
+        "A confounding variable is a second factor that changes along with the treatment, so a difference in the outcome cannot be attributed to the treatment alone.",
+        "To isolate the effect of one variable, the experimenter holds all other conditions constant and changes only that variable between the groups.",
+        "Conditions such as temperature must be kept the same across the groups, because temperature is itself a variable that changes many reaction and enzyme rates.",
+        "If two variables are changed at the same time, their effects are confounded and the difference in the result cannot be assigned to either variable by itself.",
+        "Randomly assigning participants to the groups controls for confounding differences between people, such as motivation, that self-selection would otherwise introduce.",
+        "A solvent control receives the same solvent but not the active substance, so any effect can be traced to the substance rather than to the solvent it was dissolved in."
+      ]
+    },
+    {
       "source_id": "src_chapter_metabolism",
       "title": "Cellular Metabolism: Enzymes, Glycolysis, and Oxidative Phosphorylation (chapter)",
       "author": "Vantage (synthetic, author-written)",
@@ -254,6 +272,90 @@
         "Beta-oxidation chops fatty acids into two-carbon acetyl-CoA units that feed the citric acid cycle and ultimately yield a large amount of ATP.",
         "An enzyme's reaction rate rises with substrate concentration until the active sites are saturated, at which point the rate levels off at its maximum velocity.",
         "The Michaelis constant is the substrate concentration at which an enzyme works at half of its maximum velocity, and a smaller value indicates tighter substrate binding."
+      ]
+    },
+    {
+      "source_id": "src_central_dogma",
+      "title": "The central dogma: transcription and translation",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: the central dogma, transcription, and translation. Verify against OpenStax Biology 2e, ch. 15 'Genes and Proteins'.",
+      "sentences": [
+        "The central dogma of molecular biology describes the flow of genetic information from DNA to RNA to protein.",
+        "During transcription, RNA polymerase reads a DNA template strand and builds a complementary messenger RNA molecule.",
+        "In eukaryotes the new transcript gains a cap and a poly-A tail and has its introns spliced out before the messenger RNA leaves the nucleus.",
+        "During translation, the ribosome reads the messenger RNA in three-base codons and joins the matching amino acids into a polypeptide.",
+        "Transfer RNA molecules carry specific amino acids and pair their anticodons with the codons on the messenger RNA."
+      ]
+    },
+    {
+      "source_id": "src_dna_replication",
+      "title": "DNA replication",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: DNA replication. Verify against OpenStax Biology 2e, ch. 14 'DNA Structure and Function'.",
+      "sentences": [
+        "DNA replication is semiconservative, so each daughter molecule keeps one parental strand and pairs it with one newly made strand.",
+        "Helicase unwinds the double helix at the replication fork and separates the two template strands.",
+        "DNA polymerase can only extend a strand, so it needs a short primer before it can begin adding new nucleotides.",
+        "The leading strand is copied continuously, while the lagging strand is made in short Okazaki fragments that DNA ligase later joins together."
+      ]
+    },
+    {
+      "source_id": "src_prokaryotes",
+      "title": "Prokaryotic cell structure, growth, and genetics",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: structure, growth, and genetics of prokaryotic cells. Verify against OpenStax Biology 2e, ch. 22 'Prokaryotes: Bacteria and Archaea'.",
+      "sentences": [
+        "In a prokaryotic cell the single circular chromosome sits in a region of the cytoplasm called the nucleoid, since a prokaryote lacks a membrane-bound nucleus.",
+        "Most bacteria are wrapped in a peptidoglycan cell wall, and the Gram stain sorts them by how much peptidoglycan that wall holds.",
+        "Bacteria reproduce asexually by binary fission, copying the chromosome and splitting into two identical daughter cells.",
+        "Bacteria gain new genes horizontally through transformation, transduction, and conjugation, which can spread traits such as antibiotic resistance."
+      ]
+    },
+    {
+      "source_id": "src_viruses",
+      "title": "Virus structure and replication cycles",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: virus structure and viral life cycles. Verify against OpenStax Biology 2e, ch. 21 'Viruses'.",
+      "sentences": [
+        "A virus genome of DNA or RNA is enclosed in a protein coat called a capsid.",
+        "Because a virus cannot reproduce on its own, it must hijack a living host cell and use that cell's machinery to copy itself.",
+        "In the lytic cycle the bacteriophage bursts the host cell and makes new virus particles, while in the lysogenic cycle its DNA integrates into the host genome and stays dormant.",
+        "A retrovirus such as HIV carries an RNA genome and uses reverse transcriptase to copy that RNA into DNA inside the host cell."
+      ]
+    },
+    {
+      "source_id": "src_cell_cycle",
+      "title": "The cell cycle and mitosis",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: the cell cycle and mitosis. Verify against OpenStax Biology 2e, ch. 10 'Cell Reproduction'.",
+      "sentences": [
+        "The cell cycle alternates between interphase, when the cell grows and copies its DNA, and mitosis, when the duplicated chromosomes are divided.",
+        "During mitosis the spindle apparatus attaches to the chromosomes and pulls the identical sister chromatids toward opposite poles of the cell.",
+        "Checkpoints run by cyclins and cyclin-dependent kinases hold the cell cycle until each stage is finished correctly."
+      ]
+    },
+    {
+      "source_id": "src_development",
+      "title": "Cell differentiation, stem cells, and early development",
+      "author": "Vantage (synthetic, author-written)",
+      "license": "CC0-1.0",
+      "synthetic": true,
+      "citation": "Concept: cell differentiation, stem cells, gametogenesis, and embryogenesis. Verify against OpenStax Biology 2e, ch. 43 'Animal Reproduction and Development'.",
+      "sentences": [
+        "During differentiation an unspecialized cell turns on a specific set of genes and becomes a specialized cell type.",
+        "A stem cell is unspecialized and can both renew itself and give rise to more specialized cells.",
+        "After fertilization the zygote undergoes cleavage into a ball of cells and then gastrulation, which forms the three germ layers of the embryo.",
+        "Gametogenesis produces gametes through meiosis, forming sperm in males and egg cells in females."
       ]
     },
     {

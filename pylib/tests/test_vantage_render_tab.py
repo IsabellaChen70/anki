@@ -59,6 +59,15 @@ def test_build_body_bakes_practice_tab_for_study_return():
     assert 'window.__VANTAGE_INITIAL_TAB__ = "practice";' in body
 
 
+def test_build_body_bakes_each_tab_for_refresh_in_place():
+    # The Refresh button keeps the student on their current tab by feeding it as
+    # initial_tab through reload -> build_body (desktop). Each real tab must bake
+    # to itself so the rebuilt page restores it instead of resetting to Dashboard.
+    for tab in ("dashboard", "practice", "progress"):
+        body = render.build_body(_DATA, live=True, initial_tab=tab)
+        assert f'window.__VANTAGE_INITIAL_TAB__ = "{tab}";' in body
+
+
 def test_initial_tab_is_set_before_dashboard_script_runs():
     # The global must be defined before dashboard.js executes, or render() cannot
     # read it. dashboard.js exposes window.__vantageRender; assert the global comes

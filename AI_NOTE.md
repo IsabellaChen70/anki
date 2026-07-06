@@ -8,11 +8,13 @@ and what was deliberately skipped. Everything here is **offline and deterministi
 ```bash
 just eval-ai        # all of the AI evals below, each writing its result JSON
 # ...or individually:
-python3 vantage_tools/ai/eval_cardgen.py      # retrieval + grounding -> eval_results.json
-python3 vantage_tools/ai/eval_cardcheck.py    # 3-way gate, tuned 50 -> cardcheck_results.json
-python3 vantage_tools/ai/cardcheck_holdout.py # 3-way gate, INDEPENDENT held-out -> cardcheck_holdout_results.json
-python3 vantage_tools/ai/eval_llm_seam.py     # a wired LLM's output is still screened -> llm_seam_results.json
-python3 vantage_tools/ai/canary.py            # prompt-injection canary
+python3 vantage_tools/ai/eval_cardgen.py            # retrieval + grounding -> eval_results.json
+python3 vantage_tools/ai/eval_cardcheck.py          # 3-way gate, tuned 50 -> cardcheck_results.json
+python3 vantage_tools/ai/cardcheck_holdout.py       # 3-way gate, INDEPENDENT held-out -> cardcheck_holdout_results.json
+python3 vantage_tools/ai/eval_realtext_grounding.py # same gate on REAL Wikipedia (CC BY-SA) text -> realtext_grounding_results.json
+python3 vantage_tools/ai/eval_experiment_design.py  # same gate on the new experiment-design items -> experiment_design_results.json
+python3 vantage_tools/ai/eval_llm_seam.py           # a wired LLM's output is still screened -> llm_seam_results.json
+python3 vantage_tools/ai/canary.py                  # prompt-injection canary
 ```
 
 ## What the AI is
@@ -44,6 +46,20 @@ kept if it **traces to its source** and **passes a grounding check**. It is an
   fixed by the operation, not by any tag the gate was tuned on — so it measures
   *generalization*: the gate blocks **22/22** wrong cards and publishes **14/14** useful
   ones, with **0 wrong published**.
+- **Grounded against REAL, open-licensed text, not just our own.** Because `corpus.json`
+  is honestly synthetic, [`eval_realtext_grounding.py`](vantage_tools/ai/eval_realtext_grounding.py)
+  runs the *same* held-out perturbation harness against verbatim English-Wikipedia
+  excerpts (CC BY-SA 4.0, attributed per source in
+  [`realtext_corpus.json`](vantage_tools/ai/realtext_corpus.json)): on text the project
+  did not author, the gate blocks **18/18** wrong cards and publishes **14/14** faithful
+  ones, **0 wrong published**. (OpenStax was the obvious source, but its 2e books are
+  CC BY-NC-SA — the NonCommercial clause is incompatible with this AGPL repo — so
+  Wikipedia is used instead, and the excerpts feed only a deterministic lexical check.)
+- **The same gate guards newly-authored reasoning items.** When a batch of
+  experiment-design (AAMC SIRS "research") questions was written for the science banks,
+  [`eval_experiment_design.py`](vantage_tools/ai/eval_experiment_design.py) put all 9
+  through the identical grounding + quality gate before they were trusted: **9/9**
+  grounded and correct-useful, 0 published without a cited source.
 - **A wired-but-screened LLM seam.** The LLM generator is now a real,
   provider-agnostic seam (off by default; a 3-line OpenAI adapter is included).
   [`eval_llm_seam.py`](vantage_tools/ai/eval_llm_seam.py) drives it with a mock
@@ -69,8 +85,8 @@ function, so the scoring path does not depend on it.
 ## The real numbers (deterministic, from the eval)
 
 - **Retrieval beats the keyword baseline** (50-item gold set): Vantage retriever
-  recall@3 86.0% / recall@5 92.0% / MRR 0.795 vs BM25 recall@3 80.0% / recall@5
-  82.0% / MRR 0.736, winning on the vocabulary-mismatch subset (recall@3 53.3% ->
+  recall@3 86.0% / recall@5 92.0% / MRR 0.785 vs BM25 recall@3 80.0% / recall@5
+  82.0% / MRR 0.721, winning on the vocabulary-mismatch subset (recall@3 53.3% ->
   73.3%).
 - **Grounding check on a held-out labeled set** (13 cards: 9 genuinely-sourced +
   4 hallucinated), cutoff 0.5:
@@ -86,6 +102,16 @@ function, so the scoring path does not depend on it.
   surfaced a real gap (a single swapped number among repeats evaded the old
   numeric-conflict rule); the rule was tightened (`span has a number the claim
   conflicts with`) to catch it, verified across all AI evals.
+- **Grounding on REAL open-licensed text** (`eval_realtext_grounding.py`, 6 verbatim
+  English-Wikipedia excerpts, CC BY-SA 4.0, 24 indexed chunks, 0 injection-quarantined):
+  the same held-out perturbation harness run on text the project did not author blocks
+  **18/18 wrong cards** (8 negation, 2 numeric, 8 misattribution) and publishes **14/14
+  faithful ones, 0 wrong published**. This is the real-data answer to "your corpus is
+  synthetic": the checker's signals fire the same way on outside prose.
+- **Experiment-design items gated** (`eval_experiment_design.py`, 9 new AAMC SIRS
+  "research" reasoning questions, three per science section): **9/9 grounded AND
+  correct-useful** at cutoff 0.5, every one citing a real source span; 0 published
+  without a cited source.
 - **Wired-LLM seam still screened** (`eval_llm_seam.py`, mock provider): the good card
   publishes; the hallucination (negation), the injection payload, and the fabricated
   citation are all blocked; AI-off default still holds.
@@ -116,9 +142,12 @@ function, so the scoring path does not depend on it.
   real deployment would slot NLI / semantic-dedup models behind the same interfaces.
 - **An in-app authoring UI.** The accept/reject authoring panel (pick a source,
   review candidates with their verdict, accept/reject) is still design-only.
-- **A real MCAT cohort.** The tuned 50-card check validates the gate's mechanics and
-  the independent held-out (`cardcheck_holdout.py`) tests generalization on
-  perturbed real facts, but neither is a real vendor's card output on a real cohort.
+- **A real MCAT cohort.** The tuned 50-card check validates the gate's mechanics, the
+  independent held-out (`cardcheck_holdout.py`) tests generalization on perturbed facts,
+  and `eval_realtext_grounding.py` now exercises the checker on real, open-licensed text
+  the project did not author — but none of these is a real vendor's card output scored on
+  a real student cohort. (The corpus for the *retrieval/grounding* evals is still the
+  synthetic-but-cited `corpus.json`; only the real-text grounding eval uses outside text.)
 
 See [`docs/spec-ai-cardgen.md`](../mcat%20anki/docs/spec-ai-cardgen.md) for the full
 design and [`vantage_tools/EVALUATION.md`](vantage_tools/EVALUATION.md) for the

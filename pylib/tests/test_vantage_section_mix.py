@@ -1,12 +1,15 @@
 # Copyright: Ankitects Pty Ltd and contributors
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
-"""Unit tests for the desktop per-section topic mixer (vantage_addon/section_mix.py).
+"""Unit tests for the desktop per-section topic ordering (vantage_addon/section_mix.py).
 
-The per-section "Mix topics" button reorders ONE section's due cards so
-consecutive cards come from different topics, mirroring the Rust round-robin in
-`rslib/src/scheduler/queue/builder/interleave.rs`. `section_mix.py` is a pure
-module (no aqt/anki imports), loaded by path here so the test needs no Anki
-collection and does not trip the add-on's GUI imports.
+A per-section Flashcards session orders ONE section's cards either Mixed
+(`interleave_cids_by_topic`, consecutive cards from different topics, mirroring the
+Rust round-robin in `rslib/src/scheduler/queue/builder/interleave.rs`) or Blocked
+(`block_cids_by_topic`, each topic grouped together, mirroring the engine's Blocked
+mode). Which one is chosen is decided automatically by `scoring.section_should_mix`
+(tested in test_vantage_scoring.py); this file tests the pure orderings and the
+label helper. `section_mix.py` is a pure module (no aqt/anki imports), loaded by
+path here so the test needs no Anki collection and does not trip the GUI imports.
 """
 
 from __future__ import annotations
@@ -131,11 +134,62 @@ def test_deterministic():
 
 
 # --------------------------------------------------------------------------- #
-# Reviewer section key: the "mix:<section>" marker must be understood in exactly
-# one place so nothing downstream (tag SQL, "keep going" pool, or any label) ever
-# sees the raw marker. These guard the reported bug where a per-section mix review
-# showed "You finished today's reviews for mix:bio_biochem" and offered no
-# continue (the raw key leaked into the label and matched zero cards).
+# Blocked ordering (block_cids_by_topic): the "focused acquisition" order a section
+# studies until enough of its cards mature. Same bucketing as the mixer, but buckets
+# are CONCATENATED (all of one topic, then the next), mirroring the engine's Blocked.
+# --------------------------------------------------------------------------- #
+def test_block_groups_each_topic_together():
+    rows = [
+        (1, "mcat::bio::a"),
+        (2, "mcat::bio::b"),
+        (3, "mcat::bio::a"),
+        (4, "mcat::bio::b"),
+    ]
+    out = section_mix.block_cids_by_topic(rows, "mcat::")
+    # all of topic a (first seen) in input order, then all of topic b
+    assert out == [1, 3, 2, 4]
+    assert _topics(out, rows) == [
+        "mcat::bio::a",
+        "mcat::bio::a",
+        "mcat::bio::b",
+        "mcat::bio::b",
+    ]
+
+
+def test_block_preserves_first_seen_topic_and_within_order():
+    rows = [
+        (10, "mcat::x::b"),
+        (20, "mcat::x::a"),
+        (11, "mcat::x::b"),
+        (21, "mcat::x::a"),
+    ]
+    # topic b appears first, so its cards lead (in input order), then topic a's
+    assert section_mix.block_cids_by_topic(rows, "mcat::") == [10, 11, 20, 21]
+
+
+def test_block_untagged_is_its_own_group():
+    rows = [(1, "mcat::x::a"), (2, "leech"), (3, "mcat::x::a"), (4, "marked")]
+    # the tagged topic first, then the shared untagged bucket -- nothing dropped
+    assert section_mix.block_cids_by_topic(rows, "mcat::") == [1, 3, 2, 4]
+
+
+def test_block_and_interleave_are_permutations_of_the_same_ids():
+    rows = [(i, f"mcat::x::{chr(97 + i % 3)}") for i in range(9)]
+    blocked = section_mix.block_cids_by_topic(rows, "mcat::")
+    mixed = section_mix.interleave_cids_by_topic(rows, "mcat::")
+    ids = [r[0] for r in rows]
+    assert sorted(blocked) == sorted(mixed) == ids  # same cards, different order
+
+
+def test_block_single_topic_is_identity():
+    rows = [(1, "mcat::x::a"), (2, "mcat::x::a"), (3, "mcat::x::a")]
+    assert section_mix.block_cids_by_topic(rows, "mcat::") == [1, 2, 3]
+
+
+# --------------------------------------------------------------------------- #
+# section_label: friendly per-section label, "" for the whole-queue / interleaved
+# review. Section keys no longer carry any marker (the Mixed/Blocked choice is
+# automatic), so this is a plain lookup.
 # --------------------------------------------------------------------------- #
 
 # Mirror of SECTION_LABELS in vantage_addon/__init__.py, kept here so the pure
@@ -148,32 +202,12 @@ _LABELS = {
 }
 
 
-def test_parse_section_key_splits_marker_from_section():
-    parse = section_mix.parse_section_key
-    # the per-section mix marker is stripped, and the flag is raised
-    assert parse("mix:bio_biochem") == ("bio_biochem", True)
-    # a plain section is itself, no mix
-    assert parse("bio_biochem") == ("bio_biochem", False)
-    # the whole-queue keys pass through untouched, no mix
-    assert parse("interleave") == ("interleave", False)
-    assert parse(None) == (None, False)
-    # degenerate keys collapse to the whole-queue review, never a mix of nothing
-    assert parse("") == (None, False)
-    assert parse("mix:") == (None, False)
-
-
-def test_section_label_is_friendly_and_never_raw_mix():
+def test_section_label_is_friendly():
     label = section_mix.section_label
-    # a mix key resolves to the friendly label, not the raw "mix:..." key
-    assert label("mix:bio_biochem", _LABELS) == "Bio/Biochem"
     assert label("bio_biochem", _LABELS) == "Bio/Biochem"
-    # a mix key must never yield a label outside SECTION_LABELS (the reported bug)
-    for key in ("bio_biochem", "mix:bio_biochem", "mix:chem_phys", "mix:psych_soc"):
-        out = label(key, _LABELS)
-        assert out in _LABELS.values()
-        assert not out.startswith("mix:")
-    # the whole-queue / mixed review has no single-section label
+    assert label("chem_phys", _LABELS) == "Chem/Phys"
+    # the whole-queue / interleaved review has no single-section label
     assert label(None, _LABELS) == ""
     assert label("interleave", _LABELS) == ""
-    # an unknown bare section falls back to itself, still never a raw marker
+    # an unknown bare section falls back to itself
     assert label("unknown_sec", _LABELS) == "unknown_sec"

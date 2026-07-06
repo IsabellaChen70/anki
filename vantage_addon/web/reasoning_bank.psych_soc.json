@@ -21,6 +21,7 @@
           "answer": 1,
           "explain": "The absolute threshold is the lowest stimulus intensity a person can detect 50 percent of the time, while the difference threshold and just noticeable difference involve telling two stimuli apart.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "screening lab",
           "b": -1.2
         },
@@ -35,6 +36,7 @@
           "answer": 0,
           "explain": "Weber's law holds that the just noticeable difference is a constant fraction of the original stimulus, so a heavier standard needs a larger absolute change before the difference is felt.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "screening lab",
           "b": 0.3
         },
@@ -49,6 +51,7 @@
           "answer": 1,
           "explain": "Expecting frequent targets lowers the response criterion, increasing both hits and false alarms without changing the underlying ability to see the blade.",
           "concept": "6A",
+          "skill": "reasoning",
           "cover_story": "screening lab",
           "b": 0.9
         },
@@ -63,6 +66,7 @@
           "answer": 0,
           "explain": "Sensory adaptation is the decline in sensitivity to a constant, unchanging stimulus over time.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "screening lab",
           "b": -0.9
         },
@@ -77,6 +81,7 @@
           "answer": 1,
           "explain": "Top-down processing uses prior knowledge and expectations to interpret sensory input, which can produce perceptions that do not match the actual stimulus.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "screening lab",
           "b": -0.2
         },
@@ -91,6 +96,7 @@
           "answer": 1,
           "explain": "Rods are concentrated in the peripheral retina and are highly sensitive in low light but do not encode color, so peripheral motion is seen while color washes out.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "screening lab",
           "b": 0.5
         }
@@ -115,6 +121,7 @@
           "answer": 1,
           "explain": "Elaborative encoding that connects new material to existing knowledge produces more durable memories and more cues for later retrieval than simple repetition.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "study habits study",
           "b": -0.2
         },
@@ -129,6 +136,7 @@
           "answer": 1,
           "explain": "The recency effect reflects the last items still being available in short-term or working memory, while the primacy effect reflects earlier items reaching long-term storage.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "study habits study",
           "b": 0.2
         },
@@ -143,6 +151,7 @@
           "answer": 1,
           "explain": "Recalling a strongly related but unpresented word reflects a false memory produced when associated concepts are activated during encoding and later mistaken for the original.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "study habits study",
           "b": 0.9
         },
@@ -157,6 +166,7 @@
           "answer": 1,
           "explain": "The testing effect is the finding that actively retrieving information strengthens later memory more than passive rereading.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "study habits study",
           "b": -0.1
         },
@@ -171,6 +181,7 @@
           "answer": 0,
           "explain": "Context-dependent memory reflects encoding specificity, where cues present at encoding, such as the room, aid retrieval when they are present again.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "study habits study",
           "b": 0.4
         },
@@ -185,6 +196,7 @@
           "answer": 1,
           "explain": "Chunking reorganizes many items into a few meaningful units, easing the limited capacity of working memory.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "study habits study",
           "b": -0.6
         }
@@ -209,6 +221,7 @@
           "answer": 2,
           "explain": "The two-factor theory holds that emotion arises from physiological arousal plus a cognitive label drawn from the situation, so the same arousal is interpreted differently depending on context.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "emotion study",
           "b": 0.4
         },
@@ -223,6 +236,7 @@
           "answer": 0,
           "explain": "Leftover arousal from exercise is misattributed to the stranger, increasing reported attraction, an application of two-factor emotion ideas.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "emotion study",
           "b": 1.0
         },
@@ -237,6 +251,7 @@
           "answer": 1,
           "explain": "The James-Lange theory proposes that a physiological reaction to a stimulus comes first and the felt emotion is our reading of that bodily state.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "emotion study",
           "b": -0.2
         },
@@ -251,6 +266,7 @@
           "answer": 1,
           "explain": "The Cannon-Bard theory holds that physiological arousal and the subjective emotion occur simultaneously and independently.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "emotion study",
           "b": 0.3
         },
@@ -265,6 +281,7 @@
           "answer": 0,
           "explain": "The amygdala, part of the limbic system, is central to processing fear and other strong emotional responses.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "emotion study",
           "b": -0.7
         },
@@ -279,6 +296,7 @@
           "answer": 1,
           "explain": "Cross-cultural recognition of the same expressions supports the view that a set of basic emotions and their expressions are universal, consistent with work by Ekman.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "emotion study",
           "b": -0.3
         }
@@ -303,6 +321,7 @@
           "answer": 1,
           "explain": "Rationalization offers a self-justifying reason (the job was boring), while sublimation channels unacceptable impulses into a socially acceptable outlet like exercise.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "personality clinic",
           "b": 0.7
         },
@@ -317,6 +336,7 @@
           "answer": 1,
           "explain": "An internal locus of control is the belief that one's own actions determine outcomes, in contrast to an external locus that credits luck or powerful others.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "personality clinic",
           "b": -0.3
         },
@@ -331,6 +351,7 @@
           "answer": 2,
           "explain": "The id seeks immediate gratification of impulses without regard for reality or morality, unlike the reality-oriented ego and the moralistic superego.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "personality clinic",
           "b": -0.6
         },
@@ -345,6 +366,7 @@
           "answer": 1,
           "explain": "Humanistic theorists such as Rogers emphasize unconditional positive regard and a supportive environment as conditions for growth and self-actualization.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "personality clinic",
           "b": -0.4
         },
@@ -359,6 +381,7 @@
           "answer": 1,
           "explain": "Openness to experience captures imagination, curiosity, and willingness to try new things.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "personality clinic",
           "b": 0.0
         },
@@ -373,6 +396,7 @@
           "answer": 1,
           "explain": "Social-cognitive theory stresses reciprocal determinism, the two-way interaction among personal factors, behavior, and the environment, rather than fixed traits or unconscious drives.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "personality clinic",
           "b": 0.5
         }
@@ -397,6 +421,7 @@
           "answer": 1,
           "explain": "Social facilitation predicts that the arousal from an audience strengthens the dominant response, helping performance on easy or well-learned tasks and hurting it on difficult or novel ones.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "campus experiments",
           "b": 0.5
         },
@@ -411,6 +436,7 @@
           "answer": 1,
           "explain": "Social loafing is the tendency to exert less individual effort when working in a group than when working alone.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "campus experiments",
           "b": -0.8
         },
@@ -425,6 +451,7 @@
           "answer": 0,
           "explain": "As the number of bystanders rises, responsibility to act is diffused across the group, so any single person feels less compelled to help.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "campus experiments",
           "b": -0.2
         },
@@ -439,6 +466,7 @@
           "answer": 1,
           "explain": "Conforming to a clearly wrong majority on an easy task reflects normative influence, the desire to be accepted, rather than genuine uncertainty about the answer.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "campus experiments",
           "b": 0.6
         },
@@ -453,6 +481,7 @@
           "answer": 1,
           "explain": "Following the direct commands of an authority figure, even against one's conscience, is obedience, as studied by Milgram, and differs from peer conformity.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "campus experiments",
           "b": -0.1
         },
@@ -467,6 +496,7 @@
           "answer": 1,
           "explain": "Group polarization is the tendency for group discussion to strengthen the members' initial leanings, producing a more extreme collective decision.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "campus experiments",
           "b": 0.9
         }
@@ -491,6 +521,7 @@
           "answer": 1,
           "explain": "Through pairing with the bitter syrup, the unconditioned stimulus, the previously neutral chime becomes a conditioned stimulus that triggers the grimace.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "clinic and classroom",
           "b": -0.3
         },
@@ -505,6 +536,7 @@
           "answer": 1,
           "explain": "A variable-ratio schedule produces high, steady response rates that are especially resistant to extinction, which is why occasional unpredictable rewards are powerful.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "clinic and classroom",
           "b": 0.6
         },
@@ -519,6 +551,7 @@
           "answer": 1,
           "explain": "Negative reinforcement increases a behavior by removing an unpleasant stimulus, here the alarm, when the desired behavior occurs.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "clinic and classroom",
           "b": 0.3
         },
@@ -533,6 +566,7 @@
           "answer": 0,
           "explain": "Praise here is a positive reinforcer that strengthens the desired behavior by adding a pleasant consequence.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "clinic and classroom",
           "b": 0.0
         },
@@ -547,6 +581,7 @@
           "answer": 1,
           "explain": "Learning by watching another person be rewarded is observational learning driven by vicarious reinforcement, as described by Bandura.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "clinic and classroom",
           "b": -0.5
         },
@@ -561,6 +596,7 @@
           "answer": 1,
           "explain": "Habituation is a decrease in responding to a repeated, harmless stimulus and does not require any prior conditioned association, unlike extinction.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "clinic and classroom",
           "b": 0.7
         }
@@ -585,6 +621,7 @@
           "answer": 1,
           "explain": "Adolescence centers on the identity versus role confusion stage, in which a person explores roles to form a coherent sense of self.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "development study",
           "b": -0.4
         },
@@ -599,6 +636,7 @@
           "answer": 0,
           "explain": "Preconventional moral reasoning focuses on avoiding punishment and gaining rewards, not on social approval or abstract principles.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "development study",
           "b": -0.2
         },
@@ -613,6 +651,7 @@
           "answer": 2,
           "explain": "Postconventional reasoning appeals to abstract principles and universal ethics that can override specific laws.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "development study",
           "b": 0.3
         },
@@ -627,6 +666,7 @@
           "answer": 1,
           "explain": "The earliest Eriksonian stage, trust versus mistrust, concerns whether a dependable caregiver leads the infant to view the world as safe.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "development study",
           "b": 0.4
         },
@@ -641,6 +681,7 @@
           "answer": 1,
           "explain": "As cognition matures, the self-concept moves from concrete physical descriptions toward abstract psychological traits and values.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "development study",
           "b": 0.1
         },
@@ -655,6 +696,7 @@
           "answer": 1,
           "explain": "Self-efficacy is the belief in one's ability to succeed at a specific task, which can be high even when general self-esteem is only moderate.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "development study",
           "b": 0.6
         }
@@ -679,6 +721,7 @@
           "answer": 1,
           "explain": "The fundamental attribution error is the tendency to overweight personal, dispositional causes and underweight situational causes when explaining others' behavior.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "attribution survey",
           "b": 0.1
         },
@@ -693,6 +736,7 @@
           "answer": 0,
           "explain": "The actor-observer bias is the tendency to attribute others' actions to disposition while attributing our own to the situation.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "attribution survey",
           "b": 0.5
         },
@@ -707,6 +751,7 @@
           "answer": 1,
           "explain": "The self-serving bias protects self-esteem by attributing successes to internal factors and failures to external ones.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "attribution survey",
           "b": -0.2
         },
@@ -721,6 +766,7 @@
           "answer": 1,
           "explain": "A self-fulfilling prophecy occurs when an initially false expectation changes behavior in ways that make the expectation come true.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "attribution survey",
           "b": 0.4
         },
@@ -735,6 +781,7 @@
           "answer": 2,
           "explain": "Discrimination is the behavioral component, unequal treatment based on group membership, distinct from the cognitive stereotype and the affective prejudice.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "attribution survey",
           "b": -0.1
         },
@@ -749,6 +796,7 @@
           "answer": 0,
           "explain": "Stereotype threat is the drop in performance that arises when people fear confirming a negative stereotype about their own group.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "attribution survey",
           "b": 0.9
         }
@@ -773,6 +821,7 @@
           "answer": 1,
           "explain": "Role conflict arises from incompatible demands of two or more different statuses a person holds at once, unlike role strain, which comes from a single role.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "hospital roles",
           "b": 0.4
         },
@@ -787,6 +836,7 @@
           "answer": 1,
           "explain": "Role strain is the tension among the various demands of a single role, whereas role conflict is between separate roles.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "hospital roles",
           "b": 0.6
         },
@@ -801,6 +851,7 @@
           "answer": 1,
           "explain": "In dramaturgical analysis, the back stage is where people relax and drop the managed performance they present on the front stage.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "hospital roles",
           "b": 0.2
         },
@@ -815,6 +866,7 @@
           "answer": 0,
           "explain": "Impression management is the process of controlling how one presents oneself in order to shape others' perceptions.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "hospital roles",
           "b": -0.4
         },
@@ -829,6 +881,7 @@
           "answer": 1,
           "explain": "An ascribed status is assigned without effort, such as by birth, while an achieved status is earned through one's actions.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "hospital roles",
           "b": -0.6
         },
@@ -843,6 +896,7 @@
           "answer": 1,
           "explain": "A master status is the status that dominates how a person is perceived and organizes their social identity above their other statuses.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "hospital roles",
           "b": 0.1
         }
@@ -867,6 +921,7 @@
           "answer": 1,
           "explain": "Structural functionalism explains social institutions by the functions they perform to maintain the stability of society as a whole.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "paradigms on schooling",
           "b": -0.3
         },
@@ -881,6 +936,7 @@
           "answer": 1,
           "explain": "Conflict theory, rooted in Marx, emphasizes how institutions maintain inequality and serve the interests of powerful groups.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "paradigms on schooling",
           "b": -0.1
         },
@@ -895,6 +951,7 @@
           "answer": 1,
           "explain": "Symbolic interactionism is a micro-level approach that studies how people create and respond to shared meanings and labels in interaction.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "paradigms on schooling",
           "b": 0.2
         },
@@ -909,6 +966,7 @@
           "answer": 0,
           "explain": "A manifest function is an intended, recognized consequence, while a latent function is an unintended, less obvious one.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "paradigms on schooling",
           "b": 0.5
         },
@@ -923,6 +981,7 @@
           "answer": 1,
           "explain": "Functionalism and conflict theory are macro-level paradigms that analyze large social structures, while symbolic interactionism is micro-level.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "paradigms on schooling",
           "b": 0.7
         },
@@ -937,6 +996,7 @@
           "answer": 1,
           "explain": "Conflict theory predicts that institutional arrangements like unequal funding will reproduce and deepen social inequality.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "paradigms on schooling",
           "b": 0.1
         }
@@ -961,6 +1021,7 @@
           "answer": 1,
           "explain": "In an early transition stage, death rates drop due to improvements like sanitation while birth rates remain high, producing rapid population growth.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "country dataset",
           "b": 0.4
         },
@@ -975,6 +1036,7 @@
           "answer": 0,
           "explain": "A population pyramid displays the distribution of a population by age and sex, revealing patterns such as an aging society.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "country dataset",
           "b": -0.2
         },
@@ -989,6 +1051,7 @@
           "answer": 1,
           "explain": "Push factors drive people away from an origin, such as a lack of jobs, while pull factors attract them to a destination.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "country dataset",
           "b": -0.3
         },
@@ -1003,6 +1066,7 @@
           "answer": 0,
           "explain": "Malthusian theory warns that population, growing geometrically, can outpace food production, which grows more slowly.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "country dataset",
           "b": 0.3
         },
@@ -1017,6 +1081,7 @@
           "answer": 1,
           "explain": "Urbanization is the growing concentration of a population in cities, often driven by rural-to-urban migration for work.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "country dataset",
           "b": -0.6
         },
@@ -1031,6 +1096,7 @@
           "answer": 1,
           "explain": "The cornucopian view holds that human innovation and technology will continue to solve resource limits as population grows.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "country dataset",
           "b": 0.8
         }
@@ -1055,6 +1121,7 @@
           "answer": 1,
           "explain": "A caste system fixes status at birth with no legitimate mobility, unlike an open class system where movement is possible.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "mobility study",
           "b": -0.4
         },
@@ -1069,6 +1136,7 @@
           "answer": 1,
           "explain": "Cultural capital refers to non-financial assets such as knowledge, tastes, and skills that help people succeed within social institutions.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "mobility study",
           "b": 0.5
         },
@@ -1083,6 +1151,7 @@
           "answer": 0,
           "explain": "The ideology of meritocracy holds that rewards flow from individual effort and talent, which can obscure the structural advantages of birth.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "mobility study",
           "b": 0.4
         },
@@ -1097,6 +1166,7 @@
           "answer": 1,
           "explain": "Intergenerational mobility is a change in social position from one generation to the next, such as children reaching a higher class than their parents.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "mobility study",
           "b": 0.2
         },
@@ -1111,6 +1181,7 @@
           "answer": 0,
           "explain": "The Davis-Moore thesis is the functionalist claim that stratification is useful because greater rewards motivate the most qualified people to fill the most important positions.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "mobility study",
           "b": 1.1
         },
@@ -1125,6 +1196,7 @@
           "answer": 1,
           "explain": "Structural mobility is movement of many people up or down the ladder caused by changes in the wider economy rather than by individual effort alone.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "mobility study",
           "b": 0.6
         }
@@ -1149,6 +1221,7 @@
           "answer": 1,
           "explain": "Binocular depth cues such as retinal disparity require input from both eyes, whereas monocular cues need only one; Gestalt and vestibular cues do not encode stereoscopic depth.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "perception lab",
           "b": -0.3
         },
@@ -1163,6 +1236,7 @@
           "answer": 0,
           "explain": "The Gestalt principle of proximity states that objects near one another are perceived as a group; similarity instead groups items that share a feature such as color.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "perception lab",
           "b": -0.6
         },
@@ -1177,6 +1251,7 @@
           "answer": 1,
           "explain": "Similarity groups elements that share a feature like color, while proximity groups by distance and figure-ground separates an object from its background.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "perception lab",
           "b": 0.1
         },
@@ -1191,6 +1266,7 @@
           "answer": 0,
           "explain": "Shape constancy is the tendency to perceive an object as keeping a stable shape despite changes in the retinal image; sensory adaptation instead refers to declining sensitivity to a constant stimulus.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "perception lab",
           "b": 0.5
         },
@@ -1205,6 +1281,7 @@
           "answer": 0,
           "explain": "The perception of motion from lights flashed in sequence is apparent motion, classically the phi phenomenon; retinal disparity is a static depth cue rather than a motion effect.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "perception lab",
           "b": 0.9
         },
@@ -1219,6 +1296,7 @@
           "answer": 0,
           "explain": "The vestibular system in the inner ear detects head position and balance, allowing posture control without vision; the olfactory and gustatory systems handle smell and taste.",
           "concept": "6A",
+          "skill": "concepts",
           "cover_story": "perception lab",
           "b": -1.0
         }
@@ -1243,6 +1321,7 @@
           "answer": 0,
           "explain": "Functional fixedness is the tendency to see an object only in its usual role, such as a container, which blocks using the box as a shelf; the availability heuristic instead concerns judging frequency by ease of recall.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "reasoning lab",
           "b": 0.3
         },
@@ -1257,6 +1336,7 @@
           "answer": 1,
           "explain": "The availability heuristic judges how common something is by how easily instances are recalled; the representativeness heuristic instead judges by similarity to a prototype.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "reasoning lab",
           "b": 0.0
         },
@@ -1271,6 +1351,7 @@
           "answer": 0,
           "explain": "Matching the description to a librarian prototype is the representativeness heuristic, and ignoring how many farmers exist is base rate neglect; availability and functional fixedness do not fit this judgment.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "reasoning lab",
           "b": 1.1
         },
@@ -1285,6 +1366,7 @@
           "answer": 0,
           "explain": "The framing effect occurs when logically equivalent descriptions lead to different choices depending on whether they stress gains or losses.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "reasoning lab",
           "b": 0.4
         },
@@ -1299,6 +1381,7 @@
           "answer": 1,
           "explain": "An algorithm is a systematic procedure that guarantees a correct answer, whereas a heuristic is a faster mental shortcut that does not guarantee accuracy.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "reasoning lab",
           "b": -1.1
         },
@@ -1313,6 +1396,7 @@
           "answer": 0,
           "explain": "Confirmation bias is the tendency to seek and favor information that supports an existing belief while discounting evidence against it.",
           "concept": "6B",
+          "skill": "concepts",
           "cover_story": "reasoning lab",
           "b": -0.4
         }
@@ -1337,6 +1421,7 @@
           "answer": 0,
           "explain": "In Selye's general adaptation syndrome, the alarm phase is the body's initial fight-or-flight mobilization; resistance and exhaustion follow with continued stress.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "stress study",
           "b": -0.7
         },
@@ -1351,6 +1436,7 @@
           "answer": 0,
           "explain": "After the initial alarm, the resistance phase sustains a high-cost defense, and prolonged demand leads to the exhaustion phase, when resources and immune function decline.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "stress study",
           "b": 0.4
         },
@@ -1365,6 +1451,7 @@
           "answer": 0,
           "explain": "Problem-focused coping targets the stressor itself, whereas emotion-focused coping aims to manage the emotional response to the stressor.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "stress study",
           "b": -0.3
         },
@@ -1379,6 +1466,7 @@
           "answer": 1,
           "explain": "Managing the feelings produced by a stressor, rather than changing the stressor, is emotion-focused coping.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "stress study",
           "b": 0.1
         },
@@ -1393,6 +1481,7 @@
           "answer": 0,
           "explain": "Learned helplessness is the passive giving up that follows experience with uncontrollable aversive events, as shown by Seligman's dogs.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "stress study",
           "b": 0.7
         },
@@ -1407,6 +1496,7 @@
           "answer": 0,
           "explain": "Lazarus's model holds that stress depends on how a person appraises a demand and their ability to cope, not on the objective stressor alone.",
           "concept": "6C",
+          "skill": "concepts",
           "cover_story": "stress study",
           "b": 1.0
         }
@@ -1431,6 +1521,7 @@
           "answer": 0,
           "explain": "Drive-reduction theory holds that an unmet biological need creates a drive that motivates behavior to restore homeostasis; arousal theory instead concerns seeking an optimal level of activation.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "motivation lab",
           "b": -0.1
         },
@@ -1445,6 +1536,7 @@
           "answer": 0,
           "explain": "The Yerkes-Dodson law describes an inverted-U link between arousal and performance, with an intermediate level of arousal being optimal for a moderately difficult task.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "motivation lab",
           "b": 0.6
         },
@@ -1459,6 +1551,7 @@
           "answer": 0,
           "explain": "Maslow's hierarchy proposes that basic physiological and safety needs generally must be met before people pursue higher needs such as esteem and self-actualization.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "motivation lab",
           "b": -0.5
         },
@@ -1473,6 +1566,7 @@
           "answer": 0,
           "explain": "The overjustification effect occurs when an external reward undermines pre-existing intrinsic motivation, so the activity is pursued less once the reward is removed.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "motivation lab",
           "b": 1.0
         },
@@ -1487,6 +1581,7 @@
           "answer": 1,
           "explain": "Intrinsic motivation comes from internal satisfaction in the activity itself, whereas extrinsic motivation depends on external rewards such as cash prizes.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "motivation lab",
           "b": -0.8
         },
@@ -1501,6 +1596,7 @@
           "answer": 1,
           "explain": "Running for an external payoff like prize money is extrinsic motivation; intrinsic motivation would be running for the inherent enjoyment of the activity.",
           "concept": "7A",
+          "skill": "concepts",
           "cover_story": "motivation lab",
           "b": 0.1
         }
@@ -1525,6 +1621,7 @@
           "answer": 0,
           "explain": "The family is the primary agent of socialization in early childhood, teaching the first and most basic norms; resocialization and total institutions instead reshape an already socialized person.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "socialization study",
           "b": -0.7
         },
@@ -1539,6 +1636,7 @@
           "answer": 0,
           "explain": "The hidden curriculum refers to the unofficial norms and values, such as obedience and order, that schools teach alongside their formal academic content.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "socialization study",
           "b": 0.6
         },
@@ -1553,6 +1651,7 @@
           "answer": 0,
           "explain": "Gender socialization is the process by which children learn behaviors and expectations tied to their sex, here through the toys their parents provide.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "socialization study",
           "b": -0.2
         },
@@ -1567,6 +1666,7 @@
           "answer": 0,
           "explain": "Anticipatory socialization is learning and rehearsing the norms of a role one expects to occupy in the future; primary socialization instead refers to early childhood learning.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "socialization study",
           "b": 0.3
         },
@@ -1581,6 +1681,7 @@
           "answer": 1,
           "explain": "A total institution controls all aspects of daily life to strip away a former identity and instill a new one, the process of resocialization; a reference group is merely a standard for comparison.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "socialization study",
           "b": 1.0
         },
@@ -1595,6 +1696,7 @@
           "answer": 0,
           "explain": "Mass media such as television is a secondary agent of socialization that transmits norms and behaviors beyond those taught by the family; a total institution instead fully controls a resident's daily life.",
           "concept": "7B",
+          "skill": "concepts",
           "cover_story": "socialization study",
           "b": 0.0
         }
@@ -1619,6 +1721,7 @@
           "answer": 0,
           "explain": "With too little external justification, the one-dollar volunteers feel dissonance between their behavior and their belief and reduce it by changing their attitude; the twenty-dollar payment is ample justification, so little attitude change is needed.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "persuasion study",
           "b": 0.7
         },
@@ -1633,6 +1736,7 @@
           "answer": 0,
           "explain": "The central route to persuasion involves careful evaluation of the actual arguments and evidence, used when people are both motivated and able to think about the message.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "persuasion study",
           "b": 0.0
         },
@@ -1647,6 +1751,7 @@
           "answer": 1,
           "explain": "The peripheral route relies on surface cues such as a speaker's attractiveness or confidence rather than on the quality of the arguments.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "persuasion study",
           "b": 0.3
         },
@@ -1661,6 +1766,7 @@
           "answer": 0,
           "explain": "The foot-in-the-door technique gains compliance with a large request by first securing agreement to a small one; the door-in-the-face technique instead starts with an extreme request.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "persuasion study",
           "b": -0.4
         },
@@ -1675,6 +1781,7 @@
           "answer": 1,
           "explain": "The door-in-the-face technique boosts compliance with a moderate request by first making a larger one that is expected to be refused.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "persuasion study",
           "b": 0.5
         },
@@ -1689,6 +1796,7 @@
           "answer": 0,
           "explain": "Freely choosing to argue against one's own belief creates dissonance that is eased by shifting the attitude, whereas coerced behavior supplies an external justification that prevents dissonance.",
           "concept": "7C",
+          "skill": "concepts",
           "cover_story": "persuasion study",
           "b": 1.1
         }
@@ -1713,6 +1821,7 @@
           "answer": 0,
           "explain": "Cooley's looking-glass self describes building a self-concept from how we imagine others perceive and judge us; the generalized other is instead the attitudes of society as a whole.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "self study",
           "b": 0.3
         },
@@ -1727,6 +1836,7 @@
           "answer": 2,
           "explain": "In Mead's game stage, children can take on the roles of many others simultaneously; the earlier play stage involves acting out one role at a time.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "self study",
           "b": 0.5
         },
@@ -1741,6 +1851,7 @@
           "answer": 0,
           "explain": "In Mead's imitation stage, very young children copy others' behavior without understanding the underlying role; role-taking develops later in the play and game stages.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "self study",
           "b": 0.2
         },
@@ -1755,6 +1866,7 @@
           "answer": 1,
           "explain": "In Mead's play stage, children take on and act out single roles one at a time, a step toward grasping multiple perspectives in the later game stage.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "self study",
           "b": 0.6
         },
@@ -1769,6 +1881,7 @@
           "answer": 0,
           "explain": "Mead's generalized other is the internalized sense of the expectations of the wider group or society, which guides behavior once role-taking is fully developed.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "self study",
           "b": 0.9
         },
@@ -1783,6 +1896,7 @@
           "answer": 1,
           "explain": "Both Mead and Cooley argued that the self is a social product that arises through interaction with others, not an innate trait present at birth.",
           "concept": "8A",
+          "skill": "concepts",
           "cover_story": "self study",
           "b": -0.7
         }
@@ -1807,6 +1921,7 @@
           "answer": 0,
           "explain": "The out-group homogeneity effect is the tendency to see members of an out-group as more similar to one another than members of one's own in-group, who appear more varied.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "two communities",
           "b": 0.4
         },
@@ -1821,6 +1936,7 @@
           "answer": 0,
           "explain": "In-group favoritism, or in-group bias, is the tendency to favor and trust members of one's own group over those of an out-group.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "two communities",
           "b": -0.4
         },
@@ -1835,6 +1951,7 @@
           "answer": 0,
           "explain": "A stereotype is an overgeneralized belief applied to a whole group; discrimination would be an action, such as unequal treatment, rather than a belief.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "two communities",
           "b": -0.6
         },
@@ -1849,6 +1966,7 @@
           "answer": 1,
           "explain": "Discrimination is unequal treatment based on group membership, the behavioral component, distinct from prejudice, which is the negative attitude or feeling.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "two communities",
           "b": 0.2
         },
@@ -1863,6 +1981,7 @@
           "answer": 0,
           "explain": "Scapegoat theory holds that a frustrated group blames a vulnerable out-group for problems it did not cause, as when Reds fault Blues for layoffs due to a factory closing.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "two communities",
           "b": 0.7
         },
@@ -1877,6 +1996,7 @@
           "answer": 0,
           "explain": "The contact hypothesis holds that intergroup prejudice drops when groups meet under conditions of equal status and cooperation toward common goals, not from mere exposure alone.",
           "concept": "8B",
+          "skill": "concepts",
           "cover_story": "two communities",
           "b": 1.0
         }
@@ -1901,6 +2021,7 @@
           "answer": 0,
           "explain": "A primary group is small, enduring, and emotionally close, such as family and close friends; secondary groups are larger and more impersonal.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "small town networks",
           "b": -0.7
         },
@@ -1915,6 +2036,7 @@
           "answer": 1,
           "explain": "Secondary groups are larger, more impersonal, and organized around specific goals or tasks, in contrast to the intimate bonds of a primary group.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "small town networks",
           "b": -0.3
         },
@@ -1929,6 +2051,7 @@
           "answer": 1,
           "explain": "As Simmel noted, a dyad is the most intimate grouping but also the least stable, since it collapses if either member leaves; adding a third person increases stability.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "small town networks",
           "b": 1.0
         },
@@ -1943,6 +2066,7 @@
           "answer": 1,
           "explain": "An out-group is a group toward which one feels competition or opposition, whereas the in-group is the group one identifies with and feels loyalty toward.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "small town networks",
           "b": -0.1
         },
@@ -1957,6 +2081,7 @@
           "answer": 0,
           "explain": "A reference group is one people use as a standard for self-evaluation, even when they are not members; primary and in-groups instead involve actual membership or identification.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "small town networks",
           "b": 0.3
         },
@@ -1971,6 +2096,7 @@
           "answer": 0,
           "explain": "A bureaucracy is a formal organization marked by written rules, a clear hierarchy of offices, and impersonal, merit-based procedures, as Weber described.",
           "concept": "8C",
+          "skill": "concepts",
           "cover_story": "small town networks",
           "b": 0.5
         }
@@ -1995,6 +2121,7 @@
           "answer": 0,
           "explain": "Material culture consists of the tangible objects a society produces, whereas nonmaterial culture consists of intangible ideas, values, and beliefs.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "two cultures",
           "b": -0.8
         },
@@ -2009,6 +2136,7 @@
           "answer": 0,
           "explain": "A symbol is anything, such as a gesture or a colored light, that carries a shared, agreed-upon meaning within a culture; values are instead abstract standards of what is good or desirable.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "two cultures",
           "b": -0.2
         },
@@ -2023,6 +2151,7 @@
           "answer": 0,
           "explain": "Folkways are everyday customs whose violation brings mild disapproval, while mores are norms with strong moral weight whose violation brings serious sanctions.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "two cultures",
           "b": 0.6
         },
@@ -2037,6 +2166,7 @@
           "answer": 1,
           "explain": "A taboo is the strongest kind of norm, one so deeply held that its violation is met with disgust; folkways are far milder everyday customs.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "two cultures",
           "b": 0.4
         },
@@ -2051,6 +2181,7 @@
           "answer": 0,
           "explain": "Cultural lag is the delay between a change in material culture, such as new technology, and the adjustment of nonmaterial culture, such as norms and ethics.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "two cultures",
           "b": 1.0
         },
@@ -2065,6 +2196,7 @@
           "answer": 1,
           "explain": "Cultural relativism assesses a culture by its own standards rather than those of another culture; ethnocentrism instead judges other cultures by one's own.",
           "concept": "9A",
+          "skill": "concepts",
           "cover_story": "two cultures",
           "b": 0.2
         }
@@ -2089,6 +2221,7 @@
           "answer": 0,
           "explain": "Relative deprivation is the feeling of being unfairly worse off compared with others, which can spark movements even when conditions have not objectively declined; absolute poverty is instead a fixed lack of basic necessities.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "social movements study",
           "b": 0.4
         },
@@ -2103,6 +2236,7 @@
           "answer": 0,
           "explain": "Resource mobilization theory holds that a movement's success depends on access to resources such as money, organization, and media, not on shared grievances alone.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "social movements study",
           "b": 1.0
         },
@@ -2117,6 +2251,7 @@
           "answer": 0,
           "explain": "Reform movements seek limited change within the existing system, whereas revolutionary movements aim to transform the entire social or political order.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "social movements study",
           "b": 0.0
         },
@@ -2131,6 +2266,7 @@
           "answer": 1,
           "explain": "Revolutionary movements aim to replace the whole existing system, a far broader goal than the limited aims of a reform movement.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "social movements study",
           "b": 0.3
         },
@@ -2145,6 +2281,7 @@
           "answer": 0,
           "explain": "Globalization is the increasing economic, political, and cultural interconnection of societies across the world; urbanization instead refers to population growth concentrated in cities.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "social movements study",
           "b": -0.6
         },
@@ -2159,6 +2296,7 @@
           "answer": 0,
           "explain": "Collective behavior is the spontaneous, relatively unstructured response of many people to an ambiguous or threatening situation, such as a bank panic driven by rumor; a social movement is far more organized and sustained.",
           "concept": "9B",
+          "skill": "concepts",
           "cover_story": "social movements study",
           "b": 0.6
         }
@@ -2183,6 +2321,7 @@
           "answer": 0,
           "explain": "In world-systems theory, core nations dominate the global economy, controlling capital and technology, while peripheral nations supply cheap labor and raw materials.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "global inequality study",
           "b": 0.6
         },
@@ -2197,6 +2336,7 @@
           "answer": 1,
           "explain": "Peripheral nations are the least developed, exporting raw materials and dependent on core nations; the semi-periphery lies between the two.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "global inequality study",
           "b": 0.5
         },
@@ -2211,6 +2351,7 @@
           "answer": 0,
           "explain": "Absolute poverty is the lack of resources needed for basic survival, whereas relative poverty is being poor compared with the standard of one's own society.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "global inequality study",
           "b": -0.5
         },
@@ -2225,6 +2366,7 @@
           "answer": 1,
           "explain": "Relative poverty is measured against the living standards of one's own society, so people can be relatively poor even while meeting basic survival needs.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "global inequality study",
           "b": 0.3
         },
@@ -2239,6 +2381,7 @@
           "answer": 0,
           "explain": "Dependency theory argues that global poverty results from wealthy nations exploiting poorer ones; modernization theory instead attributes poverty to poor nations' own institutions and culture.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "global inequality study",
           "b": 1.1
         },
@@ -2253,8 +2396,61 @@
           "answer": 0,
           "explain": "Systematic differences in health that track wealth and neighborhood are health disparities produced by social and spatial inequality, not random variation.",
           "concept": "10A",
+          "skill": "concepts",
           "cover_story": "global inequality study",
           "b": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Testing a study-skills claim",
+      "paragraphs": [
+        "A learning researcher wants to test the popular claim that spacing study out over several days beats cramming it into one night. In a first version, volunteers pick whichever schedule they prefer: one group studies a word list in a single massed evening, another studies the same list spread across four evenings. Everyone is given a recall test later.",
+        "A reviewer points out several design problems and suggests changes before the real study is run."
+      ],
+      "source_ref": "OpenStax Psychology 2e, Ch. 2 (Psychological Research) and Ch. 8 (Memory)",
+      "questions": [
+        {
+          "stem": "To show that spaced study helps because it is spaced and not simply because the spaced group spent more total time studying, the design should include a group that:",
+          "choices": [
+            "studies in one massed session but for the same total study time",
+            "studies spaced but reviews the list twice as often",
+            "studies massed for half as long",
+            "is not tested at all"
+          ],
+          "answer": 0,
+          "explain": "Comparing the spaced group with a massed group matched on total study time shows the benefit comes from spacing rather than from the extra study time.",
+          "concept": "6B",
+          "skill": "research",
+          "cover_story": "a study-skills claim"
+        },
+        {
+          "stem": "In the first version, volunteers chose their own schedule. Why does letting them choose weaken any conclusion about spacing?",
+          "choices": [
+            "It makes the recall test easier for everyone",
+            "People who choose to space may differ, for example in motivation, so self-selection is a confound that random assignment would remove",
+            "It shortens the word list",
+            "It guarantees the massed group studies longer"
+          ],
+          "answer": 1,
+          "explain": "Randomly assigning participants to the spaced and massed groups controls for confounding differences such as motivation that self-selection would otherwise introduce.",
+          "concept": "6B",
+          "skill": "research",
+          "cover_story": "a study-skills claim"
+        },
+        {
+          "stem": "The team debates when to give the final recall test. For the spacing advantage to show up, the test should be given:",
+          "choices": [
+            "immediately after the last study session",
+            "after a delay of about a week",
+            "during the study sessions themselves",
+            "only to the group that crammed"
+          ],
+          "answer": 1,
+          "explain": "The spacing benefit is largest on a delayed test and can be hidden when retention is measured immediately after study, so the final test should be given after a delay.",
+          "concept": "6B",
+          "skill": "research",
+          "cover_story": "a study-skills claim"
         }
       ]
     }

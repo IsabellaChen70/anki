@@ -1,0 +1,117 @@
+{
+  "all_pass": true,
+  "cutoff": 0.5,
+  "deterministic": true,
+  "items": [
+    {
+      "bank": "psych_soc",
+      "citation": "Concept: the spacing effect. Verify against Cepeda, Pashler, Vul, Wixted & Rohrer (2006), Psychological Bulletin 132(3), 354-380.",
+      "concept": "6B",
+      "coverage": 0.846,
+      "design_id": "ed_psych_soc_0",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_spacing#s2"
+    },
+    {
+      "bank": "psych_soc",
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "concept": "6B",
+      "coverage": 0.857,
+      "design_id": "ed_psych_soc_1",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_experimental_design#s5"
+    },
+    {
+      "bank": "psych_soc",
+      "citation": "Concept: the spacing effect. Verify against Cepeda, Pashler, Vul, Wixted & Rohrer (2006), Psychological Bulletin 132(3), 354-380.",
+      "concept": "6B",
+      "coverage": 0.846,
+      "design_id": "ed_psych_soc_2",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_spacing#s3"
+    },
+    {
+      "bank": "bio_biochem",
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "concept": "1D",
+      "coverage": 1.0,
+      "design_id": "ed_bio_biochem_0",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_experimental_design#s6"
+    },
+    {
+      "bank": "bio_biochem",
+      "citation": "Concept: reversible enzyme inhibition and its effect on kinetic parameters. Verify against OpenStax Biology 2e, ch. 6 'Metabolism'.",
+      "concept": "1D",
+      "coverage": 0.692,
+      "design_id": "ed_bio_biochem_1",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_enzyme_inhibition#s1-s5"
+    },
+    {
+      "bank": "bio_biochem",
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "concept": "1D",
+      "coverage": 0.684,
+      "design_id": "ed_bio_biochem_2",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_experimental_design#s3-s4"
+    },
+    {
+      "bank": "chem_phys",
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "concept": "5E",
+      "coverage": 0.75,
+      "design_id": "ed_chem_phys_0",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_experimental_design#s0-s1"
+    },
+    {
+      "bank": "chem_phys",
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "concept": "5E",
+      "coverage": 0.875,
+      "design_id": "ed_chem_phys_1",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_experimental_design#s2-s3"
+    },
+    {
+      "bank": "chem_phys",
+      "citation": "Concept: controlled experiments, controls, confounds, isolating variables, and random assignment. Verify against OpenStax Biology 2e, ch. 1 'The Study of Life' and OpenStax Psychology 2e, ch. 2 'Psychological Research'.",
+      "concept": "5E",
+      "coverage": 0.688,
+      "design_id": "ed_chem_phys_2",
+      "grounding": "supported",
+      "passed": true,
+      "quality": "correct_useful",
+      "skill": "research",
+      "source": "src_experimental_design#s4"
+    }
+  ],
+  "n_items": 9,
+  "published": 9
+}

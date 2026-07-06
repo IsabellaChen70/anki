@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# Vantage demo eval runner. Runs the leakage scan + the AI safety gate and prints
+# ONLY the verdict line from each -- a clean, camera-friendly summary. Every
+# underlying script still writes its full result JSON as usual, and every eval is
+# deterministic, so re-runs reproduce the same numbers.
+#
+# Usage:
+#   vantage_tools/evals        # leakage + AI gate (fast, ~5s)
+#   vantage_tools/evals all    # + memory & performance calibration (slower, ~20s)
+set -uo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+if [ -x out/pyenv/bin/python ]; then PY=out/pyenv/bin/python; else PY=python3; fi
+export PYTHONPATH="pylib:out/pylib${PYTHONPATH:+:$PYTHONPATH}"
+
+ran=0
+fail=0
+
+# run <label> <script> <verdict-regex>
+run() {
+  local label="$1" script="$2" pat="$3" out line
+  if ! out="$("$PY" "$script" 2>&1)"; then
+    printf '  %-24s FAIL (script error)\n' "$label"
+    fail=$((fail + 1))
+    return
+  fi
+  line="$(printf '%s\n' "$out" | grep -E "$pat" | tail -1 | sed 's/^[[:space:]]*//')"
+  [ -n "$line" ] || line="(ran; see result JSON)"
+  printf '  %-24s %s\n' "$label" "$line"
+  ran=$((ran + 1))
+}
+
+echo "Vantage evals  (python: $PY)"
+echo "AI safety + leakage:"
+run "leakage"              vantage_tools/leakage_check.py         'CLEAN'
+run "retrieval + grounding" vantage_tools/ai/eval_cardgen.py      'OVERALL'
+run "card gate (tuned 50)" vantage_tools/ai/eval_cardcheck.py     'RESULT:'
+run "card gate (held-out)" vantage_tools/ai/cardcheck_holdout.py  'wrong cards published'
+run "injection canary"     vantage_tools/ai/canary.py             'CANARY'
+
+if [ "${1:-}" = "all" ]; then
+  echo "Score calibration (held-out, deterministic):"
+  run "memory calibration"  vantage_tools/evaluate_memory.py      'calibration: ECE'
+  run "performance"         vantage_tools/evaluate_performance.py 'BEATS|criterion|PASS'
+fi
+
+echo "-----"
+echo "done: $ran ran, $fail failed"
+[ "$fail" -eq 0 ]

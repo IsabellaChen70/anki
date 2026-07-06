@@ -3,7 +3,7 @@
   "corpus_eval_leaks": [],
   "leak_cutoff": 0.8,
   "n_eval_items": 114,
-  "n_training_passages": 92,
+  "n_training_passages": 124,
   "note": "No trained model exists (BM25/lexical/disabled generator), so memorisation-leakage risk is inherently low; retrieval topical overlap is expected and not flagged below the 0.80 cutoff. Held-out eval splits in evaluate_memory/performance are disjoint by construction (index cut over distinct ids).",
   "paraphrase_self_leaks": [],
   "per_item": [
@@ -159,7 +159,7 @@
     },
     {
       "id": "g31",
-      "max_similarity": 0.0,
+      "max_similarity": 0.009,
       "set": "gold_question"
     },
     {
@@ -189,7 +189,7 @@
     },
     {
       "id": "g37",
-      "max_similarity": 0.0,
+      "max_similarity": 0.008,
       "set": "gold_question"
     },
     {
@@ -259,7 +259,7 @@
     },
     {
       "id": "cp_kinematics#0",
-      "max_similarity": 0.016,
+      "max_similarity": 0.036,
       "set": "paraphrase_reworded"
     },
     {
@@ -274,7 +274,7 @@
     },
     {
       "id": "cp_ohms_law#1",
-      "max_similarity": 0.017,
+      "max_similarity": 0.037,
       "set": "paraphrase_reworded"
     },
     {
@@ -359,12 +359,12 @@
     },
     {
       "id": "bb_dna_replication#0",
-      "max_similarity": 0.032,
+      "max_similarity": 0.182,
       "set": "paraphrase_reworded"
     },
     {
       "id": "bb_dna_replication#1",
-      "max_similarity": 0.034,
+      "max_similarity": 0.069,
       "set": "paraphrase_reworded"
     },
     {
@@ -429,7 +429,7 @@
     },
     {
       "id": "ps_classical_conditioning#0",
-      "max_similarity": 0.013,
+      "max_similarity": 0.014,
       "set": "paraphrase_reworded"
     },
     {
@@ -504,7 +504,7 @@
     },
     {
       "id": "cr_main_idea#1",
-      "max_similarity": 0.019,
+      "max_similarity": 0.062,
       "set": "paraphrase_reworded"
     },
     {
@@ -529,7 +529,7 @@
     },
     {
       "id": "cr_inference#0",
-      "max_similarity": 0.0,
+      "max_similarity": 0.008,
       "set": "paraphrase_reworded"
     },
     {

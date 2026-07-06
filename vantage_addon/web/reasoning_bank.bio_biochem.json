@@ -21,6 +21,7 @@
           "answer": 0,
           "explain": "At a pH below the isoelectric point of 6.8, acidic and basic groups gain protons, so the protein carries a net positive charge.",
           "concept": "1A",
+          "skill": "reasoning",
           "cover_story": "protein folding",
           "b": -1.3
         },
@@ -35,6 +36,7 @@
           "answer": 1,
           "explain": "Disulfide bonds are covalent cross links that stabilize tertiary structure, so breaking them lets the chain unfold and lose function even though the sequence is intact.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "protein folding",
           "b": -0.2
         },
@@ -49,6 +51,7 @@
           "answer": 2,
           "explain": "Denaturation disrupts the noncovalent interactions that hold secondary and tertiary structure, so the protein unfolds and loses function while its covalent sequence stays the same.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "protein folding",
           "b": 0.4
         },
@@ -63,6 +66,7 @@
           "answer": 3,
           "explain": "In water, clustering hydrophobic side chains in the interior minimizes their contact with water and helps drive folding.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "protein folding",
           "b": -0.7
         },
@@ -77,6 +81,7 @@
           "answer": 0,
           "explain": "Quaternary structure is the assembly of multiple folded subunits, so preventing the subunits from associating removes quaternary structure while each chain's own fold is unchanged.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "protein folding",
           "b": 0.7
         },
@@ -91,6 +96,7 @@
           "answer": 1,
           "explain": "Regular local folding such as alpha helices and beta sheets, stabilized by backbone hydrogen bonds, defines secondary structure.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "protein folding",
           "b": -0.4
         }
@@ -115,6 +121,7 @@
           "answer": 2,
           "explain": "At saturating substrate, essentially all active sites are occupied at any instant, so adding more substrate cannot raise the rate and the enzyme works at its maximum.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "enzyme kinetics",
           "b": -0.8
         },
@@ -129,6 +136,7 @@
           "answer": 3,
           "explain": "A competitive inhibitor competes for the active site, so more substrate is needed to reach half maximal rate, yet enough substrate can still drive the reaction to the normal Vmax.",
           "concept": "1A",
+          "skill": "data",
           "cover_story": "enzyme kinetics",
           "b": 0.1
         },
@@ -143,6 +151,7 @@
           "answer": 0,
           "explain": "A noncompetitive inhibitor binds away from the active site and lowers Vmax, and because it does not compete for the active site, extra substrate cannot overcome it and the half maximal point is unchanged.",
           "concept": "1A",
+          "skill": "data",
           "cover_story": "enzyme kinetics",
           "b": 0.5
         },
@@ -157,6 +166,7 @@
           "answer": 1,
           "explain": "Because a competitive inhibitor and substrate compete for the same site, high substrate concentration outcompetes the inhibitor and the rate approaches the normal Vmax.",
           "concept": "1A",
+          "skill": "reasoning",
           "cover_story": "enzyme kinetics",
           "b": 0.0
         },
@@ -171,6 +181,7 @@
           "answer": 2,
           "explain": "Well above its optimum, heat disrupts the folded active site, and because the shape does not refold on cooling, activity does not return.",
           "concept": "1A",
+          "skill": "reasoning",
           "cover_story": "enzyme kinetics",
           "b": -0.6
         },
@@ -185,6 +196,7 @@
           "answer": 3,
           "explain": "Binding of the pathway's end product to a separate regulatory site that reduces activity is allosteric feedback inhibition, a common way cells match output to demand.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "enzyme kinetics",
           "b": 0.9
         }
@@ -209,6 +221,7 @@
           "answer": 0,
           "explain": "Because codons are read in nonoverlapping groups of three, adding one nucleotide shifts the reading frame and changes essentially every downstream codon, usually destroying function.",
           "concept": "1B",
+          "skill": "data",
           "cover_story": "gene expression",
           "b": 0.5
         },
@@ -223,6 +236,7 @@
           "answer": 1,
           "explain": "A premature stop codon ends translation early, producing a shortened protein that is usually nonfunctional.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "gene expression",
           "b": 0.0
         },
@@ -237,6 +251,7 @@
           "answer": 2,
           "explain": "The genetic code is degenerate, meaning most amino acids are specified by more than one codon, so some single base changes are silent and do not alter the protein.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "gene expression",
           "b": 0.8
         },
@@ -251,6 +266,7 @@
           "answer": 3,
           "explain": "RNA is synthesized from the DNA template during transcription and then serves as the message for protein synthesis during translation, so labeled RNA precedes labeled protein.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "gene expression",
           "b": -0.3
         },
@@ -265,6 +281,7 @@
           "answer": 0,
           "explain": "The ribosome binds mRNA, pairs each codon with the matching aminoacyl tRNA, and catalyzes peptide bond formation during translation.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "gene expression",
           "b": -0.7
         },
@@ -279,6 +296,7 @@
           "answer": 1,
           "explain": "An inducible operon is normally off because a repressor blocks transcription, and the inducer, here the sugar, inactivates the repressor so transcription can proceed, matching the lac operon logic.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "gene expression",
           "b": 0.6
         }
@@ -303,6 +321,7 @@
           "answer": 2,
           "explain": "A test cross of a double heterozygote to a fully recessive parent gives a 1 to 1 to 1 to 1 ratio of the four phenotype combinations.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "inheritance cross",
           "b": 0.2
         },
@@ -317,6 +336,7 @@
           "answer": 3,
           "explain": "Because the two genes are on different chromosomes, they assort independently in meiosis, producing all four gamete types in equal proportions.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "inheritance cross",
           "b": 0.1
         },
@@ -331,6 +351,7 @@
           "answer": 0,
           "explain": "Because purple is dominant, a white plant must carry two recessive alleles, and homozygous recessive plants breed true for the recessive trait.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "inheritance cross",
           "b": -1.1
         },
@@ -345,6 +366,7 @@
           "answer": 1,
           "explain": "Linked genes tend to travel together, and recombination between them occurs mainly by crossing over, so the closer they are, the rarer new combinations become.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "inheritance cross",
           "b": 0.9
         },
@@ -359,6 +381,7 @@
           "answer": 2,
           "explain": "If the recessive homozygote frequency is 0.16 then the recessive allele frequency is 0.4 and the dominant is 0.6, so heterozygotes equal two times 0.6 times 0.4, which is 0.48.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "inheritance cross",
           "b": 1.0
         },
@@ -373,6 +396,7 @@
           "answer": 3,
           "explain": "Selection that lets tall plants reproduce more raises the frequency of the tall allele over generations, the core idea of natural selection acting on heritable variation.",
           "concept": "1C",
+          "skill": "reasoning",
           "cover_story": "inheritance cross",
           "b": -0.2
         }
@@ -397,6 +421,7 @@
           "answer": 0,
           "explain": "Without oxygen, glycolysis in the cytoplasm still yields a net of two ATP per glucose, and fermentation to lactate regenerates NAD+ so glycolysis can continue.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "cellular respiration",
           "b": -0.3
         },
@@ -411,6 +436,7 @@
           "answer": 1,
           "explain": "Lactate fermentation reoxidizes NADH back to NAD+, the electron acceptor glycolysis needs, so without it glycolysis would stall once NAD+ ran out.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "cellular respiration",
           "b": 0.5
         },
@@ -425,6 +451,7 @@
           "answer": 2,
           "explain": "In aerobic respiration oxygen is the terminal electron acceptor of the electron transport chain, forming water, and without it the chain backs up and ATP output drops.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "cellular respiration",
           "b": 0.2
         },
@@ -439,6 +466,7 @@
           "answer": 3,
           "explain": "Uncouplers let protons leak back across the membrane, collapsing the gradient that drives ATP synthase, so electron transport and oxygen use continue but are no longer coupled to ATP synthesis.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "cellular respiration",
           "b": 1.1
         },
@@ -453,6 +481,7 @@
           "answer": 0,
           "explain": "The citric acid cycle harvests high energy electrons as NADH and FADH2, which then drive the electron transport chain where most ATP is made.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "cellular respiration",
           "b": 0.0
         },
@@ -467,6 +496,7 @@
           "answer": 1,
           "explain": "Cells couple exergonic reactions such as glucose breakdown to endergonic ones such as ATP synthesis so the combined process has a negative free energy change and proceeds.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "cellular respiration",
           "b": -0.6
         }
@@ -491,6 +521,7 @@
           "answer": 2,
           "explain": "Distilled water is hypotonic to the cell, so water moves in by osmosis toward the higher solute concentration inside, swelling and possibly bursting the cell.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "membrane transport",
           "b": -1.2
         },
@@ -505,6 +536,7 @@
           "answer": 3,
           "explain": "The outside is hypertonic, so water leaves the cell by osmosis toward the higher external solute concentration and the cell shrinks.",
           "concept": "2A",
+          "skill": "reasoning",
           "cover_story": "membrane transport",
           "b": -0.7
         },
@@ -519,6 +551,7 @@
           "answer": 0,
           "explain": "Moving ions against their gradients using energy taken directly from ATP is primary active transport.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "membrane transport",
           "b": 0.1
         },
@@ -533,6 +566,7 @@
           "answer": 1,
           "explain": "The pump depends on ATP, so without it pumping stops and ions leak down their gradients, dissipating the concentration differences over time.",
           "concept": "2A",
+          "skill": "reasoning",
           "cover_story": "membrane transport",
           "b": 0.9
         },
@@ -547,6 +581,7 @@
           "answer": 2,
           "explain": "Mitochondria generate most of the cell's ATP, so cells rich in mitochondria can sustain ATP dependent pumping longer.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "membrane transport",
           "b": -0.2
         },
@@ -561,6 +596,7 @@
           "answer": 3,
           "explain": "The nonpolar core of the phospholipid bilayer lets small uncharged nonpolar molecules pass but repels charged ions, which need transport proteins.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "membrane transport",
           "b": 0.3
         }
@@ -585,6 +621,7 @@
           "answer": 0,
           "explain": "Binary fission with a constant doubling time produces exponential growth, so the count multiplies rather than adding a fixed amount each interval.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "bacteria and phage",
           "b": -0.2
         },
@@ -599,6 +636,7 @@
           "answer": 1,
           "explain": "A plasmid is a small circular DNA molecule separate from the bacterial chromosome that often carries extra genes such as antibiotic resistance.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "bacteria and phage",
           "b": 0.1
         },
@@ -613,6 +651,7 @@
           "answer": 2,
           "explain": "Transfer of DNA, often a plasmid, between bacteria through direct cell to cell contact is conjugation, a route by which resistance spreads.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "bacteria and phage",
           "b": 0.6
         },
@@ -627,6 +666,7 @@
           "answer": 3,
           "explain": "The antibiotic selects against susceptible cells, so pre existing resistant cells survive and reproduce and the population becomes dominated by resistant bacteria.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "bacteria and phage",
           "b": 0.8
         },
@@ -641,6 +681,7 @@
           "answer": 0,
           "explain": "Viruses lack their own machinery to make proteins and energy, so they must hijack a host cell to replicate, making them obligate intracellular parasites.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "bacteria and phage",
           "b": 0.0
         },
@@ -655,6 +696,7 @@
           "answer": 1,
           "explain": "Rapid production of new virions followed by lysis of the host cell is the lytic cycle, in contrast to the lysogenic cycle where the viral genome integrates and stays dormant.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "bacteria and phage",
           "b": -0.4
         }
@@ -679,6 +721,7 @@
           "answer": 2,
           "explain": "DNA is replicated during S, the synthesis phase of interphase, so DNA content per cell doubles before mitosis distributes it.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "cell cycle control",
           "b": 0.2
         },
@@ -693,6 +736,7 @@
           "answer": 3,
           "explain": "Checkpoints halt the cycle so damage can be repaired before replication or division, preventing errors from being passed to daughter cells.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "cell cycle control",
           "b": 0.0
         },
@@ -707,6 +751,7 @@
           "answer": 0,
           "explain": "Without the checkpoint to pause the cycle, damaged DNA is replicated and segregated, so daughter cells inherit mutations, a step toward cancer.",
           "concept": "2C",
+          "skill": "reasoning",
           "cover_story": "cell cycle control",
           "b": 0.9
         },
@@ -721,6 +766,7 @@
           "answer": 1,
           "explain": "Cyclin dependent kinases are active only when bound to cyclins, whose levels oscillate through the cycle, driving orderly progression.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "cell cycle control",
           "b": 0.8
         },
@@ -735,6 +781,7 @@
           "answer": 2,
           "explain": "Differentiation results from differential gene expression, so cells with identical genomes turn on different sets of genes to become specialized types.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "cell cycle control",
           "b": 0.5
         },
@@ -749,6 +796,7 @@
           "answer": 3,
           "explain": "Apoptosis is programmed, controlled cell death that removes damaged or unneeded cells, unlike the messy injury driven death of necrosis.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "cell cycle control",
           "b": -0.1
         }
@@ -773,6 +821,7 @@
           "answer": 0,
           "explain": "The sodium potassium pump together with the membrane's selective permeability, especially to potassium, sets up and maintains the negative resting potential.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "neuron signaling",
           "b": -0.2
         },
@@ -787,6 +836,7 @@
           "answer": 1,
           "explain": "Voltage gated sodium channels open and sodium flows in down its gradient, driving the sharp depolarization of the action potential.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "neuron signaling",
           "b": 0.2
         },
@@ -801,6 +851,7 @@
           "answer": 2,
           "explain": "Action potentials are all or none, so below threshold nothing fires and at or above threshold the spike reaches its full fixed amplitude regardless of extra stimulus strength.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "neuron signaling",
           "b": 0.6
         },
@@ -815,6 +866,7 @@
           "answer": 3,
           "explain": "Myelin insulates the axon so the impulse regenerates only at the nodes between segments, jumping node to node in saltatory conduction and greatly speeding transmission.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "neuron signaling",
           "b": 0.9
         },
@@ -829,6 +881,7 @@
           "answer": 0,
           "explain": "Lipid soluble steroids cross the membrane and bind intracellular receptors that regulate gene transcription, a slower but longer lasting route than the surface receptor and second messenger pathway of peptide hormones.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "neuron signaling",
           "b": 1.0
         },
@@ -843,6 +896,7 @@
           "answer": 1,
           "explain": "Negative feedback opposes the initial change, so rising hormone levels inhibit further secretion and keep levels within a set range.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "neuron signaling",
           "b": -0.4
         }
@@ -867,6 +921,7 @@
           "answer": 2,
           "explain": "Cardiac output is heart rate times stroke volume, so raising both increases the blood delivered to tissues per minute during exercise.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "exercise physiology",
           "b": -0.2
         },
@@ -881,6 +936,7 @@
           "answer": 3,
           "explain": "Higher carbon dioxide, lower pH, and higher temperature lower hemoglobin's oxygen affinity, shifting the curve so more oxygen is unloaded where active tissue needs it most.",
           "concept": "3B",
+          "skill": "data",
           "cover_story": "exercise physiology",
           "b": 1.0
         },
@@ -895,6 +951,7 @@
           "answer": 0,
           "explain": "Greater ventilation increases oxygen uptake and carbon dioxide removal at the alveoli, matching the higher metabolic demand of exercise.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "exercise physiology",
           "b": 0.1
         },
@@ -909,6 +966,7 @@
           "answer": 1,
           "explain": "Facing water loss, the kidneys reabsorb more water and produce concentrated urine to conserve body water and help maintain blood volume and pressure.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "exercise physiology",
           "b": 0.6
         },
@@ -923,6 +981,7 @@
           "answer": 2,
           "explain": "In the sliding filament model, myosin cross bridges pull actin toward the center of the sarcomere, so the filaments keep their length while the sarcomere shortens.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "exercise physiology",
           "b": 0.3
         },
@@ -937,6 +996,7 @@
           "answer": 3,
           "explain": "Blood is redirected toward working muscle during exercise, so digestive activity slows because the gut temporarily receives less blood flow.",
           "concept": "3B",
+          "skill": "reasoning",
           "cover_story": "exercise physiology",
           "b": -0.3
         }
@@ -961,6 +1021,7 @@
           "answer": 0,
           "explain": "At a pH below both pKa values the carboxyl group stays protonated and neutral while the amino group holds its proton and its positive charge, giving a net charge of plus one. The zwitterion answer is wrong because that neutral form appears only at higher pH, once the carboxyl group has lost its proton.",
           "concept": "1A",
+          "skill": "reasoning",
           "cover_story": "amino acid titration",
           "b": -1.0
         },
@@ -975,6 +1036,7 @@
           "answer": 1,
           "explain": "The group with the lower pKa loses its proton first, and the carboxyl group at pKa 2.3 ionizes well before the amino group at pKa 9.6. Glycine's side chain is just a hydrogen, so it has no ionizable group to lose.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "amino acid titration",
           "b": 0.0
         },
@@ -989,6 +1051,7 @@
           "answer": 2,
           "explain": "The isoelectric point is defined as the pH at which the molecule carries no average net charge. It is not the pH where a group begins to ionize or where the molecule is fully protonated.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "amino acid titration",
           "b": 0.3
         },
@@ -1003,6 +1066,7 @@
           "answer": 1,
           "explain": "For an amino acid whose only charged groups are the alpha carboxyl and alpha amino, the isoelectric point is the average of the two pKa values, so 2.3 plus 9.6 divided by 2 is about 6.0. The individual pKa values themselves are not the point of zero net charge.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "amino acid titration",
           "b": 0.6
         },
@@ -1017,6 +1081,7 @@
           "answer": 1,
           "explain": "A weak acid buffers best when the pH is near its pKa, where roughly half the groups are protonated and half are not, so added acid or base is absorbed with little change in pH. At that pH the molecule can both donate and accept protons.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "amino acid titration",
           "b": -0.5
         },
@@ -1031,6 +1096,7 @@
           "answer": 0,
           "explain": "Aspartate has two acidic carboxyl groups, so reaching zero net charge requires a lower pH where the extra group stays protonated, pulling the isoelectric point below that of glycine. It is not raised, because the added group is acidic rather than basic.",
           "concept": "1A",
+          "skill": "concepts",
           "cover_story": "amino acid titration",
           "b": 1.0
         }
@@ -1055,6 +1121,7 @@
           "answer": 1,
           "explain": "A single intermediate band after one round means each new duplex contains one old heavy strand and one new light strand, which is the semiconservative pattern. A conservative model would leave the original heavy duplex intact and produce a separate fully light duplex, giving two bands rather than one.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "DNA replication",
           "b": 0.2
         },
@@ -1069,6 +1136,7 @@
           "answer": 2,
           "explain": "In the second round the original heavy strands pair with new light strands to give intermediate duplexes, while the strands made in the first round pair with new light strands to give fully light duplexes, so half is intermediate and half is light. All intermediate is the one round result, not the two round result.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "DNA replication",
           "b": 0.7
         },
@@ -1083,6 +1151,7 @@
           "answer": 1,
           "explain": "DNA polymerase builds a strand only in the five prime to three prime direction, adding each new nucleotide to the free three prime end. It cannot add to the five prime end.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "DNA replication",
           "b": -0.5
         },
@@ -1097,6 +1166,7 @@
           "answer": 1,
           "explain": "The strand made in short pieces away from the fork is the lagging strand, and those pieces are the Okazaki fragments. The leading strand is instead made continuously toward the fork.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "DNA replication",
           "b": 0.5
         },
@@ -1111,6 +1181,7 @@
           "answer": 2,
           "explain": "Primase lays down a short RNA primer that provides the three prime end DNA polymerase needs to begin adding nucleotides. Unwinding the helix and sealing gaps are jobs of other enzymes.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "DNA replication",
           "b": 0.0
         },
@@ -1125,6 +1196,7 @@
           "answer": 0,
           "explain": "Proofreading removes a mismatched base immediately, so a polymerase without it leaves more errors in place and raises the mutation rate. It would still add nucleotides, just less accurately.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "DNA replication",
           "b": 1.0
         }
@@ -1149,6 +1221,7 @@
           "answer": 1,
           "explain": "When chromatin is packed tightly the transcription machinery cannot reach the DNA, so those genes are generally silent. Packing does not recruit polymerase or turn DNA directly into protein.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "eukaryotic gene control",
           "b": 0.4
         },
@@ -1163,6 +1236,7 @@
           "answer": 2,
           "explain": "Histone acetylation loosens the fiber and exposes the DNA, which generally makes nearby genes easier to transcribe. It does not tighten the fiber or delete genes.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "eukaryotic gene control",
           "b": 0.6
         },
@@ -1177,6 +1251,7 @@
           "answer": 1,
           "explain": "Removing introns and joining the exons is called splicing. Capping instead adds a protective group to one end of the transcript.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "eukaryotic gene control",
           "b": 0.3
         },
@@ -1191,6 +1266,7 @@
           "answer": 0,
           "explain": "Joining the exons of one gene in different combinations to yield several proteins is alternative splicing. A point mutation changes a single base and does not by itself generate multiple protein forms from one transcript.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "eukaryotic gene control",
           "b": 0.9
         },
@@ -1205,6 +1281,7 @@
           "answer": 1,
           "explain": "The cap and poly-A tail protect the messenger RNA from breakdown and help it leave the nucleus and be translated. They do not speed its destruction or remove exons.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "eukaryotic gene control",
           "b": -0.2
         },
@@ -1219,6 +1296,7 @@
           "answer": 1,
           "explain": "Cells with identical DNA differ because each turns on a different subset of the shared genes, controlled in part by which transcription factors are active. They do not carry different genomes or delete unused genes.",
           "concept": "1B",
+          "skill": "concepts",
           "cover_story": "eukaryotic gene control",
           "b": 1.1
         }
@@ -1243,6 +1321,7 @@
           "answer": 1,
           "explain": "Halving the chromosome number in gametes means that when two gametes fuse at fertilization the normal diploid number is restored. Without the reduction, the number would double every generation.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "meiosis and variation",
           "b": -0.8
         },
@@ -1257,6 +1336,7 @@
           "answer": 0,
           "explain": "Homologous chromosomes pair and then separate during meiosis I, which is why it is called the reduction division. Sister chromatids stay together until meiosis II.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "meiosis and variation",
           "b": 0.4
         },
@@ -1271,6 +1351,7 @@
           "answer": 1,
           "explain": "Crossing over physically exchanges matching segments between homologs, producing chromatids with new combinations of alleles. It does not copy whole chromosomes or remove alleles.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "meiosis and variation",
           "b": 0.6
         },
@@ -1285,6 +1366,7 @@
           "answer": 0,
           "explain": "Each homolog pair orients randomly and independently at the metaphase plate, which is the cellular basis of the independent assortment of genes on different chromosomes. This is separate from nondisjunction, which is a failure of separation.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "meiosis and variation",
           "b": 0.7
         },
@@ -1299,6 +1381,7 @@
           "answer": 1,
           "explain": "Nondisjunction is the failure of homologs or sister chromatids to separate properly during meiosis. It is not normal separation or the exchange of segments.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "meiosis and variation",
           "b": 0.2
         },
@@ -1313,6 +1396,7 @@
           "answer": 1,
           "explain": "The extra chromosome in the gamete plus the normal copy from the other gamete gives the offspring three copies of that chromosome instead of two. It does not produce a normal set or a missing chromosome in this case.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "meiosis and variation",
           "b": 0.9
         }
@@ -1337,6 +1421,7 @@
           "answer": 0,
           "explain": "Because dark beetles survive and reproduce more on dark bark, they pass on more dark alleles, so that allele's frequency rises over generations. A dominant allele is not automatically more or less common, so decrease is wrong.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "population evolution",
           "b": -0.2
         },
@@ -1351,6 +1436,7 @@
           "answer": 1,
           "explain": "A frequency change caused by consistent differences in survival and reproduction is natural selection. Genetic drift instead refers to change from random chance, not from a survival advantage.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "population evolution",
           "b": 0.5
         },
@@ -1365,6 +1451,7 @@
           "answer": 1,
           "explain": "Allele frequencies in the small island group shifted because a few unrepresentative founders started it, a form of genetic drift called the founder effect. This is chance, not the selective advantage that defines natural selection.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "population evolution",
           "b": 0.9
         },
@@ -1379,6 +1466,7 @@
           "answer": 2,
           "explain": "Hardy-Weinberg equilibrium holds only when there is no selection, no drift, no migration, and no mutation, and mating is random. Strong selection or a small population would push frequencies away from equilibrium.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "population evolution",
           "b": 0.6
         },
@@ -1393,6 +1481,7 @@
           "answer": 0,
           "explain": "The frequency of the homozygous light genotype is q squared, and with q equal to 0.4 that is 0.16. The value 0.48 would be the heterozygote frequency, 2pq, not the homozygous recessive one.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "population evolution",
           "b": 1.0
         },
@@ -1407,6 +1496,7 @@
           "answer": 0,
           "explain": "New alleles ultimately arise from mutation, which supplies the raw variation that selection acts on. Independent assortment and recombination only rearrange alleles that already exist.",
           "concept": "1C",
+          "skill": "concepts",
           "cover_story": "population evolution",
           "b": -0.5
         }
@@ -1431,6 +1521,7 @@
           "answer": 1,
           "explain": "A reaction that releases free energy and has a negative change in Gibbs free energy is exergonic. Endergonic reactions are the opposite, absorbing energy with a positive change.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "free energy coupling",
           "b": -1.0
         },
@@ -1445,6 +1536,7 @@
           "answer": 1,
           "explain": "An endergonic reaction has a positive free energy change, so on its own it will not move toward products without an added energy source. It does not release energy or run quickly by itself.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "free energy coupling",
           "b": 0.0
         },
@@ -1459,6 +1551,7 @@
           "answer": 0,
           "explain": "The cell pairs the uphill endergonic reaction with the strongly exergonic breakdown of ATP so the combined process is favorable. Lowering temperature or removing enzymes would not make an endergonic reaction proceed.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "free energy coupling",
           "b": 0.4
         },
@@ -1473,6 +1566,7 @@
           "answer": 1,
           "explain": "Two coupled reactions will proceed only if the sum of their free energy changes is negative, even if one of them is positive on its own. If each stayed positive, the pair would still not go.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "free energy coupling",
           "b": 0.9
         },
@@ -1487,6 +1581,7 @@
           "answer": 1,
           "explain": "A favorable reaction can still be very slow if it faces a high activation energy barrier that few molecules can cross each second. Being slow does not make it endergonic or mean it releases no energy.",
           "concept": "1D",
+          "skill": "reasoning",
           "cover_story": "free energy coupling",
           "b": 0.5
         },
@@ -1501,6 +1596,7 @@
           "answer": 2,
           "explain": "An enzyme speeds a reaction by lowering its activation energy, letting more molecules react each second, without changing whether the reaction is favorable. It does not make the reaction more exergonic or supply energy to it.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "free energy coupling",
           "b": 0.1
         }
@@ -1525,6 +1621,7 @@
           "answer": 0,
           "explain": "Surplus glucose after a meal is stored in the liver and muscle as glycogen, a branched polymer of glucose. It is not stored as protein or as ketone bodies.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "fuel metabolism",
           "b": -0.7
         },
@@ -1539,6 +1636,7 @@
           "answer": 1,
           "explain": "In early fasting the liver breaks stored glycogen back into glucose and releases it to keep blood glucose up. Storing more glycogen would lower blood glucose, the opposite of what is needed.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "fuel metabolism",
           "b": 0.2
         },
@@ -1553,6 +1651,7 @@
           "answer": 0,
           "explain": "Once glycogen runs low, the body increasingly oxidizes fatty acids from stored fat for energy. There is no incoming dietary carbohydrate during a fast, so that option does not apply.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "fuel metabolism",
           "b": 0.6
         },
@@ -1567,6 +1666,7 @@
           "answer": 0,
           "explain": "Ketone bodies made by the liver from fat breakdown give the brain a usable fuel when glucose is scarce. They are not stored as glycogen and are certainly usable, so those options are wrong.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "fuel metabolism",
           "b": 0.9
         },
@@ -1581,6 +1681,7 @@
           "answer": 1,
           "explain": "Making new glucose from noncarbohydrate sources such as amino acids is gluconeogenesis. Glycolysis instead breaks glucose down, and glycogen synthesis stores it.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "fuel metabolism",
           "b": 1.0
         },
@@ -1595,6 +1696,7 @@
           "answer": 1,
           "explain": "Carbohydrates, fats, and proteins are broken down into intermediates that feed shared pathways such as the citric acid cycle, showing that metabolism is interconnected. The pathways are not separate, and fat certainly can be used for energy.",
           "concept": "1D",
+          "skill": "concepts",
           "cover_story": "fuel metabolism",
           "b": -0.2
         }
@@ -1619,6 +1721,7 @@
           "answer": 0,
           "explain": "A water soluble hormone cannot pass through the lipid interior of the membrane, so it must bind a receptor on the cell surface to act. It cannot diffuse freely through the bilayer the way a lipid soluble signal can.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "cell signaling",
           "b": -0.8
         },
@@ -1633,6 +1736,7 @@
           "answer": 1,
           "explain": "The small molecule made inside the cell that relays the signal from the receptor is a second messenger. The hormone itself is the first messenger, not the second.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "cell signaling",
           "b": 0.4
         },
@@ -1647,6 +1751,7 @@
           "answer": 0,
           "explain": "Because each receptor activates many enzymes and each enzyme makes many second messenger molecules, the signal is amplified into a large response from a small trigger. The response is not caused by the hormone entering the nucleus, which it cannot do.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "cell signaling",
           "b": 0.7
         },
@@ -1661,6 +1766,7 @@
           "answer": 1,
           "explain": "A lipid soluble steroid enters the cell and often acts on genes, which takes longer to show but produces effects that last. The fast, short lived responses are more typical of the surface receptor and second messenger route.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "cell signaling",
           "b": 0.9
         },
@@ -1675,6 +1781,7 @@
           "answer": 1,
           "explain": "The hormone is the signaling ligand that the receptor detects, not the enzyme or the second messenger it triggers. The enzyme and second messenger act downstream of the hormone.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "cell signaling",
           "b": 0.0
         },
@@ -1689,6 +1796,7 @@
           "answer": 0,
           "explain": "Blocking the enzyme that makes the second messenger leaves the surface receptor able to bind hormone but cuts off the internal relay, so the downstream response is blunted. It does not stop the hormone from binding its receptor.",
           "concept": "2A",
+          "skill": "concepts",
           "cover_story": "cell signaling",
           "b": 0.5
         }
@@ -1713,6 +1821,7 @@
           "answer": 1,
           "explain": "A retrovirus carries its genome as single stranded RNA, which its own enzyme later copies into DNA. It is not stored as DNA or protein in the incoming particle.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "retrovirus replication",
           "b": 0.2
         },
@@ -1727,6 +1836,7 @@
           "answer": 1,
           "explain": "Reverse transcriptase copies the viral RNA genome into DNA, the reverse of the usual DNA to RNA flow. It does not translate RNA into protein.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "retrovirus replication",
           "b": 0.5
         },
@@ -1741,6 +1851,7 @@
           "answer": 0,
           "explain": "Viral DNA that has inserted into the host chromosome is called a provirus. A capsid is the protein shell and a plasmid is a bacterial DNA circle, neither of which fits.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "retrovirus replication",
           "b": 0.7
         },
@@ -1755,6 +1866,7 @@
           "answer": 2,
           "explain": "Blocking reverse transcriptase stops the virus from making the DNA copy of its RNA genome, so integration cannot follow. It does not act on binding or budding, which are separate steps.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "retrovirus replication",
           "b": 0.9
         },
@@ -1769,6 +1881,7 @@
           "answer": 0,
           "explain": "Without proofreading the virus accumulates mutations quickly, so it can change its surface and escape the immune system and drug pressure. Rapid mutation is the opposite of being unable to change.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "retrovirus replication",
           "b": 1.1
         },
@@ -1783,6 +1896,7 @@
           "answer": 2,
           "explain": "An enveloped virus is wrapped in a membrane it takes from the host cell as it buds out. It does not build a rigid wall of its own or wrap itself in host DNA.",
           "concept": "2B",
+          "skill": "concepts",
           "cover_story": "retrovirus replication",
           "b": -0.3
         }
@@ -1807,6 +1921,7 @@
           "answer": 1,
           "explain": "A stem cell is defined by being able to renew itself and to give rise to specialized cell types. Carrying a different genome or being a mature red blood cell would contradict what a stem cell is.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "blood cell differentiation",
           "b": -0.4
         },
@@ -1821,6 +1936,7 @@
           "answer": 1,
           "explain": "That one stem cell type gives rise to red cells, white cells, and platelets shows a single stem cell can produce multiple specialized cell types. It clearly does not make only one kind of cell.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "blood cell differentiation",
           "b": 0.5
         },
@@ -1835,6 +1951,7 @@
           "answer": 2,
           "explain": "The growing commitment of a cell to a particular specialized fate is differentiation. Replication and fertilization are entirely different processes.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "blood cell differentiation",
           "b": 0.6
         },
@@ -1849,6 +1966,7 @@
           "answer": 3,
           "explain": "Two cell types with the same genome differ because each expresses a different subset of the shared genes. They do not contain different DNA or come from different people.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "blood cell differentiation",
           "b": 0.8
         },
@@ -1863,6 +1981,7 @@
           "answer": 1,
           "explain": "The mature red blood cell is more specialized than its stem cell and, having lost its nucleus, can no longer divide. It is not less specialized or able to become any other cell type.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "blood cell differentiation",
           "b": 0.3
         },
@@ -1877,6 +1996,7 @@
           "answer": 0,
           "explain": "Continuous blood production depends on the stem cell dividing by mitosis to both renew itself and generate cells that specialize. Meiosis makes gametes, not blood cells, so it does not apply here.",
           "concept": "2C",
+          "skill": "concepts",
           "cover_story": "blood cell differentiation",
           "b": 1.0
         }
@@ -1901,6 +2021,7 @@
           "answer": 1,
           "explain": "At a chemical synapse the signal crosses the gap as neurotransmitter molecules released by the first neuron. There is no direct electrical arc, and the vesicles stay behind rather than crossing intact.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "synaptic transmission",
           "b": -0.9
         },
@@ -1915,6 +2036,7 @@
           "answer": 0,
           "explain": "The action potential opens voltage gated calcium channels at the terminal, and the calcium that flows in triggers vesicles to release their neurotransmitter. Potassium leaving the cell does not drive release.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "synaptic transmission",
           "b": 0.5
         },
@@ -1929,6 +2051,7 @@
           "answer": 2,
           "explain": "Blocking the enzyme that clears the neurotransmitter lets it stay in the gap longer and keep acting on the receiving neuron, which prolongs rather than shortens its effect.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "synaptic transmission",
           "b": 0.9
         },
@@ -1943,6 +2066,7 @@
           "answer": 0,
           "explain": "A neurotransmitter that depolarizes the receiving neuron brings it closer to threshold, making it more likely to fire. Depolarization is excitatory, not inhibitory.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "synaptic transmission",
           "b": 0.6
         },
@@ -1957,6 +2081,7 @@
           "answer": 1,
           "explain": "Since calcium influx triggers vesicle release, blocking the calcium channels prevents the neuron from releasing its neurotransmitter. It would not increase release or speed the axon's own action potential.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "synaptic transmission",
           "b": 0.7
         },
@@ -1971,6 +2096,7 @@
           "answer": 1,
           "explain": "A neurotransmitter that hyperpolarizes the receiving cell moves it further from threshold, reducing the chance it fires, which is an inhibitory effect. That is the opposite of promoting firing.",
           "concept": "3A",
+          "skill": "concepts",
           "cover_story": "synaptic transmission",
           "b": 0.1
         }
@@ -1995,6 +2121,7 @@
           "answer": 0,
           "explain": "Pushing fluid and small solutes out of the blood at the glomerulus while holding back cells and large proteins is filtration driven by blood pressure. It is not secretion or reabsorption, which happen later along the tubule.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "kidney filtration",
           "b": -0.6
         },
@@ -2009,6 +2136,7 @@
           "answer": 1,
           "explain": "Returning useful filtered substances such as glucose and water from the tubule back to the blood is reabsorption. Filtration is the earlier step that put them into the tubule.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "kidney filtration",
           "b": 0.3
         },
@@ -2023,6 +2151,7 @@
           "answer": 0,
           "explain": "Because the tubule normally reabsorbs essentially all filtered glucose, healthy urine contains almost none. Urine cannot end up with more glucose than the blood it came from.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "kidney filtration",
           "b": -1.0
         },
@@ -2037,6 +2166,7 @@
           "answer": 1,
           "explain": "When filtered glucose exceeds the tubule's reabsorption capacity, the excess is left behind and glucose appears in the urine. Glucose is still filtered, and the kidney keeps making urine.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "kidney filtration",
           "b": 0.9
         },
@@ -2051,6 +2181,7 @@
           "answer": 1,
           "explain": "The hormone released in dehydration makes the tubule more permeable to water, so more water is reabsorbed and a smaller volume of concentrated urine forms. A large volume of dilute urine would be the opposite response.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "kidney filtration",
           "b": 0.6
         },
@@ -2065,8 +2196,61 @@
           "answer": 2,
           "explain": "Actively moving wastes from the blood into the tubule for removal is tubular secretion. Reabsorption moves substances the other way, from tubule back to blood.",
           "concept": "3B",
+          "skill": "concepts",
           "cover_story": "kidney filtration",
           "b": 0.4
+        }
+      ]
+    },
+    {
+      "label": "Designing an enzyme-inhibitor assay",
+      "paragraphs": [
+        "A biochemistry lab studies a candidate drug that appears to slow an enzyme. The drug is dissolved in a small volume of alcohol and added to a tube holding the enzyme and its substrate, and that tube runs more slowly than an untreated tube.",
+        "Before publishing, the team designs follow-up experiments to be sure the slowdown is really caused by the drug and to work out how the drug acts."
+      ],
+      "source_ref": "OpenStax Biology 2e, Ch. 1 (The Study of Life) and Ch. 6 (Metabolism)",
+      "questions": [
+        {
+          "stem": "The drug is dissolved in alcohol before it is added. To be sure any drop in activity is caused by the drug and not the alcohol, the best control tube contains:",
+          "choices": [
+            "the enzyme and substrate with the same amount of alcohol but no drug",
+            "twice as much enzyme",
+            "no enzyme and no substrate",
+            "the drug but no enzyme"
+          ],
+          "answer": 0,
+          "explain": "A solvent control receives the same solvent but not the active substance, so any effect can be traced to the inhibitor rather than to the solvent it was dissolved in.",
+          "concept": "1D",
+          "skill": "research",
+          "cover_story": "an enzyme-inhibitor assay"
+        },
+        {
+          "stem": "To work out whether the drug is a competitive or a noncompetitive inhibitor, the most informative experiment measures the reaction rate:",
+          "choices": [
+            "at a single substrate concentration",
+            "across a range of substrate concentrations, with and without the drug",
+            "with no substrate present",
+            "only at the highest possible temperature"
+          ],
+          "answer": 1,
+          "explain": "A competitive inhibitor can be overcome by a large excess of substrate while a noncompetitive inhibitor cannot, so varying the substrate concentration with and without the inhibitor distinguishes the two.",
+          "concept": "1D",
+          "skill": "research",
+          "cover_story": "an enzyme-inhibitor assay"
+        },
+        {
+          "stem": "In one run the tube with the drug was kept several degrees colder than the untreated tube. Why does this weaken the conclusion that the drug slowed the enzyme?",
+          "choices": [
+            "Temperature has no effect on enzymes",
+            "Temperature also changes enzyme activity, so it is a confound that could explain the difference on its own",
+            "Colder tubes always speed enzymes up",
+            "The substrate would freeze solid"
+          ],
+          "answer": 1,
+          "explain": "Because temperature is itself a variable that changes reaction and enzyme rates, a colder inhibitor tube adds a confounding variable, so the difference in activity cannot be assigned to the inhibitor unless temperature is kept the same.",
+          "concept": "1D",
+          "skill": "research",
+          "cover_story": "an enzyme-inhibitor assay"
         }
       ]
     }

@@ -21,6 +21,7 @@
           "answer": 1,
           "explain": "Only the vertical drop counts: h = 1.0 sin 30 = 0.5 m, so v = sqrt(2gh) = sqrt(10) which is about 3.2 m/s. Using the full 1.0 m as the height gives the too large 4.5 m/s.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "cart on a ramp",
           "b": -0.3
         },
@@ -35,6 +36,7 @@
           "answer": 3,
           "explain": "On an incline the normal force is mg cos 30, which is smaller than mg because cos 30 is less than 1. It equals the weight only on level ground.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "cart on a ramp",
           "b": -0.9
         },
@@ -49,6 +51,7 @@
           "answer": 1,
           "explain": "On a frictionless incline a = g sin(theta) = 10 times 0.5 = 5 m/s^2. The value 8.7 comes from wrongly using cos 30.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "cart on a ramp",
           "b": -0.5
         },
@@ -63,6 +66,7 @@
           "answer": 1,
           "explain": "Work by gravity is mgh with h = 0.5 m, so 2 times 10 times 0.5 = 10 J. Using the 1.0 m path length as the height double counts and gives 20 J.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "cart on a ramp",
           "b": -0.3
         },
@@ -77,6 +81,7 @@
           "answer": 0,
           "explain": "The kinetic energy delivered is fixed, and it all becomes spring energy one half k x squared, so a larger k forces a smaller maximum compression x.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "cart on a ramp",
           "b": 0.4
         },
@@ -91,6 +96,7 @@
           "answer": 1,
           "explain": "Average power is work over time, 10 J divided by 2.0 s = 5 W.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "cart on a ramp",
           "b": -0.6
         }
@@ -115,6 +121,7 @@
           "answer": 3,
           "explain": "The driving pressure is the hydrostatic head rho g h, so a greater height h means more pressure pushing fluid into the vein.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "IV drip and a narrowed vessel",
           "b": -1.2
         },
@@ -129,6 +136,7 @@
           "answer": 2,
           "explain": "Hydrostatic pressure is rho g h = 1000 times 10 times 1.0 = 10,000 Pa.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "IV drip and a narrowed vessel",
           "b": -0.6
         },
@@ -143,6 +151,7 @@
           "answer": 2,
           "explain": "Continuity keeps area times speed constant. Halving the radius cuts the area to one quarter, so the speed must rise fourfold.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "IV drip and a narrowed vessel",
           "b": 0.5
         },
@@ -157,6 +166,7 @@
           "answer": 0,
           "explain": "For an ideal fluid, faster flow goes with lower pressure, so the narrow, high-speed region has lower pressure than the wide region.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "IV drip and a narrowed vessel",
           "b": 0.2
         },
@@ -171,6 +181,7 @@
           "answer": 3,
           "explain": "Poiseuille flow scales with the radius to the fourth power, so halving the radius gives (1/2) to the fourth = 1/16 of the flow.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "IV drip and a narrowed vessel",
           "b": 1.0
         },
@@ -185,6 +196,7 @@
           "answer": 1,
           "explain": "A floating object is in equilibrium, so the buoyant force exactly balances its weight.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "IV drip and a narrowed vessel",
           "b": -0.5
         }
@@ -209,6 +221,7 @@
           "answer": 2,
           "explain": "Coulomb's law makes the force scale as 1 over distance squared, so doubling the distance cuts the force to one quarter.",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "a sensor circuit",
           "b": -0.5
         },
@@ -223,6 +236,7 @@
           "answer": 1,
           "explain": "Series resistances add to 300 ohm, so I = V over R = 9 divided by 300 = 0.03 A.",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "a sensor circuit",
           "b": -0.4
         },
@@ -237,6 +251,7 @@
           "answer": 0,
           "explain": "Resistors in parallel always give a total smaller than the smallest branch, so less than 100 ohm (about 67 ohm here).",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "a sensor circuit",
           "b": -0.6
         },
@@ -251,6 +266,7 @@
           "answer": 1,
           "explain": "Power is I squared times R = (0.03) squared times 100 = 0.09 W.",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "a sensor circuit",
           "b": 0.5
         },
@@ -265,6 +281,7 @@
           "answer": 2,
           "explain": "Stored charge is Q = C times V = 2 microfarad times 9 V = 18 microcoulombs.",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "a sensor circuit",
           "b": 0.1
         },
@@ -279,6 +296,7 @@
           "answer": 3,
           "explain": "Using F = q v cross B with velocity to the right and field out of the page, the right-hand rule gives a force toward the bottom of the page. The magnetic force is always perpendicular to the velocity, so it cannot point along the motion.",
           "concept": "4C",
+          "skill": "concepts",
           "cover_story": "a sensor circuit",
           "b": 1.1
         }
@@ -303,6 +321,7 @@
           "answer": 1,
           "explain": "Moving into a medium with a lower index, light speeds up and bends away from the normal, as Snell's law requires.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "inside an endoscope",
           "b": 0.1
         },
@@ -317,6 +336,7 @@
           "answer": 2,
           "explain": "Beyond the critical angle, light in the denser glass is totally internally reflected, so it stays inside the fiber.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "inside an endoscope",
           "b": -0.5
         },
@@ -331,6 +351,7 @@
           "answer": 1,
           "explain": "1/di = 1/f - 1/do = 1/2 - 1/6 = 1/3, so di = 3 cm.",
           "concept": "4D",
+          "skill": "reasoning",
           "cover_story": "inside an endoscope",
           "b": 0.6
         },
@@ -345,6 +366,7 @@
           "answer": 2,
           "explain": "For a converging lens with the object beyond the focal length, the image is real and inverted.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "inside an endoscope",
           "b": 0.3
         },
@@ -359,6 +381,7 @@
           "answer": 3,
           "explain": "Photon energy E = h times f rises with frequency, so higher-frequency blue photons carry more energy than red ones.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "inside an endoscope",
           "b": -0.6
         },
@@ -373,6 +396,7 @@
           "answer": 0,
           "explain": "Fringe spacing is inversely proportional to slit separation, so bringing the slits closer spreads the fringes farther apart.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "inside an endoscope",
           "b": 0.7
         }
@@ -397,6 +421,7 @@
           "answer": 1,
           "explain": "Each 6-hour half-life halves the amount: 80 to 40 after 6 hours, then 40 to 20 after 12 hours.",
           "concept": "4E",
+          "skill": "reasoning",
           "cover_story": "a hospital radiotracer",
           "b": -0.6
         },
@@ -411,6 +436,7 @@
           "answer": 3,
           "explain": "Turning a neutron into a proton while emitting an electron (a beta particle) is beta-minus decay, and it raises the atomic number by one.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a hospital radiotracer",
           "b": 0.0
         },
@@ -425,6 +451,7 @@
           "answer": 3,
           "explain": "An alpha particle carries away 2 protons and 2 neutrons, so the mass number drops by 4 (and the atomic number by 2).",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a hospital radiotracer",
           "b": -0.5
         },
@@ -439,6 +466,7 @@
           "answer": 0,
           "explain": "Across a period the nuclear charge felt by the outer electrons rises while they stay in the same shell, pulling them inward, so the radius shrinks.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a hospital radiotracer",
           "b": -0.7
         },
@@ -453,6 +481,7 @@
           "answer": 1,
           "explain": "Group 16 atoms have six valence electrons and gain two to complete an octet.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a hospital radiotracer",
           "b": -0.4
         },
@@ -467,6 +496,7 @@
           "answer": 2,
           "explain": "Each product needs 2 isotope atoms, so 6 atoms make 3 labeled molecules and the isotope is the limiting reactant.",
           "concept": "4E",
+          "skill": "reasoning",
           "cover_story": "a hospital radiotracer",
           "b": 0.5
         }
@@ -491,6 +521,7 @@
           "answer": 1,
           "explain": "A strong acid gives a hydrogen ion concentration of 0.01 = 10 to the minus 2 M, so pH = 2.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "the buffer bench",
           "b": -0.8
         },
@@ -505,6 +536,7 @@
           "answer": 1,
           "explain": "By Henderson-Hasselbalch, pH = pKa plus log(base over acid), and when the two are equal the log term is zero, so pH = pKa = 4.7.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "the buffer bench",
           "b": -0.5
         },
@@ -519,6 +551,7 @@
           "answer": 0,
           "explain": "pH exceeds pKa only when log(base over acid) is positive, which means more conjugate base than acid.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "the buffer bench",
           "b": 0.5
         },
@@ -533,6 +566,7 @@
           "answer": 2,
           "explain": "The conjugate base reacts with the added hydrogen ions, soaking up most of the protons so the pH shifts only slightly.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "the buffer bench",
           "b": 0.1
         },
@@ -547,6 +581,7 @@
           "answer": 3,
           "explain": "At equivalence only the conjugate base remains, and it makes the solution basic, so the pH is above 7.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "the buffer bench",
           "b": 0.8
         },
@@ -561,6 +596,7 @@
           "answer": 1,
           "explain": "By the common-ion effect, extra X-minus pushes the dissolution equilibrium back toward solid, lowering solubility.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "the buffer bench",
           "b": 0.5
         }
@@ -585,6 +621,7 @@
           "answer": 2,
           "explain": "Four bonding groups and no lone pairs point to the corners of a tetrahedron, with angles near 109.5 degrees.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "designing a drug molecule",
           "b": -0.7
         },
@@ -599,6 +636,7 @@
           "answer": 0,
           "explain": "When symmetry makes the bond dipoles cancel, there is no net dipole and the molecule is nonpolar, as in carbon dioxide.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "designing a drug molecule",
           "b": 0.2
         },
@@ -613,6 +651,7 @@
           "answer": 3,
           "explain": "Structures that differ only by the placement of electrons, not atoms, are resonance forms of the same molecule.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "designing a drug molecule",
           "b": 0.0
         },
@@ -627,6 +666,7 @@
           "answer": 1,
           "explain": "Three regions of electron density (the double bond counts as one region plus two single bonds) means sp2 hybridization and trigonal planar geometry.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "designing a drug molecule",
           "b": -0.4
         },
@@ -641,6 +681,7 @@
           "answer": 2,
           "explain": "Hydrogen bonding is a strong intermolecular attraction, so more energy is needed to separate the molecules, which raises the boiling point.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "designing a drug molecule",
           "b": -0.6
         },
@@ -655,6 +696,7 @@
           "answer": 3,
           "explain": "A carbon with four different groups is a chirality center, so the molecule has a nonsuperimposable mirror image, an enantiomer.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "designing a drug molecule",
           "b": 0.5
         }
@@ -679,6 +721,7 @@
           "answer": 0,
           "explain": "Distillation exploits boiling point differences, so the more volatile component with the lower boiling point vaporizes first.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "purifying a plant extract",
           "b": -0.7
         },
@@ -693,6 +736,7 @@
           "answer": 2,
           "explain": "Like dissolves like, so a nonpolar compound favors the nonpolar organic layer over water.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "purifying a plant extract",
           "b": -0.5
         },
@@ -707,6 +751,7 @@
           "answer": 3,
           "explain": "Deprotonating the acid makes a charged, water-soluble carboxylate, so it shifts into the aqueous layer.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "purifying a plant extract",
           "b": 0.7
         },
@@ -721,6 +766,7 @@
           "answer": 0,
           "explain": "A polar compound binds tightly to the polar plate, so it moves only a little and has a low Rf.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "purifying a plant extract",
           "b": 0.6
         },
@@ -735,6 +781,7 @@
           "answer": 2,
           "explain": "Smaller molecules slip through the gel mesh more easily, so they travel farther in a given time.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "purifying a plant extract",
           "b": 0.0
         },
@@ -749,6 +796,7 @@
           "answer": 3,
           "explain": "Separation comes from the balance between each compound's attraction to the stationary phase and its tendency to travel with the mobile solvent.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "purifying a plant extract",
           "b": -0.2
         }
@@ -773,6 +821,7 @@
           "answer": 1,
           "explain": "A carbonyl carbon that also carries an OH is a carboxylic acid group.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "reactions of a metabolite",
           "b": -0.6
         },
@@ -787,6 +836,7 @@
           "answer": 0,
           "explain": "The carboxylic acid is far more acidic than an alcohol because its conjugate base, the carboxylate, is stabilized by resonance.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "reactions of a metabolite",
           "b": 0.2
         },
@@ -801,6 +851,7 @@
           "answer": 2,
           "explain": "A primary alcohol oxidizes first to an aldehyde and can go further to a carboxylic acid, whereas a secondary alcohol would give a ketone.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "reactions of a metabolite",
           "b": 0.5
         },
@@ -815,6 +866,7 @@
           "answer": 3,
           "explain": "Ester formation from an acid and an alcohol is a condensation that splits out a molecule of water.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "reactions of a metabolite",
           "b": 0.1
         },
@@ -829,6 +881,7 @@
           "answer": 0,
           "explain": "An aldehyde's carbonyl carbon bears a hydrogen that is removed during oxidation, but a ketone's carbonyl carbon is bonded to two carbons and has no such hydrogen, so it resists mild oxidation.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "reactions of a metabolite",
           "b": 1.0
         },
@@ -843,6 +896,7 @@
           "answer": 2,
           "explain": "Each amino acid has both an amino group and a carboxylic acid group on the same central carbon.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "reactions of a metabolite",
           "b": -0.6
         }
@@ -867,6 +921,7 @@
           "answer": 3,
           "explain": "With enthalpy change negative and entropy change positive, the Gibbs free energy change (enthalpy minus temperature times entropy) is negative at every temperature, so the reaction is always spontaneous.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "reaction energetics and a cell",
           "b": 0.6
         },
@@ -881,6 +936,7 @@
           "answer": 0,
           "explain": "Fewer gas molecules means fewer ways to spread energy and position, so the system's entropy decreases.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "reaction energetics and a cell",
           "b": 0.2
         },
@@ -895,6 +951,7 @@
           "answer": 2,
           "explain": "The reaction is first order in A, so doubling the concentration of A doubles the rate.",
           "concept": "5E",
+          "skill": "reasoning",
           "cover_story": "reaction energetics and a cell",
           "b": -0.3
         },
@@ -909,6 +966,7 @@
           "answer": 0,
           "explain": "A catalyst provides a path with a lower activation energy so more collisions succeed, and it does not change the energy of the reactants or products.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "reaction energetics and a cell",
           "b": -0.6
         },
@@ -923,6 +981,7 @@
           "answer": 2,
           "explain": "Adding a reactant pushes the equilibrium toward the products to partly offset the change, making more ammonia.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "reaction energetics and a cell",
           "b": -0.1
         },
@@ -937,6 +996,7 @@
           "answer": 0,
           "explain": "Electrons are released by oxidation at the anode and travel through the external wire to the cathode, where reduction occurs.",
           "concept": "4C",
+          "skill": "concepts",
           "cover_story": "reaction energetics and a cell",
           "b": 0.0
         }
@@ -961,6 +1021,7 @@
           "answer": 3,
           "explain": "More carbon dioxide pushes the equilibrium to the right, releasing more hydrogen ions, which lowers the pH toward acidosis.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "blood as a buffer",
           "b": 0.2
         },
@@ -975,6 +1036,7 @@
           "answer": 0,
           "explain": "Removing carbon dioxide pulls the equilibrium to the left, using up hydrogen ions and raising the pH, which is how faster breathing counters acidosis.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "blood as a buffer",
           "b": 0.6
         },
@@ -989,6 +1051,7 @@
           "answer": 0,
           "explain": "By Dalton's law, each gas's partial pressure is the total pressure times that gas's mole fraction.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "blood as a buffer",
           "b": 0.1
         },
@@ -1003,6 +1066,7 @@
           "answer": 0,
           "explain": "A catalyst lowers the activation energy and speeds the forward and reverse steps equally, so it changes the rate but not where the equilibrium settles.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "blood as a buffer",
           "b": 0.3
         },
@@ -1017,6 +1081,7 @@
           "answer": 2,
           "explain": "The stoichiometry is one to one, so 4 millimoles of reacting carbon dioxide yields 4 millimoles of bicarbonate.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "blood as a buffer",
           "b": -0.5
         },
@@ -1031,6 +1096,7 @@
           "answer": 2,
           "explain": "Henderson-Hasselbalch says pH tracks the ratio of conjugate base (bicarbonate) to acid (dissolved carbon dioxide), so holding that ratio steady holds the pH steady.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "blood as a buffer",
           "b": 0.9
         }
@@ -1055,6 +1121,7 @@
           "answer": 0,
           "explain": "Momentum is mass times velocity, 1000 times 20 = 20,000 kg m/s. The value 200,000 is the kinetic energy in joules, not the momentum.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a crash test lab",
           "b": -0.8
         },
@@ -1069,6 +1136,7 @@
           "answer": 2,
           "explain": "Kinetic energy is one half m v squared = 0.5 times 1000 times 20 squared = 200,000 J. Forgetting the factor of one half gives the too large 400,000 J.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a crash test lab",
           "b": 0.1
         },
@@ -1083,6 +1151,7 @@
           "answer": 0,
           "explain": "Impulse equals the change in momentum, from 20,000 kg m/s down to zero, so 20,000 N s. The 200,000 figure again confuses energy with momentum.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a crash test lab",
           "b": 0.3
         },
@@ -1097,6 +1166,7 @@
           "answer": 3,
           "explain": "Average force is impulse over time, 20,000 N s divided by 0.10 s = 200,000 N. Dividing by 0.01 s by mistake gives the too large 2,000,000 N.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a crash test lab",
           "b": 0.6
         },
@@ -1111,6 +1181,7 @@
           "answer": 2,
           "explain": "The impulse (change in momentum) is fixed, and force is impulse over time, so a longer stopping time means a smaller average force. That is why airbags reduce injury.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "a crash test lab",
           "b": 0.5
         },
@@ -1125,6 +1196,7 @@
           "answer": 1,
           "explain": "Momentum is conserved: 2.0 times 3.0 = 6.0 kg m/s is shared by the combined 3.0 kg, giving 2.0 m/s. Assuming the speed is unchanged at 3.0 m/s ignores the added mass.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a crash test lab",
           "b": 0.7
         }
@@ -1149,6 +1221,7 @@
           "answer": 2,
           "explain": "Hydrostatic pressure is rho g h = 1000 times 10 times 10 = 100,000 Pa. Using only 1000 times 10 leaves out the depth and gives 10,000 Pa.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "a scuba dive",
           "b": -1.1
         },
@@ -1163,6 +1236,7 @@
           "answer": 0,
           "explain": "The 10 m of water adds about 1 atm on top of the 1 atm of air above, for roughly 2 atm total. Counting only the water and ignoring the atmosphere gives just 1 atm.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "a scuba dive",
           "b": -0.2
         },
@@ -1177,6 +1251,7 @@
           "answer": 2,
           "explain": "Hovering is equilibrium, so the upward buoyant force exactly balances the diver's weight. A larger buoyant force would push the diver upward instead.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "a scuba dive",
           "b": -0.6
         },
@@ -1191,6 +1266,7 @@
           "answer": 0,
           "explain": "Static fluid pressure depends only on depth and density, not on the shape or total volume of the water, so both divers feel the same pressure. The larger ocean adds nothing extra at equal depth.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "a scuba dive",
           "b": 0.3
         },
@@ -1205,6 +1281,7 @@
           "answer": 1,
           "explain": "When weight exceeds the buoyant force the net force points down, so the diver sinks. Hovering would require the two forces to be equal.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "a scuba dive",
           "b": -0.4
         },
@@ -1219,6 +1296,7 @@
           "answer": 0,
           "explain": "By Archimedes' principle the buoyant force is the weight of displaced water, rho V g = 1000 times 0.080 times 10 = 800 N. Using 0.80 m^3 by mistake gives ten times too much.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "a scuba dive",
           "b": 0.8
         }
@@ -1243,6 +1321,7 @@
           "answer": 3,
           "explain": "Gaining electrons is reduction, which by definition happens at the cathode. The silver bar that dissolves by losing electrons is the anode.",
           "concept": "4C",
+          "skill": "concepts",
           "cover_story": "electroplating a spoon",
           "b": -0.4
         },
@@ -1257,6 +1336,7 @@
           "answer": 1,
           "explain": "Charge delivered is current times time, so doubling the current doubles the charge and thus the amount of silver reduced onto the spoon.",
           "concept": "4C",
+          "skill": "concepts",
           "cover_story": "electroplating a spoon",
           "b": -0.7
         },
@@ -1271,6 +1351,7 @@
           "answer": 2,
           "explain": "The half-reaction Ag+ plus one electron gives Ag is one to one, so 2.0 mol of silver requires 2.0 mol of electrons. A 2+ ion would instead need twice as many.",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "electroplating a spoon",
           "b": 0.3
         },
@@ -1285,6 +1366,7 @@
           "answer": 2,
           "explain": "Ohm's law gives current = voltage over resistance, so at fixed resistance the current is proportional to voltage and doubles.",
           "concept": "4C",
+          "skill": "concepts",
           "cover_story": "electroplating a spoon",
           "b": -0.3
         },
@@ -1299,6 +1381,7 @@
           "answer": 2,
           "explain": "Electrical power is current times voltage, 2.0 times 5.0 = 10 W. Dividing instead of multiplying gives the wrong 2.5 W.",
           "concept": "4C",
+          "skill": "reasoning",
           "cover_story": "electroplating a spoon",
           "b": 0.2
         },
@@ -1313,6 +1396,7 @@
           "answer": 1,
           "explain": "Electrolysis drives a nonspontaneous reaction using external electrical energy, whereas a battery runs a spontaneous reaction that releases energy on its own.",
           "concept": "4C",
+          "skill": "concepts",
           "cover_story": "electroplating a spoon",
           "b": 0.6
         }
@@ -1337,6 +1421,7 @@
           "answer": 0,
           "explain": "Sound is a mechanical wave, so it needs a medium and cannot cross a vacuum. Unlike light, it is not electromagnetic and travels far slower.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "an ultrasound scan",
           "b": -1.3
         },
@@ -1351,6 +1436,7 @@
           "answer": 1,
           "explain": "Wavelength is speed over frequency, 1500 divided by 3,000,000 = 0.0005 m, or 0.5 mm.",
           "concept": "4D",
+          "skill": "reasoning",
           "cover_story": "an ultrasound scan",
           "b": 0.3
         },
@@ -1365,6 +1451,7 @@
           "answer": 0,
           "explain": "Motion toward the probe compresses the reflected waves, raising the detected frequency in the Doppler effect. Motion away would lower it.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "an ultrasound scan",
           "b": -0.2
         },
@@ -1379,6 +1466,7 @@
           "answer": 2,
           "explain": "The pulse makes a round trip, so depth is v t over 2 = 1500 times 0.000040 divided by 2 = 0.03 m, or 3 cm. Forgetting to halve the distance gives 6 cm.",
           "concept": "4D",
+          "skill": "reasoning",
           "cover_story": "an ultrasound scan",
           "b": 0.8
         },
@@ -1393,6 +1481,7 @@
           "answer": 1,
           "explain": "With speed fixed, wavelength is inversely proportional to frequency, so higher frequency gives a shorter wavelength that resolves finer detail. The trade-off is less penetration depth.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "an ultrasound scan",
           "b": 0.5
         },
@@ -1407,6 +1496,7 @@
           "answer": 3,
           "explain": "Since speed equals frequency times wavelength and the speed is fixed, doubling the frequency halves the wavelength.",
           "concept": "4D",
+          "skill": "concepts",
           "cover_story": "an ultrasound scan",
           "b": 0.0
         }
@@ -1431,6 +1521,7 @@
           "answer": 0,
           "explain": "Emission happens when an electron falls to a lower level and releases a photon equal to the energy gap. Absorbing a photon would instead lift the electron higher.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a flame test",
           "b": -0.7
         },
@@ -1445,6 +1536,7 @@
           "answer": 1,
           "explain": "Photon energy is proportional to frequency, and higher frequency means shorter wavelength, so a bigger energy gap gives bluer light.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a flame test",
           "b": 0.4
         },
@@ -1459,6 +1551,7 @@
           "answer": 3,
           "explain": "The spacing of an element's energy levels is unique, so its emission lines act like a fingerprint. Neutron count and boiling point do not set the emitted colors.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a flame test",
           "b": 0.2
         },
@@ -1473,6 +1566,7 @@
           "answer": 2,
           "explain": "Valence electrons are those in the outermost shell, here n = 3: 3s2 3p4 gives 6. The value 16 counts all the electrons, not just the valence ones.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a flame test",
           "b": 0.3
         },
@@ -1487,6 +1581,7 @@
           "answer": 1,
           "explain": "The more tightly bound the electron, the more energy is required to pull it away, so a higher ionization energy.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a flame test",
           "b": 0.2
         },
@@ -1501,6 +1596,7 @@
           "answer": 1,
           "explain": "Absorption lifts an electron across the same energy gaps that emission spans, so an atom absorbs at the very wavelengths it emits.",
           "concept": "4E",
+          "skill": "concepts",
           "cover_story": "a flame test",
           "b": 1.0
         }
@@ -1525,6 +1621,7 @@
           "answer": 0,
           "explain": "Dissolved particles cause freezing-point depression, lowering the temperature at which water freezes so the salted water stays liquid below zero degrees Celsius.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "salting icy roads",
           "b": -1.1
         },
@@ -1539,6 +1636,7 @@
           "answer": 3,
           "explain": "Colligative effects scale with the number of dissolved particles, and salt dissociates into two ions per unit while sugar stays as one molecule, so salt has about twice the effect.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "salting icy roads",
           "b": 0.4
         },
@@ -1553,6 +1651,7 @@
           "answer": 1,
           "explain": "Osmosis moves water toward the more concentrated side, so water leaves the cell for the saltier surroundings and the cell shrinks.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "salting icy roads",
           "b": 0.3
         },
@@ -1567,6 +1666,7 @@
           "answer": 1,
           "explain": "Molarity is moles divided by liters, 0.50 over 2.0 = 0.25 M.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "salting icy roads",
           "b": -0.3
         },
@@ -1581,6 +1681,7 @@
           "answer": 0,
           "explain": "Dissolved solute raises the boiling point, letting the water run hotter before boiling. This is the opposite direction from the freezing-point change.",
           "concept": "5A",
+          "skill": "concepts",
           "cover_story": "salting icy roads",
           "b": -0.5
         },
@@ -1595,6 +1696,7 @@
           "answer": 2,
           "explain": "Freezing-point depression scales with particle count, so three ions versus two gives a ratio of 3 to 2. Answering 3 times ignores that NaCl already makes two particles.",
           "concept": "5A",
+          "skill": "reasoning",
           "cover_story": "salting icy roads",
           "b": 0.9
         }
@@ -1619,6 +1721,7 @@
           "answer": 2,
           "explain": "Nonpolar molecules attract mainly through London dispersion forces. Hydrogen bonding would require hydrogen bonded to nitrogen, oxygen, or fluorine, which these molecules lack.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "volatile anesthetics",
           "b": -0.4
         },
@@ -1633,6 +1736,7 @@
           "answer": 1,
           "explain": "Larger molecules hold more electrons, giving stronger London dispersion forces and therefore a higher boiling point.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "volatile anesthetics",
           "b": 0.3
         },
@@ -1647,6 +1751,7 @@
           "answer": 0,
           "explain": "Weak intermolecular forces let molecules escape easily, giving a high vapor pressure and fast evaporation. Strong forces would do the reverse.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "volatile anesthetics",
           "b": 0.4
         },
@@ -1661,6 +1766,7 @@
           "answer": 3,
           "explain": "The polar liquid adds dipole-dipole attraction on top of dispersion, so its molecules are harder to pull apart and it boils higher.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "volatile anesthetics",
           "b": 0.2
         },
@@ -1675,6 +1781,7 @@
           "answer": 1,
           "explain": "During a phase change the added energy breaks intermolecular attractions rather than speeding the molecules, so the temperature holds constant until all the liquid becomes gas.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "volatile anesthetics",
           "b": 0.8
         },
@@ -1689,6 +1796,7 @@
           "answer": 0,
           "explain": "A volatile liquid evaporates easily and has a high vapor pressure, which goes with relatively weak intermolecular forces.",
           "concept": "5B",
+          "skill": "concepts",
           "cover_story": "volatile anesthetics",
           "b": -0.6
         }
@@ -1713,6 +1821,7 @@
           "answer": 0,
           "explain": "A centrifuge drives the densest components to the bottom, so the heavy red cells pack below the lighter plasma.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "spinning down blood",
           "b": -0.7
         },
@@ -1727,6 +1836,7 @@
           "answer": 1,
           "explain": "A higher spin speed raises the effective gravity, so denser particles sediment toward the bottom faster.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "spinning down blood",
           "b": 0.0
         },
@@ -1741,6 +1851,7 @@
           "answer": 1,
           "explain": "The membrane's pores let small molecules through but block the large protein, so separation is by size. Charge and color do not decide passage here.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "spinning down blood",
           "b": 0.3
         },
@@ -1755,6 +1866,7 @@
           "answer": 2,
           "explain": "Large molecules are shut out of the porous beads and flow around them on a shorter path, so they elute first, while small molecules enter the beads and are delayed.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "spinning down blood",
           "b": 1.2
         },
@@ -1769,6 +1881,7 @@
           "answer": 0,
           "explain": "The solid dissolves in hot solvent and reforms as pure crystals when cooled, while soluble impurities stay behind. A compound with no temperature dependence could not be recrystallized this way.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "spinning down blood",
           "b": 0.2
         },
@@ -1783,6 +1896,7 @@
           "answer": 3,
           "explain": "The small ions diffuse from their high concentration inside the bag to the pure water outside, through pores too small for the protein to follow.",
           "concept": "5C",
+          "skill": "concepts",
           "cover_story": "spinning down blood",
           "b": 0.4
         }
@@ -1807,6 +1921,7 @@
           "answer": 0,
           "explain": "Amino acids join through peptide bonds, a type of amide linkage. Ester bonds instead join glycerol and fatty acids in fats.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "digestion chemistry",
           "b": -0.8
         },
@@ -1821,6 +1936,7 @@
           "answer": 1,
           "explain": "Peptide-bond formation is a condensation that splits out water. The reverse reaction, hydrolysis, adds water back to break the bond.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "digestion chemistry",
           "b": 0.2
         },
@@ -1835,6 +1951,7 @@
           "answer": 3,
           "explain": "An enzyme's active site is complementary in shape and chemistry to its particular substrate, which gives it specificity. All enzymes are built from the same set of amino acids.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "digestion chemistry",
           "b": 0.3
         },
@@ -1849,6 +1966,7 @@
           "answer": 1,
           "explain": "Denaturation disrupts the folded shape held by weak interactions, so the enzyme loses function, but the covalent peptide bonds of its sequence remain intact.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "digestion chemistry",
           "b": 0.9
         },
@@ -1863,6 +1981,7 @@
           "answer": 1,
           "explain": "Fatty acids attach to glycerol by ester bonds. Peptide bonds instead join amino acids in proteins.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "digestion chemistry",
           "b": 0.1
         },
@@ -1877,6 +1996,7 @@
           "answer": 2,
           "explain": "Adenine pairs with thymine and guanine pairs with cytosine through hydrogen bonds, so adenine's partner is thymine.",
           "concept": "5D",
+          "skill": "concepts",
           "cover_story": "digestion chemistry",
           "b": 0.5
         }
@@ -1901,6 +2021,7 @@
           "answer": 0,
           "explain": "Releasing heat to the surroundings is exothermic, which corresponds to a negative enthalpy change. A positive change would instead absorb heat.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "hot and cold packs",
           "b": -0.8
         },
@@ -1915,6 +2036,7 @@
           "answer": 1,
           "explain": "An endothermic process absorbs heat from the surroundings, cooling the pack and the skin. An exothermic process would warm them instead.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "hot and cold packs",
           "b": -0.5
         },
@@ -1929,6 +2051,7 @@
           "answer": 2,
           "explain": "Heat is q = m c times the temperature change = 100 times 4.2 times 10 = 4,200 J. Dropping a factor of ten gives 420 J.",
           "concept": "5E",
+          "skill": "reasoning",
           "cover_story": "hot and cold packs",
           "b": 0.3
         },
@@ -1943,6 +2066,7 @@
           "answer": 0,
           "explain": "Higher temperature raises the fraction of molecules with enough energy to cross the activation barrier and makes collisions more frequent, so the rate increases.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "hot and cold packs",
           "b": -0.2
         },
@@ -1957,6 +2081,7 @@
           "answer": 1,
           "explain": "The enthalpy change is the energy difference between reactants and products, while the activation energy is only the height of the barrier between them.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "hot and cold packs",
           "b": 0.7
         },
@@ -1971,6 +2096,7 @@
           "answer": 1,
           "explain": "Breaking bonds costs energy and forming bonds releases it, so the reaction gives off net heat only when bond formation releases more than bond breaking absorbs.",
           "concept": "5E",
+          "skill": "concepts",
           "cover_story": "hot and cold packs",
           "b": 1.3
         }
@@ -1995,6 +2121,7 @@
           "answer": 0,
           "explain": "Centripetal acceleration always points toward the center of the circle, which at the top of the loop is straight down. It is never along the direction of motion.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "a roller coaster loop",
           "b": -0.3
         },
@@ -2009,6 +2136,7 @@
           "answer": 2,
           "explain": "Centripetal force is m v squared over r, so it grows with the square of the speed. Doubling the speed multiplies the required force by four.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a roller coaster loop",
           "b": 0.5
         },
@@ -2023,6 +2151,7 @@
           "answer": 0,
           "explain": "Constant speed is not constant velocity, since the direction keeps changing, so a nonzero net force points toward the center to supply the centripetal acceleration.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "a roller coaster loop",
           "b": 0.2
         },
@@ -2037,6 +2166,7 @@
           "answer": 1,
           "explain": "At the minimum speed gravity alone supplies the centripetal force, so m g = m v squared over r gives v = sqrt(g r) = sqrt(10 times 10) = 10 m/s.",
           "concept": "4A",
+          "skill": "reasoning",
           "cover_story": "a roller coaster loop",
           "b": 1.2
         },
@@ -2051,6 +2181,7 @@
           "answer": 3,
           "explain": "Newton's third-law pairs are always equal in magnitude and opposite in direction, so the car pushes on the track exactly as hard as the track pushes on it.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "a roller coaster loop",
           "b": -0.1
         },
@@ -2065,6 +2196,7 @@
           "answer": 3,
           "explain": "With mechanical energy conserved, rising to the top converts kinetic energy into gravitational potential energy, so the car is slower at the top than at the bottom.",
           "concept": "4A",
+          "skill": "concepts",
           "cover_story": "a roller coaster loop",
           "b": 0.4
         }
@@ -2089,6 +2221,7 @@
           "answer": 0,
           "explain": "At constant temperature pressure and volume are inversely related by Boyle's law, so halving the volume doubles the pressure.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "an inflating airbag",
           "b": -0.4
         },
@@ -2103,6 +2236,7 @@
           "answer": 1,
           "explain": "At constant pressure volume is proportional to absolute temperature by Charles's law, so heating the gas expands it.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "an inflating airbag",
           "b": -0.2
         },
@@ -2117,6 +2251,7 @@
           "answer": 2,
           "explain": "One mole of an ideal gas fills 22.4 L at standard temperature and pressure, so 2.0 mol fills about 44.8 L.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "an inflating airbag",
           "b": 0.3
         },
@@ -2131,6 +2266,7 @@
           "answer": 3,
           "explain": "At fixed temperature and pressure, volume is proportional to the number of moles by Avogadro's principle, so twice the moles fills twice the volume.",
           "concept": "4B",
+          "skill": "reasoning",
           "cover_story": "an inflating airbag",
           "b": 0.2
         },
@@ -2145,6 +2281,7 @@
           "answer": 1,
           "explain": "Equal average kinetic energy at the same temperature means the lighter molecules must move faster, since kinetic energy is one half m v squared.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "an inflating airbag",
           "b": 1.1
         },
@@ -2159,8 +2296,61 @@
           "answer": 2,
           "explain": "Real gases deviate most at high pressure and low temperature, where the molecules are close enough that their size and attractions matter. Near standard conditions they behave nearly ideally.",
           "concept": "4B",
+          "skill": "concepts",
           "cover_story": "an inflating airbag",
           "b": 0.4
+        }
+      ]
+    },
+    {
+      "label": "Designing a reaction-rate experiment",
+      "paragraphs": [
+        "A chemistry class tests what makes a slow reaction go faster. In one trial a student sprinkles a metal powder into the flask and stirs it, and the reaction visibly speeds up.",
+        "The class then plans careful trials to pin down which factor is responsible before drawing any conclusion."
+      ],
+      "source_ref": "OpenStax Chemistry 2e, Ch. 12 (Kinetics) and Ch. 1 (Essential Ideas)",
+      "questions": [
+        {
+          "stem": "The student both added the metal and stirred the flask. To show the metal, and not the stirring, sped up the reaction, the control flask should be:",
+          "choices": [
+            "stirred the same way but with no metal added",
+            "left completely still with the metal added",
+            "heated to a higher temperature",
+            "given twice as much metal"
+          ],
+          "answer": 0,
+          "explain": "The control is treated identically except for the one variable being tested, so any difference can be attributed to that variable and not to another factor such as the stirring.",
+          "concept": "5E",
+          "skill": "research",
+          "cover_story": "a reaction-rate experiment"
+        },
+        {
+          "stem": "The class next wants to measure how temperature alone affects the rate. To test that fairly, they should:",
+          "choices": [
+            "raise the temperature and also add more reactant",
+            "hold the concentrations and everything else constant and change only the temperature",
+            "change the temperature and the catalyst together",
+            "use a different reaction for each temperature"
+          ],
+          "answer": 1,
+          "explain": "To isolate the effect of temperature, the team holds all other conditions constant and changes only the temperature between trials, because temperature itself changes reaction rates.",
+          "concept": "5E",
+          "skill": "research",
+          "cover_story": "a reaction-rate experiment"
+        },
+        {
+          "stem": "Two trials differed in both the amount of catalyst and the temperature, and the second trial was faster. The team cannot say what caused the speed-up because:",
+          "choices": [
+            "faster reactions are always caused by temperature",
+            "the two changed variables are confounded, so the faster rate cannot be assigned to either one alone",
+            "catalysts cannot change reaction rates",
+            "the trials used too much reactant"
+          ],
+          "answer": 1,
+          "explain": "Because both the catalyst amount and the temperature were changed at the same time, the two variables are confounded and the difference in the result cannot be assigned to either variable by itself.",
+          "concept": "5E",
+          "skill": "research",
+          "cover_story": "a reaction-rate experiment"
         }
       ]
     }

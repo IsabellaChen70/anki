@@ -32,6 +32,7 @@ from typing import TYPE_CHECKING, Optional
 from . import scoring
 from .outline import Outline
 from .scoring import (
+    READINESS_SECTIONS,
     SECTIONS,
     Calibration,
     ConceptTransfer,
@@ -40,6 +41,7 @@ from .scoring import (
     Pacing,
     ScoreResult,
     ScoringConfig,
+    SkillTaxonomy,
     StudyPace,
     Trajectory,
 )
@@ -84,6 +86,11 @@ REASONING_QID_TAG = "vantage::rq::"  # + <stable per-question id (stem hash)>
 # concept (they share the concept in the outline). This lets the per-concept
 # transfer gap compare a concept's recall vs its reworded-item accuracy.
 REASONING_CONCEPT_TAG = "vantage::concept::"  # + <concept id, e.g. 1A>
+# The AAMC Scientific Inquiry and Reasoning Skill (SIRS) the item tests, the
+# second axis of the miss diagnosis (see scoring.SKILLS). Author-tagged and fixed
+# per question, so it travels on the anchor card exactly like the concept tag and
+# syncs for free. CARS items carry none (SIRS describe the science sections).
+REASONING_SKILL_TAG = "vantage::skill::"  # + <skill id: concepts|reasoning|research|data>
 
 # The student's target exam date, stored as an ISO "YYYY-MM-DD" string.
 EXAM_CONFIG_KEY = "vantage_exam_date"
@@ -135,6 +142,18 @@ class Dashboard:
     best_next: Optional[dict] = None
     next_topics: list = field(default_factory=list)
     topic_gaps: list = field(default_factory=list)  # areas with the most topics left
+    # per science section: list of 1/0 application-item outcomes. A read-only
+    # aggregate the weak-spot quick jump reads to pick the lowest-accuracy section;
+    # never a modeled score (the give-up rule still governs any shown number).
+    section_outcomes: dict = field(default_factory=dict)
+    # Display-only twin of section_outcomes that ALSO includes cars, so the CARS
+    # section card can show its reasoning accuracy. Feeds NO score.
+    section_reason: dict = field(default_factory=dict)
+    # Per science section: mean FSRS recall R (0..1). The SAME memory signal the
+    # global Memory score reads, exposed per section so the Practice tab's per-section
+    # Flashcards bar shows real recall instead of a maturity fraction. Read-only
+    # display, feeds NO score; rounded to 3 decimals to match the mobile JS port.
+    section_recall: dict = field(default_factory=dict)
     topic_coverage: float = 0.0  # depth-aware (topic-grain) coverage, for display
     topic_coverage_by_section: dict = field(default_factory=dict)
     book_set: str = "kaplan"  # which prep-book set to name in "Study this next"
@@ -148,7 +167,8 @@ class Dashboard:
     exam_date: Optional[str] = None  # ISO YYYY-MM-DD, or None
     study_pace: Optional[StudyPace] = None  # days-to-exam + daily targets
     confidence: Optional[ConfidenceCalibration] = None  # how sure vs how right
-    mistakes: Optional[MistakeTaxonomy] = None  # how you lose points
+    mistakes: Optional[MistakeTaxonomy] = None  # how you lose points (why)
+    skills: Optional[SkillTaxonomy] = None  # how you lose points (which SIRS skill)
     pacing: Optional[Pacing] = None  # time-per-question vs the section budget
     trajectory: Optional[Trajectory] = None  # projected score at exam day
     extra: dict = field(default_factory=dict)
@@ -278,6 +298,15 @@ def _concept_from_tags(tags: str) -> Optional[str]:
     return None
 
 
+def _skill_from_tags(tags: str) -> Optional[str]:
+    """Pull the SIRS skill id out of a reasoning card's tags
+    (vantage::skill::<id>), or None if the item isn't skill-tagged (e.g. CARS)."""
+    for t in tags.split():
+        if t.startswith(REASONING_SKILL_TAG):
+            return t[len(REASONING_SKILL_TAG) :] or None
+    return None
+
+
 def _revlog_outcomes(col: "Collection") -> list[dict]:
     """Reasoning outcomes reconstructed from the revlog: one dict per graded attempt
     on a Vantage Reasoning card. ease >= 2 counts as correct (1 = Again = wrong),
@@ -299,6 +328,7 @@ def _revlog_outcomes(col: "Collection") -> list[dict]:
                 "section": section,
                 "correct": bool(ease is not None and ease >= 2),
                 "concept": _concept_from_tags(tags or ""),
+                "skill": _skill_from_tags(tags or ""),
                 "ms": float(ms) if ms is not None else None,
                 "ts": int(rid) // 1000,
                 "revlog_id": int(rid),
@@ -352,6 +382,8 @@ def _merged_outcomes(col: "Collection") -> list[dict]:
                 "reason": meta.get("reason"),
                 # concept from the card's tag; fall back to a config-supplied one
                 "concept": ro.get("concept") or meta.get("concept"),
+                # SIRS skill, same tag-first-then-config precedence as concept
+                "skill": ro.get("skill") or meta.get("skill"),
                 "ms": ro["ms"] if ro["ms"] is not None else _as_float(meta.get("ms")),
                 "ts": ro["ts"],
                 "revlog_id": ro["revlog_id"],
@@ -380,12 +412,15 @@ def ensure_reasoning_card(
     answer: str,
     explain: str,
     concept: Optional[str] = None,
+    skill: Optional[str] = None,
 ) -> Optional[int]:
     """Find or create the suspended anchor card for one reasoning question. The card
     holds the question text (so it's browsable / first-class) and carries the section
     + stable-id tags the scores read. When `concept` is given (an AAMC concept id),
     it also carries the concept tag that links it to that concept's recall cards for
-    the card-level paraphrase test. Returns the card id, or None on failure."""
+    the card-level paraphrase test. When `skill` is given (a SIRS skill id), it also
+    carries the skill tag that feeds the second axis of the miss diagnosis. Returns
+    the card id, or None on failure."""
     qid_tag = f"{REASONING_QID_TAG}{_reasoning_qid(stem)}"
     existing = col.db.list(
         "select c.id from cards c join notes n on c.nid = n.id where n.tags like ?",
@@ -404,6 +439,8 @@ def ensure_reasoning_card(
         note.tags = [f"{REASONING_SECTION_TAG}{section}", qid_tag]
         if concept:
             note.tags.append(f"{REASONING_CONCEPT_TAG}{concept}")
+        if skill:
+            note.tags.append(f"{REASONING_SKILL_TAG}{skill}")
         col.add_note(note, deck_id)
         cids = list(note.card_ids())
         if not cids:
@@ -425,13 +462,15 @@ def log_reasoning_outcome(
     correct: bool,
     ms: Optional[float],
     concept: Optional[str] = None,
+    skill: Optional[str] = None,
 ) -> Optional[int]:
     """Record one reasoning attempt as a real revlog row on its anchor card, so the
     outcome syncs and merges natively. An optional `concept` (AAMC concept id) links
-    the item to that concept's recall cards for the card-level paraphrase test.
-    Returns the revlog id (used to link the confidence / miss reason kept in the
-    per-device config), or None if the card couldn't be made."""
-    cid = ensure_reasoning_card(col, section, stem, answer, explain, concept)
+    the item to that concept's recall cards for the card-level paraphrase test; an
+    optional `skill` (SIRS skill id) feeds the miss diagnosis' skill axis. Returns
+    the revlog id (used to link the confidence / miss reason kept in the per-device
+    config), or None if the card couldn't be made."""
+    cid = ensure_reasoning_card(col, section, stem, answer, explain, concept, skill)
     if cid is None:
         return None
     ease = 3 if correct else 1  # Good vs Again -> read back as correct/incorrect
@@ -474,14 +513,15 @@ def record_metacognition(
     revlog_id: Optional[int] = None,
     concept: Optional[str] = None,
     mode: Optional[str] = None,
+    skill: Optional[str] = None,
 ) -> str:
     """Append one metacognition record (confidence / miss reason / timing / linked
-    concept) to THIS device's OWN per-device config list. Two devices practicing
-    offline therefore write to different keys and never clobber each other on sync;
-    reads merge every per-device key (see _all_perf_config). The correct/incorrect
-    outcome itself still lives in the revlog (sync-safe); pass its `revlog_id` so
-    the read-side merge links this record to that outcome and counts it once.
-    Returns the per-device key written to."""
+    concept / SIRS skill) to THIS device's OWN per-device config list. Two devices
+    practicing offline therefore write to different keys and never clobber each other
+    on sync; reads merge every per-device key (see _all_perf_config). The
+    correct/incorrect outcome itself still lives in the revlog (sync-safe); pass its
+    `revlog_id` so the read-side merge links this record to that outcome and counts
+    it once. Returns the per-device key written to."""
     key = _perf_device_key(col)
     lst = _dicts(col.get_config(key, []))
     lst.append(
@@ -491,6 +531,7 @@ def record_metacognition(
             "confidence": confidence,
             "reason": reason,
             "concept": concept,
+            "skill": skill,
             "ms": ms,
             "revlog_id": revlog_id,
             "mode": mode,
@@ -498,6 +539,298 @@ def record_metacognition(
     )
     col.set_config(key, lst)
     return key
+
+
+# --------------------------------------------------------------------------- #
+# Second look: a delayed re-test of a missed reasoning QUESTION (extends the
+# concept-level flashcard misses deck to the questions themselves)
+# --------------------------------------------------------------------------- #
+# The DELAYED SCHEDULE reuses the exact primitive the flashcard misses deck uses:
+# a REAL Anki card whose due date is assigned by Anki's own scheduler (FSRS via
+# col.sched.set_due_date) -- no interval math is reimplemented here. Each missed
+# question gets one suspended anchor card in SECOND_LOOK_DECK, tagged with its
+# section and the SAME stable qid its reasoning anchor uses; the card's due
+# day-number is the re-serve date. The card is suspended so it never leaks into
+# the flashcard reviewer -- the practice UI re-serves the real multiple-choice
+# question instead of showing a plain flashcard.
+SECOND_LOOK_DECK = "Vantage Second Look"
+SECOND_LOOK_SECTION_TAG = "vantage::secondlook::"  # + <section>
+
+# The SECOND-ATTEMPT outcome is tracked DISTINCTLY from the original miss, in a
+# per-device config list (the same no-clobber pattern as the metacognition store):
+# each device writes only to its own key, reads union every key. A record is
+# {"qid", "section", "correct", "ts"} and holds ONLY re-attempts -- the original
+# miss stays in the reasoning-anchor revlog and the concept-level misses deck,
+# untouched. This is what tells "missed then corrected on a second look" apart
+# from "missed and still failing".
+SECOND_LOOK_CONFIG_KEY = "vantage_second_look"
+SECOND_LOOK_DEVICE_PREFIX = SECOND_LOOK_CONFIG_KEY + "::"  # + <device id>
+
+
+def _tag_suffix(tags: str, prefix: str) -> Optional[str]:
+    """The suffix of the first whitespace-token starting with `prefix`, or None."""
+    for t in tags.split():
+        if t.startswith(prefix):
+            return t[len(prefix) :] or None
+    return None
+
+
+def _second_look_device_key(col: "Collection") -> str:
+    return SECOND_LOOK_DEVICE_PREFIX + _device_id(col)
+
+
+def _has_second_look_cards(col: "Collection") -> bool:
+    """Cheap existence check so the due/status scan is skipped entirely for a
+    student who has never missed a reasoning question (the common early path)."""
+    return bool(
+        col.db.scalar(
+            "select 1 from notes where tags like ? limit 1",
+            f"%{SECOND_LOOK_SECTION_TAG}%",
+        )
+    )
+
+
+def _reschedule_second_look(col: "Collection", cid: int, delay_days: int) -> None:
+    """Set the card due `delay_days` from today with Anki's own scheduler, then
+    re-suspend it so it stays out of the flashcard queue. `set_due_date` turns the
+    card into a review card and (under FSRS) updates its memory state -- we never
+    compute an interval ourselves."""
+    try:
+        col.sched.set_due_date([cid], str(max(1, int(delay_days))))
+    except Exception:
+        return
+    try:
+        col.sched.suspend_cards([cid])
+    except Exception:
+        pass
+
+
+def schedule_second_look(
+    col: "Collection",
+    section: str,
+    stem: str,
+    answer: str,
+    explain: str,
+    concept: Optional[str] = None,
+    cfg: Optional[ScoringConfig] = None,
+) -> Optional[int]:
+    """Schedule (or reschedule) a delayed second look at one missed reasoning
+    question. Creates/reuses a real suspended card in SECOND_LOOK_DECK and lets
+    Anki's own scheduler assign the future due date -- the same real-card + FSRS
+    primitive the flashcard misses deck uses. Deduped by the question's stable qid
+    (a re-miss just resets the delay). Returns the card id, or None on failure."""
+    cfg = cfg or ScoringConfig()
+    qid_tag = f"{REASONING_QID_TAG}{_reasoning_qid(stem)}"
+    sec_tag = f"{SECOND_LOOK_SECTION_TAG}{section}"
+    existing = col.db.list(
+        "select c.id from cards c join notes n on c.nid = n.id "
+        "where n.tags like ? and n.tags like ?",
+        f"%{sec_tag}%",
+        f"%{qid_tag}%",
+    )
+    if existing:
+        cid: Optional[int] = int(existing[0])
+    else:
+        try:
+            model = col.models.by_name("Basic")
+            if model is None:
+                return None
+            deck_id = col.decks.id(SECOND_LOOK_DECK)
+            note = col.new_note(model)
+            note["Front"] = stem
+            note["Back"] = f"{answer}<br><br>{explain}" if answer else (explain or "")
+            note.tags = [sec_tag, qid_tag]
+            if concept:
+                note.tags.append(f"{REASONING_CONCEPT_TAG}{concept}")
+            col.add_note(note, deck_id)
+            cids = list(note.card_ids())
+            if not cids:
+                return None
+            cid = int(cids[0])
+        except Exception:
+            return None
+    _reschedule_second_look(col, cid, cfg.second_look_delay_days)
+    return cid
+
+
+def _second_look_cards(col: "Collection") -> list[dict]:
+    """Every second-look anchor card: its stable qid, section, stem (the note's
+    Front field), due day-number, and linked concept. Read straight from the
+    cards + notes tables (cheap; no Card/Note objects)."""
+    if not _has_second_look_cards(col):
+        return []
+    rows = col.db.all(
+        "select c.id, c.due, n.tags, n.flds from cards c join notes n on c.nid = n.id "
+        "where n.tags like ?",
+        f"%{SECOND_LOOK_SECTION_TAG}%",
+    )
+    out: list[dict] = []
+    for cid, due, tags, flds in rows:
+        tags = tags or ""
+        section = _tag_suffix(tags, SECOND_LOOK_SECTION_TAG)
+        qid = _tag_suffix(tags, REASONING_QID_TAG)
+        if section is None or qid is None:
+            continue
+        # the Front field holds the exact stem the qid was hashed from, so the
+        # practice UI can re-serve the real question by matching it in the bank.
+        stem = (flds or "").split("\x1f")[0]
+        out.append(
+            {
+                "cid": int(cid),
+                "due": int(due) if due is not None else 0,
+                "section": section,
+                "qid": qid,
+                "stem": stem,
+                "concept": _concept_from_tags(tags),
+            }
+        )
+    return out
+
+
+def _all_second_look_records(col: "Collection") -> list[dict]:
+    """Every recorded second-attempt outcome, merged across the legacy single key
+    and all per-device keys. Distinct keys never clobber on sync, so both devices'
+    second-look results survive a two-device offline merge."""
+    out: list[dict] = list(_dicts(col.get_config(SECOND_LOOK_CONFIG_KEY, [])))
+    try:
+        allc = col.all_config()
+    except Exception:
+        allc = {}
+    if isinstance(allc, dict):
+        for key in sorted(k for k in allc if isinstance(k, str)):
+            if key.startswith(SECOND_LOOK_DEVICE_PREFIX):
+                out.extend(_dicts(allc.get(key)))
+    return out
+
+
+def _latest_second_look_by_qid(records: list[dict]) -> dict[str, dict]:
+    """The most recent second-look outcome per qid (by ts, then read order), used
+    to tell corrected (latest attempt right) from still-failing (latest wrong)."""
+    latest: dict[str, dict] = {}
+    for idx, r in enumerate(records):
+        qid = r.get("qid")
+        if not (isinstance(qid, str) and qid):
+            continue
+        ts = r.get("ts")
+        order = (int(ts) if isinstance(ts, (int, float)) else 0, idx)
+        prev = latest.get(qid)
+        if prev is None or order >= prev["_order"]:
+            latest[qid] = {"_order": order, "correct": bool(r.get("correct"))}
+    return latest
+
+
+def record_second_look_outcome(
+    col: "Collection",
+    qid: str,
+    section: str,
+    correct: bool,
+    ts: Optional[int] = None,
+    cfg: Optional[ScoringConfig] = None,
+) -> str:
+    """Record ONE second-look re-attempt DISTINCTLY from the original miss, in this
+    device's own per-device list (no cross-device clobber). A miss reschedules the
+    schedule-carrier card for another delayed look; a pass leaves it resolved (the
+    due reader excludes qids whose latest outcome is correct). Returns the key
+    written to."""
+    cfg = cfg or ScoringConfig()
+    key = _second_look_device_key(col)
+    lst = _dicts(col.get_config(key, []))
+    lst.append(
+        {
+            "qid": qid,
+            "section": section,
+            "correct": bool(correct),
+            "ts": int(ts) if ts is not None else int(time.time()),
+        }
+    )
+    col.set_config(key, lst)
+    if not correct:
+        for c in _second_look_cards(col):
+            if c["qid"] == qid:
+                _reschedule_second_look(col, c["cid"], cfg.second_look_delay_days)
+                break
+    return key
+
+
+def due_second_looks(
+    col: "Collection",
+    today: Optional[int] = None,
+    cfg: Optional[ScoringConfig] = None,
+) -> list[dict]:
+    """The second looks whose delayed due date has arrived and that are not yet
+    resolved (latest re-attempt still wrong, or never re-attempted). Each item
+    carries the section, stable qid, stem, and linked concept so the practice UI
+    can re-serve the exact question. `today` defaults to the collection's own day
+    number; passing a later value fast-forwards the due filter (used in tests)."""
+    cards = _second_look_cards(col)
+    if not cards:
+        return []
+    today = col.sched.today if today is None else int(today)
+    latest = _latest_second_look_by_qid(_all_second_look_records(col))
+    out: list[dict] = []
+    for c in cards:
+        if c["due"] > today:
+            continue  # scheduled, not yet due
+        prev = latest.get(c["qid"])
+        if prev is not None and prev["correct"]:
+            continue  # already corrected on a second look
+        out.append(
+            {
+                "qid": c["qid"],
+                "section": c["section"],
+                "stem": c["stem"],
+                "concept": c["concept"],
+            }
+        )
+    return out
+
+
+def second_look_status(col: "Collection", today: Optional[int] = None) -> dict:
+    """Honest, un-blended second-look tallies for the UI. Raw counts only (never a
+    modeled score): how many questions are due to re-attempt now, how many are
+    still waiting on their delay, and -- distinct from the original miss -- how
+    many previously-missed questions have since been corrected vs are still failing
+    on re-attempt. Abstains to all-zero when there is nothing to show."""
+    cards = _second_look_cards(col)
+    records = _all_second_look_records(col)
+    if not cards and not records:
+        return {
+            "due": [],
+            "due_count": 0,
+            "scheduled_count": 0,
+            "corrected": 0,
+            "still_failing": 0,
+            "attempts": 0,
+        }
+    today = col.sched.today if today is None else int(today)
+    latest = _latest_second_look_by_qid(records)
+    due: list[dict] = []
+    scheduled = 0
+    for c in cards:
+        prev = latest.get(c["qid"])
+        if prev is not None and prev["correct"]:
+            continue  # resolved -> neither due nor waiting
+        if c["due"] <= today:
+            due.append(
+                {
+                    "qid": c["qid"],
+                    "section": c["section"],
+                    "stem": c["stem"],
+                    "concept": c["concept"],
+                }
+            )
+        else:
+            scheduled += 1
+    corrected = sum(1 for v in latest.values() if v["correct"])
+    still_failing = sum(1 for v in latest.values() if not v["correct"])
+    return {
+        "due": due,
+        "due_count": len(due),
+        "scheduled_count": scheduled,
+        "corrected": corrected,
+        "still_failing": still_failing,
+        "attempts": len(records),
+    }
 
 
 def _exam_date(col: "Collection") -> Optional[str]:
@@ -511,13 +844,19 @@ def _book_set(col: "Collection") -> str:
 
 
 def _reviews_due(col: "Collection") -> int:
-    """Cards due today across the whole collection: review/day-learn due now, plus
-    any intraday learning cards. A representative daily flashcard load."""
+    """Cards due today among mcat-tagged notes: review/day-learn due now, plus any
+    intraday learning cards. Scoped to notes tagged mcat:: so this daily flashcard
+    load stays consistent with the rest of Vantage (not the whole collection)."""
     today = col.sched.today
     due = col.db.scalar(
-        "select count() from cards where queue in (2, 3) and due <= ?", today
+        "select count() from cards c join notes n on c.nid = n.id "
+        "where n.tags like '%mcat::%' and c.queue in (2, 3) and c.due <= ?",
+        today,
     ) or 0
-    lrn = col.db.scalar("select count() from cards where queue = 1") or 0
+    lrn = col.db.scalar(
+        "select count() from cards c join notes n on c.nid = n.id "
+        "where n.tags like '%mcat::%' and c.queue = 1"
+    ) or 0
     return int(due) + int(lrn)
 
 
@@ -613,6 +952,17 @@ def gather(
         if s in section_outcomes:
             section_outcomes[s].append(1 if o.get("correct") else 0)
 
+    # Display-only twin of section_outcomes that ALSO includes cars, so the CARS
+    # section card can render its reasoning accuracy. Built from the SAME merged
+    # outcomes; it feeds NO score -- section_outcomes above still drives readiness,
+    # transfer, and calibration unchanged, and cars already reaches readiness via the
+    # IRT section_items path below, so this never double-counts.
+    section_reason: dict[str, list[int]] = {s: [] for s in READINESS_SECTIONS}
+    for o in perf:
+        s = o.get("section")
+        if s in section_reason:
+            section_reason[s].append(1 if o.get("correct") else 0)
+
     # per-section memory (mean recall), used both to prior the projection and for
     # the paraphrase test
     section_r: dict[str, list[float]] = {s: [] for s in SECTIONS}
@@ -702,6 +1052,12 @@ def gather(
     )
     mistakes = scoring.mistake_taxonomy(
         [(o.get("section"), o.get("reason")) for o in perf if not o.get("correct")], cfg
+    )
+    # Second axis of the same diagnosis: which SIRS skill the misses cluster in.
+    # Skill is the question's author-tag (sync-safe, off the anchor card), so this
+    # reads it straight off each wrong outcome, same source as the cause above.
+    skills = scoring.skill_taxonomy(
+        [(o.get("section"), o.get("skill")) for o in perf if not o.get("correct")], cfg
     )
 
     # pacing coach: time per question vs the real section budget. ms comes from
@@ -817,6 +1173,19 @@ def gather(
         cards_studied=len(r_values),
         reasoning_today=reasoning_today,
     )
+    # Exam-countdown-aware DEFAULT split of the daily reasoning goal across
+    # sections: heavier, thinner sections get more of it as the exam nears. Uses
+    # the same AAMC weights and depth-aware coverage the dashboard already shows,
+    # and the same days_left as the trajectory. Only the DEFAULT suggestion; a
+    # manual section choice (practice.js) is never seen here. CARS has no outline
+    # weight, so it is naturally left out (never fabricated).
+    pace.reasoning_focus = scoring.reasoning_focus(
+        pace.reasoning_per_day,
+        {s: outline.section_weight(s) for s in outline.sections},
+        topic_coverage_by_section,
+        days_left,
+        cfg,
+    )
 
     return Dashboard(
         memory=memory,
@@ -832,6 +1201,9 @@ def gather(
         best_next=best_next,
         next_topics=next_topics,
         topic_gaps=topic_gaps,
+        section_outcomes={s: list(v) for s, v in section_outcomes.items()},
+        section_reason={s: list(v) for s, v in section_reason.items()},
+        section_recall={s: round(v, 3) for s, v in section_recall.items()},
         book_set=_book_set(col),
         updated_ts=int(time.time()),
         ai_used=False,
@@ -843,6 +1215,7 @@ def gather(
         study_pace=pace,
         confidence=confidence,
         mistakes=mistakes,
+        skills=skills,
         pacing=pacing,
         trajectory=traj,
     )

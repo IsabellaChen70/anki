@@ -294,22 +294,22 @@
       "reason": "grounding:numeric_conflict"
     },
     {
-      "answer": "Most enzymes in the human body work fastest near 40 degrees Celsius, and excessi",
-      "coverage": 0.938,
+      "answer": "During translation, the ribosome reads the messenger RNA in seven-base codons an",
+      "coverage": 0.923,
       "gate_verdict": "wrong",
       "gold": "wrong",
-      "locator": "src_chapter_metabolism#s5",
+      "locator": "src_central_dogma#s3",
       "match": true,
       "op": "numeric",
       "published": false,
       "reason": "grounding:numeric_conflict"
     },
     {
-      "answer": "Glycolysis takes place in the cytoplasm and cleaves a single six-carbon glucose ",
-      "coverage": 0.917,
+      "answer": "Most enzymes in the human body work fastest near 40 degrees Celsius, and excessi",
+      "coverage": 0.938,
       "gate_verdict": "wrong",
       "gold": "wrong",
-      "locator": "src_chapter_metabolism#s9",
+      "locator": "src_chapter_metabolism#s5",
       "match": true,
       "op": "numeric",
       "published": false,

@@ -11,6 +11,8 @@ thin or the range is wide).
 
 from __future__ import annotations
 
+import dataclasses
+
 import pytest
 
 from anki.vantage import outline as outline_mod
@@ -19,10 +21,12 @@ from anki.vantage.scoring import (
     HIGH,
     INSUFFICIENT,
     SECTIONS,
+    CarsPace,
     IrtItem,
     ScoringConfig,
     brier,
     calibration,
+    cars_pacing,
     concept_transfer_gaps,
     confidence_calibration,
     give_up,
@@ -37,6 +41,10 @@ from anki.vantage.scoring import (
     pacing_coach,
     performance_score,
     readiness,
+    reasoning_focus,
+    resolve_focus_section,
+    section_should_mix,
+    skill_taxonomy,
     study_pace,
     theta_to_scale,
     trajectory,
@@ -168,6 +176,63 @@ def test_give_up_passes_when_both_met():
     abstain, reasons = give_up(n_reviews=500, coverage=0.80, cfg=CFG)
     assert not abstain
     assert reasons == []
+
+
+# --------------------------------------------------------------------------- #
+# automatic per-section topic interleaving (maturity gate). Blocked is the honest
+# default; a section mixes only once enough of its review-stage cards have matured.
+# Defaults under test: min_review_cards=12, mature_fraction=0.60.
+# --------------------------------------------------------------------------- #
+def test_section_should_mix_when_enough_cards_matured():
+    # 20 review-stage cards, 15 mature (75%, above the 60% line) -> Mixed.
+    mixed, reason = section_should_mix(mature_count=15, review_count=20, cfg=CFG)
+    assert mixed
+    assert reason == "enough cards have matured"
+
+
+def test_section_should_mix_abstains_below_min_review_cards():
+    # Ratio is 100% mature, but too few graduated cards to judge -> stay Blocked.
+    mixed, reason = section_should_mix(mature_count=11, review_count=11, cfg=CFG)
+    assert not mixed
+    assert reason == "not enough graduated cards yet"
+
+
+def test_section_should_mix_abstains_while_consolidating():
+    # Enough cards to judge, but under the mature fraction -> Blocked, consolidating.
+    mixed, reason = section_should_mix(mature_count=7, review_count=20, cfg=CFG)
+    assert not mixed
+    assert reason == "still consolidating"
+
+
+def test_section_should_mix_count_boundary_is_inclusive():
+    # Exactly min_review_cards (12) is enough to judge; 11 is one too few.
+    assert section_should_mix(12, 12, CFG)[0] is True
+    below = section_should_mix(11, 11, CFG)
+    assert below[0] is False
+    assert below[1] == "not enough graduated cards yet"
+
+
+def test_section_should_mix_fraction_boundary_is_inclusive():
+    # 60% mature exactly flips to Mixed (>=); one card short stays Blocked.
+    at = section_should_mix(12, 20, CFG)  # 12/20 == 0.60
+    assert at[0] is True
+    short = section_should_mix(11, 20, CFG)  # 11/20 == 0.55
+    assert short[0] is False
+    assert short[1] == "still consolidating"
+
+
+def test_section_should_mix_no_cards_is_blocked():
+    mixed, reason = section_should_mix(0, 0, CFG)
+    assert not mixed
+    assert reason == "not enough graduated cards yet"
+
+
+def test_section_should_mix_threshold_is_configurable_not_hardcoded():
+    # A stricter config (needs 90% mature) keeps an 80%-mature section Blocked,
+    # proving the gate reads ScoringConfig, not a hardcoded literal.
+    strict = dataclasses.replace(CFG, interleave_mature_fraction=0.90)
+    assert section_should_mix(16, 20, CFG)[0] is True  # 80% >= 60% default
+    assert section_should_mix(16, 20, strict)[0] is False  # 80% < 90%
 
 
 # --------------------------------------------------------------------------- #
@@ -521,6 +586,83 @@ def test_study_pace_handles_exam_today_without_dividing_by_zero():
 
 
 # --------------------------------------------------------------------------- #
+# exam-countdown-aware default reasoning split (study-plan rebalancing)
+# --------------------------------------------------------------------------- #
+# A deliberately lopsided scenario: bio_biochem is the HEAVY, UNDER-covered
+# section; the other two are lighter and well covered. CARS carries no outline
+# weight (it never enters coverage), so it must never appear in the split.
+_FOCUS_W = {"bio_biochem": 0.50, "chem_phys": 0.30, "psych_soc": 0.20, "cars": 0.0}
+_FOCUS_COV = {"bio_biochem": 0.20, "chem_phys": 0.90, "psych_soc": 0.90}
+
+
+def test_reasoning_focus_far_date_is_weight_proportional_breadth():
+    # Far from the exam, the default split is pure breadth: proportional to each
+    # section's exam weight, no coverage-driven concentration yet.
+    f = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 120, CFG)
+    assert f.has_focus and f.concentration == 0.0
+    tgt = {r.section: r.target for r in f.by_section}
+    assert tgt == {"bio_biochem": 6, "chem_phys": 4, "psych_soc": 2}  # ~ 0.50/0.30/0.20
+    assert f.default_section == "bio_biochem"  # the heaviest section leads
+    assert sum(tgt.values()) == 12
+    assert "cars" not in tgt  # no outline weight -> never fabricated
+
+
+def test_reasoning_focus_shifts_toward_heavy_undercovered_as_exam_nears():
+    # THE feature: as days-to-exam shrinks, the default split leans toward the
+    # heavy AND under-covered section (bio_biochem) and away from the covered ones.
+    far = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 120, CFG)
+    near = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 3, CFG)
+    far_bio = next(r.target for r in far.by_section if r.section == "bio_biochem")
+    near_bio = next(r.target for r in near.by_section if r.section == "bio_biochem")
+    assert far_bio == 6 and near_bio == 10  # real before/after
+    assert near_bio > far_bio
+    assert near.concentration > far.concentration  # 0.95 vs 0.0
+    far_psych = next(r.target for r in far.by_section if r.section == "psych_soc")
+    near_psych = next(r.target for r in near.by_section if r.section == "psych_soc")
+    assert near_psych < far_psych  # the light, covered section gives up its share
+    assert sum(r.target for r in near.by_section) == 12  # still the same daily budget
+
+
+def test_reasoning_focus_never_overrides_a_manual_section_choice():
+    # bio_biochem is the rebalanced default near the exam, but the student picked
+    # psych_soc. The manual choice must win, near OR far, and the split itself must
+    # be identical whether or not a manual choice exists (it is never an input).
+    near = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 3, CFG)
+    far = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 120, CFG)
+    assert near.default_section == "bio_biochem" != "psych_soc"
+    assert resolve_focus_section("psych_soc", near) == ("psych_soc", True)
+    assert resolve_focus_section("psych_soc", far) == ("psych_soc", True)
+    # No manual choice -> fall back to the rebalanced default.
+    assert resolve_focus_section(None, near) == ("bio_biochem", False)
+    assert resolve_focus_section("", near) == ("bio_biochem", False)
+    # The split does not depend on any manual choice, so it structurally cannot
+    # change one: bio 10 / chem 1 / psych 1 regardless.
+    assert [r.target for r in near.by_section] == [10, 1, 1]
+
+
+def test_reasoning_focus_targets_always_sum_to_budget_and_skip_cars():
+    for dte in (None, 0, 3, 45, 120, 400):
+        f = reasoning_focus(15, _FOCUS_W, _FOCUS_COV, dte, CFG)
+        assert sum(r.target for r in f.by_section) == 15
+        assert {r.section for r in f.by_section} == {"bio_biochem", "chem_phys", "psych_soc"}
+
+
+def test_reasoning_focus_abstains_with_no_weighted_sections():
+    # CARS only (no outline weight anywhere) -> nothing honest to split.
+    f = reasoning_focus(10, {"cars": 0.0}, {}, 3, CFG)
+    assert f.has_focus is False and f.default_section is None and f.by_section == []
+
+
+def test_reasoning_focus_concentration_is_config_driven_not_hardcoded():
+    # The shift is governed entirely by ScoringConfig: zero it out and near == far.
+    flat = dataclasses.replace(CFG, pace_focus_max=0.0)
+    near = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 3, flat)
+    far = reasoning_focus(12, _FOCUS_W, _FOCUS_COV, 120, flat)
+    assert near.concentration == 0.0
+    assert [r.target for r in near.by_section] == [r.target for r in far.by_section]
+
+
+# --------------------------------------------------------------------------- #
 # confidence calibration (metacognition)
 # --------------------------------------------------------------------------- #
 def test_confidence_abstains_below_threshold():
@@ -566,6 +708,48 @@ def test_mistake_taxonomy_finds_top_reason_and_section():
 
 
 # --------------------------------------------------------------------------- #
+# SIRS skill taxonomy (what kind of thinking a miss tests)
+# --------------------------------------------------------------------------- #
+def test_skill_taxonomy_abstains_below_threshold():
+    s = skill_taxonomy([("chem_phys", "data")] * 3, CFG)
+    assert s.abstained and s.top_skill is None and s.n_wrong == 3
+
+
+def test_skill_taxonomy_finds_top_skill_and_section():
+    wrong = (
+        [("bio_biochem", "data")] * 4
+        + [("chem_phys", "reasoning")] * 2
+        + [("bio_biochem", "concepts")]
+    )
+    s = skill_taxonomy(wrong, CFG)
+    assert not s.abstained and s.n_wrong == 7
+    assert s.top_skill == "data" and s.top_section == "bio_biochem"
+    assert s.by_skill["data"] == 4
+
+
+def test_skill_taxonomy_ignores_untagged_and_unknown_skills():
+    # None (CARS / untagged) and unknown ids are not counted, so a real weakness is
+    # never invented from items that never named a skill.
+    wrong = (
+        [("bio_biochem", "data")] * 4
+        + [("cars", None)] * 3
+        + [("chem_phys", "not_a_skill")] * 3
+    )
+    s = skill_taxonomy(wrong, CFG)
+    assert not s.abstained and s.n_wrong == 4
+    assert set(s.by_skill) == {"data"}
+
+
+def test_skill_taxonomy_is_independent_of_mistake_cause():
+    # Same misses, two axes: the cause can be "trap" while the skill is "data".
+    # The two taxonomies read different fields and must not collapse into one.
+    m = mistake_taxonomy([("bio_biochem", "trap")] * 4, CFG)
+    s = skill_taxonomy([("bio_biochem", "data")] * 4, CFG)
+    assert m.top_reason == "trap"
+    assert s.top_skill == "data"
+
+
+# --------------------------------------------------------------------------- #
 # pacing coach
 # --------------------------------------------------------------------------- #
 def test_pacing_abstains_below_threshold():
@@ -587,6 +771,86 @@ def test_pacing_on_pace_finishes_with_spare():
     p = pacing_coach(items, CFG)
     sp = next(s for s in p.sections if s.section == "bio_biochem")
     assert sp.on_pace is True and sp.projected_left == 0 and sp.spare_min > 0
+
+
+# --------------------------------------------------------------------------- #
+# CARS pacing (time per passage vs the real exam's per-passage budget)
+# --------------------------------------------------------------------------- #
+def test_cars_pacing_abstains_on_thin_data():
+    # fewer than min_pace_cars (12) timed CARS questions -> honest give-up, no pace
+    c = cars_pacing([("cars", 120000)] * 6, CFG)
+    assert c.abstained is True
+    assert c.n == 6
+    # never a placeholder / fabricated pace when abstaining
+    assert c.per_passage_min == 0.0 and c.over_budget_pct == 0
+
+
+def test_cars_pacing_reports_over_budget_from_actual_times():
+    # 140s per CARS question is well over the ~101.9s per-question budget, so the
+    # projected passage time runs over the 10 min per-passage budget.
+    c = cars_pacing([("cars", 140000)] * 12, CFG)
+    assert c.abstained is False and c.on_pace is False
+    assert c.target_passage_min == 10.0
+    assert c.per_passage_min > c.target_passage_min
+    # 140s * (53/9 questions per passage) / 60 ~= 13.7 min per passage, ~37% over
+    assert c.per_passage_min == pytest.approx(13.7, abs=0.2)
+    assert c.over_budget_pct == 37
+    assert c.median_sec == 140.0
+
+
+def test_cars_pacing_reports_on_pace_when_fast_enough():
+    # 80s per CARS question is under the ~101.9s budget: passages finish inside 10 min
+    c = cars_pacing([("cars", 80000)] * 12, CFG)
+    assert c.abstained is False and c.on_pace is True
+    assert c.over_budget_pct <= 0
+    assert c.per_passage_min < c.target_passage_min
+    assert c.per_passage_min == pytest.approx(7.9, abs=0.2)
+
+
+def test_cars_pacing_reflects_actual_times_not_a_constant():
+    # a genuinely slower reader must read as slower per passage and more over budget,
+    # proving the feedback tracks the real per-question times rather than a constant.
+    slow = cars_pacing([("cars", 200000)] * 12, CFG)
+    slower = cars_pacing([("cars", 260000)] * 12, CFG)
+    assert slower.per_passage_min > slow.per_passage_min
+    assert slower.over_budget_pct > slow.over_budget_pct
+    assert slow.median_sec == 200.0 and slower.median_sec == 260.0
+
+
+def test_cars_pacing_target_derives_from_config_passage_count():
+    # the per-passage budget is 90 min / cars_exam_passages, a tunable, not a literal
+    cfg = ScoringConfig(cars_exam_passages=6)
+    c = cars_pacing([("cars", 120000)] * 12, cfg)
+    assert c.target_passage_min == pytest.approx(15.0)  # 90 / 6
+
+
+def test_pacing_coach_attaches_cars_and_science_unchanged():
+    # CARS over budget, chem/phys comfortably on pace, in one call
+    items = [("cars", 140000)] * 12 + [("chem_phys", 70000)] * 8
+    p = pacing_coach(items, CFG)
+    assert p.abstained is False
+    # the science section pace is unchanged by adding the CARS view (no regression)
+    cp = next(s for s in p.sections if s.section == "chem_phys")
+    assert cp.on_pace is True and cp.projected_left == 0 and cp.spare_min > 0
+    # the CARS passage view is attached and reflects the over-budget CARS times
+    assert isinstance(p.cars, CarsPace)
+    assert p.cars.abstained is False and p.cars.on_pace is False
+    assert p.cars.over_budget_pct > 0
+
+
+def test_pacing_coach_cars_abstains_when_cars_sample_thin():
+    # plenty of science pacing but only a few CARS: science shows, CARS view abstains
+    items = [("chem_phys", 70000)] * 8 + [("cars", 120000)] * 4
+    p = pacing_coach(items, CFG)
+    assert p.abstained is False
+    assert any(s.section == "chem_phys" for s in p.sections)
+    assert p.cars is not None and p.cars.abstained is True and p.cars.n == 4
+
+
+def test_pacing_coach_no_cars_view_when_overall_abstains():
+    # below the overall pacing gate: no CARS pace is fabricated
+    p = pacing_coach([("cars", 120000)] * 5, CFG)
+    assert p.abstained is True and p.cars is None
 
 
 # --------------------------------------------------------------------------- #

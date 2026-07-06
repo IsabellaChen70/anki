@@ -88,3 +88,28 @@ def test_science_questions_tag_real_concepts() -> None:
                 assert cid in valid, (
                     f"{sec}: concept {cid!r} is not an AAMC content category in the outline"
                 )
+
+
+# The four AAMC Scientific Inquiry and Reasoning Skills, mirror of scoring.SKILLS.
+# Kept as a literal so the content test does not import the scoring package.
+_VALID_SKILLS = {"concepts", "reasoning", "research", "data"}
+
+
+def test_skill_tags_are_valid_sirs_skills() -> None:
+    """The second miss axis. `skill` is optional (tagging is an ongoing pass), but
+    any value present must be one of the four AAMC SIRS ids, and CARS items carry
+    none (the SIRS describe the science sections; CARS is never modeled)."""
+    for sec, path in _bank_files():
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for p in data["passages"]:
+            for q in p["questions"]:
+                skill = q.get("skill")
+                if skill is None:
+                    continue
+                assert skill in _VALID_SKILLS, (
+                    f"{sec}: skill {skill!r} is not a valid SIRS id "
+                    f"({sorted(_VALID_SKILLS)}): {q['stem'][:60]}"
+                )
+                assert sec != "cars", (
+                    f"cars item carries a SIRS skill but CARS is not modeled: {q['stem'][:60]}"
+                )

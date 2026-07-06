@@ -1,0 +1,198 @@
+{
+  "allowed_reader": "ai/authored_cards.py",
+  "eval_modules_absent": [],
+  "eval_modules_scanned": [
+    "ai/eval_cardgen.py",
+    "ai/eval_cardcheck.py",
+    "ai/cardcheck_holdout.py",
+    "ai/eval_realtext_grounding.py",
+    "ai/eval_experiment_design.py",
+    "ai/eval_llm_seam.py",
+    "ai/canary.py",
+    "ai/chapter_cardgen.py",
+    "ai/cardgen.py",
+    "ai/checker.py",
+    "ai/quality.py",
+    "ai/retrieval.py",
+    "ai/sources.py",
+    "leakage_check.py",
+    "evaluate_memory.py",
+    "evaluate_performance.py",
+    "evaluate_paraphrase.py",
+    "ablation_interleave.py",
+    "score_mapping.py",
+    "scoring_parity_test.py"
+  ],
+  "generated_utc": "2026-07-06T02:20:49+00:00",
+  "gold_span_overlaps_informational": [
+    {
+      "card_id": "cg_1a_competitive",
+      "card_locator": "src_enzyme_inhibition#s1",
+      "gold_id": "g09",
+      "gold_locator": "src_enzyme_inhibition#s0-s1"
+    },
+    {
+      "card_id": "cg_1a_km",
+      "card_locator": "src_enzyme_kinetics#s3",
+      "gold_id": "g13",
+      "gold_locator": "src_enzyme_kinetics#s3"
+    },
+    {
+      "card_id": "cg_1a_km",
+      "card_locator": "src_enzyme_kinetics#s3",
+      "gold_id": "g32",
+      "gold_locator": "src_enzyme_kinetics#s3"
+    },
+    {
+      "card_id": "cg_1a_noncompetitive",
+      "card_locator": "src_enzyme_inhibition#s4",
+      "gold_id": "g11",
+      "gold_locator": "src_enzyme_inhibition#s3-s5"
+    },
+    {
+      "card_id": "cg_1a_vmax",
+      "card_locator": "src_enzyme_kinetics#s1",
+      "gold_id": "g31",
+      "gold_locator": "src_enzyme_kinetics#s1"
+    },
+    {
+      "card_id": "cg_1b_genetic_code",
+      "card_locator": "src_genetic_code#s0",
+      "gold_id": "g14",
+      "gold_locator": "src_genetic_code#s0-s1"
+    },
+    {
+      "card_id": "cg_1c_frameshift",
+      "card_locator": "src_genetic_code#s2",
+      "gold_id": "g15",
+      "gold_locator": "src_genetic_code#s2"
+    },
+    {
+      "card_id": "cg_1c_frameshift",
+      "card_locator": "src_genetic_code#s2",
+      "gold_id": "g37",
+      "gold_locator": "src_genetic_code#s2"
+    },
+    {
+      "card_id": "cg_1c_silent",
+      "card_locator": "src_genetic_code#s1",
+      "gold_id": "g14",
+      "gold_locator": "src_genetic_code#s0-s1"
+    },
+    {
+      "card_id": "cg_1c_silent",
+      "card_locator": "src_genetic_code#s1",
+      "gold_id": "g33",
+      "gold_locator": "src_genetic_code#s1"
+    },
+    {
+      "card_id": "cg_1d_etc",
+      "card_locator": "src_respiration#s2",
+      "gold_id": "g34",
+      "gold_locator": "src_respiration#s2"
+    },
+    {
+      "card_id": "cg_1d_fermentation",
+      "card_locator": "src_respiration#s3",
+      "gold_id": "g16",
+      "gold_locator": "src_respiration#s3"
+    },
+    {
+      "card_id": "cg_1d_fermentation",
+      "card_locator": "src_respiration#s3",
+      "gold_id": "g35",
+      "gold_locator": "src_respiration#s3"
+    },
+    {
+      "card_id": "cg_1d_glycolysis",
+      "card_locator": "src_respiration#s0",
+      "gold_id": "g17",
+      "gold_locator": "src_respiration#s0"
+    },
+    {
+      "card_id": "cg_5a_buffer",
+      "card_locator": "src_buffers#s0",
+      "gold_id": "g01",
+      "gold_locator": "src_buffers#s0"
+    },
+    {
+      "card_id": "cg_5a_henderson",
+      "card_locator": "src_buffers#s2",
+      "gold_id": "g28",
+      "gold_locator": "src_buffers#s2"
+    },
+    {
+      "card_id": "cg_5e_catalyst",
+      "card_locator": "src_catalysis#s0",
+      "gold_id": "g07",
+      "gold_locator": "src_catalysis#s0"
+    },
+    {
+      "card_id": "cg_5e_catalyst_equilibrium",
+      "card_locator": "src_catalysis#s2",
+      "gold_id": "g08",
+      "gold_locator": "src_catalysis#s2"
+    },
+    {
+      "card_id": "cg_5e_spontaneity",
+      "card_locator": "src_thermo#s2",
+      "gold_id": "g05",
+      "gold_locator": "src_thermo#s2"
+    },
+    {
+      "card_id": "cg_5e_spontaneity",
+      "card_locator": "src_thermo#s2",
+      "gold_id": "g38",
+      "gold_locator": "src_thermo#s2"
+    },
+    {
+      "card_id": "cg_6b_spacing",
+      "card_locator": "src_spacing#s0",
+      "gold_id": "g18",
+      "gold_locator": "src_spacing#s0"
+    },
+    {
+      "card_id": "cg_6b_testing",
+      "card_locator": "src_testing_effect#s0",
+      "gold_id": "g20",
+      "gold_locator": "src_testing_effect#s0"
+    },
+    {
+      "card_id": "cg_6b_testing",
+      "card_locator": "src_testing_effect#s0",
+      "gold_id": "g36",
+      "gold_locator": "src_testing_effect#s0"
+    },
+    {
+      "card_id": "cg_8b_fundamental_attribution_error",
+      "card_locator": "src_attribution#s1",
+      "gold_id": "g25",
+      "gold_locator": "src_attribution#s1"
+    },
+    {
+      "card_id": "cg_8b_self_serving_bias",
+      "card_locator": "src_attribution#s0",
+      "gold_id": "g24",
+      "gold_locator": "src_attribution#s0"
+    }
+  ],
+  "gold_text_near_dups_informational": [
+    {
+      "card_id": "cg_5e_catalyst",
+      "field": "stem",
+      "gold_id": "g07",
+      "similarity": 1.0
+    },
+    {
+      "card_id": "cg_6b_spacing",
+      "field": "stem",
+      "gold_id": "g18",
+      "similarity": 1.0
+    }
+  ],
+  "invariant": "no eval consumes card_items.json; the gold-set reuse is therefore non-contaminating",
+  "leak_cutoff": 0.8,
+  "no_eval_reads_card_items": true,
+  "note": "card_items.json is read ONLY by authored_cards.py (the offline generator) and by this checker. No eval/measurement module reads it, so the authored cards cannot change any eval score. The listed gold-set text/span overlaps are real and expected (the cards teach the same corpus facts the gold questions probe) and are informational, not leaks.",
+  "offenders": {}
+}

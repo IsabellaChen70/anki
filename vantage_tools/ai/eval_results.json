@@ -18,16 +18,16 @@
   "injection_canary_caught": true,
   "retrieval": {
     "baseline_bm25": {
-      "mrr": 0.736,
-      "recall@1": 0.66,
+      "mrr": 0.7211904761904762,
+      "recall@1": 0.64,
       "recall@3": 0.8,
       "recall@5": 0.82
     },
     "beats_baseline": true,
     "n_gold": 50,
     "vantage_rag": {
-      "mrr": 0.795,
-      "recall@1": 0.7,
+      "mrr": 0.7845238095238095,
+      "recall@1": 0.68,
       "recall@3": 0.86,
       "recall@5": 0.92
     }

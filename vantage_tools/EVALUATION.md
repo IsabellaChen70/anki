@@ -50,17 +50,17 @@ Result (seeded, deterministic):
 ```
 cards with recall + outcome: 1500  (fit 1200, held-out 300)
 predictor                 Brier       log-loss   (held-out, lower=better)
-FSRS predicted recall     0.1515      0.4659
-base-rate baseline        0.1720      0.5282
-skill: FSRS BEATS the baseline (+11.9% Brier)
+FSRS predicted recall     0.1534      0.4702
+base-rate baseline        0.1740      0.5329
+skill: FSRS BEATS the baseline (+11.8% Brier)
 
 reliability (held-out, 300 cards; pre-registered bins):
   bin              n     pred   observed   |gap|
   0.50-0.70       59    0.620      0.576   0.043
-  0.70-0.85      123    0.791      0.764   0.027
+  0.70-0.85      123    0.791      0.756   0.035
   0.85-0.95       75    0.898      0.893   0.004
   0.95-1.00       39    0.972      0.974   0.002
-calibration: ECE = 0.024  (cutoff 0.1) -> CALIBRATED
+calibration: ECE = 0.027  (cutoff 0.1) -> CALIBRATED
 ```
 
 (The lowest bin, 0.00–0.50, is genuinely thin — FSRS-6's heavy tail makes very-low-R
@@ -90,7 +90,8 @@ result: CONFIRMED (mixed << off < blocked)
 ```
 
 MIXED is deterministic (0.000 adjacency on every seed); OFF is the stock order
-(varies with card order) and always far above MIXED; BLOCKED groups by topic. This
+(now deterministic across runs via fixed card ids + ANKI_TEST_MODE) and always far
+above MIXED; BLOCKED groups by topic. This
 is the real, re-runnable engine measurement — the feature genuinely reorders the
 queue as designed.
 
@@ -102,9 +103,9 @@ varies:
 ```
 arm              null (g=0)   low (g=0.20)   mid (g=0.42)   high (g=0.60)
 mixed            0.510        0.555          0.605          0.646
-off              0.510        0.516          0.522          0.527
-blocked          0.510        0.470          0.425          0.389
-mixed - blocked  0.000        +0.086         +0.180         +0.257
+off              0.510        0.505          0.499          0.494
+blocked          0.510        0.471          0.428          0.392
+mixed - blocked  0.000        +0.084         +0.177         +0.253
 ```
 
 Honesty (the negative-result discipline the brief asks for): the **null control ties
@@ -114,7 +115,7 @@ model-dependent, NOT our measurement**: it plugs in a low/mid/high effect size f
 interleaving literature (Rohrer & Taylor; Brunmair & Richter's confusable-category
 moderator, mid ~ their g=0.42 mean) and would need a real cohort (Step 4) to confirm. We
 report the mechanism as measured and the learning gain as a *bounded projection*
-(mixed - blocked +0.09 to +0.26) — never as our own empirical result.
+(mixed - blocked +0.08 to +0.25) — never as our own empirical result.
 
 Note on arms: the `off` arm is `InterleaveMode::Off` on the **same fork engine** (a
 true feature on/off toggle), not a separately-built stock Anki binary.
@@ -131,11 +132,11 @@ Pinned by tests: `test_give_up_*`, `test_readiness_abstains_*`,
 
 ```
 export CARGO_TARGET_DIR=./target
-cargo test -p anki interleave                 # 11 Rust engine tests
+cargo test -p anki interleave                 # 15 Rust engine tests
 PYTHONPATH=pylib:out/pylib out/pyenv/bin/python -m pytest \
   pylib/tests/test_interleave.py \
   pylib/tests/test_vantage_scoring.py \
-  pylib/tests/test_vantage_collect.py         # 98 tests: scoring core + calibration + give-up
+  pylib/tests/test_vantage_collect.py         # 138 tests: scoring core + calibration + give-up
 
 just eval-all                                 # every seeded eval + safety check, one command
 ```
@@ -157,11 +158,13 @@ Re-run (from the repo root; `python3` or `out/pyenv/bin/python` give identical o
 
 ```
 just eval-ai                                 # all of the below, each writing a result JSON
-python3 vantage_tools/ai/eval_cardgen.py     # A retrieval, B checker, C AI-off, D canary
-python3 vantage_tools/ai/eval_cardcheck.py   # 3-way gate on 50 tuned cards (mechanics)
-python3 vantage_tools/ai/cardcheck_holdout.py# 3-way gate on an INDEPENDENT held-out set
-python3 vantage_tools/ai/eval_llm_seam.py    # a wired LLM's output is still fully screened
-python3 vantage_tools/ai/canary.py           # full prompt-injection canary report
+python3 vantage_tools/ai/eval_cardgen.py            # A retrieval, B checker, C AI-off, D canary
+python3 vantage_tools/ai/eval_cardcheck.py          # 3-way gate on 50 tuned cards (mechanics)
+python3 vantage_tools/ai/cardcheck_holdout.py       # 3-way gate on an INDEPENDENT held-out set
+python3 vantage_tools/ai/eval_realtext_grounding.py # same gate on REAL Wikipedia (CC BY-SA) text
+python3 vantage_tools/ai/eval_experiment_design.py  # same gate on the new experiment-design items
+python3 vantage_tools/ai/eval_llm_seam.py           # a wired LLM's output is still fully screened
+python3 vantage_tools/ai/canary.py                  # full prompt-injection canary report
 ```
 
 The three-way quality gate now runs **inline in `GenerationPipeline.run()`**, so a card
@@ -170,6 +173,15 @@ validates the gate's mechanics; the independent held-out (`cardcheck_holdout.py`
 from mechanical perturbations of real corpus sentences) tests generalization — it blocks
 22/22 wrong cards and publishes 14/14 useful, 0 wrong published. `eval_llm_seam.py` proves
 that even a wired model's hallucination / injection / fabricated-citation are all blocked.
+Two further evals broaden the proof: `eval_realtext_grounding.py` runs the identical
+held-out perturbation harness on **real, open-licensed text** (verbatim English-Wikipedia
+excerpts, CC BY-SA 4.0, in `realtext_corpus.json`), blocking **18/18** wrong cards and
+publishing **14/14** faithful ones (0 wrong published) on prose the project did not author;
+and `eval_experiment_design.py` runs the same grounding + quality gate over the 9
+newly-authored experiment-design (AAMC SIRS "research") questions, all **9/9** grounded and
+correct-useful with a cited source. (OpenStax was the obvious real source, but its 2e books
+are CC BY-NC-SA — NonCommercial, incompatible with this AGPL repo — so Wikipedia is used;
+see §6.5.)
 
 ### 6.1 Retrieval beats a baseline (recall@k on a gold set)
 
@@ -180,25 +192,30 @@ span` pairs (`gold_set.json`). Retrieval is deterministic; a hit means a returne
 chunk falls inside the gold sentence span.
 
 ```
-gold questions: 38   corpus chunks: 60
+gold questions: 50
 
-ALL gold questions (38):        R@1      R@3      R@5      MRR
-  baseline_bm25               78.9%    86.8%    89.5%    0.827
-  vantage_rag                 78.9%    94.7%    97.4%    0.866
+ALL gold questions (50):        R@1      R@3      R@5      MRR
+  baseline_bm25               64.0%    80.0%    82.0%    0.721
+  vantage_rag                 68.0%    86.0%    92.0%    0.785
 
-in-vocabulary subset (26):      R@1      R@3      R@5      MRR
-  baseline_bm25               92.3%   100.0%   100.0%    0.949
-  vantage_rag                 92.3%   100.0%   100.0%    0.949
+in-vocabulary subset (question shares the source's words):
+  baseline_bm25 and vantage_rag tie (expansion is inert when the direct
+  keyword match already ranks the right span at the top)
 
-vocabulary-mismatch subset (12, student jargon the source never spells out):
-  baseline_bm25               50.0%    58.3%    66.7%    0.562
-  vantage_rag                 50.0%    83.3%    91.7%    0.688
+vocabulary-mismatch subset (15, student jargon the source never spells out):
+  baseline_bm25               33.3%    53.3%    53.3%    0.422
+  vantage_rag                 40.0%    73.3%    86.7%    0.600
 
-result: Vantage BEATS BM25 (no recall@k regression; +7.9 pts R@3/R@5, MRR +0.039)
+  overall delta (baseline -> vantage):  R@3 80.0% -> 86.0% (+6.0 pts),
+  R@5 82.0% -> 92.0% (+10.0 pts),  MRR 0.721 -> 0.785 (+0.063)
+
+result: Vantage BEATS BM25 (no recall@k regression, higher MRR; ties in-vocabulary,
+wins on the vocabulary-mismatch subset)
 ```
 
 Honesty note: BM25 is a **strong** baseline on this small, clean corpus. The win is
-at **recall@3/@5 and MRR, not recall@1** — on the vocabulary-mismatch subset
+concentrated at **recall@3/@5 and MRR** (recall@1 also rises, 64.0 -> 68.0) — on the
+vocabulary-mismatch subset
 (students writing "Vmax", "Km", "ETC", "indel", "synonymous substitution" that the
 source only ever spells out longhand), BM25 alone misses or ranks low and synonym
 expansion pulls the right span into the top few. On in-vocabulary questions the two
@@ -218,16 +235,21 @@ Deliberately-unsupported "hallucinated" items (all should be rejected):
   u3_number_swap   rejected  cov=0.90  ['numeric_conflict']    ("100 to 1" vs source "ten to one")
   u4_contradiction rejected  cov=0.71  ['negation_conflict']   (osmosis "consumes ATP" vs "does not consume ATP")
 
-retrofit items (existing practice.js items, SourceRef attached): 8/9 supported, 0 false accepts
+retrofit items (existing practice.js items, SourceRef attached): 7/9 supported, 0 false accepts
+
+held-out labeled set (13 = 9 sourced + 4 hallucinated), cutoff 0.5:
+  accuracy 11/13 = 84.6%   wrong-answer rate 0/7 = 0.0%   false-reject rate 2/9 = 22.2%
 ```
 
 The safety-critical property holds: **0 unsupported claims accepted (0 false
 accepts)**. Limits (stated, not hidden): this is lexical overlap, not a trained
-entailment model, so it over-rejects some true-but-differently-worded claims — one
-retrofit item (`rf_cars_q4`, a verbose faithful paraphrase) is a false-reject at
-coverage 0.45, and a math-notation claim lands right on the 0.50 cutoff. Over-
-rejection is a UX cost; accepting a wrong claim would be the real harm, and the
-checker errs toward blocking.
+entailment model, so it over-rejects some true-but-differently-worded claims —
+**2 of 9 retrofit items are false-rejects (22.2%)**: `rf_cars_q4` (a verbose faithful
+paraphrase) at coverage 0.45 (low_coverage), and `rf_chemphys_q1_mathnotation` at
+coverage 0.50 (numeric_conflict, flagged by the tightened numeric-conflict rule that
+closed a real wrong-card hole the independent held-out set surfaced). Over-rejection
+is a UX cost; accepting a wrong claim would be the real harm, and the checker errs
+toward blocking.
 
 ### 6.3 AI is off by default
 
@@ -259,14 +281,19 @@ result: CANARY CAUGHT — the injection changed nothing
 ### 6.5 What this does and does not cover
 
 Covered: source traceability, sanitize-and-quarantine injection defense, a re-runnable
-retrieval baseline comparison, a grounding gate that blocks unsupported claims, an
-injection canary, and full AI-off operation. **Not** covered (design-only, see
-spec-ai-cardgen §0): a real LLM provider wired in (seam is disabled), embeddings/vector
-retrieval, application-item generation with cover-story variation, the three-way
-correct/wrong/bad-teaching quality classifier (only a two-way faithfulness gate exists),
-a true entailment checker, a 50-item gold set (38 built), and validation on a real MCAT
-cohort. The corpus and gold set are synthetic, so the numbers validate the **pipeline and
-method**, not a real cohort — the same honesty caveat as §2.
+retrieval baseline comparison on the 50-item gold set, a grounding gate that blocks
+unsupported claims (validated on the synthetic corpus AND, via
+`eval_realtext_grounding.py`, on real open-licensed English-Wikipedia text — CC BY-SA 4.0,
+prose the project did not author), the three-way correct/wrong/bad-teaching quality gate
+(live in the pipeline, validated on 50 tuned cards, an independent held-out set, and the 9
+experiment-design items), a wired but screened provider-agnostic LLM seam (off by default),
+an injection canary, and full AI-off operation. **Not** covered (design-only, see
+spec-ai-cardgen §0): a paid production LLM vendor wired into the shipped default,
+embeddings/vector retrieval, application-item generation with cover-story variation, a
+trained entailment/NLI checker, an in-app authoring UI, and validation on a real MCAT
+cohort. The retrieval corpus and gold set are still synthetic (the real-text eval covers
+grounding, not retrieval), so those numbers validate the **pipeline and method**, not a
+real cohort — the same honesty caveat as §2.
 
 ## 7. License
 

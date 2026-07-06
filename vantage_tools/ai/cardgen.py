@@ -277,6 +277,22 @@ class GenerationResult:
     topic_tag: str = ""
 
 
+@dataclass
+class GateOutcome:
+    """The verdict of the single per-candidate gate (see gate_candidate).
+
+    `published` is True only when the candidate cleared every stage; `reason` is
+    the human-readable block reason otherwise ("missing_source_ref", an injection
+    screen reason, or "<quality_verdict>:<reason>"). `grounding`/`verdict` are the
+    underlying results (None when the candidate was stopped before that stage)."""
+
+    candidate: Candidate
+    published: bool
+    reason: str = ""
+    grounding: CheckResult | None = None
+    verdict: "QualityResult | None" = None
+
+
 class GenerationPipeline:
     def __init__(
         self,
@@ -334,6 +350,56 @@ class GenerationPipeline:
                 return "payload_in_output"
         return None
 
+    def gate_candidate(
+        self, cand: Candidate, accepted_answers: list[str] | None = None
+    ) -> GateOutcome:
+        """The single per-candidate gate: SourceRef required -> injection screen ->
+        grounding check -> teaching-quality gate. Publishes only a grounded, useful,
+        cited candidate; blocks everything else with a logged reason.
+
+        This is the ONE place gating happens. `run()` (LLM/offline card generation)
+        loops it over its candidates, and any other consumer that needs the exact
+        same gate (e.g. source-traced explanations for missed reasoning questions)
+        calls it too, so the safety logic is reused and never forked. `accepted`
+        answers feed the duplicate signal; pass an empty/omitted list to gate a
+        stand-alone candidate (dup then never fires).
+        """
+        accepted_answers = list(accepted_answers or [])
+        # SourceRef is REQUIRED. A candidate whose citation does not resolve to a
+        # real corpus span is blocked before any check: honesty-first, no source,
+        # no publish. (Generation paths already validate refs, so this never fires
+        # for them; it is the enforced entry gate for every consumer.)
+        ref = cand.source_ref
+        doc = self.corpus.docs.get(ref.source_id) if ref is not None else None
+        if doc is None or not (0 <= ref.start <= ref.end < len(doc.sentences)):
+            return GateOutcome(candidate=cand, published=False, reason="missing_source_ref")
+
+        screen_reason = self._screen(cand)
+        if screen_reason:
+            return GateOutcome(candidate=cand, published=False, reason=screen_reason)
+
+        # Gate 1: faithfulness. Gate 2: teaching quality. A candidate must clear
+        # BOTH (verdict == correct_useful) before it can reach a student.
+        grounding: CheckResult = self.checker.check_ref(
+            cand.claim, cand.source_ref, self.corpus
+        )
+        verdict = self.quality.classify(
+            cand.stem, cand.answer, grounding, accepted_answers
+        )
+        cand.provenance["checker_coverage"] = round(grounding.coverage, 3)
+        cand.provenance["quality_verdict"] = verdict.verdict
+        if verdict.published:
+            return GateOutcome(
+                candidate=cand, published=True, grounding=grounding, verdict=verdict
+            )
+        return GateOutcome(
+            candidate=cand,
+            published=False,
+            reason=f"{verdict.verdict}:{verdict.reason}",
+            grounding=grounding,
+            verdict=verdict,
+        )
+
     def run(
         self, topic_query: str, topic_tag: str = "", k: int = 3
     ) -> GenerationResult:
@@ -348,25 +414,12 @@ class GenerationPipeline:
         blocked: list[tuple[Candidate, str]] = []
         accepted_answers: list[str] = []  # dup signal is measured against these
         for cand in candidates:
-            screen_reason = self._screen(cand)
-            if screen_reason:
-                blocked.append((cand, screen_reason))
-                continue
-            # Gate 1: faithfulness. Gate 2: teaching quality. A card must clear BOTH
-            # (verdict == correct_useful) before it can reach a student.
-            grounding: CheckResult = self.checker.check_ref(
-                cand.claim, cand.source_ref, self.corpus
-            )
-            verdict = self.quality.classify(
-                cand.stem, cand.answer, grounding, accepted_answers
-            )
-            cand.provenance["checker_coverage"] = round(grounding.coverage, 3)
-            cand.provenance["quality_verdict"] = verdict.verdict
-            if verdict.published:
+            outcome = self.gate_candidate(cand, accepted_answers)
+            if outcome.published:
                 published.append(cand)
                 accepted_answers.append(cand.answer)
             else:
-                blocked.append((cand, f"{verdict.verdict}:{verdict.reason}"))
+                blocked.append((cand, outcome.reason))
         return GenerationResult(
             status="generated",
             published=published,

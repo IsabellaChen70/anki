@@ -19,10 +19,10 @@ covered by the one-command runners in the [justfile](../justfile) (`just eval-al
 ## Reproduce
 
 ```bash
-# Rust: the topic-interleaving engine change (11 unit tests)
+# Rust: the topic-interleaving engine change (15 unit tests)
 cargo test -p anki interleave
 
-# Python: interleaving end-to-end, the honest scoring layer, and the bank validator (113 tests)
+# Python: interleaving end-to-end, the honest scoring layer, and the bank validator (142 tests)
 PYTHONPATH=pylib:out/pylib ./out/pyenv/bin/python -m pytest \
   pylib/tests/test_interleave.py \
   pylib/tests/test_vantage_scoring.py \
@@ -36,7 +36,7 @@ just eval-all
 ## Rust engine change: `cargo test -p anki interleave`
 
 ```
-running 11 tests
+running 15 tests
 test scheduler::queue::builder::interleave::tests::off_mode_is_identity ... ok
 test scheduler::queue::builder::interleave::tests::single_topic_or_untagged_is_noop ... ok
 test scheduler::queue::builder::interleave::tests::deterministic_with_seed ... ok
@@ -48,8 +48,12 @@ test scheduler::queue::builder::interleave::tests::confusability_biases_confusab
 test scheduler::queue::builder::interleave::tests::weighted_deterministic_with_seed ... ok
 test scheduler::queue::builder::interleave::tests::empty_confusability_matches_naive ... ok
 test scheduler::queue::builder::interleave::tests::build_queues_handles_note_with_multiple_review_cards ... ok
+test scheduler::queue::builder::interleave::tests::empty_priorities_match_naive ... ok
+test scheduler::queue::builder::interleave::tests::priority_leads_the_rotation ... ok
+test scheduler::queue::builder::interleave::tests::topic_key_for_tags_policy ... ok
+test scheduler::queue::builder::interleave::tests::filtered_reschedule_deck_interleaves_reviews ... ok
 
-test result: ok. 11 passed; 0 failed; 0 ignored
+test result: ok. 15 passed; 0 failed; 0 ignored
 ```
 
 Coverage: MIXED never places two same-topic cards in a row **while ≥2 topic buckets
@@ -58,15 +62,20 @@ BLOCKED groups by topic; a single/untagged topic is a no-op; untagged cards buck
 together; `Off` is the exact identity; order is deterministic for a fixed seed; the
 confusability upgrade biases confusable pairs without starving others and is byte-identical
 to naive when unset; and a note with multiple review cards is handled during queue build.
+Four newer tests cover the topic-priority upgrade and its parity: a prioritized topic leads the
+rotation without starving others (`priority_leads_the_rotation`), empty or unmatched priorities stay
+byte-identical to naive (`empty_priorities_match_naive`), each card's topic key is the full
+topic-level tag resolved deterministically (`topic_key_for_tags_policy`), and a rescheduling filtered
+deck's reviews interleave through the same shared build path (`filtered_reschedule_deck_interleaves_reviews`).
 
-## Honest scoring + interleaving from Python: `pytest` (113 passed)
+## Honest scoring + interleaving from Python: `pytest` (142 passed)
 
 ```
 pylib/tests/test_interleave.py ........................................ 2 passed
-pylib/tests/test_vantage_scoring.py .................................. 67 passed
-pylib/tests/test_vantage_collect.py ................................... 41 passed
-pylib/tests/test_vantage_reasoning_bank.py ...... 3 passed
-================================ 113 passed ================================
+pylib/tests/test_vantage_scoring.py .................................. 94 passed
+pylib/tests/test_vantage_collect.py ................................... 42 passed
+pylib/tests/test_vantage_reasoning_bank.py ...... 4 passed
+================================ 142 passed ================================
 ```
 
 These cover: the outline + weighted coverage; the three scores (memory / performance /
@@ -77,7 +86,7 @@ interleaving RPC end-to-end (no two consecutive same-topic cards, undo + integri
 
 ## Reasoning question bank
 
-The application/reasoning practice bank ships **264 questions across 44 passages**: every AAMC science content category (Chem/Phys 10, Bio/Biochem 9, Psych/Soc 12) plus 11 original CARS passages. Every item is original; each science item is tagged to its AAMC concept (`vantage::concept::<id>`, which powers the per-concept transfer gap) and cites an OpenStax (CC BY 4.0) chapter as a verification anchor. The banks live in `vantage_addon/web/reasoning_bank.{cars,chem_phys,bio_biochem,psych_soc}.json`, are injected identically on desktop and mobile by `render.py`, and are validated by `pylib/tests/test_vantage_reasoning_bank.py` (well-formed items, in-range answers, no orphan concepts).
+The application/reasoning practice bank ships **519 questions across 88 passages**: every AAMC science content category (Chem/Phys 10, Bio/Biochem 9, Psych/Soc 12) plus 16 original CARS passages. Every item is original; each science item is tagged to its AAMC concept (`vantage::concept::<id>`, which powers the per-concept transfer gap) and, where tagged, to one of the four AAMC Scientific Inquiry and Reasoning Skills (`skill`, the second diagnostic axis; 423/519 items carry one so far), and cites an OpenStax (CC BY-NC-SA 4.0) chapter by name as a verification anchor (the question text is original; no OpenStax text is copied). The banks live in `vantage_addon/web/reasoning_bank.{cars,chem_phys,bio_biochem,psych_soc}.json`, are injected identically on desktop and mobile by `render.py`, and are validated by `pylib/tests/test_vantage_reasoning_bank.py` (well-formed items, in-range answers, no orphan concepts).
 
 ## Re-runnable evals + safety harness (committed artifacts)
 
@@ -85,7 +94,7 @@ Each writes a seeded result file; run individually or via `just eval-all`.
 
 | Area | Command (`just …` or script) | Artifact | Latest result |
 | --- | --- | --- | --- |
-| Memory calibration | `just eval-memory` | `memory_calibration.json` | beats base rate +11.9% Brier; ECE 0.024 (CALIBRATED) |
+| Memory calibration | `just eval-memory` | `memory_calibration.json` | beats base rate +11.8% Brier; ECE 0.027 (CALIBRATED) |
 | Performance calibration | `just eval-performance` | `performance_results.json` | beats base rate on held-out items |
 | Paraphrase transfer gap | `just eval-paraphrase` | `paraphrase_results.json` | transfer gap surfaced; 1 FN reported |
 | Interleaving ablation | `just ablation` | `ablation_results.json` | Part A MEASURED: mechanism CONFIRMED (mixed 0.000 < off ~0.16 < blocked 0.903; `off` = stock-order variance). Part B PROJECTED: null ties; bounded mixed-blocked +0.09..+0.26 (g 0.20/0.42/0.60), model-dependent |
@@ -93,6 +102,8 @@ Each writes a seeded result file; run individually or via `just eval-all`.
 | AI retrieval + grounding | `just eval-ai` | `eval_results.json` | beats BM25 (R@3 80→86); grounding 0 false accepts |
 | AI 3-way card gate (tuned) | `just eval-ai` | `cardcheck_results.json` | 34/8/8, 0 wrong published, 50/50 |
 | AI card gate (independent held-out) | `just eval-ai` | `cardcheck_holdout_results.json` | 22/22 wrong blocked, 14/14 useful published, SAFE |
+| AI grounding on REAL text (Wikipedia CC BY-SA 4.0) | `just eval-ai` | `realtext_grounding_results.json` | 18/18 wrong blocked, 14/14 useful published, 0 wrong published, SAFE |
+| AI experiment-design item gate (SIRS research) | `just eval-ai` | `experiment_design_results.json` | 9/9 grounded + correct-useful, 0 uncited published |
 | AI wired-LLM seam screening | `just eval-ai` | `llm_seam_results.json` | hallucination + injection + fabrication all blocked; AI-off holds |
 | Injection canary | `just eval-ai` | (stdout) | CAUGHT |
 | Offline degrade | `just offline-test` | `offline_results.json` | AI off + scores locally; graceful on network loss |
@@ -107,8 +118,8 @@ Each writes a seeded result file; run individually or via `just eval-all`.
 
 | Suite | Command | Result |
 | --- | --- | --- |
-| Rust engine change (interleaving) | `cargo test -p anki interleave` | **11 passed** |
-| Interleaving E2E + honest scoring (Python) | `pytest` (4 files) | **113 passed** |
-| Reasoning question bank (264 items, no orphan concepts) | `pytest test_vantage_reasoning_bank.py` | **validated** |
-| **Unit-test total** | | **124 passed, 0 failed** |
+| Rust engine change (interleaving) | `cargo test -p anki interleave` | **15 passed** |
+| Interleaving E2E + honest scoring (Python) | `pytest` (4 files) | **142 passed** |
+| Reasoning question bank (519 items, no orphan concepts) | `pytest test_vantage_reasoning_bank.py` | **validated** |
+| **Unit-test total** | | **157 passed, 0 failed** |
 | Re-runnable evals + safety | `just eval-all` | all pass (see table above) |

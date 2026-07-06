@@ -15,6 +15,13 @@ from pathlib import Path
 
 _WEB = Path(__file__).parent / "web"
 
+# How many of the thinnest flagged AAMC categories get an opt-in "generate cards"
+# suggestion. A UI knob (not a scoring threshold), so it lives here rather than in
+# ScoringConfig. Thinness itself is NEVER recomputed here: the suggestion reuses
+# collect.py's already-ranked `topic_gaps` (the coverage map's "Most topics left
+# to study" signal, which reads outline.py's per-category topic coverage).
+SUGGEST_MAX_THIN_CATEGORIES = 3
+
 FONT_HEAD = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">'
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
@@ -86,6 +93,31 @@ def _calibration(c) -> dict:
     }
 
 
+def _reasoning_focus(f) -> dict | None:
+    """Serialize the exam-countdown-aware default reasoning split, or None when
+    there is nothing to split (no exam-weighted sections)."""
+    if f is None or not getattr(f, "has_focus", False):
+        return None
+    return {
+        "has_focus": True,
+        "per_day": f.per_day,
+        "days_to_exam": f.days_to_exam,
+        "concentration": f.concentration,
+        "default_section": f.default_section,
+        "by_section": [
+            {
+                "section": r.section,
+                "weight": r.weight,
+                "coverage": r.coverage,
+                "gap": r.gap,
+                "share": r.share,
+                "target": r.target,
+            }
+            for r in f.by_section
+        ],
+    }
+
+
 def _study_pace(p) -> dict:
     if p is None:
         return {"has_exam_date": False}
@@ -105,6 +137,7 @@ def _study_pace(p) -> dict:
         "reasoning_per_day": p.reasoning_per_day,
         "flashcards_to_exam": getattr(p, "flashcards_to_exam", 0),
         "reasoning_to_exam": getattr(p, "reasoning_to_exam", 0),
+        "reasoning_focus": _reasoning_focus(getattr(p, "reasoning_focus", None)),
         "message": p.message,
     }
 
@@ -133,6 +166,20 @@ def _mistakes(m) -> dict:
     }
 
 
+def _skills(s) -> dict:
+    """The SIRS-skill axis of the miss diagnosis, same shape as _mistakes."""
+    if s is None:
+        return {"abstained": True, "items": []}
+    items = sorted(s.by_skill.items(), key=lambda kv: -kv[1])
+    return {
+        "abstained": s.abstained,
+        "n_wrong": s.n_wrong,
+        "top_skill": s.top_skill,
+        "top_section": s.top_section,
+        "items": [{"skill": k, "count": n} for k, n in items],
+    }
+
+
 def _plan(p) -> dict:
     def item(x) -> dict:
         return {"concept_id": x.concept_id, "name": x.name, "section": x.section, "recall": x.recall}
@@ -147,6 +194,21 @@ def _plan(p) -> dict:
 def _pacing(p) -> dict:
     if p is None:
         return {"abstained": True, "sections": []}
+    # CARS-only per-passage view (a speed signal, not a score). Present only when the
+    # scoring layer attached one; may itself be an honest abstain on thin CARS data.
+    cars = getattr(p, "cars", None)
+    cars_out = None
+    if cars is not None:
+        cars_out = {
+            "abstained": cars.abstained,
+            "n": cars.n,
+            "median_sec": cars.median_sec,
+            "target_sec": cars.target_sec,
+            "per_passage_min": cars.per_passage_min,
+            "target_passage_min": cars.target_passage_min,
+            "over_budget_pct": cars.over_budget_pct,
+            "on_pace": cars.on_pace,
+        }
     return {
         "abstained": p.abstained,
         "n": p.n,
@@ -158,6 +220,7 @@ def _pacing(p) -> dict:
             }
             for s in p.sections
         ],
+        "cars": cars_out,
     }
 
 
@@ -199,20 +262,149 @@ def _fluency(items, name_by_id: dict) -> list:
     return out
 
 
+def _second_look(collect, col) -> dict:
+    """The delayed re-test (second look) tallies: how many previously-missed
+    questions are due to re-attempt now, how many are still waiting on their delay,
+    and -- distinct from the original miss -- how many have since been corrected vs
+    are still failing. Raw counts only, never a modeled score. Guarded so it
+    degrades to an all-zero block rather than failing the whole dashboard."""
+    try:
+        return collect.second_look_status(col)
+    except Exception:
+        return {
+            "due": [],
+            "due_count": 0,
+            "scheduled_count": 0,
+            "corrected": 0,
+            "still_failing": 0,
+            "attempts": 0,
+        }
+
+
+def _last_sync_ms(col) -> int:
+    """The collection's last successful sync time in ms, read from the core `ls`
+    column (set by the Rust sync-finish path, persisted, per-device). 0 means never
+    synced. Guarded so a read failure degrades to the honest "never synced" state."""
+    try:
+        return int(col.db.scalar("select ls from col") or 0)
+    except Exception:
+        return 0
+
+
+def _flagged(col) -> dict:
+    """What the student flagged to revisit: a flashcard count plus the flagged
+    reasoning questions (section + stem + qid) to re-serve in practice. Raw reads
+    off Anki's native flag column, never a modeled score. A flagged reasoning
+    anchor is suspended (queue == -1), so it is excluded from the flashcard count
+    and surfaced as a question instead. Degrades to an empty block on any failure
+    (honesty-first: no fabricated entry point)."""
+    try:
+        card_count = (
+            col.db.scalar("select count() from cards where flags != 0 and queue >= 0")
+            or 0
+        )
+        rows = col.db.all(
+            "select n.tags, n.flds from cards c join notes n on c.nid = n.id "
+            "where c.flags != 0 and n.tags like '%vantage::reasoning::%'"
+        )
+        reasoning = []
+        for tags, flds in rows:
+            tags = tags or ""
+            section = qid = None
+            for t in tags.split():
+                if t.startswith("vantage::reasoning::"):
+                    section = t[len("vantage::reasoning::") :]
+                elif t.startswith("vantage::rq::"):
+                    qid = t[len("vantage::rq::") :]
+            stem = (flds or "").split("\x1f")[0]
+            if section and stem:
+                reasoning.append({"section": section, "stem": stem, "qid": qid})
+        return {"card_count": int(card_count), "reasoning": reasoning}
+    except Exception:
+        return {"card_count": 0, "reasoning": []}
+
+
+def card_suggestions(topic_gaps, limit: int = SUGGEST_MAX_THIN_CATEGORIES) -> list:
+    """The thinnest flagged categories to offer opt-in card generation for.
+
+    Pure reuse of the existing thin-category signal, not a new thinness rule:
+    `topic_gaps` is already the list of content areas with unstudied topics, ranked
+    heaviest-gap first by collect._topic_gaps (which reads
+    outline.topic_coverage_by_category). We take the top `limit` and keep the
+    fields the trigger needs (AAMC concept id, name, section, covered/total). A
+    category that is fully covered is never suggested (it isn't a gap), so the
+    student is only ever nudged toward areas outline.py already flags as thin.
+    """
+    out: list = []
+    cap = max(0, int(limit))
+    for g in topic_gaps or []:
+        if not isinstance(g, dict):
+            continue
+        cid = g.get("concept_id")
+        if not cid:
+            continue
+        covered = g.get("covered")
+        total = g.get("total")
+        # defensive: only a genuinely-thin category (some topics still unstudied)
+        if isinstance(covered, int) and isinstance(total, int) and covered >= total:
+            continue
+        out.append(
+            {
+                "concept_id": cid,
+                "name": g.get("name", ""),
+                "section": g.get("section", ""),
+                "covered": covered,
+                "total": total,
+            }
+        )
+        if len(out) >= cap:
+            break
+    return out
+
+
+def _section_maturity(col, scoring, cfg) -> dict:
+    """Per-section auto Mixed/Blocked status for the study launcher's read-only
+    label. Mirrors the reviewer's own decision (scoring.section_should_mix over the
+    section's review-stage cards), so the label matches what Flashcards will do. A
+    query failure degrades to no label, never a failed dashboard (honesty-first)."""
+    out: dict = {}
+    try:
+        for sec in scoring.SECTIONS:
+            ivls = col.db.list(
+                "select c.ivl from cards c join notes n on c.nid = n.id "
+                "where n.tags like ? and c.queue = 2",
+                f"%mcat::{sec}::%",
+            )
+            review = len(ivls)
+            mature = sum(1 for ivl in ivls if ivl >= cfg.interleave_mature_ivl_days)
+            mixed, reason = scoring.section_should_mix(mature, review, cfg)
+            out[sec] = {
+                "mixed": mixed,
+                "reason": reason,
+                "mature": mature,
+                "review": review,
+            }
+    except Exception:
+        return {}
+    return out
+
+
 def dashboard_dict(col) -> dict:
     # Prefer the copy shipped inside Anki; fall back to the add-on's vendored
     # snapshot when it is missing (e.g. a packaged build predating the module).
     try:
-        from anki.vantage import collect
+        from anki.vantage import collect, scoring
         from anki.vantage.outline import Outline
         from anki.vantage.scoring import SECTION_LABELS, ScoringConfig
     except ModuleNotFoundError:
-        from .vantage_core import collect
+        from .vantage_core import collect, scoring
         from .vantage_core.outline import Outline
         from .vantage_core.scoring import SECTION_LABELS, ScoringConfig
 
     d = collect.gather(col)
     cfg = ScoringConfig()
+    # The coverage map's thin-category signal, reused as-is (see card_suggestions).
+    topic_gaps = list(getattr(d, "topic_gaps", []) or [])
 
     # Concept id -> student-facing name, for the fluency-illusion list. Guarded so
     # a missing outline degrades to showing concept ids, never a failed dashboard.
@@ -231,17 +423,52 @@ def dashboard_dict(col) -> dict:
         "n_cards_seen": d.n_cards_seen,
         "ai_used": d.ai_used,
         "updated": time.strftime("%Y-%m-%d %H:%M", time.localtime(d.updated_ts)),
+        # Last successful sync, read straight from the collection's core-maintained
+        # `ls` column (ms; 0 == never synced). Not a scoring number: the web layer
+        # renders "Synced Xm ago" / "Never synced". Guarded so a read failure just
+        # shows "never synced" rather than breaking the dashboard.
+        "last_sync_ms": _last_sync_ms(col),
         "best_next": d.best_next,
         "next_topics": list(getattr(d, "next_topics", []) or []),
-        "topic_gaps": list(getattr(d, "topic_gaps", []) or []),
+        "topic_gaps": topic_gaps,
+        # Thin-category signal, capped, kept as a stable data field. The desktop web
+        # UI now offers generation inline on each "topics left to study" row (driven
+        # by topic_gaps + the __VANTAGE_CARDGEN__ host flag), so this is no longer a
+        # separate on-screen list; it reuses topic_gaps and decides nothing new
+        # about thinness.
+        "card_suggestions": card_suggestions(topic_gaps),
         "book_set": getattr(d, "book_set", "kaplan"),
         "section_labels": dict(SECTION_LABELS),
+        # Per-section auto Mixed/Blocked status for the study launcher's read-only
+        # label (rides along with the dashboard data; no extra pycmd round-trip).
+        "section_maturity": _section_maturity(col, scoring, cfg),
         "thresholds": {
             "memory_cards": cfg.min_cards_memory,
             "performance_outcomes": cfg.min_outcomes_performance,
             "reviews": cfg.giveup_min_reviews,
             "coverage": cfg.giveup_min_coverage,
+            # Per-section evidence gate the weak-spot quick jump reuses (the same
+            # gate readiness uses); the web layer only reads it, never hardcodes it.
+            "readiness_per_section": cfg.min_outcomes_readiness,
         },
+        # Per science section application outcomes (1/0), pass-through of the
+        # already-computed aggregate for the weak-spot quick jump. Read-only; the
+        # give-up rule still governs any score shown elsewhere.
+        "section_outcomes": {
+            s: list(v)
+            for s, v in (getattr(d, "section_outcomes", {}) or {}).items()
+        },
+        # Display-only per-section reasoning outcomes INCLUDING cars, so the CARS
+        # section card can show its accuracy. section_outcomes (3 sciences) still
+        # feeds every score; this parallel map only adds cars for the read-only card.
+        "section_reason": {
+            s: list(v)
+            for s, v in (getattr(d, "section_reason", {}) or {}).items()
+        },
+        # Per science-section mean FSRS recall R (0..1), the SAME memory signal the
+        # global Memory score uses, per section. Read-only pass-through so the
+        # Practice tab's per-section Flashcards bar shows real recall; feeds no score.
+        "section_recall": dict(getattr(d, "section_recall", {}) or {}),
         "memory": _pct_score(d.memory),
         "performance": _pct_score(d.performance),
         "readiness": _readiness(d.readiness),
@@ -250,9 +477,14 @@ def dashboard_dict(col) -> dict:
         "study_pace": _study_pace(getattr(d, "study_pace", None)),
         "confidence": _confidence(getattr(d, "confidence", None)),
         "mistakes": _mistakes(getattr(d, "mistakes", None)),
+        "skills": _skills(getattr(d, "skills", None)),
         "study_plan": _plan(getattr(d, "study_plan", None)),
         "pacing": _pacing(getattr(d, "pacing", None)),
         "trajectory": _trajectory(getattr(d, "trajectory", None)),
+        "second_look": _second_look(collect, col),
+        # What the student flagged to revisit (flashcard count + flagged reasoning
+        # questions). Raw reads off the native flag column; never a modeled score.
+        "flagged": _flagged(col),
     }
 
 
@@ -266,6 +498,8 @@ def _data_script(
     error: str | None = None,
     live: bool = False,
     initial_tab: str = "dashboard",
+    cardgen: bool = False,
+    mobile: bool = False,
 ) -> str:
     """Seed the window globals the web UI reads.
 
@@ -278,10 +512,24 @@ def _data_script(
     how returning from a study session lands the student back on Practice, the
     tab they launched from, instead of resetting to Dashboard. The web side
     validates it against its known tabs and defaults to Dashboard.
+
+    `cardgen` marks a host that can act on a card-generation suggestion (the
+    desktop add-on, whose _on_cmd routes the bridge command). It is DESKTOP-ONLY:
+    the bundled mobile page never sets it, so the opt-in suggestion never renders
+    on a device that has no generation pipeline to run.
+
+    `mobile` marks the bundled AnkiDroid page (window.__VANTAGE_MOBILE__). It is
+    MOBILE-ONLY (the mirror of `cardgen`): only build_mobile_page sets it, so the
+    shared web UI can branch on phone-specific behavior when needed. Desktop never
+    sets this flag.
     """
     parts = [f"window.__VANTAGE_INITIAL_TAB__ = {json.dumps(initial_tab)};"]
     if live:
         parts.append("window.__VANTAGE_LIVE__ = true;")
+    if cardgen:
+        parts.append("window.__VANTAGE_CARDGEN__ = true;")
+    if mobile:
+        parts.append("window.__VANTAGE_MOBILE__ = true;")
     if data is not None:
         parts.append(f"window.__VANTAGE__ = {json.dumps(data)};")
     else:
@@ -320,6 +568,29 @@ def _reasoning_bank_script() -> str:
     )
 
 
+# Source-traced explanations for missed reasoning questions. Generated offline by
+# vantage_tools/ai/explanations.py, which runs each candidate through the SAME card
+# gate (SourceRef required -> grounding check -> quality gate) and writes ONLY the
+# ones that passed to web/explanations.gated.json. Injected as one static source so
+# desktop and mobile show the identical, already-verified set; if the file is
+# missing the global is simply absent and practice.js shows nothing on a miss.
+def _explanations_script() -> str:
+    path = _WEB / "explanations.gated.json"
+    if not path.exists():
+        return ""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    gated = data.get("gated") or {}
+    if not gated:
+        return ""
+    return (
+        "<script>window.__VANTAGE_EXPLANATIONS__ = "
+        f"{json.dumps(gated, ensure_ascii=False)};</script>"
+    )
+
+
 def build_body(
     data: dict | None,
     error: str | None = None,
@@ -332,7 +603,8 @@ def build_body(
     js = (_WEB / "dashboard.js").read_text(encoding="utf-8")
     review_js = (_WEB / "reviewer.js").read_text(encoding="utf-8")
     practice_js = (_WEB / "practice.js").read_text(encoding="utf-8")
-    data_js = _data_script(data, error, live, initial_tab)
+    # cardgen=True: this desktop body's host (the add-on) can run generation.
+    data_js = _data_script(data, error, live, initial_tab, cardgen=True)
     return (
         f"<style>{css}{review_css}{practice_css}</style>"
         f'<div class="app" id="app"></div>'
@@ -340,6 +612,7 @@ def build_body(
         f"<script>{js}</script>"
         f"<script>{review_js}</script>"
         f"{_reasoning_bank_script()}"
+        f"{_explanations_script()}"
         f"<script>{practice_js}</script>"
     )
 
@@ -657,7 +930,8 @@ def build_practice_page() -> str:
     css = (_WEB / "practice.css").read_text(encoding="utf-8")
     js = (_WEB / "practice.js").read_text(encoding="utf-8")
     body = (
-        f"<style>{css}</style><div id='app'></div>{_reasoning_bank_script()}<script>{js}</script>"
+        f"<style>{css}</style><div id='app'></div>"
+        f"{_reasoning_bank_script()}{_explanations_script()}<script>{js}</script>"
         "<script>window.addEventListener('load',function(){vpractice.open();});</script>"
     )
     return (
@@ -716,7 +990,9 @@ def build_mobile_page(data: dict | None, error: str | None = None) -> str:
     # live=True mirrors the desktop honesty contract: the mobile page never falls
     # back to MOCK demo numbers; if the on-device compute fails it shows the error
     # card instead. The AnkiDroid host injects real scores right after load.
-    data_js = _data_script(data, error, live=True)
+    # mobile=True marks the page as the AnkiDroid host (window.__VANTAGE_MOBILE__)
+    # for any phone-specific web behavior.
+    data_js = _data_script(data, error, live=True, mobile=True)
     body = (
         f"<style>{css}{practice_css}</style>"
         f'<div class="app" id="app"></div>'
@@ -725,6 +1001,7 @@ def build_mobile_page(data: dict | None, error: str | None = None) -> str:
         f"<script>{data_js}</script>"
         f"<script>{js}</script>"
         f"{_reasoning_bank_script()}"
+        f"{_explanations_script()}"
         f"<script>{practice_js}</script>"
     )
     return (

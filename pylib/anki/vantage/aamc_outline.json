@@ -875,7 +875,9 @@
             "competitive_inhibition",
             "noncompetitive_inhibition",
             "allosteric_enzyme",
-            "feedback_inhibition"
+            "feedback_inhibition",
+            "vmax",
+            "michaelis_constant"
           ]
         }
       ]
@@ -1911,7 +1913,9 @@
             "working_memory",
             "long_term_potentiation",
             "forgetting",
-            "memory_dysfunction"
+            "memory_dysfunction",
+            "serial_position_effect",
+            "spacing_effect"
           ]
         },
         {

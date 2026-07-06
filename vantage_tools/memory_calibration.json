@@ -1,59 +1,59 @@
 {
-  "base_rate": 0.7875,
+  "base_rate": 0.8008,
   "beats_baseline": true,
-  "brier_baseline": 0.1506,
-  "brier_model": 0.1307,
+  "brier_baseline": 0.174,
+  "brier_model": 0.1534,
   "calibrated": true,
   "cohort": "simulated; validates calibration pipeline, not a real cohort",
   "design": "pipeline self-consistency: learner follows the model; predicted R = shipped extract_fsrs_retrievability; delay math checked via R(t=stability)=0.9",
-  "ece": 0.0381,
+  "ece": 0.0272,
   "ece_cutoff": 0.1,
   "fit_n": 1200,
   "held_out_frac": 0.2,
   "held_out_n": 300,
-  "logloss_baseline": 0.479,
-  "logloss_model": 0.4056,
+  "logloss_baseline": 0.5329,
+  "logloss_model": 0.4702,
   "n_cards": 1500,
   "reliability_bins": [
     {
-      "gap": 0.217,
+      "gap": 0.2248,
       "hi": 0.5,
       "lo": 0.0,
-      "mean_predicted": 0.4496,
-      "n": 12,
-      "observed_rate": 0.6667
+      "mean_predicted": 0.4748,
+      "n": 4,
+      "observed_rate": 0.25
     },
     {
-      "gap": 0.0457,
+      "gap": 0.0434,
       "hi": 0.7,
       "lo": 0.5,
-      "mean_predicted": 0.6171,
-      "n": 56,
-      "observed_rate": 0.5714
+      "mean_predicted": 0.6197,
+      "n": 59,
+      "observed_rate": 0.5763
     },
     {
-      "gap": 0.0009,
+      "gap": 0.035,
       "hi": 0.85,
       "lo": 0.7,
-      "mean_predicted": 0.7925,
-      "n": 121,
-      "observed_rate": 0.7934
+      "mean_predicted": 0.7911,
+      "n": 123,
+      "observed_rate": 0.7561
     },
     {
-      "gap": 0.0705,
+      "gap": 0.0043,
       "hi": 0.95,
       "lo": 0.85,
-      "mean_predicted": 0.9005,
-      "n": 69,
-      "observed_rate": 0.971
+      "mean_predicted": 0.8976,
+      "n": 75,
+      "observed_rate": 0.8933
     },
     {
-      "gap": 0.0306,
+      "gap": 0.002,
       "hi": 1.0,
       "lo": 0.95,
-      "mean_predicted": 0.9694,
-      "n": 42,
-      "observed_rate": 1.0
+      "mean_predicted": 0.9723,
+      "n": 39,
+      "observed_rate": 0.9744
     }
   ],
   "split_seed": 1234,

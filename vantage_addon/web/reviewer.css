@@ -33,6 +33,18 @@
 }
 .review__back:hover { background: rgba(255, 255, 255, 0.24); }
 .review__back:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+/* Feature 3: session countdown pill in the reviewer top bar. */
+.review__timer { font-weight: 800; font-size: 0.95rem; font-variant-numeric: tabular-nums;
+  color: #fff; background: rgba(255, 255, 255, 0.16); border-radius: 999px; padding: 0.3rem 0.8rem; }
+.review__timer--up { background: rgba(220, 38, 38, 0.30); color: #fecaca; }
+/* Feature 4: flag-to-revisit control in the reviewer top bar. */
+.review__flag { display: inline-flex; align-items: center; gap: 0.4rem; font-family: inherit;
+  font-weight: 600; font-size: 0.9rem; color: #fff; background: rgba(255, 255, 255, 0.14);
+  border: 0; border-radius: 6px; padding: 0.5rem 0.8rem; cursor: pointer; }
+.review__flag:hover { background: rgba(255, 255, 255, 0.24); }
+.review__flag:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.review__flag--on { background: #f59e0b; color: #1f2937; }
+.review__flagstar { font-size: 1rem; line-height: 1; }
 
 .review__stage { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 2.5rem 2rem 3rem; }
 .cardframe { width: 100%; max-width: 46rem; background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
@@ -63,6 +75,7 @@
 .review__done { max-width: 46rem; width: 100%; background: var(--muted); border-radius: 10px; padding: 2.25rem; }
 .review__done h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
 .review__done p { color: var(--gray-500); font-weight: 500; margin-top: 0.4rem; }
+.review__recap { margin-top: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--secondary-600, #059669); }
 .review__done .showbtn { width: auto; padding: 0 1.4rem; margin-top: 1.4rem; height: 2.9rem; }
 .review__donebtns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.4rem; }
 .review__donebtns .showbtn { margin-top: 0; }

@@ -58,7 +58,13 @@ import random
 import statistics
 import tempfile
 
-from anki.collection import Collection
+# Reproducibility: Anki seeds its interval fuzz from each card's (wall-clock) id, so
+# without this the reviewed intervals -- and every downstream arm outcome -- vary run
+# to run. ANKI_TEST_MODE is Anki's own switch to disable fuzz; set before the backend
+# loads so the ablation is deterministic and a third party reproduces these numbers.
+os.environ.setdefault("ANKI_TEST_MODE", "1")
+
+from anki.collection import Collection  # noqa: E402
 
 # Two confusable topic pairs (interleaving helps most for confusable categories).
 TOPICS = ["bio_glycolysis", "bio_gluconeogenesis", "psy_classical", "psy_operant"]
@@ -123,6 +129,13 @@ def build_due_collection(path: str, seed: int) -> Collection:
         note["Back"] = "x"
         note.tags = [f"mcat::sci::{t}"]
         col.add_note(note, did)
+    # Deterministic card ids: creation assigns wall-clock ids, so the natural queue
+    # order of the Off/Blocked arms (equal-due review cards, tie-broken by id) would
+    # vary run to run. Reassign ids in creation order (= this seed's shuffle) so the
+    # order stays realistic AND reproducible. Mixed already reorders deterministically.
+    old_cids = col.db.list("select id from cards order by id")
+    for idx, old in enumerate(old_cids):
+        col.db.execute("update cards set id=? where id=?", 100000 + idx, old)
     col.db.execute("update cards set queue=2, type=2, due=?, ivl=10", col.sched.today)
     return col
 

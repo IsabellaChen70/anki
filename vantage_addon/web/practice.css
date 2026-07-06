@@ -76,6 +76,12 @@ html, body {
 .feedback--ok { color: var(--ok); }
 .feedback--no { color: var(--no); }
 .explain { margin-top: 0.5rem; color: var(--gray-600); font-weight: 400; font-size: 0.92rem; line-height: 1.55; }
+/* source-checked explanation on a miss: only rendered when one passed the gate */
+.srcex { margin-top: 0.9rem; padding: 0.95rem 1.1rem; background: var(--ok-50); border-left: 3px solid var(--ok); border-radius: var(--radius); }
+.srcex__eyebrow { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ok); margin-bottom: 0.4rem; }
+.srcex__text { color: #1f2937; font-size: 0.92rem; line-height: 1.6; }
+.srcex__src { margin-top: 0.5rem; font-size: 0.78rem; color: var(--gray-500); font-style: italic; }
+.srcex__loc { font-style: normal; color: var(--gray-400); }
 .actions { margin-top: 1.4rem; display: flex; justify-content: flex-end; }
 .pbtn {
   font-family: inherit; font-weight: 700; font-size: 0.95rem; border: 0; border-radius: var(--radius);
@@ -114,25 +120,21 @@ html, body {
   .qcard { position: static; }
 }
 
-/* ---- Practice tab: timed-test setup ---- */
-.psetup { max-width: 40rem; margin-top: 1.75rem; }
-
-/* Study & practice (primary, wider) and Timed test (secondary, narrower) read as two
-   related panels side by side on wide viewports; on narrow ones (<= 820px, the existing
-   breakpoint) they fall back to the original stacked layout. Layout only. */
-.psplit { display: block; }
-/* Invisible header-height spacer: only used in the wide two-column layout to drop the
-   Timed test card down so its top lines up with the "Interleaved review" row (the first
-   study row) rather than the "Study & practice" heading. Auto-matches the header height. */
-.psplit__spacer { display: none; }
-@media (min-width: 821px) {
-  .psplit { display: flex; align-items: stretch; gap: 1.5rem; }
-  .psplit > .section { flex: 1 1 auto; min-width: 0; }
-  .psplit > .psetup { flex: 0 0 26rem; max-width: 26rem; margin: 2rem 0 0; padding: 0 2.5rem 0 0; display: flex; flex-direction: column; }
-  .psplit__spacer { display: block; margin-bottom: 1.1rem; }
-  /* Match the Timed test card's height to the study column (equal-height panels). */
-  .psplit > .psetup .psetup__card { flex: 1 1 auto; }
-}
+/* ---- Practice tab: Study + Test yourself zones ---- */
+/* The section-scoped Timed test and the Full-length exam are the same kind of feature
+   at different scope, so they share one grid: side by side on wide viewports, stacked
+   on narrow ones (<= 820px, the existing breakpoint). Same card box and equal width so
+   they read as siblings. Layout only. */
+/* Keep the two cards level: the grid stretches both columns to the taller one, and
+   each card is a column so its Start button drops to the bottom and the two line up
+   (same approach as .insightgrid--2 / .outlook on the dashboard). */
+/* The full-length exam is a distinct, larger tier beside the quick section test:
+   equal on a phone, but 1fr : 1.5fr on a wide viewport so the exam gets the room
+   its dark card needs. */
+.ptests { display: grid; gap: 1.25rem; grid-template-columns: 1fr; align-items: stretch; }
+@media (min-width: 821px) { .ptests { grid-template-columns: 1fr 1.5fr; } }
+.ptests > .psetup__card, .ptests > .pexam__card { display: flex; flex-direction: column; }
+.ptests .pbtn--start { margin-top: auto; }
 .psetup__card { background: var(--muted); border-radius: var(--radius); padding: 1.6rem; }
 .psetup__title { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
 .psetup__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; font-weight: 600; font-size: 0.95rem; }
@@ -147,6 +149,11 @@ html, body {
 /* ---- Test mode: countdown + badge ---- */
 .ptimer { font-weight: 800; font-size: 1rem; font-variant-numeric: tabular-nums; color: var(--fg); background: var(--muted); border-radius: 9999px; padding: 0.3rem 0.85rem; }
 .ptestbadge { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.09em; color: var(--cars-600); background: var(--cars-50); border-radius: 9999px; padding: 0.2rem 0.6rem; vertical-align: middle; }
+/* Feature 4: flag-to-revisit control in the practice / test top bar. */
+.pflag { font-family: inherit; font-weight: 600; font-size: 0.9rem; color: var(--gray-500); background: none; border: 0; cursor: pointer; padding: 0.3rem 0.2rem; }
+.pflag:hover { color: var(--fg); }
+.pflag--on { color: #d97706; }
+.pflag:focus-visible { outline: 2px solid var(--cars); outline-offset: 3px; border-radius: 4px; }
 
 /* ---- Test summary ---- */
 .psum__body { background: var(--muted); border-radius: var(--radius); padding: 2rem; max-width: 46rem; }
@@ -155,6 +162,16 @@ html, body {
 .psum__pct { color: var(--gray-500); font-weight: 600; }
 .psum__meta { display: flex; gap: 1.5rem; margin-top: 0.6rem; color: var(--gray-500); font-weight: 600; font-size: 0.9rem; flex-wrap: wrap; }
 .psum__note { margin-top: 1rem; color: var(--gray-600); font-size: 0.9rem; line-height: 1.5; }
+.psum__touch { margin-top: 0.7rem; font-weight: 700; font-size: 0.98rem; color: var(--ok); }
+
+/* ---- One-shot confetti celebration (reasoning recap + flashcard reviewer done) ---- */
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 2000; overflow: hidden; }
+.confetti__bit { position: absolute; top: -6vh; width: 9px; height: 9px; border-radius: 2px; opacity: 0.95; animation: confettiFall 2.4s linear forwards; }
+@keyframes confettiFall {
+  0% { transform: translateY(-6vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(108vh) rotate(540deg); opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
 .psum__misses { margin-top: 1.6rem; display: grid; gap: 0.9rem; }
 .psum__mh { font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-400); }
 .psum__miss { background: var(--bg); border: 1px solid var(--gray-200); border-left: 3px solid var(--no); border-radius: var(--radius); padding: 0.9rem 1.1rem; }
@@ -163,3 +180,57 @@ html, body {
 .psum__mx { margin-top: 0.35rem; font-size: 0.9rem; color: var(--gray-600); line-height: 1.5; }
 .psum__allright { margin-top: 1.4rem; font-weight: 700; color: var(--ok); }
 .psum__actions { margin-top: 1.6rem; display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }
+
+/* ---- Full-length exam: setup card ---- */
+/* The distinct, larger tier: a dark card (its own poster look) beside the light
+   Timed test card. Bigger title, a light description line, chip groups, and a blue
+   Start button so it reads as the headline of "Test yourself". */
+.pexam__card { position: relative; overflow: hidden; background: var(--fg); color: #fff; border-radius: var(--radius); padding: 1.9rem 2.1rem; }
+.pexam__card::after { content: ""; position: absolute; width: 13rem; height: 13rem; right: -4rem; bottom: -5rem; border-radius: 999px; background: var(--primary); opacity: 0.14; pointer-events: none; }
+.pexam__card > * { position: relative; }
+.pexam__title { font-weight: 800; font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.pexam__opts { display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; margin: 1.4rem 0 0.4rem; }
+.pexam__opt { display: flex; flex-direction: column; gap: 0.5rem; }
+.pexam__optlabel { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.09em; color: #9ca3af; }
+.pchips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pchip--on { border-color: var(--cars); background: var(--cars-50); color: var(--cars-600); font-weight: 700; }
+/* exam chips sit on the dark card, so they get their own light-on-dark treatment */
+.pexam__card .pchip { background: rgba(255, 255, 255, 0.08); color: #cbd5e1; border: 1px solid transparent; }
+.pexam__card .pchip:hover { border-color: rgba(255, 255, 255, 0.35); color: #fff; }
+.pexam__card .pchip--on { background: rgba(255, 255, 255, 0.16); color: #fff; border-color: transparent; font-weight: 700; }
+.pexam__card .pbtn--start { background: var(--primary); color: #fff; }
+.pexam__card .pbtn--start:hover { background: #2563eb; }
+.pexam__struct { margin: 0.6rem 0 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; max-width: 40rem; }
+
+/* ---- Full-length exam: break countdown ---- */
+.pbreak__body { max-width: 40rem; margin: 3rem auto 0; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.pbreak__timer { font-size: 4.5rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--cars-600); line-height: 1; }
+.pbreak__next { font-size: 1.15rem; font-weight: 700; }
+.pbreak__note { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; max-width: 32rem; }
+.pbreak__actions { margin-top: 0.6rem; }
+
+/* ---- Full-length exam: cross-section summary ---- */
+.pxrows { margin-top: 1.6rem; display: grid; gap: 0.7rem; }
+.pxrow { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "sec tally" "sub tally"; align-items: center; column-gap: 1rem; background: var(--bg); border: 1px solid var(--gray-200); border-left: 3px solid var(--cars); border-radius: var(--radius); padding: 0.9rem 1.1rem; }
+.pxrow--abstain { border-left-color: var(--gray-400); }
+.pxrow__sec { grid-area: sec; font-weight: 700; font-size: 1rem; }
+.pxrow__tally { grid-area: tally; text-align: right; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.pxrow--abstain .pxrow__tally { font-size: 0.95rem; font-weight: 700; color: var(--gray-500); }
+.pxrow__pct { margin-left: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-500); }
+.pxrow__sub { grid-area: sub; margin-top: 0.15rem; font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
+.progress--sec { color: var(--cars-600); font-weight: 700; }
+
+/* ---- Second look: delayed re-test of previously-missed questions ---- */
+/* Its own labeled queue, distinct from fresh practice; the due state uses the
+   CARS accent to read as an active call to action, the quiet state a neutral rule. */
+.slcard { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap;
+  margin: 1.75rem auto 0; max-width: 72rem; padding: 1.4rem 1.6rem;
+  background: var(--muted); border-radius: var(--radius); border-left: 3px solid var(--gray-400); }
+.slcard--due { background: var(--cars-50); border-left-color: var(--cars); }
+.slcard__body { min-width: 0; }
+.slcard__eyebrow { font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-500); }
+.slcard--due .slcard__eyebrow { color: var(--cars-600); }
+.slcard__title { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; margin-top: 0.3rem; }
+.slcard__sub { color: var(--gray-600); font-size: 0.92rem; margin-top: 0.3rem; line-height: 1.5; }
+.slcard__status { margin-top: 0.55rem; color: var(--gray-500); font-weight: 600; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.slcard__btn { flex: none; width: auto; padding: 0 1.5rem; }

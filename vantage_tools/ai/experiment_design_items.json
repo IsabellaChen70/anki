@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "about": "Grounding manifest for the NEW experiment-design (SIRS 'research') reasoning questions authored for the science banks.",
+    "important": "Mirrors each new item read-only (stem/correct_choice/claim) so the grounding+quality gate can verify it traces to a named source span, exactly like retrofit_items.json. `claim` is the item's `explain` in the bank.",
+    "source_ref": "source_ref = {source_id, start, end} into corpus.json (inclusive sentence indices).",
+    "version": "vantage-experiment-design.v1"
+  },
+  "items": [
+    {
+      "design_id": "ed_psych_soc_0",
+      "bank": "psych_soc",
+      "concept": "6B",
+      "skill": "research",
+      "stem": "To show that spaced study helps because it is spaced and not simply because the spaced group spent more total time studying, the design should include a group that:",
+      "correct_choice": "studies in one massed session but for the same total study time",
+      "claim": "Comparing the spaced group with a massed group matched on total study time shows the benefit comes from spacing rather than from the extra study time.",
+      "source_ref": {
+        "source_id": "src_spacing",
+        "start": 2,
+        "end": 2
+      }
+    },
+    {
+      "design_id": "ed_psych_soc_1",
+      "bank": "psych_soc",
+      "concept": "6B",
+      "skill": "research",
+      "stem": "In the first version, volunteers chose their own schedule. Why does letting them choose weaken any conclusion about spacing?",
+      "correct_choice": "People who choose to space may differ, for example in motivation, so self-selection is a confound that random assignment would remove",
+      "claim": "Randomly assigning participants to the spaced and massed groups controls for confounding differences such as motivation that self-selection would otherwise introduce.",
+      "source_ref": {
+        "source_id": "src_experimental_design",
+        "start": 5,
+        "end": 5
+      }
+    },
+    {
+      "design_id": "ed_psych_soc_2",
+      "bank": "psych_soc",
+      "concept": "6B",
+      "skill": "research",
+      "stem": "The team debates when to give the final recall test. For the spacing advantage to show up, the test should be given:",
+      "correct_choice": "after a delay of about a week",
+      "claim": "The spacing benefit is largest on a delayed test and can be hidden when retention is measured immediately after study, so the final test should be given after a delay.",
+      "source_ref": {
+        "source_id": "src_spacing",
+        "start": 3,
+        "end": 3
+      }
+    },
+    {
+      "design_id": "ed_bio_biochem_0",
+      "bank": "bio_biochem",
+      "concept": "1D",
+      "skill": "research",
+      "stem": "The drug is dissolved in alcohol before it is added. To be sure any drop in activity is caused by the drug and not the alcohol, the best control tube contains:",
+      "correct_choice": "the enzyme and substrate with the same amount of alcohol but no drug",
+      "claim": "A solvent control receives the same solvent but not the active substance, so any effect can be traced to the inhibitor rather than to the solvent it was dissolved in.",
+      "source_ref": {
+        "source_id": "src_experimental_design",
+        "start": 6,
+        "end": 6
+      }
+    },
+    {
+      "design_id": "ed_bio_biochem_1",
+      "bank": "bio_biochem",
+      "concept": "1D",
+      "skill": "research",
+      "stem": "To work out whether the drug is a competitive or a noncompetitive inhibitor, the most informative experiment measures the reaction rate:",
+      "correct_choice": "across a range of substrate concentrations, with and without the drug",
+      "claim": "A competitive inhibitor can be overcome by a large excess of substrate while a noncompetitive inhibitor cannot, so varying the substrate concentration with and without the inhibitor distinguishes the two.",
+      "source_ref": {
+        "source_id": "src_enzyme_inhibition",
+        "start": 1,
+        "end": 5
+      }
+    },
+    {
+      "design_id": "ed_bio_biochem_2",
+      "bank": "bio_biochem",
+      "concept": "1D",
+      "skill": "research",
+      "stem": "In one run the tube with the drug was kept several degrees colder than the untreated tube. Why does this weaken the conclusion that the drug slowed the enzyme?",
+      "correct_choice": "Temperature also changes enzyme activity, so it is a confound that could explain the difference on its own",
+      "claim": "Because temperature is itself a variable that changes reaction and enzyme rates, a colder inhibitor tube adds a confounding variable, so the difference in activity cannot be assigned to the inhibitor unless temperature is kept the same.",
+      "source_ref": {
+        "source_id": "src_experimental_design",
+        "start": 3,
+        "end": 4
+      }
+    },
+    {
+      "design_id": "ed_chem_phys_0",
+      "bank": "chem_phys",
+      "concept": "5E",
+      "skill": "research",
+      "stem": "The student both added the metal and stirred the flask. To show the metal, and not the stirring, sped up the reaction, the control flask should be:",
+      "correct_choice": "stirred the same way but with no metal added",
+      "claim": "The control is treated identically except for the one variable being tested, so any difference can be attributed to that variable and not to another factor such as the stirring.",
+      "source_ref": {
+        "source_id": "src_experimental_design",
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "design_id": "ed_chem_phys_1",
+      "bank": "chem_phys",
+      "concept": "5E",
+      "skill": "research",
+      "stem": "The class next wants to measure how temperature alone affects the rate. To test that fairly, they should:",
+      "correct_choice": "hold the concentrations and everything else constant and change only the temperature",
+      "claim": "To isolate the effect of temperature, the team holds all other conditions constant and changes only the temperature between trials, because temperature itself changes reaction rates.",
+      "source_ref": {
+        "source_id": "src_experimental_design",
+        "start": 2,
+        "end": 3
+      }
+    },
+    {
+      "design_id": "ed_chem_phys_2",
+      "bank": "chem_phys",
+      "concept": "5E",
+      "skill": "research",
+      "stem": "Two trials differed in both the amount of catalyst and the temperature, and the second trial was faster. The team cannot say what caused the speed-up because:",
+      "correct_choice": "the two changed variables are confounded, so the faster rate cannot be assigned to either one alone",
+      "claim": "Because both the catalyst amount and the temperature were changed at the same time, the two variables are confounded and the difference in the result cannot be assigned to either variable by itself.",
+      "source_ref": {
+        "source_id": "src_experimental_design",
+        "start": 4,
+        "end": 4
+      }
+    }
+  ]
+}

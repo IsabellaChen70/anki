@@ -1,0 +1,422 @@
+{
+  "all_sources_real": true,
+  "binary_agreement": 1.0,
+  "corpus": "real (English Wikipedia, CC BY-SA 4.0)",
+  "deterministic": true,
+  "indexed_chunks": 24,
+  "labels": "mechanical perturbation of real corpus sentences (independent of the gate)",
+  "llm_off": true,
+  "n_cards": 32,
+  "n_useful_gold": 14,
+  "n_wrong_gold": 18,
+  "quarantined_chunks": 0,
+  "rows": [
+    {
+      "answer": "A buffer solution is a solution where the pH does not change significantly on di",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_buffer#s0",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "Its pH changes very little when a small amount of strong acid or base is added t",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_buffer#s1",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "Buffer solutions are used as a means of keeping pH at a nearly constant value in",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_buffer#s2",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "Buffer solutions resist pH change because of a chemical equilibrium between the ",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_buffer#s3",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "For example, the bicarbonate buffering system is used to regulate the pH of bloo",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_buffer#s4",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "Catalysts are not consumed by the reaction and remain unchanged after the reacti",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_catalysis#s0",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "If the reaction is rapid and the catalyst is recycled quickly, a very small amou",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_catalysis#s1",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "The rate increase occurs because the catalyst allows the reaction to occur by an",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_catalysis#s2",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "The catalyst is not consumed in the reaction, and may be recovered unchanged and",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_catalysis#s3",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "Estimates are that 90% of all commercially produced chemical products involve ca",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_catalysis#s4",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "In causal inference, confounding is a form of systematic error (or bias) that ca",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_confounding#s0",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "Failure to control for a confounder results in a spurious association between ex",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_confounding#s1",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "The presence of confounders helps explain why correlation does not imply causati",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_confounding#s2",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "An enzyme inhibitor is a molecule that binds to an enzyme and blocks its activit",
+      "coverage": 1.0,
+      "gate_verdict": "correct_useful",
+      "gold": "correct_useful",
+      "locator": "src_wiki_enzyme_inhibitor#s0",
+      "match": true,
+      "op": "useful",
+      "published": true,
+      "reason": "ok"
+    },
+    {
+      "answer": "It is not true that its pH changes very little when a small amount of strong aci",
+      "coverage": 0.9,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s1",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that buffer solutions are used as a means of keeping pH at a near",
+      "coverage": 0.929,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s2",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that buffer solutions resist pH change because of a chemical equi",
+      "coverage": 0.933,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s3",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that for example, the bicarbonate buffering system is used to reg",
+      "coverage": 0.917,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s4",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that if the reaction is rapid and the catalyst is recycled quickl",
+      "coverage": 0.941,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s1",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that the rate increase occurs because the catalyst allows the rea",
+      "coverage": 0.929,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s2",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that estimates are that 90% of all commercially produced chemical",
+      "coverage": 0.923,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s4",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "It is not true that in causal inference, confounding is a form of systematic err",
+      "coverage": 0.923,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_confounding#s0",
+      "match": true,
+      "op": "negation",
+      "published": false,
+      "reason": "grounding:negation_conflict"
+    },
+    {
+      "answer": "Estimates are that 93% of all commercially produced chemical products involve ca",
+      "coverage": 0.917,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s4",
+      "match": true,
+      "op": "numeric",
+      "published": false,
+      "reason": "grounding:numeric_conflict"
+    },
+    {
+      "answer": "In a study conducted by Cepeda et al. (1003) participants who used spaced practi",
+      "coverage": 0.947,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_spacing#s2",
+      "match": true,
+      "op": "numeric",
+      "published": false,
+      "reason": "grounding:numeric_conflict"
+    },
+    {
+      "answer": "A buffer solution is a solution where the pH does not change significantly on di",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "Its pH changes very little when a small amount of strong acid or base is added t",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "Buffer solutions are used as a means of keeping pH at a nearly constant value in",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "Buffer solutions resist pH change because of a chemical equilibrium between the ",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "For example, the bicarbonate buffering system is used to regulate the pH of bloo",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_catalysis#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "Catalysts are not consumed by the reaction and remain unchanged after the reacti",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "If the reaction is rapid and the catalyst is recycled quickly, a very small amou",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s2",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    },
+    {
+      "answer": "The rate increase occurs because the catalyst allows the reaction to occur by an",
+      "coverage": 0.0,
+      "gate_verdict": "wrong",
+      "gold": "wrong",
+      "locator": "src_wiki_buffer#s0",
+      "match": true,
+      "op": "misattrib",
+      "published": false,
+      "reason": "grounding:low_coverage"
+    }
+  ],
+  "safe": true,
+  "sources": [
+    {
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Buffer solution' (https://en.wikipedia.org/wiki/Buffer_solution), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "license": "CC BY-SA 4.0",
+      "sentences": 5,
+      "source_id": "src_wiki_buffer",
+      "synthetic": false,
+      "title": "Buffer solution (English Wikipedia)"
+    },
+    {
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Catalysis' (https://en.wikipedia.org/wiki/Catalysis), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "license": "CC BY-SA 4.0",
+      "sentences": 5,
+      "source_id": "src_wiki_catalysis",
+      "synthetic": false,
+      "title": "Catalysis (English Wikipedia)"
+    },
+    {
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Confounding' (https://en.wikipedia.org/wiki/Confounding), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "license": "CC BY-SA 4.0",
+      "sentences": 3,
+      "source_id": "src_wiki_confounding",
+      "synthetic": false,
+      "title": "Confounding (English Wikipedia)"
+    },
+    {
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Enzyme inhibitor' (https://en.wikipedia.org/wiki/Enzyme_inhibitor), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "license": "CC BY-SA 4.0",
+      "sentences": 5,
+      "source_id": "src_wiki_enzyme_inhibitor",
+      "synthetic": false,
+      "title": "Enzyme inhibitor (English Wikipedia)"
+    },
+    {
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Spacing effect' (https://en.wikipedia.org/wiki/Spacing_effect), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "license": "CC BY-SA 4.0",
+      "sentences": 3,
+      "source_id": "src_wiki_spacing",
+      "synthetic": false,
+      "title": "Spacing effect (English Wikipedia)"
+    },
+    {
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Testing effect' (https://en.wikipedia.org/wiki/Testing_effect), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "license": "CC BY-SA 4.0",
+      "sentences": 3,
+      "source_id": "src_wiki_testing",
+      "synthetic": false,
+      "title": "Testing effect (English Wikipedia)"
+    }
+  ],
+  "useful_precision": 1.0,
+  "useful_published": 14,
+  "wrong_published": 0,
+  "wrong_recall": 1.0
+}

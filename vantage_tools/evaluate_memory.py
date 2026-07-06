@@ -64,8 +64,16 @@ import os
 import random
 import tempfile
 
-from anki import scheduler_pb2
-from anki.collection import Collection
+# Reproducibility: Anki derives its interval-fuzz seed from each card's id, which is
+# a wall-clock timestamp at creation, so fuzz -- and therefore every downstream
+# interval, elapsed gap, and predicted R -- would otherwise vary run to run (same
+# BUILD_SEED/SPLIT_SEED, different numbers). ANKI_TEST_MODE is Anki's own switch
+# (rslib get_fuzz_seed_for_id_and_reps) that disables fuzz, making this harness
+# deterministic. It must be set before the Rust backend first reads it.
+os.environ.setdefault("ANKI_TEST_MODE", "1")
+
+from anki import scheduler_pb2  # noqa: E402
+from anki.collection import Collection  # noqa: E402
 
 CardAnswer = scheduler_pb2.CardAnswer
 RATING_ENUM = {

@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "about": "REAL, externally-authored, openly-licensed source text for the Vantage AI grounding eval. Unlike corpus.json (which is clearly-marked SYNTHETIC author-written prose), every passage here is a VERBATIM excerpt fetched from the English Wikipedia and is NOT written by the Vantage authors. `synthetic:false` marks this.",
+    "why_wikipedia_not_openstax": "The task suggested OpenStax (assumed CC BY 4.0). On inspection (2026-07-05), OpenStax Biology 2e, Chemistry 2e, and Psychology 2e are all licensed CC BY-NC-SA 4.0 (NonCommercial-ShareAlike) and their pages carry an explicit 'may not be used in the training of large language models' notice. The NonCommercial clause is INCOMPATIBLE with this AGPL-3.0-or-later repository (AGPL permits commercial use), so vendoring OpenStax text here would be a license violation. English Wikipedia is CC BY-SA 4.0 (ShareAlike, but NOT NonCommercial), which is license-compatible with redistribution, so it is used instead. Honesty-first: real is labeled real, and the license is stated per source.",
+    "license": "Each excerpt below is text from the English Wikipedia, available under the Creative Commons Attribution-ShareAlike 4.0 License (CC BY-SA 4.0). This JSON data file's excerpts stay under CC BY-SA 4.0 with the attribution in each source's `citation`; the surrounding eval CODE is AGPL-3.0-or-later like the rest of the repo (mere aggregation of separately-licensed data).",
+    "accessed": "2026-07-05",
+    "usage_note": "These excerpts are read by a DETERMINISTIC LEXICAL grounding checker (token overlap + negation/number signals). No text here is used to train, fine-tune, or prompt a language model.",
+    "chunking": "Each source is pre-split into `sentences`; a chunk is one sentence and its locator is source_id#s{index} (0-based). A SourceRef is (source_id, start_sentence, end_sentence) inclusive. Same shape as corpus.json so the same loader/checker run unchanged.",
+    "version": "vantage-realtext-corpus.v1"
+  },
+  "sources": [
+    {
+      "source_id": "src_wiki_buffer",
+      "title": "Buffer solution (English Wikipedia)",
+      "author": "Wikipedia contributors",
+      "license": "CC BY-SA 4.0",
+      "synthetic": false,
+      "real": true,
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Buffer solution' (https://en.wikipedia.org/wiki/Buffer_solution), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "sentences": [
+        "A buffer solution is a solution where the pH does not change significantly on dilution or if an acid or base is added at constant temperature.",
+        "Its pH changes very little when a small amount of strong acid or base is added to it.",
+        "Buffer solutions are used as a means of keeping pH at a nearly constant value in a wide variety of chemical applications.",
+        "Buffer solutions resist pH change because of a chemical equilibrium between the weak acid HA and its conjugate base A\u2212.",
+        "For example, the bicarbonate buffering system is used to regulate the pH of blood, and bicarbonate also acts as a buffer in the ocean."
+      ]
+    },
+    {
+      "source_id": "src_wiki_catalysis",
+      "title": "Catalysis (English Wikipedia)",
+      "author": "Wikipedia contributors",
+      "license": "CC BY-SA 4.0",
+      "synthetic": false,
+      "real": true,
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Catalysis' (https://en.wikipedia.org/wiki/Catalysis), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "sentences": [
+        "Catalysts are not consumed by the reaction and remain unchanged after the reaction.",
+        "If the reaction is rapid and the catalyst is recycled quickly, a very small amount of catalyst often suffices; mixing, surface area, and temperature are important factors in reaction rate.",
+        "The rate increase occurs because the catalyst allows the reaction to occur by an alternative mechanism which may be much faster than the noncatalyzed mechanism.",
+        "The catalyst is not consumed in the reaction, and may be recovered unchanged and re-used indefinitely.",
+        "Estimates are that 90% of all commercially produced chemical products involve catalysts at some stage in the process of their manufacture."
+      ]
+    },
+    {
+      "source_id": "src_wiki_enzyme_inhibitor",
+      "title": "Enzyme inhibitor (English Wikipedia)",
+      "author": "Wikipedia contributors",
+      "license": "CC BY-SA 4.0",
+      "synthetic": false,
+      "real": true,
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Enzyme inhibitor' (https://en.wikipedia.org/wiki/Enzyme_inhibitor), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "sentences": [
+        "An enzyme inhibitor is a molecule that binds to an enzyme and blocks its activity.",
+        "Enzyme inhibitors may bind reversibly or irreversibly.",
+        "Competitive inhibitors usually bind to the active site.",
+        "In non-competitive inhibition the binding of the inhibitor to the enzyme reduces its activity but does not affect the binding of substrate.",
+        "Vmax will decrease due to the inability for the reaction to proceed as efficiently, but Km will remain the same as the actual binding of the substrate, by definition, will still function properly."
+      ]
+    },
+    {
+      "source_id": "src_wiki_spacing",
+      "title": "Spacing effect (English Wikipedia)",
+      "author": "Wikipedia contributors",
+      "license": "CC BY-SA 4.0",
+      "synthetic": false,
+      "real": true,
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Spacing effect' (https://en.wikipedia.org/wiki/Spacing_effect), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "sentences": [
+        "The spacing effect demonstrates that learning is more effective when study sessions are spaced out.",
+        "This effect shows that more information is encoded into long-term memory by spaced study sessions, also known as spaced repetition or spaced presentation, than by massed presentation (\" cramming\").",
+        "In a study conducted by Cepeda et al. (2006) participants who used spaced practice on memory tasks outperformed those using massed practice in 259 out of 271 cases."
+      ]
+    },
+    {
+      "source_id": "src_wiki_testing",
+      "title": "Testing effect (English Wikipedia)",
+      "author": "Wikipedia contributors",
+      "license": "CC BY-SA 4.0",
+      "synthetic": false,
+      "real": true,
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Testing effect' (https://en.wikipedia.org/wiki/Testing_effect), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "sentences": [
+        "The testing effect (also known as retrieval practice, active recall, practice testing, or test-enhanced learning) suggests long-term memory is increased when part of the learning period is devoted to retrieving information from memory.",
+        "Using retrieval practices also produces less forgetting than studying and restudying while helping to identify misconceptions and errors with effects lasting years.",
+        "In more recent research with contributions from Hal Pashler, Henry Roediger and many others, testing knowledge can produce better learning, transfer, and retrieval results when compared to other forms of study that often use recognition like re-reading or highlighting."
+      ]
+    },
+    {
+      "source_id": "src_wiki_confounding",
+      "title": "Confounding (English Wikipedia)",
+      "author": "Wikipedia contributors",
+      "license": "CC BY-SA 4.0",
+      "synthetic": false,
+      "real": true,
+      "citation": "Verbatim excerpt from the English Wikipedia article 'Confounding' (https://en.wikipedia.org/wiki/Confounding), accessed 2026-07-05. Text available under CC BY-SA 4.0.",
+      "sentences": [
+        "In causal inference, confounding is a form of systematic error (or bias) that can distort estimates of causal effects in observational studies.",
+        "Failure to control for a confounder results in a spurious association between exposure and outcome.",
+        "The presence of confounders helps explain why correlation does not imply causation, and why careful study design and analytical methods (such as randomization, statistical adjustment, or causal diagrams) are required to distinguish causal effects from spurious associations."
+      ]
+    }
+  ]
+}

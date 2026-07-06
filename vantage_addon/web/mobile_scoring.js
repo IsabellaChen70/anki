@@ -58,8 +58,23 @@
     section_scale_min: 118, section_scale_max: 132,
     min_outcomes_calibration: 15, calibration_well_within: 0.1,
     pace_reasoning_target: 60, pace_reasoning_per_concept: 10, pace_reasoning_floor: 3,
+    // Exam-countdown-aware default reasoning split (mirrors ScoringConfig
+    // pace_focus_*). As days-to-exam shrinks, the DEFAULT per-section reasoning
+    // target leans toward heavy AND under-covered sections; never overrides a
+    // manual choice. CARS has no outline weight, so it is left out.
+    pace_focus_horizon_days: 60, pace_focus_max: 1.0, pace_focus_gap_floor: 0.05,
+    // Automatic maturity-gated topic interleaving (mirrors ScoringConfig
+    // interleave_*). A section studies Blocked until enough of its review-stage
+    // cards are mature (c.ivl >= interleave_mature_ivl_days), then Mixed; too few
+    // graduated cards -> stay Blocked. Deterministic, so it matches the Python core.
+    interleave_mature_ivl_days: 21, interleave_mature_fraction: 0.6, interleave_min_review_cards: 12,
     min_confidence_items: 10, overconfident_sure_max: 0.85, underconfident_guess_min: 0.55,
     min_mistakes: 4, content_ready_recall: 0.8,
+    // CARS pacing: per-passage reading pace vs the exam's per-passage budget
+    // (mirrors ScoringConfig.cars_exam_passages / min_pace_cars). The per-passage
+    // budget is derived from SECTION_TIMING.cars and this passage count, never a
+    // hard-coded seconds literal.
+    cars_exam_passages: 9, min_pace_cars: 12,
     // score trajectory: project readiness to exam day (mirrors ScoringConfig.min_trajectory_days)
     min_trajectory_days: 2,
     seed: 42, resample_iters: 2000, ci_mass: 0.9,
@@ -197,6 +212,7 @@
   }
 
   const clamp = (x, lo, hi) => (x < lo ? lo : x > hi ? hi : x);
+  const round4 = (x) => Math.round(x * 10000) / 10000;
   const round3 = (x) => Math.round(x * 1000) / 1000;
   const round2 = (x) => Math.round(x * 100) / 100;
   const round1 = (x) => Math.round(x * 10) / 10;
@@ -620,6 +636,24 @@
     return { abstained: false, n_wrong: n, items, top_reason: top, top_section: topSection };
   }
 
+  // Second axis of the miss diagnosis: which AAMC reasoning skill the misses test.
+  // Byte-for-byte the same shape/gate as mistakeTaxonomy (port of scoring.skill_taxonomy);
+  // the skill comes off each outcome (the anchor card's vantage::skill:: tag).
+  function skillTaxonomy(outcomes) {
+    const skills = ['concepts', 'reasoning', 'research', 'data'];
+    const wrong = outcomes.filter((o) => !o.correct && skills.includes(o.skill));
+    const n = wrong.length;
+    if (n < CFG.min_mistakes) return { abstained: true, n_wrong: n, items: [] };
+    const by = {};
+    wrong.forEach((o) => { by[o.skill] = (by[o.skill] || 0) + 1; });
+    const items = Object.keys(by).map((k) => ({ skill: k, count: by[k] })).sort((a, b) => b.count - a.count);
+    const top = items[0].skill;
+    const sec = {};
+    wrong.filter((o) => o.skill === top).forEach((o) => { sec[o.section] = (sec[o.section] || 0) + 1; });
+    const topSection = Object.keys(sec).sort((a, b) => sec[b] - sec[a])[0] || null;
+    return { abstained: false, n_wrong: n, items, top_skill: top, top_section: topSection };
+  }
+
   function studyPlanJS(covered, conceptR) {
     const study = [], practice = [];
     for (const c of OUTLINE.concepts) {
@@ -660,7 +694,54 @@
       }
     }
     if (!sections.length) return { abstained: true, n: timed.length, sections: [] };
-    return { abstained: false, n: timed.length, sections, overall_on_pace: sections.every((x) => x.on_pace) };
+    // Attach the CARS-only per-passage view (a speed signal, never a score). It runs
+    // off the same outcomes and reuses SECTION_TIMING.cars; it stays an honest abstain
+    // until CARS has enough timed questions of its own (mirrors scoring.pacing_coach).
+    return { abstained: false, n: timed.length, sections, overall_on_pace: sections.every((x) => x.on_pace), cars: carsPacing(outcomes) };
+  }
+
+  // CARS pace stated the way the section is timed: minutes per PASSAGE. A faithful
+  // port of scoring.cars_pacing. CARS is pure reading comprehension, so a student
+  // paces it by the passage, not the single question. Reuses the exact CARS budget
+  // pacingCoach uses (SECTION_TIMING.cars = 53 q / 90 min) and the same robust median,
+  // then re-expresses that per-question pace as projected minutes per passage against
+  // the exam's per-passage budget (90 min / cars_exam_passages). Deterministic, and
+  // MUST match scoring.cars_pacing bit-for-bit. Abstains (give-up rule) until
+  // CFG.min_pace_cars timed CARS questions exist, never a placeholder pace.
+  function carsPacing(outcomes) {
+    const timed = outcomes.filter((o) => o.section === 'cars' && o.ms && o.ms > 0).map((o) => o.ms / 1000);
+    const n = timed.length;
+    if (n < CFG.min_pace_cars) {
+      return {
+        abstained: true, n,
+        median_sec: 0, target_sec: 0, per_passage_min: 0, target_passage_min: 0,
+        over_budget_pct: 0, on_pace: true,
+        reasons: [`only ${n} timed CARS questions (need >= ${CFG.min_pace_cars})`],
+      };
+    }
+    const q = SECTION_TIMING.cars[0], mins = SECTION_TIMING.cars[1];
+    const passages = Math.max(1, CFG.cars_exam_passages);
+    const questionsPerPassage = q / passages;
+    const targetSec = (mins * 60) / q; // per-question budget (matches SectionPace)
+    const targetPassageMin = mins / passages; // per-passage budget in minutes
+    const med = median(timed);
+    const perPassageMin = (med * questionsPerPassage) / 60;
+    const overBudgetPct = Math.round(((perPassageMin - targetPassageMin) / targetPassageMin) * 100);
+    const onPace = med <= targetSec;
+    const reasons = [
+      `typical ${Math.round(med)}s per CARS question over ${n} timed questions`,
+      `about ${perPassageMin.toFixed(1)} min per passage vs a ${Math.round(targetPassageMin)} min budget`,
+    ];
+    return {
+      abstained: false, n,
+      median_sec: Math.round(med * 10) / 10,
+      target_sec: Math.round(targetSec * 10) / 10,
+      per_passage_min: Math.round(perPassageMin * 10) / 10,
+      target_passage_min: Math.round(targetPassageMin * 10) / 10,
+      over_budget_pct: overBudgetPct,
+      on_pace: onPace,
+      reasons,
+    };
   }
 
   function studyPace(raw, reasoningDone, conceptsToPractice, cardsStudied, reasoningToday) {
@@ -689,6 +770,88 @@
       new_per_day: Math.ceil((raw.new_remaining || 0) / div), reasoning_per_day: reasoningPerDay,
       flashcards_to_exam: flashcardsPerDay * dl, reasoning_to_exam: reasoningPerDay * dl, message: '',
     }, base);
+  }
+
+  // --------------------------------------------------------------------------- //
+  // exam-countdown-aware default reasoning split (study-plan rebalancing). A
+  // faithful, deterministic port of scoring.reasoning_focus / _largest_remainder
+  // / resolve_focus_section. Planning logic, separate from the scores: it only
+  // decides the DEFAULT per-section reasoning split, and it takes NO manual-choice
+  // argument, so it can never override one. Same integer targets and default
+  // section as the desktop core on identical inputs (the parity mandate).
+  // --------------------------------------------------------------------------- //
+
+  // Hamilton / largest-remainder apportionment: floor each quota, then hand the
+  // leftover to the largest fractional parts, ties broken by key. Always sums to
+  // `total`. `shares` is an array of [key, share]. Matches scoring._largest_remainder.
+  function largestRemainder(shares, total) {
+    const out = {};
+    shares.forEach((kv) => { out[kv[0]] = 0; });
+    if (total <= 0 || !shares.length) return out;
+    const quotas = shares.map((kv) => [kv[0], kv[1] * total]);
+    quotas.forEach((kq) => { out[kq[0]] = Math.floor(kq[1]); });
+    let used = 0; quotas.forEach((kq) => { used += out[kq[0]]; });
+    const leftover = total - used;
+    const order = quotas.slice().sort((a, b) => {
+      const fa = a[1] - Math.floor(a[1]), fb = b[1] - Math.floor(b[1]);
+      if (fb !== fa) return fb - fa;                                  // larger fraction first
+      return a[0] < b[0] ? -1 : (a[0] > b[0] ? 1 : 0);               // tie-break by key asc
+    });
+    for (let i = 0; i < Math.max(0, leftover); i++) out[order[i % order.length][0]] += 1;
+    return out;
+  }
+
+  // reasoningFocus(perDay, sectionWeight, sectionCoverage, daysToExam) -> the same
+  // shape render.py serializes for study_pace.reasoning_focus. `sectionWeight` maps
+  // a section to its raw AAMC exam weight (0 = excluded, e.g. CARS); `sectionCoverage`
+  // maps a section to coverage in 0..1; `daysToExam` may be null.
+  function reasoningFocus(perDay, sectionWeight, sectionCoverage, daysToExam) {
+    const pd = Math.max(0, Math.trunc(perDay || 0));
+    const secs = Object.keys(sectionWeight).filter((s) => sectionWeight[s] > 0).sort();
+    let totalW = 0; secs.forEach((s) => { totalW += sectionWeight[s]; });
+    if (!secs.length || totalW <= 0) {
+      return { has_focus: false, per_day: pd, days_to_exam: daysToExam == null ? null : daysToExam, concentration: 0, default_section: null, by_section: [] };
+    }
+    const base = {}, gap = {}, raw = {};
+    secs.forEach((s) => {
+      base[s] = sectionWeight[s] / totalW;
+      const cov = Number(sectionCoverage[s]) || 0;
+      gap[s] = Math.min(1, Math.max(0, 1 - cov));
+      raw[s] = base[s] * Math.max(CFG.pace_focus_gap_floor, gap[s]);
+    });
+    let rawTotal = 0; secs.forEach((s) => { rawTotal += raw[s]; });
+    const prio = {};
+    secs.forEach((s) => { prio[s] = rawTotal > 0 ? raw[s] / rawTotal : base[s]; });
+    const horizon = Math.max(1, CFG.pace_focus_horizon_days);
+    let k;
+    if (daysToExam == null) k = 0;
+    else {
+      const frac = (horizon - Math.max(0, daysToExam)) / horizon;
+      k = CFG.pace_focus_max * Math.min(1, Math.max(0, frac));
+    }
+    const blended = {};
+    secs.forEach((s) => { blended[s] = (1 - k) * base[s] + k * prio[s]; });
+    const alloc = largestRemainder(secs.map((s) => [s, blended[s]]), pd);
+    const rows = secs.map((s) => ({
+      section: s,
+      weight: round4(base[s]),
+      coverage: round4(Number(sectionCoverage[s]) || 0),
+      gap: round4(gap[s]),
+      share: round4(blended[s]),
+      target: alloc[s],
+    }));
+    rows.sort((a, b) => (b.share - a.share) || (a.section < b.section ? -1 : (a.section > b.section ? 1 : 0)));
+    return {
+      has_focus: true, per_day: pd, days_to_exam: daysToExam == null ? null : daysToExam,
+      concentration: round4(k), default_section: rows[0].section, by_section: rows,
+    };
+  }
+
+  // resolveFocusSection(manual, focus) -> [section, isManual]. The one place the
+  // "never override a manual choice" rule lives; mirrors scoring.resolve_focus_section.
+  function resolveFocusSection(manual, focus) {
+    if (manual) return [manual, true];
+    return [focus ? focus.default_section : null, false];
   }
 
   // --------------------------------------------------------------------------- //
@@ -779,6 +942,17 @@
     };
   }
 
+  // Port of scoring.section_should_mix: decide whether a section's flashcards
+  // study Mixed (topics interleaved, to train discrimination) or Blocked (grouped
+  // by topic, for focused acquisition), from how many of its review-stage cards
+  // have matured. Honest default is Blocked. Pure + deterministic, so desktop and
+  // mobile reach the identical decision and reason string.
+  function sectionShouldMix(matureCount, reviewCount) {
+    if (reviewCount < CFG.interleave_min_review_cards) return { mixed: false, reason: 'not enough graduated cards yet' };
+    if (matureCount < CFG.interleave_mature_fraction * reviewCount) return { mixed: false, reason: 'still consolidating' };
+    return { mixed: true, reason: 'enough cards have matured' };
+  }
+
   window.vantageComputeFromRaw = function (raw) {
     const covered = new Set();
     const coveredTopics = new Set();
@@ -833,6 +1007,11 @@
     // per science-section application outcomes (1/0), for readiness + the paraphrase test
     const sectionOutcomes = { chem_phys: [], bio_biochem: [], psych_soc: [] };
     for (const o of outcomes) if (o.section in sectionOutcomes) sectionOutcomes[o.section].push(o.correct ? 1 : 0);
+    // Display-only twin that ALSO includes cars, so the CARS section card can show
+    // its reasoning accuracy. Feeds NO score (sectionOutcomes above still drives
+    // readiness / the paraphrase test); mirrors collect.gather's section_reason.
+    const sectionReason = { chem_phys: [], bio_biochem: [], psych_soc: [], cars: [] };
+    for (const o of outcomes) if (o.section in sectionReason) sectionReason[o.section].push(o.correct ? 1 : 0);
     // The readiness give-up gate counts SCIENCE-section outcomes only (CARS is never
     // modeled), matching collect.gather's total_outcomes / total_items. Performance
     // and study pace still use every outcome (perfN) as on desktop.
@@ -959,6 +1138,21 @@
     }
     const trajectoryOut = trajectory(trajHistory, targetScore, daysToExam, weakestReady, nModeled || 3);
 
+    // Exam-countdown-aware DEFAULT reasoning split, mirroring collect.gather: same
+    // AAMC section weights, the same depth-aware coverage the dashboard shows, and
+    // the same days-to-exam as the trajectory. Attached to study_pace so the mobile
+    // payload shape matches desktop; a manual choice is never seen here.
+    const sp = studyPace(raw, perfN, conceptsToPractice, rValues.length, raw.reasoning_today || 0);
+    const sectionWeight = {};
+    for (const s in OUTLINE.sections) {
+      let sw = 0;
+      for (const c of OUTLINE.concepts) if (c.section === s) sw += c.weight;
+      sectionWeight[s] = sw;
+    }
+    sp.reasoning_focus = reasoningFocus(
+      sp.reasoning_per_day || 0, sectionWeight, topicCoverageBySection(coveredTopics, covered), daysToExam,
+    );
+
     return {
       coverage,
       coverage_by_section: coverageBySection(covered),
@@ -969,11 +1163,25 @@
       n_cards_seen: rValues.length,
       ai_used: false,
       updated: raw.updated || nowStamp(),
+      // Carried straight through from the host (col.ls, ms). Not a scoring number;
+      // the shared masthead renders it as "Synced Xm ago" / "Never synced".
+      last_sync_ms: (typeof raw.last_sync_ms === 'number' ? raw.last_sync_ms : 0),
       best_next: nextTops[0] || null,
       next_topics: nextTops,
       book_set: raw.book_set || 'kaplan',
       section_labels: OUTLINE.sections,
-      thresholds: { memory_cards: CFG.min_cards_memory, performance_outcomes: CFG.min_outcomes_performance, reviews: CFG.giveup_min_reviews, coverage: CFG.giveup_min_coverage },
+      // Per-section auto Mixed/Blocked status for the study launcher's read-only
+      // label. Counts (c.ivl/c.queue) come from the host; the decision is the shared
+      // sectionShouldMix port, so the label matches what the reviewer will do.
+      section_maturity: Object.keys(raw.section_maturity || {}).reduce((acc, sec) => {
+        const c = (raw.section_maturity || {})[sec] || {};
+        const mature = c.mature || 0;
+        const review = c.review || 0;
+        const dec = sectionShouldMix(mature, review);
+        acc[sec] = { mixed: dec.mixed, reason: dec.reason, mature, review };
+        return acc;
+      }, {}),
+      thresholds: { memory_cards: CFG.min_cards_memory, performance_outcomes: CFG.min_outcomes_performance, reviews: CFG.giveup_min_reviews, coverage: CFG.giveup_min_coverage, readiness_per_section: CFG.min_outcomes_readiness },
       memory: memoryScore(rValues),
       performance: performanceScore({ n: perfN, k: perfK }),
       readiness: readinessOut,
@@ -981,9 +1189,10 @@
       // reasoning_today (today's practice progress) is surfaced on desktop's practice
       // screen; the mobile app has no practice screen, so it stays 0 unless the host
       // provides raw.reasoning_today (kept for output-shape parity with desktop).
-      study_pace: studyPace(raw, perfN, conceptsToPractice, rValues.length, raw.reasoning_today || 0),
+      study_pace: sp,
       confidence: confidenceCalibration(outcomes),
       mistakes: mistakeTaxonomy(outcomes),
+      skills: skillTaxonomy(outcomes),
       study_plan: studyPlanJS(covered, conceptR),
       pacing: pacingCoach(outcomes),
       trajectory: trajectoryOut,
@@ -995,6 +1204,20 @@
       // collect.gather's fluency_items / transfer so the mobile data equals desktop.
       fluency_items: fluencyItems,
       transfer,
+      // Per science-section application outcomes (1/0), the twin of collect.gather's
+      // section_outcomes. Read-only pass-through for the weak-spot quick jump; the
+      // selection and give-up gate live in the shared dashboard.js.
+      section_outcomes: sectionOutcomes,
+      // Display-only twin that includes cars (see sectionReason above), so the CARS
+      // card can show its accuracy; feeds no score. Read by dashboard.js.
+      section_reason: sectionReason,
+      // Per science-section mean FSRS recall R (0..1), the twin of collect.gather's
+      // section_recall. Read-only pass-through so the Practice tab's per-section
+      // Flashcards bar shows real recall; feeds no score. round3 to match desktop.
+      section_recall: Object.keys(sectionRecall).reduce((acc, s) => { acc[s] = round3(sectionRecall[s]); return acc; }, {}),
+      // What the student flagged to revisit, injected by the host bridge (native
+      // flag column). Flashcard count + flagged reasoning questions to re-serve.
+      flagged: { card_count: raw.flagged_card_count || 0, reasoning: raw.flagged_reasoning || [] },
     };
   };
 
@@ -1005,6 +1228,7 @@
   window.__vantageScoring = {
     CFG, invNormCdf, irtProb, irtInformation, irtEstimate, thetaToScale,
     irtReadiness, conceptTransferGaps, transferGap, mapAbilityToScale,
-    trajectory, isoToOrdinal,
+    trajectory, isoToOrdinal, mistakeTaxonomy, skillTaxonomy, pacingCoach, carsPacing,
+    reasoningFocus, resolveFocusSection, largestRemainder, sectionShouldMix,
   };
 })();

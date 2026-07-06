@@ -219,13 +219,21 @@ parity:
     {{ vpy }} vantage_tools/scoring_parity_test.py
 
 # Vantage: AI safety evals - retrieval+grounding, 3-way gate, independent held-out,
-# wired-LLM-seam screening, injection canary (macOS/Linux)
+# real-text (Wikipedia CC BY-SA) grounding, experiment-design gate, wired-LLM-seam
+# screening, injection canary (macOS/Linux)
 eval-ai:
     {{ vpy }} vantage_tools/ai/eval_cardgen.py
     {{ vpy }} vantage_tools/ai/eval_cardcheck.py
     {{ vpy }} vantage_tools/ai/cardcheck_holdout.py
+    {{ vpy }} vantage_tools/ai/eval_realtext_grounding.py
+    {{ vpy }} vantage_tools/ai/eval_experiment_design.py
     {{ vpy }} vantage_tools/ai/eval_llm_seam.py
     {{ vpy }} vantage_tools/ai/canary.py
+
+# Vantage: camera-friendly demo runner - prints only the verdict line from the
+# leakage scan + AI gate (pass `all` to also run memory + performance). (macOS/Linux)
+evals *args:
+    vantage_tools/evals {{ args }}
 
 # Vantage: desktop crash test (20x SIGKILL mid-review) -> crash_results.json (macOS/Linux)
 crash-test:
@@ -251,6 +259,8 @@ eval-all:
     {{ vpy }} vantage_tools/ai/eval_cardgen.py
     {{ vpy }} vantage_tools/ai/eval_cardcheck.py
     {{ vpy }} vantage_tools/ai/cardcheck_holdout.py
+    {{ vpy }} vantage_tools/ai/eval_realtext_grounding.py
+    {{ vpy }} vantage_tools/ai/eval_experiment_design.py
     {{ vpy }} vantage_tools/ai/eval_llm_seam.py
     {{ vpy }} vantage_tools/ai/canary.py
     {{ vpy }} vantage_tools/offline_test.py

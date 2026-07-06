@@ -16,7 +16,7 @@ import math
 import random
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Optional, Sequence
+from typing import Mapping, Optional, Sequence
 
 SECTIONS: tuple[str, ...] = ("chem_phys", "bio_biochem", "psych_soc")
 SECTION_LABELS: dict[str, str] = {
@@ -99,6 +99,41 @@ class ScoringConfig:
     pace_reasoning_per_concept: int = 10
     pace_reasoning_floor: int = 3
 
+    # exam-countdown-aware default reasoning split (study-plan rebalancing, NOT a
+    # score). The DEFAULT per-section reasoning target is a blend of two shares:
+    #  - breadth: proportional to each section's AAMC exam weight (outline).
+    #  - focus: proportional to weight x (1 - coverage), i.e. heavy AND thin.
+    # The blend slides from pure breadth far out to full focus at exam day, so as
+    # days-to-exam shrinks the default suggestion leans toward high-weight,
+    # under-covered sections. It NEVER touches a manual section choice (the
+    # rebalancer has no access to it). CARS carries no outline weight/coverage, so
+    # it is not part of this split (honesty: CARS is never in coverage).
+    #  - horizon: days out at/beyond which the split stays pure breadth (k=0).
+    #  - max: the strongest focus, reached at exam day (k at days_left<=0).
+    #  - gap_floor: a small floor on a section's coverage gap so a fully covered but
+    #    heavy section still keeps a nonzero focus share (covered != mastered).
+    pace_focus_horizon_days: int = 60
+    pace_focus_max: float = 1.0
+    pace_focus_gap_floor: float = 0.05
+
+    # automatic maturity-gated topic interleaving (per-section flashcards). A
+    # section studies Blocked (grouped by topic, for focused acquisition) until
+    # enough of its review-stage cards have matured, then switches to Mixed
+    # (topics interleaved) to train discrimination (transfer-appropriate
+    # processing; interleaving helps most once confusable items are individually
+    # learnable, Brunmair & Richter 2019). Maturity is read from c.ivl (Anki's
+    # classic young/mature line), a deterministic signal so the mobile port
+    # reaches the same decision. Honesty/give-up: with too few graduated cards to
+    # judge, ABSTAIN to Blocked rather than interleave prematurely.
+    #  - mature_ivl_days: a card counts as mature at interval >= this.
+    #  - mature_fraction: share of a section's review-stage cards that must be
+    #    mature before it flips Blocked -> Mixed.
+    #  - min_review_cards: fewest review-stage cards needed to make the call;
+    #    below this the section stays Blocked (insufficient data).
+    interleave_mature_ivl_days: int = 21
+    interleave_mature_fraction: float = 0.60
+    interleave_min_review_cards: int = 12
+
     # item-level confidence calibration (metacognition)
     min_confidence_items: int = 10
     overconfident_sure_max: float = 0.85  # "sure" but below this accuracy = overconfident
@@ -110,6 +145,16 @@ class ScoringConfig:
     # pacing coach (time per question vs the real section budget)
     min_pace_per_section: int = 3
     min_pace_total: int = 8
+    # CARS pacing (time per PASSAGE vs the real exam's per-passage budget). CARS is
+    # pure reading comprehension, so a student paces it by the passage, not the
+    # question; these re-express the per-question CARS pace in that unit. The
+    # per-passage budget is derived from SECTION_TIMING["cars"] (53 q / 90 min) and
+    # the real section's passage count, so it is never a hard-coded seconds literal.
+    cars_exam_passages: int = 9
+    # give-up gate for the passage view: minimum timed CARS questions (about two
+    # authored passages' worth) before a per-passage pace is shown, so a thin sample
+    # abstains instead of projecting a passage time from one or two questions.
+    min_pace_cars: int = 12
 
     # score trajectory (project readiness to exam day)
     min_trajectory_days: int = 2
@@ -117,6 +162,13 @@ class ScoringConfig:
     # adaptive plan: a concept is "content-ready" for reasoning practice once its
     # recall clears this line; below it (or uncovered) it is a content gap to study
     content_ready_recall: float = 0.80
+
+    # second look (question-level delayed re-test): when a reasoning question is
+    # missed, the SAME question is re-served this many days later, to check whether
+    # the correction actually stuck. The delay is assigned to a real card by Anki's
+    # own scheduler (col.sched.set_due_date, FSRS-aware); no interval math is
+    # reimplemented here. Kept in config so it is tunable, never hard-coded.
+    second_look_delay_days: int = 3
 
     # readiness projection: how strongly section memory (recall) priors the
     # application-ability estimate before reasoning evidence overrides it. Small,
@@ -380,6 +432,28 @@ def give_up(n_reviews: int, coverage: float, cfg: ScoringConfig) -> tuple[bool, 
             f"weighted coverage {coverage:.0%} (need >= {cfg.giveup_min_coverage:.0%})"
         )
     return (bool(reasons), reasons)
+
+
+def section_should_mix(
+    mature_count: int, review_count: int, cfg: ScoringConfig
+) -> tuple[bool, str]:
+    """Return (should_mix, reason) for one section's flashcards.
+
+    Mix (interleave topics, to train discrimination) iff the section has enough
+    review-stage cards to judge AND a high enough share of them have matured;
+    otherwise study Blocked (grouped by topic, for focused acquisition). The
+    honest default is Blocked: too little evidence, or a section still being
+    learned, is never interleaved prematurely. Pure and PRNG-free so the mobile
+    JS port (`sectionShouldMix` in mobile_scoring.js) and the Kotlin bridge reach
+    the identical decision from the same c.ivl/c.queue counts.
+
+    `reason` is a short student-facing phrase for the read-only status label.
+    """
+    if review_count < cfg.interleave_min_review_cards:
+        return (False, "not enough graduated cards yet")
+    if mature_count < cfg.interleave_mature_fraction * review_count:
+        return (False, "still consolidating")
+    return (True, "enough cards have matured")
 
 
 def _beta_draw(k: int, n: int, rng: random.Random, a0: float = 1.0, b0: float = 1.0) -> float:
@@ -1054,6 +1128,11 @@ class StudyPace:
     flashcards_to_exam: int = 0
     reasoning_to_exam: int = 0
     message: str = ""
+    # Exam-countdown-aware DEFAULT split of `reasoning_per_day` across sections.
+    # Populated by the caller (collect.gather) via `reasoning_focus`, kept off the
+    # pace math above so the existing targets are byte-for-byte unchanged. None
+    # when there is no exam date or no weighted sections to split across.
+    reasoning_focus: Optional["ReasoningFocus"] = None
 
 
 def study_pace(
@@ -1132,6 +1211,134 @@ def study_pace(
         reasoning_to_exam=reasoning_to_exam,
         **base,
     )
+
+
+# --------------------------------------------------------------------------- #
+# exam-countdown-aware default reasoning split  (study-plan rebalancing)
+# --------------------------------------------------------------------------- #
+# PLANNING logic, deliberately separate from the readiness/memory/performance
+# scoring math above: it only decides the DEFAULT suggestion for how to divide a
+# day's reasoning practice across sections. It reads three quantities a score
+# never blends -- exam weight, coverage, and days-to-exam -- and it never sees,
+# and so can never override, the student's manual section choice.
+@dataclass
+class SectionTarget:
+    section: str
+    weight: float    # section's share of total AAMC exam weight (0..1)
+    coverage: float  # section coverage (0..1); "under-covered" = 1 - this
+    gap: float       # the coverage gap actually used in the blend (0..1)
+    share: float     # blended default share of the daily reasoning budget (0..1)
+    target: int      # whole reasoning questions suggested for this section today
+
+
+@dataclass
+class ReasoningFocus:
+    has_focus: bool
+    per_day: int
+    days_to_exam: Optional[int]
+    concentration: float  # k in [0, pace_focus_max]; 0 = pure breadth (far out)
+    default_section: Optional[str]
+    by_section: list[SectionTarget] = field(default_factory=list)
+
+
+def _largest_remainder(shares: Sequence[tuple[str, float]], total: int) -> dict[str, int]:
+    """Apportion `total` whole items across (key, share) pairs (shares sum ~1).
+
+    Deterministic Hamilton / largest-remainder: floor each quota, then hand the
+    leftover out one at a time to the largest fractional parts, ties broken by key
+    so the Python core and the JS port agree exactly. The result always sums to
+    `total`. Input order is not relied on."""
+    keys = [k for k, _ in shares]
+    if total <= 0 or not shares:
+        return {k: 0 for k in keys}
+    quotas = [(k, s * total) for k, s in shares]
+    floors = {k: int(math.floor(q)) for k, q in quotas}
+    leftover = total - sum(floors.values())
+    order = sorted(quotas, key=lambda kq: (-(kq[1] - math.floor(kq[1])), kq[0]))
+    for i in range(max(0, leftover)):
+        floors[order[i % len(order)][0]] += 1
+    return floors
+
+
+def reasoning_focus(
+    per_day: int,
+    section_weight: Mapping[str, float],
+    section_coverage: Mapping[str, float],
+    days_to_exam: Optional[int],
+    cfg: ScoringConfig,
+) -> ReasoningFocus:
+    """The DEFAULT per-section split of the daily reasoning budget.
+
+    `section_weight` maps a section to its raw AAMC exam weight (heavier = more of
+    the test); `section_coverage` maps a section to its coverage in 0..1. Sections
+    with no weight (e.g. CARS, which the outline never weights) are excluded, so no
+    coverage is ever invented for them. Returns a whole-question target per section
+    plus the single `default_section` to lead with. As `days_to_exam` shrinks the
+    blend slides from breadth (proportional to weight) toward focus (proportional
+    to weight x under-coverage), so the default leans toward heavy, thin sections
+    near the exam. Pure and deterministic; it has NO manual-choice parameter, so it
+    can never override one (see `resolve_focus_section`)."""
+    secs = sorted(s for s, w in section_weight.items() if w > 0)
+    total_w = sum(section_weight[s] for s in secs)
+    if not secs or total_w <= 0:
+        return ReasoningFocus(
+            has_focus=False, per_day=max(0, per_day), days_to_exam=days_to_exam,
+            concentration=0.0, default_section=None,
+        )
+    base = {s: section_weight[s] / total_w for s in secs}
+    gap = {s: min(1.0, max(0.0, 1.0 - float(section_coverage.get(s, 0.0)))) for s in secs}
+    # focus weight = heavy AND thin. gap_floor keeps a covered-but-heavy section in
+    # (covered is not mastered), so it never drops out entirely.
+    raw = {s: base[s] * max(cfg.pace_focus_gap_floor, gap[s]) for s in secs}
+    raw_total = sum(raw.values())
+    prio = {s: raw[s] / raw_total for s in secs} if raw_total > 0 else dict(base)
+    # concentration k: 0 at/beyond the horizon, rising to pace_focus_max at exam
+    # day. No exam date -> pure breadth (k=0), a sensible neutral default.
+    horizon = max(1, cfg.pace_focus_horizon_days)
+    if days_to_exam is None:
+        k = 0.0
+    else:
+        frac = (horizon - max(0, days_to_exam)) / horizon
+        k = cfg.pace_focus_max * min(1.0, max(0.0, frac))
+    blended = {s: (1.0 - k) * base[s] + k * prio[s] for s in secs}
+    alloc = _largest_remainder([(s, blended[s]) for s in secs], max(0, per_day))
+    rows = [
+        SectionTarget(
+            section=s,
+            weight=round(base[s], 4),
+            coverage=round(float(section_coverage.get(s, 0.0)), 4),
+            gap=round(gap[s], 4),
+            share=round(blended[s], 4),
+            target=alloc[s],
+        )
+        for s in secs
+    ]
+    # Lead with the biggest blended share (not the integer target, so the choice is
+    # stable even when per_day rounds a section to zero); tie-break alphabetically.
+    rows.sort(key=lambda r: (-r.share, r.section))
+    return ReasoningFocus(
+        has_focus=True,
+        per_day=max(0, per_day),
+        days_to_exam=days_to_exam,
+        concentration=round(k, 4),
+        default_section=rows[0].section,
+        by_section=rows,
+    )
+
+
+def resolve_focus_section(
+    manual_section: Optional[str], focus: Optional[ReasoningFocus]
+) -> tuple[Optional[str], bool]:
+    """Pick the section to lead practice with, honoring a manual choice first.
+
+    Returns ``(section, is_manual)``. A truthy `manual_section` is returned
+    unchanged with ``is_manual=True`` no matter what the rebalancer suggests --
+    this is the single, deliberately trivial place the "never override a manual
+    choice" rule is enforced. With no manual choice it falls back to the
+    rebalanced default section."""
+    if manual_section:
+        return manual_section, True
+    return (focus.default_section if focus is not None else None), False
 
 
 # --------------------------------------------------------------------------- #
@@ -1243,6 +1450,74 @@ def mistake_taxonomy(
 
 
 # --------------------------------------------------------------------------- #
+# SIRS skill taxonomy  (what kind of thinking a miss tests, not just why)
+# --------------------------------------------------------------------------- #
+# The second axis of a missed application item. The mistake taxonomy above says
+# WHY the point was lost (content gap, misread, trap, time, math); this says WHAT
+# the question was testing, mapped to the AAMC's four Scientific Inquiry and
+# Reasoning Skills (SIRS). Together they turn "you lost points in psych/soc" into
+# the more actionable "you don't struggle with the facts here, you struggle with
+# evaluating data." Skill is a fixed property of the question (author-tagged),
+# not something the student picks, so it never adds friction to a review.
+#
+# Student-facing labels stay plain (no "SIRS", no skill numbers). Only the three
+# science sections carry a skill: the SIRS describe scientific reasoning, and
+# CARS is never modeled, so CARS items carry no skill exactly as they carry no
+# AAMC concept. Ids map to the official four:
+#   concepts  -> SIRS 1, Knowledge of Scientific Concepts and Principles
+#   reasoning -> SIRS 2, Scientific Reasoning and Problem-Solving
+#   research  -> SIRS 3, Reasoning About the Design and Execution of Research
+#   data      -> SIRS 4, Data-Based and Statistical Reasoning
+SKILLS: tuple[str, ...] = ("concepts", "reasoning", "research", "data")
+SKILL_LABELS: dict[str, str] = {
+    "concepts": "Applying concepts",
+    "reasoning": "Scientific reasoning",
+    "research": "Experiment design",
+    "data": "Evaluating data",
+}
+
+
+@dataclass
+class SkillTaxonomy:
+    abstained: bool
+    n_wrong: int
+    by_skill: dict[str, int] = field(default_factory=dict)
+    top_skill: Optional[str] = None
+    top_section: Optional[str] = None  # section where the top skill bites most
+
+
+def skill_taxonomy(
+    wrong_items: Sequence[tuple[str, str]], cfg: ScoringConfig
+) -> SkillTaxonomy:
+    """Aggregate which reasoning skill a student's misses cluster in. `wrong_items`:
+    (section, skill) for each missed application item that names a SIRS skill; items
+    without a skill (CARS, or an untagged question) are simply not counted. Same
+    honest give-up gate as the mistake taxonomy: abstains until there are enough
+    skill-tagged misses to name a pattern, so we never invent a weakness from one
+    or two questions."""
+    labeled = [(s, k) for s, k in wrong_items if k in SKILLS]
+    n = len(labeled)
+    if n < cfg.min_mistakes:
+        return SkillTaxonomy(abstained=True, n_wrong=n)
+    by_skill: dict[str, int] = {}
+    for _s, k in labeled:
+        by_skill[k] = by_skill.get(k, 0) + 1
+    top_skill = max(by_skill, key=by_skill.get)
+    sec_counts: dict[str, int] = {}
+    for s, k in labeled:
+        if k == top_skill:
+            sec_counts[s] = sec_counts.get(s, 0) + 1
+    top_section = max(sec_counts, key=sec_counts.get) if sec_counts else None
+    return SkillTaxonomy(
+        abstained=False,
+        n_wrong=n,
+        by_skill=by_skill,
+        top_skill=top_skill,
+        top_section=top_section,
+    )
+
+
+# --------------------------------------------------------------------------- #
 # pacing coach  (your time per question vs the real MCAT section budget)
 # --------------------------------------------------------------------------- #
 # Public AAMC section format: (questions, minutes).
@@ -1273,11 +1548,35 @@ class SectionPace:
 
 
 @dataclass
+class CarsPace:
+    """CARS pacing in the passage unit the section is actually timed in.
+
+    `on_pace` and `over_budget_pct` agree with the per-question CARS SectionPace by
+    construction (the passage view just rescales the same median vs the same budget);
+    this exists to state the pace the way a CARS student reads, per passage.
+    """
+
+    abstained: bool
+    n: int  # timed CARS questions used
+    median_sec: float = 0.0  # your typical seconds per CARS question
+    target_sec: float = 0.0  # the exam's per-question budget (same as SectionPace)
+    per_passage_min: float = 0.0  # projected minutes per passage at this pace
+    target_passage_min: float = 0.0  # the exam's minutes-per-passage budget
+    over_budget_pct: int = 0  # signed % vs the passage budget (+ = over/too slow)
+    on_pace: bool = True
+    reasons: list[str] = field(default_factory=list)
+
+
+@dataclass
 class Pacing:
     abstained: bool
     n: int
     sections: list[SectionPace] = field(default_factory=list)
     overall_on_pace: Optional[bool] = None
+    # CARS-only per-passage view (speed signal, never blended into any score). None
+    # until there are enough timed CARS questions; otherwise a CarsPace, which may
+    # itself be an honest abstain when the CARS sample is still too thin.
+    cars: Optional[CarsPace] = None
 
 
 def pacing_coach(items: Sequence[tuple[str, float]], cfg: ScoringConfig) -> Pacing:
@@ -1310,7 +1609,73 @@ def pacing_coach(items: Sequence[tuple[str, float]], cfg: ScoringConfig) -> Paci
             )
     if not sections:
         return Pacing(abstained=True, n=n)
-    return Pacing(abstained=False, n=n, sections=sections, overall_on_pace=all(sp.on_pace for sp in sections))
+    # Attach the CARS-only per-passage view (a speed signal, never a score). It runs
+    # off the same (section, ms) items and reuses SECTION_TIMING["cars"]; it stays an
+    # honest abstain until CARS has enough timed questions of its own.
+    return Pacing(
+        abstained=False,
+        n=n,
+        sections=sections,
+        overall_on_pace=all(sp.on_pace for sp in sections),
+        cars=cars_pacing(items, cfg),
+    )
+
+
+def cars_pacing(items: Sequence[tuple[str, float]], cfg: ScoringConfig) -> CarsPace:
+    """CARS pace stated the way the section is timed: minutes per PASSAGE.
+
+    `items`: (section, milliseconds) per timed question, the same input pacing_coach
+    takes; only the CARS items are used. CARS is pure reading comprehension, so its
+    bottleneck is reading speed and a student paces it by the passage, not the single
+    question. This reuses the exact CARS budget pacing_coach uses
+    (SECTION_TIMING["cars"] = 53 questions / 90 minutes) and the same robust median,
+    then re-expresses that per-question pace as projected minutes per passage against
+    the exam's per-passage budget (90 minutes / `cars_exam_passages`), reporting how
+    far over or under budget the passage pace runs.
+
+    Honest scope: only per-QUESTION CARS time is tracked (an answered item carries no
+    passage id and no discipline), so the per-passage time is PROJECTED from the
+    per-question rate, and no per-discipline (humanities vs social sciences) breakdown
+    is invented -- this is the overall CARS pace only. Abstains (give-up rule) until
+    `min_pace_cars` timed CARS questions exist, never a placeholder pace.
+    """
+    timed = [ms / 1000.0 for s, ms in items if s == "cars" and ms and ms > 0]
+    n = len(timed)
+    if n < cfg.min_pace_cars:
+        return CarsPace(
+            abstained=True,
+            n=n,
+            reasons=[
+                f"only {n} timed CARS questions (need >= {cfg.min_pace_cars})"
+            ],
+        )
+    q, mins = SECTION_TIMING["cars"]
+    passages = max(1, cfg.cars_exam_passages)
+    questions_per_passage = q / passages
+    target_sec = (mins * 60.0) / q  # per-question budget (matches SectionPace)
+    target_passage_min = mins / passages  # per-passage budget in minutes
+    med = _median(timed)
+    per_passage_min = (med * questions_per_passage) / 60.0
+    over_budget_pct = int(
+        round((per_passage_min - target_passage_min) / target_passage_min * 100.0)
+    )
+    on_pace = med <= target_sec
+    reasons = [
+        f"typical {med:.0f}s per CARS question over {n} timed questions",
+        f"about {per_passage_min:.1f} min per passage vs a "
+        f"{target_passage_min:.0f} min budget",
+    ]
+    return CarsPace(
+        abstained=False,
+        n=n,
+        median_sec=round(med, 1),
+        target_sec=round(target_sec, 1),
+        per_passage_min=round(per_passage_min, 1),
+        target_passage_min=round(target_passage_min, 1),
+        over_budget_pct=over_budget_pct,
+        on_pace=on_pace,
+        reasons=reasons,
+    )
 
 
 # --------------------------------------------------------------------------- #

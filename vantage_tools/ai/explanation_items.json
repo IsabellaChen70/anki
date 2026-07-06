@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "about": "Source-traced explanations for MISSED reasoning questions in the authored bank (vantage_addon/web/reasoning_bank.<section>.json). Each maps a bank question (by section + exact stem) to a short explanation of the correct answer and a SourceRef into corpus.json.",
+    "gating": "These are candidates only. vantage_tools/ai/explanations.py runs every one through the SAME shared gate as generated cards (cardgen.GenerationPipeline.gate_candidate: SourceRef required -> grounding check -> teaching-quality gate). Only the ones that PASS are written to vantage_addon/web/explanations.gated.json and shown to a student; the rest show nothing.",
+    "honesty": "Every explanation only restates what its cited named source already says (grounded by construction) and is displayed with that citation. No section without a matching named source (e.g. CARS) is listed here, so those misses correctly show nothing rather than a fabricated explanation.",
+    "source_ref": "source_ref = {source_id, start, end} into corpus.json (start/end are inclusive 0-based sentence indices).",
+    "version": "vantage-reasoning-explanations.v1"
+  },
+  "items": [
+    {
+      "id": "ex_chemphys_buffer_equal",
+      "section": "chem_phys",
+      "stem": "In the buffer, when the concentrations of weak acid and conjugate base are equal, the pH equals:",
+      "correct_choice": "4.7",
+      "explanation": "When a weak acid and its conjugate base are present in equal concentrations, the logarithm in the Henderson-Hasselbalch equation is zero, so the pH equals the pKa.",
+      "source_ref": {"source_id": "src_buffers", "start": 2, "end": 3}
+    },
+    {
+      "id": "ex_chemphys_buffer_addacid",
+      "section": "chem_phys",
+      "stem": "Adding a small amount of strong acid to the buffer barely changes its pH because the added protons are mostly:",
+      "correct_choice": "Consumed by the conjugate base",
+      "explanation": "The conjugate base neutralizes and consumes most of the added hydrogen ions, so adding a small amount of strong acid lowers the pH only slightly.",
+      "source_ref": {"source_id": "src_buffers", "start": 4, "end": 4}
+    },
+    {
+      "id": "ex_chemphys_buffer_ratio",
+      "section": "chem_phys",
+      "stem": "To hold the buffer's pH above its pKa, the ratio of conjugate base to weak acid must be:",
+      "correct_choice": "Greater than 1",
+      "explanation": "To hold the pH above the pKa, the ratio of conjugate base to weak acid must be greater than one, meaning more conjugate base than weak acid.",
+      "source_ref": {"source_id": "src_buffers", "start": 5, "end": 5}
+    },
+    {
+      "id": "ex_chemphys_gibbs",
+      "section": "chem_phys",
+      "stem": "A reaction has a negative enthalpy change and a positive entropy change. This reaction is:",
+      "correct_choice": "Spontaneous at all temperatures",
+      "explanation": "The Gibbs free energy change equals the enthalpy change minus the temperature times the entropy change, and a reaction is spontaneous when that value is negative.",
+      "source_ref": {"source_id": "src_thermo", "start": 0, "end": 2}
+    },
+    {
+      "id": "ex_chemphys_catalyst_ea",
+      "section": "chem_phys",
+      "stem": "A catalyst, such as an enzyme, speeds up a reaction mainly by:",
+      "correct_choice": "Lowering the activation energy",
+      "explanation": "A catalyst speeds up a reaction by providing an alternative pathway with a lower activation energy.",
+      "source_ref": {"source_id": "src_catalysis", "start": 0, "end": 0}
+    },
+    {
+      "id": "ex_chemphys_catalyst_equilibrium",
+      "section": "chem_phys",
+      "stem": "Carbonic anhydrase speeds the conversion of carbon dioxide and water to carbonic acid. As a catalyst, it changes the reaction's:",
+      "correct_choice": "Rate but not the final equilibrium position",
+      "explanation": "A catalyst lowers the activation energy for the forward and reverse directions equally, so it changes the reaction rate but does not shift the position of the equilibrium.",
+      "source_ref": {"source_id": "src_catalysis", "start": 1, "end": 2}
+    },
+    {
+      "id": "ex_bio_competitive",
+      "section": "bio_biochem",
+      "stem": "Drug A increases the substrate concentration needed to reach half of Vmax but does not change Vmax. This pattern is most consistent with which type of inhibition?",
+      "correct_choice": "Competitive inhibition",
+      "explanation": "A competitive inhibitor competes with substrate at the active site, so it raises the apparent Michaelis constant while leaving the maximum velocity unchanged.",
+      "source_ref": {"source_id": "src_enzyme_inhibition", "start": 0, "end": 1}
+    },
+    {
+      "id": "ex_bio_noncompetitive",
+      "section": "bio_biochem",
+      "stem": "Drug B lowers Vmax while leaving the half maximal substrate concentration unchanged, and adding more substrate does not restore the original maximum rate. Which mechanism best explains Drug B?",
+      "correct_choice": "It binds a site other than the active site and reduces the number of functional enzymes",
+      "explanation": "A noncompetitive inhibitor binds a site away from the active site and lowers the maximum velocity, and because it does not compete for the active site, adding more substrate cannot reverse it.",
+      "source_ref": {"source_id": "src_enzyme_inhibition", "start": 3, "end": 5}
+    },
+    {
+      "id": "ex_bio_excess_substrate",
+      "section": "bio_biochem",
+      "stem": "For the enzyme exposed to Drug A, what should happen to the reaction rate if the team greatly increases substrate concentration?",
+      "correct_choice": "The rate can approach the original Vmax as substrate outcompetes the drug",
+      "explanation": "A competitive inhibitor leaves the maximum velocity unchanged, and its effect can be overcome by adding a large excess of substrate, which outcompetes the inhibitor.",
+      "source_ref": {"source_id": "src_enzyme_inhibition", "start": 1, "end": 2}
+    },
+    {
+      "id": "ex_bio_distinguish_inhibitors",
+      "section": "bio_biochem",
+      "stem": "To work out whether the drug is a competitive or a noncompetitive inhibitor, the most informative experiment measures the reaction rate:",
+      "correct_choice": "across a range of substrate concentrations, with and without the drug",
+      "explanation": "A competitive inhibitor can be overcome by a large excess of substrate while a noncompetitive inhibitor cannot, so measuring the rate with and without the drug across substrate concentrations distinguishes the two.",
+      "source_ref": {"source_id": "src_enzyme_inhibition", "start": 0, "end": 5}
+    },
+    {
+      "id": "ex_psych_testing_effect",
+      "section": "psych_soc",
+      "stem": "Students quizzed during learning later outperform those who only reread. This finding is best labeled as which of the following?",
+      "correct_choice": "The testing, or retrieval practice, effect",
+      "explanation": "The testing effect, also called retrieval practice, is the finding that actively recalling information strengthens memory more than simply rereading it.",
+      "source_ref": {"source_id": "src_testing_effect", "start": 0, "end": 0}
+    },
+    {
+      "id": "ex_psych_self_serving",
+      "section": "psych_soc",
+      "stem": "Participants credit their good grades to ability but blame bad grades on unfair tests. This pattern is best described as which of the following?",
+      "correct_choice": "The self-serving bias",
+      "explanation": "The self-serving bias attributes one's own successes to internal factors like ability and one's failures to external factors like circumstances.",
+      "source_ref": {"source_id": "src_attribution", "start": 0, "end": 0}
+    },
+    {
+      "id": "ex_psych_fae",
+      "section": "psych_soc",
+      "stem": "Participants call the rude driver a bad person while blaming their own rude driving on being rushed. Their judgment of the other driver reflects which of the following?",
+      "correct_choice": "The fundamental attribution error",
+      "explanation": "The fundamental attribution error overweights personality and underweights the situation when explaining other people's behavior.",
+      "source_ref": {"source_id": "src_attribution", "start": 1, "end": 1}
+    },
+    {
+      "id": "ex_psych_random_assignment",
+      "section": "psych_soc",
+      "stem": "In the first version, volunteers chose their own schedule. Why does letting them choose weaken any conclusion about spacing?",
+      "correct_choice": "People who choose to space may differ, for example in motivation, so self-selection is a confound that random assignment would remove",
+      "explanation": "Randomly assigning participants to the groups controls for confounding differences between people, such as motivation, that self-selection would otherwise introduce.",
+      "source_ref": {"source_id": "src_experimental_design", "start": 5, "end": 5}
+    }
+  ]
+}

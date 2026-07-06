@@ -17,10 +17,33 @@
   --muted: #f3f4f6;
   --muted-200: #e5e7eb;
   --border: #e5e7eb;
+  --gray-400: #9ca3af;
   --gray-500: #6b7280;
   --gray-900: #111827;
+  /* Reasoning + primary call-to-action purple (previously hardcoded in a few
+     buttons; named here so the redesign's tiles and CTAs stay consistent). */
+  --cars: #7c3aed;
+  --cars-600: #6d28d9;
+  /* "At risk / red" state (Tailwind red family, matching the -50/-500/-600 pattern
+     the rest of the palette uses). Fill = 500, text/value = 600, banner bg = 50,
+     pill bg = 100, subtle border = 200. */
+  --danger: #ef4444;
+  --danger-600: #dc2626;
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  /* Accessible text shades: the -600 colors are fine for buttons and large numbers
+     (>= 3:1), but small colored text (pills, chips, bar values, eyebrows) needs the
+     deeper -700 shades to clear 4.5:1 on the light/tinted fills. --gray-600 is the
+     readable secondary-text grey (the -500 grey dips just under 4.5:1 on --muted). */
+  --danger-700: #b91c1c;
+  --accent-700: #b45309;
+  --secondary-700: #047857;
+  --gray-600: #4b5563;
   --radius-md: 6px;
   --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -84,7 +107,7 @@ html, body {
 .btn--practice:hover { background: #6d28d9; }
 
 /* meta chips */
-.chips { position: relative; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.chips { position: relative; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
 .chip {
   display: inline-flex; align-items: center; gap: 0.45rem;
   background: rgba(255,255,255,0.1); color: #f9fafb; font-weight: 500; font-size: 0.85rem;
@@ -101,10 +124,15 @@ html, body {
    label register so they read as a tier above the mixed-case panel titles inside them. */
 .section__title--group { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-900); }
 
-/* ---------- Score cards (color blocks) ---------- */
-.scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+/* ---------- Score cards (color blocks) ----------
+   Rebalanced: Memory + Performance stack in a narrower left column, Readiness gets
+   the wider right column, all three settling to the same height. Collapses to one
+   column on mobile (see the max-width:900 block below). */
+.scores { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.25rem; align-items: stretch; }
+.scorestack { display: flex; flex-direction: column; gap: 0.9rem; }
+.scorestack > .card { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0.9rem 1.4rem; }
 .card {
-  border-radius: var(--radius-lg); padding: 1.75rem; border: 0;
+  border-radius: var(--radius-lg); padding: 1.2rem 1.5rem; border: 0;
 }
 .card--memory { background: var(--primary-50); }
 .card--perf { background: var(--secondary-50); }
@@ -121,14 +149,26 @@ html, body {
 .i-perf { color: var(--secondary-600); }
 .i-ready { color: var(--accent-600); }
 .i-abstain { color: var(--gray-500); }
-.card__label { text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; font-size: 0.8rem; color: var(--gray-500); }
+/* Card labels stand out (800 / near-black) so the score names read as a tier above
+   their quiet sub-lines, per the redesign. */
+.card__label { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; font-size: 0.85rem; color: var(--gray-900); }
 .card__sub { font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
 
-.metricline { display: flex; align-items: baseline; justify-content: flex-start; gap: 0.55rem; margin-top: 0.35rem; }
-.metricline__val { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+.metricline { display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; }
+.metricline__val { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
 .card--memory .metricline__val { color: var(--primary-600); }
 .card--perf .metricline__val { color: var(--secondary-600); }
-.metricline__range { color: var(--gray-500); font-weight: 500; font-size: 1rem; }
+.metricline__range { color: var(--gray-600); font-weight: 500; font-size: 0.95rem; }
+
+/* Confidence chip, shown inline to the right of the score % (and at the foot of the
+   Readiness card). One line; colored by confidence level. Keeps the honest
+   "Confidence: <level> - <n> <unit>" content the meta() line used to carry. */
+.confchip { margin-left: auto; background: #fff; border-radius: var(--radius-lg); padding: 0.55rem 0.8rem; font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
+.confchip--high { color: var(--secondary-700); }
+.confchip--medium { color: var(--accent-700); }
+.confchip--low { color: var(--gray-600); }
+.confchip--insufficient { color: #374151; }
+.card--ready .confchip { margin-left: 0; margin-top: 0.5rem; display: inline-block; align-self: flex-start; }
 
 .reasons { list-style: none; margin-top: 1.1rem; display: grid; gap: 0.4rem; }
 .reasons li { position: relative; padding-left: 1rem; color: #374151; font-size: 0.9rem; font-weight: 400; }
@@ -154,28 +194,65 @@ html, body {
 .card__cta:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; }
 
 /* ---------- Coverage ---------- */
-.coverage { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.25rem; align-items: stretch; }
+/* Two panels kept at one shared height: the grid stretches both columns to the
+   taller one, so the light coverage panel and the dark study-next panel always end
+   level. Either side can grow or shrink when its "see all / show fewer" button is
+   tapped, and the shared height re-settles to whichever side is taller in the new
+   state. Each panel is a vertical column with its trailing button dropped to the
+   bottom, so the spare height on the shorter side reads as padding under a
+   bottom-aligned button instead of a gap after it. */
+.coverage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; align-items: stretch; }
+.coverage > .coverblock, .coverage > .nextblock { display: flex; flex-direction: column; }
+/* Left panel: the topics-left list is nested, so let it and its list fill the spare
+   height and drop the show-more to the bottom. The list's 0.5rem flex gap keeps the
+   spacing above the button. */
+.coverage > .coverblock > .tgaps { flex: 1 1 auto; display: flex; flex-direction: column; }
+.coverage .tgaps__list { flex: 1 1 auto; display: flex; flex-direction: column; }
+.coverage .tgapsmore { margin-top: auto; }
+/* Right panel: the show-more is already a direct child, so let the queue stack take
+   the spare height (rows stay top-packed) and the button keeps its own top gap. */
+.coverage .nextstack { flex: 1 1 auto; align-content: start; }
 .coverblock { background: var(--muted); border-radius: var(--radius-lg); padding: 1.75rem; }
 .cover__overall { display: flex; align-items: baseline; gap: 0.6rem; }
 .cover__num { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; }
 .cover__of { color: var(--gray-500); font-weight: 600; }
-.bars { margin-top: 1.4rem; display: grid; gap: 1.05rem; }
-.bar__head { display: flex; justify-content: space-between; font-weight: 600; font-size: 0.92rem; margin-bottom: 0.4rem; }
-.bar__track { height: 0.9rem; background: var(--muted-200); border-radius: 9999px; overflow: hidden; }
-.bar__fill { height: 100%; border-radius: 9999px; transition: width 300ms ease; }
-.bar--chem_phys .bar__fill { background: var(--primary); }
-.bar--bio_biochem .bar__fill { background: var(--secondary); }
-.bar--psych_soc .bar__fill { background: var(--accent); }
+/* Section coverage: a small subject-colored dot, the section name in quiet grey,
+   and its percentage in the matching subject color (the per-subject palette used
+   across the dashboard). No progress bar, just a quiet summary under the headline. */
+.cover__sections { margin-top: 1.15rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+.cover__sec { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.92rem; }
+.cover__sec-dot { flex: none; align-self: center; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--muted-200); }
+.cover__sec-name { color: var(--gray-500); font-weight: 600; }
+.cover__sec-pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+/* Per-subject color, matching the .tgap--/.nextrow--/.srow-- section palette. */
+.cover__sec--chem_phys .cover__sec-dot { background: var(--primary); }
+.cover__sec--chem_phys .cover__sec-pct { color: var(--primary); }
+.cover__sec--bio_biochem .cover__sec-dot { background: var(--secondary); }
+.cover__sec--bio_biochem .cover__sec-pct { color: var(--secondary); }
+.cover__sec--psych_soc .cover__sec-dot { background: var(--accent); }
+.cover__sec--psych_soc .cover__sec-pct { color: var(--accent); }
 
-/* finer topic breakdown under the section bars: the areas with the most topics
-   left, each a thinner bar so the section bars stay the primary read */
-.tgaps { margin-top: 1.6rem; display: grid; gap: 0.85rem; }
+/* Topics left to study: one compact row per area (id + name, the covered/total
+   count, and, on the desktop add-on, an inline Generate button). The only color is
+   a subtle section-tinted left edge, matching the study-next rows. */
+.tgaps { margin-top: 1.6rem; display: grid; gap: 0.6rem; }
 .tgaps__head { font-weight: 700; font-size: 0.9rem; color: var(--gray-500); }
-.tgap__head { display: flex; justify-content: space-between; gap: 0.75rem; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem; }
-.tgap__name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tgaps__note { font-size: 0.8rem; color: var(--gray-500); font-weight: 500; line-height: 1.45; margin: -0.15rem 0 0.15rem; }
+.tgaps__list { display: grid; gap: 0.5rem; }
+.tgap { min-width: 0; display: flex; align-items: center; gap: 0.7rem; background: var(--muted); border-radius: var(--radius-md); border-left: 3px solid var(--muted-200); padding: 0.5rem 0.7rem; }
+.tgap--chem_phys { border-left-color: var(--primary); }
+.tgap--bio_biochem { border-left-color: var(--secondary); }
+.tgap--psych_soc { border-left-color: var(--accent); }
+.tgap__name { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.9rem; font-weight: 600; }
 .tgap__name b { font-weight: 800; margin-right: 0.35rem; }
-.tgap__count { flex: none; color: var(--gray-500); font-variant-numeric: tabular-nums; }
-.tgap .bar__track { height: 0.5rem; }
+.tgap__count { flex: none; font-size: 0.8rem; color: var(--gray-500); font-weight: 600; font-variant-numeric: tabular-nums; }
+.tgapsmore { margin-top: 0.1rem; width: 100%; background: transparent; color: var(--gray-500); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.5rem; font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+.tgapsmore:hover { background: var(--muted-200); color: var(--fg); }
+.tgapsmore:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--primary); }
+.genbtn { flex: none; display: inline-flex; align-items: center; gap: 0.35rem; height: 2rem; padding: 0 0.7rem; border: 0; border-radius: var(--radius-md); cursor: pointer; background: var(--primary); color: #fff; font: inherit; font-size: 0.8rem; font-weight: 600; }
+.genbtn:hover { background: var(--primary-600); }
+.genbtn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--primary); }
+.genbtn svg { width: 0.95rem; height: 0.95rem; flex: none; }
 
 /* best next topic block (bold accent) */
 .nextblock { background: var(--gray-900); color: #fff; border-radius: var(--radius-lg); padding: 1.75rem; position: relative; overflow: hidden; }
@@ -186,8 +263,8 @@ html, body {
 .tag { background: rgba(255,255,255,0.12); color: #fff; font-weight: 600; font-size: 0.8rem; padding: 0.35rem 0.75rem; border-radius: 9999px; }
 .tag--accent { background: var(--accent); color: #442c04; }
 
-/* "where to study" resource pointers inside the next-topic block */
-.nextblock__where { position: relative; margin-top: 1.1rem; padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.14); display: grid; gap: 0.5rem; }
+/* "where to study" resource pointers inside the open queue row */
+.nextblock__where { position: relative; margin: 0.1rem 0.85rem 0.9rem; padding-top: 0.85rem; border-top: 1px solid rgba(255,255,255,0.12); display: grid; gap: 0.5rem; }
 .where__row { display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.9rem; color: #e5e7eb; font-weight: 500; }
 .where__k { flex: none; min-width: 4.75rem; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.7rem; color: #9ca3af; font-weight: 600; }
 .where__val { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
@@ -204,18 +281,44 @@ html, body {
 .nextblock__where a { color: #93c5fd; font-weight: 600; text-decoration: none; font-size: 0.9rem; }
 .nextblock__where a:hover { text-decoration: underline; }
 
-/* pager: step through the ranked next topics */
-.nextblock__head { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.nextpager { display: flex; align-items: center; gap: 0.5rem; flex: none; }
-.nextpager__count { font-size: 0.78rem; font-weight: 600; color: #9ca3af; font-variant-numeric: tabular-nums; }
-.nextnav { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border: 0; border-radius: 9999px; background: rgba(255,255,255,0.12); color: #fff; cursor: pointer; }
-.nextnav:hover { background: rgba(255,255,255,0.22); }
-.nextnav:disabled { opacity: 0.35; cursor: default; }
-.nextnav svg { width: 1rem; height: 1rem; }
-.nextnav:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,0.5); }
+/* study-next queue: a compact stack of the ranked topics. The open row expands
+   with its where-to-study detail; tapping another row opens that one instead. */
+.nextblock__head { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; }
+.nextblock__count { flex: none; font-size: 0.78rem; font-weight: 600; color: #9ca3af; font-variant-numeric: tabular-nums; }
+.nextblock__title--empty { color: #e5e7eb; opacity: 0.85; }
+
+.nextstack { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+
+.nextrow { min-width: 0; background: rgba(255,255,255,0.05); border-radius: var(--radius-md); border-left: 3px solid rgba(255,255,255,0.18); overflow: hidden; }
+.nextrow--chem_phys { border-left-color: var(--primary); }
+.nextrow--bio_biochem { border-left-color: var(--secondary); }
+.nextrow--psych_soc { border-left-color: var(--accent); }
+.nextrow--open { background: rgba(255,255,255,0.09); }
+
+.nextrow__head { width: 100%; min-width: 0; display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.8rem; background: transparent; border: 0; cursor: pointer; text-align: left; color: inherit; font: inherit; }
+.nextrow__head:hover { background: rgba(255,255,255,0.04); }
+.nextrow__head:focus-visible { outline: none; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5); }
+.nextrow__rank { flex: none; width: 1.5rem; height: 1.5rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,0.1); color: #cbd5e1; font-size: 0.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.nextrow__body { min-width: 0; flex: 1 1 auto; display: grid; gap: 0.15rem; }
+.nextrow__name { font-weight: 700; font-size: 0.96rem; letter-spacing: -0.01em; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nextrow__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.6rem; font-size: 0.78rem; }
+.nextrow__sec { font-weight: 600; color: #e5e7eb; }
+.nextrow__state { color: #9ca3af; font-weight: 500; }
+.nextrow__count { color: #9ca3af; font-weight: 500; font-variant-numeric: tabular-nums; }
+.nextrow__chev { flex: none; color: #9ca3af; display: inline-flex; transition: transform 150ms ease; }
+.nextrow__chev svg { width: 1rem; height: 1rem; }
+.nextrow--open .nextrow__chev { transform: rotate(90deg); color: #e5e7eb; }
+.nextrow--open .nextrow__name { white-space: normal; font-size: 1.06rem; }
+
+.nextmore { position: relative; margin-top: 0.85rem; width: 100%; background: rgba(255,255,255,0.08); color: #e5e7eb; border: 0; border-radius: var(--radius-md); padding: 0.55rem; font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+.nextmore:hover { background: rgba(255,255,255,0.14); }
+.nextmore:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,0.5); }
 
 /* ---------- readiness sections mini-bars ---------- */
-.subsections { margin-top: 1.25rem; display: grid; gap: 0.95rem; }
+/* 2x2 grid so the four projected section scores fill the wider Readiness column
+   (collapses to one column on a phone, see the max-width:560 block). */
+.card--ready { display: flex; flex-direction: column; }
+.subsections { margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2rem; }
 .subrow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
 .subrow__label { font-weight: 600; font-size: 0.95rem; }
 .subrow__score { display: flex; align-items: baseline; gap: 0.55rem; }
@@ -238,14 +341,39 @@ html, body {
 .srow__name { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
 .srow__sub { color: var(--gray-500); font-size: 0.85rem; font-weight: 500; margin-top: 2px; }
 .srow--all .srow__sub { color: #9ca3af; }
-.srow__actions { display: flex; gap: 0.5rem; flex: none; flex-wrap: wrap; justify-content: flex-end; }
+.srow__actions { display: flex; gap: 0.5rem; flex: none; flex-wrap: wrap; justify-content: flex-end; align-items: flex-start; }
 .btn--study { background: var(--primary); color: #fff; }
 .btn--study:hover { background: var(--primary-600); }
-.btn--mix { background: var(--primary-50); color: var(--primary-600); }
-.btn--mix:hover { background: #dbeafe; }
+/* Per-section Flashcards button wrapper (a column so the button reads as a full-width row on narrow screens). */
+.srow__study { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
 .btn--reason { background: #7c3aed; color: #fff; }
 .btn--reason:hover { background: #6d28d9; }
 .srow .btn { height: 2.55rem; }
+
+/* ---- "Study now" (Feature 2) + "Your weakest area" (Feature 5) CTA pair ----
+   Flexbox so a single card fills the width when its pair is deduped/absent, and
+   the two sit side by side on wider viewports, stacking on narrow ones. */
+.focusgrid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.focusnow { flex: 1 1 320px; background: var(--gray-900); color: #fff; border-radius: var(--radius-lg); padding: 1.5rem 1.6rem; border-left: 5px solid var(--primary); display: flex; flex-direction: column; }
+.focusnow--chem_phys { border-left-color: var(--primary); }
+.focusnow--bio_biochem { border-left-color: var(--secondary); }
+.focusnow--psych_soc { border-left-color: var(--accent); }
+.focusnow--weak { border-left-color: #7c3aed; }
+.focusnow__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; font-weight: 700; color: #93c5fd; }
+.focusnow__eyebrow--weak { color: #c4b5fd; }
+.focusnow__title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 0.2rem; }
+.focusnow__lead { color: rgba(255, 255, 255, 0.8); font-size: 0.92rem; margin: 0.5rem 0 1rem; max-width: 52ch; }
+.focusnow__go { height: 2.7rem; margin-top: auto; align-self: flex-start; }
+.focusnow--wait { background: var(--primary-50); color: var(--fg); border-left-color: var(--muted-200); }
+.focusnow--wait .focusnow__eyebrow { color: var(--primary); }
+.focusnow--wait .focusnow__lead { color: var(--gray-500); }
+
+/* ---- Session-length chooser (Feature 3). .pchip / .psetup__num are defined in
+   practice.css, which is always co-loaded with dashboard.css on both platforms. */
+.vseslen { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 0 0 1rem; }
+.vseslen__label { font-weight: 700; color: var(--gray-500); font-size: 0.9rem; }
+.vseslen__chips { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.vsescustom { width: 5.5rem; }
 
 /* ---------- exam countdown + daily plan ---------- */
 .plancard { background: var(--primary-50); color: var(--fg); border-radius: var(--radius-lg); padding: 1.75rem; position: relative; overflow: hidden; }
@@ -261,7 +389,6 @@ html, body {
 .plan__num { font-size: 2rem; font-weight: 800; color: var(--fg); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .plan__lbl { font-weight: 600; font-size: 0.9rem; color: var(--fg); display: flex; flex-direction: column; }
 .plan__hint { color: var(--gray-500); font-weight: 500; font-size: 0.78rem; margin-top: 2px; }
-.plan__note { margin-top: 1.15rem; color: var(--gray-500); font-size: 0.85rem; font-weight: 500; }
 
 /* ---------- pacing coach ---------- */
 .pacelist { display: grid; gap: 0.7rem; }
@@ -363,7 +490,7 @@ html, body {
 
 @media (max-width: 900px) {
   .scores { grid-template-columns: 1fr; }
-  .coverage { grid-template-columns: 1fr; }
+  .coverage { grid-template-columns: minmax(0, 1fr); }
   .plansplit { grid-template-columns: 1fr; }
 }
 
@@ -373,17 +500,37 @@ html, body {
   .masthead__row { flex-direction: column; align-items: stretch; }
   .toolbar { width: 100%; display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 0.25rem; }
   .toolbar .btn { width: 100%; min-width: 0; justify-content: center; height: 2.7rem; padding: 0 0.5rem; font-size: 0.9rem; }
-  .chips { margin-top: 1.1rem; }
+  .syncago { grid-column: 1 / -1; text-align: center; margin-top: 0.15rem; }
+  .chips { margin-top: 0.7rem; }
   .section { padding: 1.5rem 1.25rem 0; }
   .outlook { padding: 1.5rem 1.25rem 0; }
   .card { padding: 1.35rem; }
+  /* narrow: give the study-next panel more room and stack the where-to-study
+     rows so the book title, picker, and Khan links use the full width */
+  .nextblock { padding: 1.35rem; }
+  .where__row, .where__row--book { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+  .where__k { min-width: 0; }
+  .bookpick { margin-left: 0; align-self: flex-start; }
   .srow { flex-direction: column; align-items: stretch; gap: 0.75rem; }
   .srow__actions { justify-content: stretch; }
   .srow__actions .btn { flex: 1; min-width: 0; justify-content: center; }
+  /* Flashcards + its toggle take a full row, so Reasoning wraps to a full-width line below. */
+  .srow__study { flex: 1 1 100%; align-items: stretch; }
   .calibbar { grid-template-columns: 6.5rem 1fr 2.5rem; gap: 0.5rem; }
   .flubar { grid-template-columns: 5.5rem 1fr 2.5rem; gap: 0.5rem; }
   .plan__grid { grid-template-columns: 1fr; }
   .footmeta { margin-left: 1.25rem; margin-right: 1.25rem; }
+  /* Redesign: stack the readiness 2x2 to one column and pull the new banner /
+     report card in to the phone gutter, matching the other full-bleed rows. */
+  .subsections { grid-template-columns: 1fr; }
+  .vnext { margin-left: 1.25rem; margin-right: 1.25rem; padding: 1.2rem 1.3rem; }
+  /* Phone: stack the CTA and its "Why this?" so neither is clipped, and give the
+     primary action a full-width tap target. */
+  .vnext__actions { width: 100%; flex-direction: column; align-items: stretch; }
+  /* Phone: when the confidence pill wraps under the score it should sit flush left,
+     not float to the far right leaving a lopsided gap. */
+  .confchip { margin-left: 0; }
+  .rcard { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
 
 /* ---- Tabs: Dashboard / Practice / Progress (in the dark masthead) ---- */
@@ -402,6 +549,17 @@ html, body {
 /* Sync button busy state */
 .btn--busy { opacity: 0.7; cursor: default; }
 
+/* "Last synced Xm ago" caption (Feature 1): wraps to its own line under the
+   toolbar buttons, so it never adds a third flex column to .masthead__row. */
+.syncago {
+  flex-basis: 100%;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: left;
+}
+
 /* Bottom-center transient message (sync errors, etc.) */
 .vmsg {
   position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 10px);
@@ -411,3 +569,121 @@ html, body {
   opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease; pointer-events: none;
 }
 .vmsg--show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---- Dashboard-open due-cards reminder banner ---- */
+.duebanner { display: flex; align-items: center; gap: 0.7rem; margin: 1.25rem 2.5rem 0; padding: 0.85rem 1.15rem; background: var(--primary-50); border: 1px solid var(--primary); border-radius: var(--radius-lg); }
+.duebanner__dot { flex: none; width: 0.6rem; height: 0.6rem; border-radius: 9999px; background: var(--primary); }
+.duebanner__text { font-weight: 600; color: var(--fg); font-size: 0.95rem; }
+.duebanner__text b { font-weight: 800; color: var(--primary-600); font-variant-numeric: tabular-nums; }
+.duebanner__btn { margin-left: auto; font-family: inherit; font-weight: 700; font-size: 0.85rem; color: #fff; background: var(--primary); border: 0; border-radius: var(--radius-md); padding: 0.5rem 1rem; cursor: pointer; white-space: nowrap; }
+.duebanner__btn:hover { background: var(--primary-600); }
+.duebanner__btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--primary); }
+@media (max-width: 560px) { .duebanner { margin-left: 1.25rem; margin-right: 1.25rem; } }
+
+/* ============================================================================
+   REDESIGN COMPONENTS (Progress report card, Practice section bars, Dashboard
+   next-step). Colors/typography reuse the tokens above; nothing here computes a
+   number -- the JS derives every status from the existing score data.
+   ============================================================================ */
+
+/* ---- Dashboard: "Where to go next" banner (reddest signal -> one tap) ---- */
+.vnext {
+  position: relative; overflow: hidden;
+  background: var(--danger-50); border: 1px solid var(--danger-200); border-radius: var(--radius-xl);
+  padding: 1.5rem 1.8rem; margin: 1.25rem 2.5rem 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+}
+.vnext__body { min-width: 0; flex: 1 1 460px; }
+.vnext__eyebrow { display: flex; align-items: center; gap: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 800; color: var(--danger-700); }
+.vnext__dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: var(--danger); flex: none; }
+.vnext__title { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 0.45rem; color: var(--fg); }
+.vnext__reason { color: var(--gray-600); font-weight: 500; font-size: 0.95rem; margin-top: 0.3rem; line-height: 1.45; }
+.vnext__why-detail { margin-top: 0.5rem; font-size: 0.88rem; color: var(--gray-600); font-weight: 500; line-height: 1.5; }
+.vnext__actions { display: flex; gap: 0.6rem; align-items: center; flex: 0 1 auto; min-width: 0; flex-wrap: wrap; }
+.vnext__go { font-family: inherit; font-weight: 700; font-size: 0.95rem; color: #fff; background: var(--cars); border: 0; border-radius: var(--radius-md); padding: 0.8rem 1.5rem; cursor: pointer; }
+.vnext__go:hover { background: var(--cars-600); }
+.vnext__go:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--cars); }
+.vnext__why { font-family: inherit; font-weight: 600; font-size: 0.9rem; color: var(--gray-600); background: transparent; border: 0; border-radius: var(--radius-md); padding: 0.8rem 0.6rem; cursor: pointer; }
+.vnext__why:hover { color: var(--fg); }
+.vnext__why:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--muted-200); }
+
+/* ---- Practice: per-section cards with color-coded progress bars ---- */
+.secgrid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 0.1rem; }
+@media (min-width: 700px) { .secgrid { grid-template-columns: 1fr 1fr; } }
+.seccard { background: var(--muted); border-left: 4px solid var(--muted-200); border-radius: var(--radius-lg); padding: 1.3rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.seccard--chem_phys { border-left-color: var(--primary); }
+.seccard--bio_biochem { border-left-color: var(--secondary); }
+.seccard--psych_soc { border-left-color: var(--accent); }
+.seccard--cars { border-left-color: var(--cars); }
+/* the single reddest reasoning section is flagged as the place to start */
+.seccard--flag { background: #fff; border-left: 4px solid var(--danger); box-shadow: 0 0 0 2px var(--danger); }
+.seccard__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.seccard__name { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.5rem; }
+.seccard__flag { background: var(--danger-100); color: var(--danger-700); font-weight: 800; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; border-radius: 999px; }
+.seccard__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.secbtn { font-family: inherit; font-weight: 600; font-size: 0.85rem; border: 0; border-radius: var(--radius-md); padding: 0.55rem 1rem; cursor: pointer; color: #fff; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+.secbtn svg { width: 0.95rem; height: 0.95rem; flex: none; }
+.secbtn--flash { background: var(--primary); }
+.secbtn--flash:hover { background: var(--primary-600); }
+.secbtn--reason { background: var(--cars); }
+.secbtn--reason:hover { background: var(--cars-600); }
+.secbtn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--primary); }
+.secbars { display: flex; flex-direction: column; gap: 0.65rem; }
+.secbar { display: flex; align-items: center; gap: 0.75rem; }
+.secbar__k { width: 5rem; flex: none; font-size: 0.8rem; color: var(--gray-600); font-weight: 600; }
+.secbar__track { flex: 1 1 auto; height: 8px; background: var(--muted-200); border-radius: 999px; overflow: hidden; }
+.secbar__fill { height: 100%; border-radius: 999px; }
+.secbar__fill--red { background: var(--danger); }
+.secbar__fill--amber { background: var(--accent); }
+.secbar__fill--green { background: var(--secondary); }
+.secbar__v { width: 2.6rem; flex: none; text-align: right; font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.secbar__v--red { color: var(--danger-700); }
+.secbar__v--amber { color: var(--accent-700); }
+.secbar__v--green { color: var(--secondary-700); }
+/* honest fallback when a section has too little data for a bar */
+.secbar__note { font-size: 0.82rem; color: var(--gray-600); font-weight: 500; line-height: 1.45; }
+
+/* ---- Progress: the report card (status tiles + progressive disclosure) ---- */
+.rcard { display: flex; flex-direction: column; gap: 1.1rem; padding: 2rem 2.5rem 0; }
+.rgroup__label { display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; font-size: 0.8rem; color: var(--gray-500); }
+.rgroup__dot { width: 0.55rem; height: 0.55rem; border-radius: 999px; flex: none; }
+.rgroup__dot--red { background: var(--danger); }
+.rgroup__dot--amber { background: var(--accent); }
+.rgroup__dot--green { background: var(--secondary); }
+.rgroup__dot--neutral { background: var(--muted-200); }
+.rtiles { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 700px) {
+  .rtiles--3 { grid-template-columns: repeat(3, 1fr); }
+  .rtiles--2 { grid-template-columns: repeat(2, 1fr); }
+}
+.rtile { text-align: left; font: inherit; cursor: pointer; background: var(--muted); border: 0; border-left: 4px solid var(--muted-200); border-radius: var(--radius-xl); padding: 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
+.rtile:hover { background: #ececf0; }
+.rtile:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--primary); }
+.rtile--amber { border-left-color: var(--accent); }
+.rtile--green { border-left-color: var(--secondary); }
+.rtile--neutral { border-left-color: var(--muted-200); }
+/* red tile: prominent full-width card with a ring and an Open affordance */
+.rtile--red { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; background: #fff; border-left: 5px solid var(--danger); box-shadow: 0 0 0 2px var(--danger); padding: 1.5rem 1.7rem; }
+.rtile--red .rtile__body { min-width: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+.rtile__open { flex: none; color: var(--danger-700); font-weight: 700; font-size: 0.9rem; white-space: nowrap; }
+.rtile__head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.rtile__name { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; font-weight: 700; color: var(--gray-600); }
+.rtile__pill { font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+.rtile__pill--red { background: var(--danger-100); color: var(--danger-700); }
+.rtile__pill--amber { background: var(--accent-50); color: var(--accent-700); }
+.rtile__pill--green { background: var(--secondary-50); color: var(--secondary-700); }
+.rtile__verdict { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; color: var(--fg); }
+.rtile--red .rtile__verdict { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; }
+.rtile__detail { color: var(--gray-600); font-weight: 500; font-size: 0.88rem; line-height: 1.4; }
+.rhint { color: var(--gray-500); font-weight: 500; font-size: 0.8rem; }
+
+/* drawer: reuses the existing panel builders; flatten their nested grey boxes so a
+   panel reads as content on the drawer, and float topic rows to white like the mock. */
+.pdrawer { background: var(--muted); border-radius: var(--radius-xl); padding: 1.5rem 1.7rem; }
+.pdrawer > .section { padding: 0; }
+.pdrawer > .section + .section { margin-top: 1.25rem; }
+.pdrawer .section__head { margin-bottom: 0.9rem; }
+.pdrawer .coverblock { background: transparent; padding: 0; border-radius: 0; }
+.pdrawer .coverage { grid-template-columns: minmax(0, 1fr); }
+.pdrawer .tgap { background: #fff; }
+@media (max-width: 560px) { .rcard { padding-top: 1.5rem; } }

@@ -23,8 +23,8 @@
     "hypothesis_mixed_lt_off_lt_blocked": true,
     "interleave_exposure": {
       "blocked": {
-        "max": 0.0323,
-        "mean": 0.0129,
+        "max": 0.0645,
+        "mean": 0.0194,
         "min": 0.0
       },
       "mixed": {
@@ -33,9 +33,9 @@
         "min": 0.5161
       },
       "off": {
-        "max": 0.3871,
-        "mean": 0.2839,
-        "min": 0.1935
+        "max": 0.2581,
+        "mean": 0.2194,
+        "min": 0.1613
       }
     },
     "same_topic_adjacency": {
@@ -50,9 +50,9 @@
         "min": 0.0
       },
       "off": {
-        "max": 0.2258,
-        "mean": 0.1548,
-        "min": 0.0323
+        "max": 0.2581,
+        "mean": 0.1806,
+        "min": 0.129
       }
     }
   },
@@ -72,8 +72,8 @@
     "test_accuracy": {
       "literature_high_g0.60": {
         "blocked": {
-          "max": 0.399,
-          "mean": 0.3891,
+          "max": 0.4154,
+          "mean": 0.3924,
           "min": 0.3825
         },
         "mixed": {
@@ -82,15 +82,15 @@
           "min": 0.6457
         },
         "off": {
-          "max": 0.5799,
-          "mean": 0.5273,
-          "min": 0.4812
+          "max": 0.5141,
+          "mean": 0.4944,
+          "min": 0.4648
         }
       },
       "literature_low_g0.20": {
         "blocked": {
-          "max": 0.473,
-          "mean": 0.4697,
+          "max": 0.4785,
+          "mean": 0.4708,
           "min": 0.4675
         },
         "mixed": {
@@ -99,15 +99,15 @@
           "min": 0.5552
         },
         "off": {
-          "max": 0.5333,
-          "mean": 0.5158,
-          "min": 0.5004
+          "max": 0.5114,
+          "mean": 0.5048,
+          "min": 0.4949
         }
       },
       "literature_mid_g0.42": {
         "blocked": {
-          "max": 0.4323,
-          "mean": 0.4254,
+          "max": 0.4438,
+          "mean": 0.4277,
           "min": 0.4208
         },
         "mixed": {
@@ -116,9 +116,9 @@
           "min": 0.605
         },
         "off": {
-          "max": 0.5589,
-          "mean": 0.5221,
-          "min": 0.4898
+          "max": 0.5129,
+          "mean": 0.4991,
+          "min": 0.4783
         }
       },
       "null_control": {
